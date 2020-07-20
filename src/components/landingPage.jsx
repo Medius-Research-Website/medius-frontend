@@ -1,12 +1,12 @@
 import React, { Component } from "react";
+import NavbarInstance from "./navbar";
 
 class LandingPage extends Component {
   state = {};
   render() {
     return (
       <React.Fragment>
-        <h1>Medius Research</h1>
-        <body>Welcome to Medius Research!</body>
+        <NavbarInstance />
       </React.Fragment>
     );
   }
