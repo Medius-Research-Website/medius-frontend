@@ -24,7 +24,7 @@ class NavbarInstance extends Component {
           <Nav.Link href="#home">Home</Nav.Link>
           <Nav.Link href="#community">Community</Nav.Link>
           <Nav.Link href="#our-story">Our Story</Nav.Link>
-          <Button variant="primary">Sign In</Button>{" "}
+          <Button variant="primary m-2">Sign In</Button>{" "}
         </Navbar.Collapse>
       </Navbar>
     );
