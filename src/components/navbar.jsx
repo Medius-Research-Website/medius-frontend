@@ -1,34 +1,30 @@
 import React, { Component } from "react";
-import * as ReactBootstrap from "react-bootstrap";
-
-const { Navbar, Nav, Form, FormControl, Button } = ReactBootstrap;
+import { Navbar, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import "./customnavbar.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 class NavbarInstance extends Component {
-  state = {};
   render() {
     return (
-      <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home">Medius Research</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-            <Form inline>
-              <FormControl
-                type="text"
-                placeholder="Search"
-                className="mr-sm-2"
-              />
-              <Button variant="outline-success">Search</Button>
-            </Form>
-          </Nav>
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#community">Community</Nav.Link>
-          <Nav.Link href="#our-story">Our Story</Nav.Link>
-          <Button variant="primary m-2">Sign In</Button>{" "}
-        </Navbar.Collapse>
+      <Navbar default collapseOnSelect>
+        <Navbar.Brand>
+          <Link to="/">medius research</Link>
+        </Navbar.Brand>
+        <Nav class="navbar navbar-expand-sm justify-content-end">
+          <button class="btn btn-success ml-auto mr-1">Sign In</button>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <button class="btn btn-success ml-auto mr-1">Get Started</button>
+        </Nav>
       </Navbar>
     );
   }
 }
-
 export default NavbarInstance;
