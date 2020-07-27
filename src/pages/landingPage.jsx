@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import NavbarInstance from "./navbar";
+import NavbarInstance from "../components/navbar";
+import Feed from "../components/feed";
 
 class LandingPage extends Component {
   state = {};
@@ -7,6 +8,7 @@ class LandingPage extends Component {
     return (
       <React.Fragment>
         <NavbarInstance />
+        <Feed />
       </React.Fragment>
     );
   }
