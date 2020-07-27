@@ -1,0 +1,14 @@
+.about-box {
+    font-family: 'Oxygen', sans-serif;
+    display: block;
+	width: auto;
+	height: 100%;
+	padding: 10px;
+    margin: 50px;
+	background-color: #F3F3F3;
+	box-shadow: 0 0 50px rgba(0,0,0,0.08);
+    overflow: auto;
+    border: 3px solid #4DCBD2;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
