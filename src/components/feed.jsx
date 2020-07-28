@@ -5,7 +5,14 @@ class Feed extends Component {
   state = {};
 
   render() {
-    return <Post />;
+    return (
+      <React.Fragment>
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+      </React.Fragment>
+    );
   }
 }
 
