@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import "./customnavbar.css";
+import { Link, BrowserRouter } from "react-router-dom";
+import "./css files/navbar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class NavbarInstance extends Component {
@@ -9,7 +9,9 @@ class NavbarInstance extends Component {
     return (
       <Navbar default collapseOnSelect>
         <Navbar.Brand>
-          <Link to="/">medius research</Link>
+          <BrowserRouter>
+            <Link to="/">medius research</Link>
+          </BrowserRouter>
         </Navbar.Brand>
         <Nav class="navbar navbar-expand-sm justify-content-end">
           <button class="btn btn-success ml-auto mr-1">Sign In</button>
