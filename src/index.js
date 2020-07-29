@@ -3,12 +3,13 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
-import LandingPage from "./pages/landingPage";
+//import LandingPage from "./pages/landingPage";
 //import Community from "./pages/communityPage";
+import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <LandingPage />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
