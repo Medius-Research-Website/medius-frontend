@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
-import { Link, BrowserRouter } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./css files/navbar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -9,21 +9,29 @@ class NavbarInstance extends Component {
     return (
       <Navbar default collapseOnSelect>
         <Navbar.Brand>
-          <BrowserRouter>
-            <Link to="/">medius research</Link>
-          </BrowserRouter>
+          <NavLink to="/">medius research</NavLink>
         </Navbar.Brand>
-        <Nav class="navbar navbar-expand-sm justify-content-end">
-          <button class="btn btn-success ml-auto mr-1">Sign In</button>
-          <button
-            class="navbar-toggler"
+        <Nav className="navbar navbar-expand-sm justify-content-end">
+          <NavLink className="btn btn-success ml-auto mr-1" to="/signin">
+            Sign In
+          </NavLink>
+          {/* <button
+            className="navbar-toggler"
             type="button"
             data-toggle="collapse"
             data-target="#navbarSupportedContent"
           >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <button class="btn btn-success ml-auto mr-1">Get Started</button>
+            <span classNameName="navbar-toggler-icon"></span>
+          </button> */}
+          <NavLink className="btn btn-success ml-auto mr-1" to="/signup">
+            Get Started
+          </NavLink>
+          <NavLink className="btn btn-success ml-auto mr-1" to="/about">
+            About
+          </NavLink>
+          <NavLink className="btn btn-success ml-auto mr-1" to="/communitypage">
+            Community
+          </NavLink>
         </Nav>
       </Navbar>
     );

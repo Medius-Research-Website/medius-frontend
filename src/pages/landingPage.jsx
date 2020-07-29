@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import NavbarInstance from "../components/navbar";
 import Feed from "../components/feed";
 
 class LandingPage extends Component {
@@ -7,7 +6,6 @@ class LandingPage extends Component {
   render() {
     return (
       <React.Fragment>
-        <NavbarInstance />
         <Feed />
       </React.Fragment>
     );
