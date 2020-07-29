@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Link } from "react-router-dom";
-import { Jumbotron, Container, Row, Col, Image, Button } from "react-bootstrap";
+import { Jumbotron, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css files/home.css";
 
