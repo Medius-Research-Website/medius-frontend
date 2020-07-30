@@ -1,9 +1,23 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
 import "./css files/post.css";
+import { fetchPost, deletePost } from '../actions';
 
+// need to discuss implementation of component
 class Post extends Component {
-  state = {};
+  componentDidMount() {
+    // need to make sure postID is coming from right location
+    // this.props.fetchPost(this.props.match.params.postID);
+  }
 
+  deletePost() {
+    // need to make sure postID is coming from right location
+    this.props.deletePost(this.props.match.params.postID, this.props.history);
+  }
+
+  // also need to implement update post functionality
+
+  // can now access post & user information through props: this.props.currentPost, this.props.user  
   render() {
     return (
       <React.Fragment>
@@ -43,4 +57,11 @@ class Post extends Component {
   }
 }
 
-export default Post;
+function mapStateToProps(reduxState) {
+  return {
+    currentPost: reduxState.posts.current,
+    user: reduxState.auth.user,
+  };
+}
+
+export default connect(mapStateToProps, { fetchPost, deletePost })(Post);
