@@ -1,8 +1,16 @@
 import React, { Component } from "react";
 import "./css files/profile.css";
+import { connect } from 'react-redux';
+import { fetchUser } from '../actions';
 
+// need to discuss implementation of component
 class Profile extends Component {
-  state = {};
+  componentDidMount() {
+    // need to confirm where userID is coming from
+    // this.props.fetchPost(this.props.match.params.userID);
+  }
+
+  // access user through this.props.selectedUser
   render() {
     return (
       <div className="profile-box">
@@ -19,4 +27,10 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+function mapStateToProps(reduxState) {
+  return {
+    selectedUser: reduxState.auth.selectedUser,
+  };
+}
+
+export default connect(mapStateToProps, { fetchUser })(Profile);
