@@ -16,10 +16,10 @@ class Profile extends Component {
       <div className="profile-box">
         <button className="close-button">x</button>
         <div>
-          <span style={{ fontWeight: "bold" }}>Timothy Park</span>
+          <p style={{ fontWeight: "bold" }}>Timothy Park</p>
         </div>
         <div className="occupation">
-          <span>Student at Boston University</span>
+          <p>Student at Boston University</p>
         </div>
         <button className="button">Connect</button>
       </div>
