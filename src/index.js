@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 //import LandingPage from "./pages/landingPage";
 //import Community from "./pages/communityPage";
+//import home from "./components/home";
 import App from "./App";
 
 import { Provider } from "react-redux";
@@ -32,7 +33,6 @@ if (token) {
 }
 
 ReactDOM.render(
-
   <Provider store={store}>
     <React.StrictMode>
       <App />
