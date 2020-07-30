@@ -5,9 +5,14 @@ import "./css files/about.css";
 class about extends Component {
   render() {
     return (
-      <div>
+      <div class="container full-height-grow">
+        <header class= "main-header"> 
+          <div class= "brand-logo-name">medius research</div>
+        </header>
         ABOUT PAGE
-        <div className="about-box"></div>
+        <div className="about-box">
+        Hi, we're medius research.
+        </div>
       </div>
     );
   }
