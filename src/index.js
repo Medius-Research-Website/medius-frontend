@@ -3,31 +3,42 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
-// import LandingPage from "./pages/landingPage";
-// import Community from "./pages/communityPage";
+
+//import LandingPage from "./pages/landingPage";
+//import Community from "./pages/communityPage";
 import App from "./App";
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
-import reducers from './reducers';
-import { ActionTypes } from './actions';
 
-const store = createStore(reducers, {}, compose(
-  applyMiddleware(thunk),
-  window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f,
-));
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
+import reducers from "./reducers";
+import { ActionTypes } from "./actions";
 
-const token = localStorage.getItem('token');
+const store = createStore(
+  reducers,
+  {},
+  compose(
+    applyMiddleware(thunk),
+    window.__REDUX_DEVTOOLS_EXTENSION__
+      ? window.__REDUX_DEVTOOLS_EXTENSION__()
+      : (f) => f
+  )
+);
+
+const token = localStorage.getItem("token");
+
 if (token) {
   store.dispatch({ type: ActionTypes.AUTH_USER });
 }
 
 ReactDOM.render(
-    <Provider store={store}>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </Provider>,
+
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
+
   document.getElementById("root")
 );
 
