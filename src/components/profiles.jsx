@@ -1,9 +1,16 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+import { withRouter, Link } from 'react-router-dom';
 import Profile from "./profile";
+import { fetchUsers } from '../actions';
 import "./css files/profiles.css";
 
 class Profiles extends Component {
-  state = {};
+  componentDidMount() {
+    this.props.fetchUsers();
+  }
+
+  // need to add links to each profile so we can get id; this.props.allUsers, display iteratively through .map()
   render() {
     return (
       <React.Fragment>
@@ -18,7 +25,13 @@ class Profiles extends Component {
   }
 }
 
-export default Profiles;
+const mapStateToProps = (state) => (
+  {
+    allUsers: state.auth.all || [],
+  }
+);
+
+export default withRouter(connect(mapStateToProps, { fetchUsers })(Profiles));
 
 //   <CardDeck>
 //     <Card bsPrefix="marginsCardBody">
