@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import Post from "./post";
+
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { fetchPosts } from "../actions";
+
 
 class Feed extends Component {
   componentDidMount() {
@@ -25,5 +27,6 @@ class Feed extends Component {
 const mapStateToProps = (state) => ({
   allPosts: state.posts.all || [],
 });
+
 
 export default withRouter(connect(mapStateToProps, { fetchPosts })(Feed));

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
+
 //import LandingPage from "./pages/landingPage";
 //import Community from "./pages/communityPage";
 import App from "./App";
@@ -25,16 +26,19 @@ const store = createStore(
 );
 
 const token = localStorage.getItem("token");
+
 if (token) {
   store.dispatch({ type: ActionTypes.AUTH_USER });
 }
 
 ReactDOM.render(
+
   <Provider store={store}>
     <React.StrictMode>
       <App />
     </React.StrictMode>
   </Provider>,
+
   document.getElementById("root")
 );
 

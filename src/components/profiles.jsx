@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Profile from "./profile";
 import { fetchUsers } from "../actions";
+
 import "./css files/profiles.css";
 
 class Profiles extends Component {
@@ -25,9 +27,11 @@ class Profiles extends Component {
   }
 }
 
+
 const mapStateToProps = (state) => ({
   allUsers: state.auth.all || [],
 });
+
 
 export default withRouter(connect(mapStateToProps, { fetchUsers })(Profiles));
 
