@@ -1,22 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
-
 * {
     font-family: 'Oxygen', sans-serif;
 }
 
 .profile-box {
-    font-family: 'Oxygen', sans-serif;
-    display: block;
+    /* font-family: 'Oxygen', sans-serif;
+    display: flex;
 	width: auto;
 	height: 100%;
 	padding: 10px;
     margin: 50px;
 	background-color: #E0E0E0;
 	box-shadow: 0 0 50px rgba(0,0,0,0.08);
-    overflow: auto;
+    overflow: visible;
     border: 3px solid #4DCBD2;
-    box-sizing: border-box;
-    border-radius: 50px;
+    box-sizing: content-box;
+    border-radius: 50px; */
 }
 
 .profile-photo {
