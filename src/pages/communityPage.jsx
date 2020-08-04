@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Navbar from "../components/navbar";
 import Profiles from "../components/profiles";
 import * as ReactBootstrap from "react-bootstrap";
 import "./communityPage.css";
@@ -10,6 +11,7 @@ class Community extends Component {
   render() {
     return (
       <React.Fragment>
+        <Navbar />
         <div className="title">Our Community</div>
         <button className="button-community">People</button>
         <button className="button-community">Organizations</button>

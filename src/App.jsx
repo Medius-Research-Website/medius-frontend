@@ -7,6 +7,7 @@ import about from "./components/about";
 import userprofile from "./components/userprofile";
 import Signup from "./components/signup";
 import Signin from "./components/signin";
+import PrivateRoute from './components/privateroute';
 import LandingPage from "./pages/landingPage";
 import Community from "./pages/communityPage";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -15,13 +16,13 @@ function App() {
   return (
     <Router>
       <div>
-      <Navbar/>
+        {/* <Navbar /> */}
         <Route exact path="/" component={home} />
         <Route exact path="/about" component={about} />
-        <Route exact path="/userprofile" component={userprofile} />
+        <PrivateRoute exact path="/userprofile" component={userprofile} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/signin" component={Signin} />
-        <Route exact path="/landingpage" component={LandingPage} />
+        <PrivateRoute exact path="/landingpage" component={LandingPage} />
         <Route exact path="/communitypage" component={Community} />
       </div>
     </Router>
