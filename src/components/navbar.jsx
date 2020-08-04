@@ -9,7 +9,7 @@ class NavbarInstance extends Component {
     return (
       <Navbar default collapseOnSelect>
         <Navbar.Brand>
-          <NavLink to="/">medius research</NavLink>
+          <NavLink to="landingpage">medius research</NavLink>
         </Navbar.Brand>
         <Nav className="navbar navbar-expand-sm justify-content-end">
           <NavLink className="btn btn-success ml-auto mr-1" to="/signin">
