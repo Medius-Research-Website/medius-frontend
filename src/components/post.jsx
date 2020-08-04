@@ -1,29 +1,11 @@
-import React, { Component } from "react";
-import { connect } from 'react-redux';
+import React from "react";
 import "./css files/post.css";
-import { fetchPost, deletePost } from '../actions';
 
-// need to discuss implementation of component
-class Post extends Component {
-  componentDidMount() {
-    // need to make sure postID is coming from right location
-    // this.props.fetchPost(this.props.match.params.postID);
-  }
-
-  deletePost() {
-    // need to make sure postID is coming from right location
-    this.props.deletePost(this.props.match.params.postID, this.props.history);
-  }
-
-  // also need to implement update post functionality
-
-  // can now access post & user information through props: this.props.currentPost, this.props.user  
-  render() {
-    return (
-      <React.Fragment>
+export default function Post({ post }) {
+  return (
         <div className="main">
           <div className="sidebar">
-            <div className="ticker">Ticker</div>
+            <div className="ticker">Ticker: {post.ticker} </div>
             <div className="percentage-change">100%</div>
             <button className="like">
               <i className="arrow-up up" aria-hidden="true"></i>
@@ -35,9 +17,10 @@ class Post extends Component {
           </div>
           <div className="information">
             <div className="title">
-              Thesis/catalyst/unique insight that person will write...
+              a title? {post.idea}
             </div>
             <p>
+              {post.insight}
               Nikola Corporation designs and manufactures electric and
               hydrogen-electric vehicles. They also design and develop hydrogen
               filling stations. After Nikola went public earlier this month
@@ -52,16 +35,5 @@ class Post extends Component {
             </p>
           </div>
         </div>
-      </React.Fragment>
-    );
-  }
+  );
 }
-
-function mapStateToProps(reduxState) {
-  return {
-    currentPost: reduxState.posts.current,
-    user: reduxState.auth.user,
-  };
-}
-
-export default connect(mapStateToProps, { fetchPost, deletePost })(Post);

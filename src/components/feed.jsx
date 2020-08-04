@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import Post from "./post";
-
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { fetchPosts } from "../actions";
 
 
@@ -13,20 +12,30 @@ class Feed extends Component {
 
   // access posts through this.props.allPosts; display iteratively through .map()
   render() {
-    return (
-      <React.Fragment>
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-      </React.Fragment>
-    );
+    if (this.props.all !== []) {
+      return (
+        <React.Fragment>
+          {this.props.all.map((post) => (
+            <Link to={`posts/${post.id}`} style={{ textDecoration: 'none' }}>
+              <Post post={post} />
+            </Link>
+          ))}
+        </React.Fragment>
+      );
+    }
+    else {
+      return (
+        <div>
+          No posts to see yet!
+        </div>
+      )
+    }
   }
 }
 
 const mapStateToProps = (state) => ({
-  allPosts: state.posts.all || [],
+  all: state.posts.all || [],
 });
 
 
-export default withRouter(connect(mapStateToProps, { fetchPosts })(Feed));
+export default withRouter(connect(mapStateToProps, { fetchPosts } )(Feed));

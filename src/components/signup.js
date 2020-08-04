@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { signinUser } from "../actions";
+import { signupUser } from "../actions";
 import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -11,9 +11,15 @@ class Signin extends Component {
     this.state = {
       email: "",
       password: "",
+      username: "",
+      lastName: "",
+      firstName: "",
     };
     this.onInputChangeEmail = this.onInputChangeEmail.bind(this);
     this.onInputChangePassword = this.onInputChangePassword.bind(this);
+    this.onInputChangeUsername = this.onInputChangeUsername.bind(this);
+    this.onInputChangeFirstName = this.onInputChangeFirstName.bind(this);
+    this.onInputChangeLastName = this.onInputChangeLastName.bind(this);
     this.onClickSignIn = this.onClickSignIn.bind(this);
   }
 
@@ -25,12 +31,27 @@ class Signin extends Component {
     this.setState({ password: event.target.value });
   }
 
+  onInputChangeFirstName(event) {
+    this.setState({ firstName: event.target.value });
+  }
+
+  onInputChangeLastName(event) {
+    this.setState({ lastName: event.target.value });
+  }
+
+  onInputChangeUsername(event) {
+    this.setState({ username: event.target.value });
+  }
+
   onClickSignIn() {
     const user = {
       email: this.state.email,
       password: this.state.password,
+      username: this.state.username,
+      lastName: this.state.lastName,
+      firstName: this.state.firstName,
     };
-    this.props.signinUser(user, this.props.history);
+    this.props.signupUser(user, this.props.history);
   }
 
   render() {
@@ -44,7 +65,18 @@ class Signin extends Component {
               We'll never share your email with anyone else.
             </Form.Text>
           </Form.Group>
-
+          <Form.Group controlId="formBasicFirstName">
+            <Form.Label>First Name</Form.Label>
+            <Form.Control type="text" placeholder="First Name" onChange={this.onInputChangeFirstName}/>
+          </Form.Group>
+          <Form.Group controlId="formBasicLastName">
+            <Form.Label>Last Name</Form.Label>
+            <Form.Control type="text" placeholder="Last Name" onChange={this.onInputChangeLastName}/>
+          </Form.Group>
+          <Form.Group controlId="formBasicUsername">
+            <Form.Label>Username</Form.Label>
+            <Form.Control type="text" placeholder="Username" onChange={this.onInputChangeUsername}/>
+          </Form.Group>
           <Form.Group controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control type="password" placeholder="Password" onChange={this.onInputChangePassword}/>
@@ -60,4 +92,4 @@ class Signin extends Component {
   }
 }
 
-export default connect(null, { signinUser })(Signin);
+export default connect(null, { signupUser })(Signin);

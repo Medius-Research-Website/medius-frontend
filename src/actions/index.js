@@ -10,6 +10,9 @@ export const ActionTypes = {
   AUTH_USER: 'AUTH_USER',
   DEAUTH_USER: 'DEAUTH_USER',
   AUTH_ERROR: 'AUTH_ERROR',
+  CLEAR: 'CLEAR',
+  INVALID_CREDENTIALS: 'INVALID_CREDENTIALS',
+  EXISTING_USER: 'EXISTING USER',
 };
 
 // trigger to deauth if there is error
@@ -27,11 +30,11 @@ export function signinUser(user, history) {
         .then((response) => {
           dispatch({ type: ActionTypes.AUTH_USER, payload: user });
           localStorage.setItem('token', response.data.token);
-          history.push('/');
+          history.push('/landingpage');
         })
         .catch((error) => {
-          console.log(error);
-          dispatch(authError(`Sign In Failed: ${error.response.data}`));
+          console.log(error.response.data);
+          dispatch({ type: ActionTypes.INVALID_CREDENTIALS });
         });
     };
   }
@@ -42,11 +45,11 @@ export function signinUser(user, history) {
         .then((response) => {
           dispatch({ type: ActionTypes.AUTH_USER });
           localStorage.setItem('token', response.data.token);
-          history.push('/');
+          history.push('/landingpage');
         })
         .catch((error) => {
-          console.log(error);
-          dispatch(authError(`Sign Up Failed: ${error.response.data}`));
+          console.log(error.response.data);
+          dispatch({ type: ActionTypes.EXISTING_USER });
         });
     };
   }
@@ -105,7 +108,7 @@ export function signinUser(user, history) {
 
 export function fetchPosts() {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/posts`)
+    axios.get(`${ROOT_URL}/posts`, { headers: { authorization: localStorage.getItem('token') }})
       .then((response) => {
         dispatch({ type: ActionTypes.FETCH_POSTS, payload: response.data });
       })
@@ -118,7 +121,7 @@ export function fetchPosts() {
 
 export function fetchPost(id) {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/posts/${id}/`)
+    axios.get(`${ROOT_URL}/posts/${id}/`, { headers: { authorization: localStorage.getItem('token') }})
       .then((response) => {
         dispatch({ type: ActionTypes.FETCH_POST, payload: response.data });
       })
