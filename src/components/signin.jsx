@@ -1,14 +1,16 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux';
-import { signinUser } from '../actions';
+import { connect } from "react-redux";
+import { signinUser } from "../actions";
+import { Form, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class Signin extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     };
     this.onInputChangeEmail = this.onInputChangeEmail.bind(this);
     this.onInputChangePassword = this.onInputChangePassword.bind(this);
@@ -34,7 +36,25 @@ class Signin extends Component {
   render() {
     return (
       <div id="sign-in">
-        Input fields here
+        <Form>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" />
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
+
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" placeholder="Password" />
+          </Form.Group>
+          <Link to="landingpage">
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Link>
+        </Form>
       </div>
     );
   }

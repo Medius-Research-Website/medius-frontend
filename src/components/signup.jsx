@@ -1,17 +1,19 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux';
-import { signupUser } from '../actions';
+import { connect } from "react-redux";
+import { signupUser } from "../actions";
+import { Form, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class Signup extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      email: '',
-      username: '',
-      password: '',
+      email: "",
+      username: "",
+      password: "",
 
-      // information needed for init signup:      
+      // information needed for init signup:
       // username: { type: String },
       // firstName: { type: String },
       // lastName: { type: String },
@@ -48,7 +50,44 @@ class Signup extends Component {
   render() {
     return (
       <div id="sign-up">
-        Input fields here
+        <Form>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              // onChange={this.onInputChangeEmail}
+            />
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
+          <Form.Group controlId="formBasicUsername">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              type="username"
+              placeholder="Username"
+              // onChange={this.onInputChangeUsername}
+            />
+          </Form.Group>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              // onChange={this.onInputChangePassword}
+            />
+          </Form.Group>
+          <Link to="landingpage">
+            <Button
+              variant="primary"
+              type="submit"
+              // onClick={() => this.onClickSignUp}
+            >
+              Submit
+            </Button>
+          </Link>
+        </Form>
       </div>
     );
   }
