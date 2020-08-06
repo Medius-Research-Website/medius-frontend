@@ -10,7 +10,7 @@ class home extends Component {
       <div class="container full-height-grow">
         <header class="main-header">
           <div class="brand-logo-name">
-            <NavLink to=""> medius research </NavLink>
+            <NavLink to=""> medius </NavLink>
           </div>
           <nav className="main-nav">
             <ul>
@@ -26,11 +26,13 @@ class home extends Component {
             </ul>
           </nav>
         </header>
-        <Jumbotron className="float-right">
+        <Jumbotron className="float-left">
           <h2>
-            Bringing <span>Wall St.</span>
-            <br />
-            to <span1>University Ave.</span1>
+            A modern
+            <br/>
+            <h2_1>finance community</h2_1>
+            <br/>
+            built on collaboration
           </h2>
           An open forum for sharing high quality investment ideas, stock picks,
           and research from top universities, all for free.
@@ -40,11 +42,44 @@ class home extends Component {
             <Link to="/home">
               <Button type="button" className="btn-primary">
                 {" "}
-                Get Started
+                Join the Waitlist 
               </Button>
             </Link>
           </BrowserRouter>
         </Jumbotron>
+
+        <Jumbotron className="float-right">
+          
+        </Jumbotron>
+
+        <footer className="footer">
+          <div class="row">
+            <div class="column">
+              <b>connect</b>
+              <br/>
+              <br/>
+              twitter
+              <br/>
+              facebook
+              <br/>
+              linkedin
+              <br/>
+              facebook
+            </div>
+          <div class="column">
+          <b>company</b>
+              <br/>
+              <br/>
+              contact us
+              <br/>
+              about
+              <br/>
+              terms of service
+              <br/>
+              privacy policy
+          </div>
+        </div>
+        </footer>
       </div>
     );
   }

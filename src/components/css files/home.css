@@ -1,15 +1,23 @@
 * {
     font-family: 'Oxygen', sans-serif;
-    background-color: rgb(209, 211, 223);
+    background-color: #E0E1DD; 
+}
+
+html {
+    scroll-behavior: smooth;
 }
 .jumbotron {
-    background-color: #d1d3df;
-}
+    height: 600px;
+} 
 
 .btn-primary {
 border: none;
 border-radius: 20;
-background-image: linear-gradient(#4DCBD2, #7988E4)
+background-image: linear-gradient(#5A786F, #8CA88E);
+position: absolute;
+width: 300px;
+height: 56px;
+filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 h3 {
@@ -17,8 +25,17 @@ margin-bottom: 1em;
 }
 
 h2 {
-    font-size: 70px;
+    font-size: 65px;
     font-weight: bold;
+}
+
+h2_1 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 65px;
+    line-height: 65px;
+    letter-spacing: 0.232836px;
+    color: #5A786F;
 }
 
 span {
@@ -59,3 +76,47 @@ span1 {
     margin: 0 auto;
     padding: 0 40px;
 }
+
+.float-left {
+    float: right;
+    background-color: #E0E1DD;
+    height: 600px;
+}
+
+.page2 {
+    background-color: #cad2c6;
+    height: 600px;
+    width: 100%;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #303030;
+    color: white;
+    text-align: left;
+}
+
+b {
+    background-color: #303030;
+}
+
+.column {
+    float: left;
+    width: 50%;
+    padding-left: 30px;
+    padding-right: 250px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #303030;
+    text-align: left;
+    font-size: small;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
