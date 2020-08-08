@@ -1,14 +1,51 @@
 * {
     font-family: 'Oxygen', sans-serif;
-    background-color: #E0E1DD; 
+    /* background-color: #E0E1DD;  */
 }
 
 html {
     scroll-behavior: smooth;
 }
-.jumbotron {
+
+
+.monitor {
+    position: absolute;
+    width: 722px;
+    height: 595px;
+    left: 70px;
+    top: 175px;
+    background: url(desktop.png);
+    background-size: auto;
+    display: flex;
+/* 
+    background-image: url(desktop.png);
+    flex-grow: 1;
+    max-height: 70vh;
+    min-width: 30vw;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center; */
+}
+
+.page1 {
+    background-color: #E0E1DD;
+    width: 100%;
+}
+
+.page2 {
+    background-image: url(green_bg.png);
+    background-color: rgb(221, 221, 221);
+    width: 100%;
+}
+
+.float-left {
+    float: right;
     height: 600px;
-} 
+    margin-bottom: 0px;
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 
 .btn-primary {
 border: none;
@@ -25,15 +62,15 @@ margin-bottom: 1em;
 }
 
 h2 {
-    font-size: 65px;
+    font-size: 60px;
     font-weight: bold;
 }
 
 h2_1 {
     font-style: normal;
     font-weight: bold;
-    font-size: 65px;
-    line-height: 65px;
+    font-size: 60px;
+    line-height: 60px;
     letter-spacing: 0.232836px;
     color: #5A786F;
 }
@@ -72,21 +109,23 @@ span1 {
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
+    /* max-width: 1200px; */
+    max-width: 100%;
+    margin-top: 5%;
+    margin-left: 45%;
+    /* margin: 0 auto; */
     padding: 0 40px;
 }
 
-.float-left {
-    float: right;
-    background-color: #E0E1DD;
-    height: 600px;
-}
 
-.page2 {
-    background-color: #cad2c6;
-    height: 600px;
+.full-height-grow {
+    padding: 0 40px;
+    margin: 0 auto;
+    /* max-width: 1200px; */
     width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+
 }
 
 .footer {
@@ -97,6 +136,7 @@ span1 {
     background-color: #303030;
     color: white;
     text-align: left;
+    padding-left: 30px;
 }
 
 b {
@@ -105,7 +145,19 @@ b {
 
 .column {
     float: left;
-    width: 50%;
+    width: 33%;
+    padding-left: 30px;
+    padding-right: 250px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #303030;
+    text-align: left;
+    font-size: small;
+}
+
+.column2 {
+    float: left;
+    width: 33%;
     padding-left: 30px;
     padding-right: 250px;
     padding-top: 20px;
