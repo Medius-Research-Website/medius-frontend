@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./css files/profile.css";
+import "./css_files/profile.css";
 import { connect } from 'react-redux';
 import { fetchUser } from '../actions';
 

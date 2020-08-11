@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { signoutUser } from "../actions";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import "./css files/navbar.css";
+import "./css_files/navbar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class NavbarInstance extends Component {
