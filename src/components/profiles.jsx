@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import Profile from "./profile";
 import { fetchUsers } from "../actions";
 
-import "./css files/profiles.css";
+import "./css_files/profiles.css";
 
 class Profiles extends Component {
   componentDidMount() {

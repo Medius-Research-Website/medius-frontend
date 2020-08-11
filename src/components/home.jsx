@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Link, NavLink } from "react-router-dom";
 import { Jumbotron, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./css files/home.css";
+import "./css_files/home.css";
 
 
 class home extends Component {

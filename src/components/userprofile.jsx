@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./css files/userprofile.css";
+import "./css_files/userprofile.css";
 import { connect } from 'react-redux';
 import { updateUser } from '../actions';
 

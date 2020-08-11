@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "./navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./css files/about.css";
+import "./css_files/about.css";
 
 class about extends Component {
   render() {
