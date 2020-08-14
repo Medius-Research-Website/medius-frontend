@@ -58,60 +58,52 @@ class home extends Component {
 
         {/* <div class="jumbotron jumbotron-fluid float-left"> */}
         <div class="float-left page2">
+        <div className="rcorners1">Investment information, data, and research completely free. No paywalls.</div>
+        <br/>
+        <div className="rcorners3">Engage in a community built on reciprocity. Share information, make friends, build a following.</div>
+
+        <div className="rcorners2">A safe and reliable platform controlled for quality and consistency.</div>
+        <br/>
           <div className="container">
-          <h2>
-            A modern
-            <br/>
-            <h2_1>finance community</h2_1>
-            <br/>
-            built on collaboration
-          </h2>
-            An open forum for sharing high quality investment ideas, stock picks,
-            <br/>
-            and research from top universities, all for free.
-            <br />
-            <br />
+          <br/>
           </div>
         </div>
-
-
 
         <footer className="footer">
           <div class="row">
-          <div class="column">
-              <br/>
-              <br/>
-              <b>medius</b>
+              <div class="column">
+                <br/>
+                <br/>
+                <b>medius</b>
+              </div>
+
+              <div class="column2">
+                <b>connect</b>
+                <br/>
+                <br/>
+                twitter
+                <br/>
+                facebook
+                <br/>
+                linkedin
+                <br/>
+                facebook
+              </div>
+
+              <div class="column2">
+              <b>company</b>
+                  <br/>
+                  <br/>
+                  contact us
+                  <br/>
+                  about
+                  <br/>
+                  terms of service
+                  <br/>
+                  privacy policy
+              </div>
             </div>
-            <div class="column2">
-              <b>connect</b>
-              <br/>
-              <br/>
-              twitter
-              <br/>
-              facebook
-              <br/>
-              linkedin
-              <br/>
-              facebook
-            </div>
-          <div class="column2">
-          <b>company</b>
-              <br/>
-              <br/>
-              contact us
-              <br/>
-              about
-              <br/>
-              terms of service
-              <br/>
-              privacy policy
-          </div>
-        </div>
         </footer>
-
-
-
       </div>
     );
   }

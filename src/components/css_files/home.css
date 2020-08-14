@@ -10,10 +10,10 @@ html {
 
 .monitor {
     position: absolute;
-    width: 722px;
-    height: 595px;
-    left: 70px;
-    top: 175px;
+    width: 430px;
+    height: 297px;
+    left: 90px;
+    top: 275px;
     background: url(desktop.png);
     background-size: auto;
     display: flex;
@@ -82,7 +82,7 @@ span {
 
 span1 {
     font-size: 70px;
-    color: #4DCBD2;
+    color: #5A786F;
 }
 .main-nav ul{
     display: flex;
@@ -172,3 +172,36 @@ b {
     display: table;
     clear: both;
   }
+
+.rcorners1 {
+    border-radius: 25px;
+    background: #F2F2F2;
+    padding: 20px; 
+    width: 270px;
+    height: 110px;  
+    font-size: medium;
+    margin-top: 140px;
+    margin-left: 40px;
+}
+
+.rcorners2 {
+    border-radius: 25px;
+    background: #F2F2F2;
+    padding: 20px; 
+    width: 270px;
+    height: 100px;  
+    font-size: medium;
+    margin-top: 70px;
+    margin-left: 40px;
+}
+
+.rcorners3 {
+    border-radius: 25px;
+    background: #F2F2F2;
+    padding: 20px; 
+    width: 270px;
+    height: 110px;  
+    font-size: medium;
+    margin-top: 15px;
+    margin-left: 420px;
+}
