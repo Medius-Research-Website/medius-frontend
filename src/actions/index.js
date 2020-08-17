@@ -23,6 +23,12 @@ export function authError(error) {
   };
 }
 
+export function clear() {
+  return (dispatch) => {
+    dispatch({ type: ActionTypes.CLEAR })
+  }
+}
+
 // fetches all relevant information about current user
 export function signinUser(user, history) {
     return (dispatch) => {
@@ -33,7 +39,6 @@ export function signinUser(user, history) {
           history.push('/landingpage');
         })
         .catch((error) => {
-          console.log(error.response.data);
           dispatch({ type: ActionTypes.INVALID_CREDENTIALS });
         });
     };
@@ -48,8 +53,8 @@ export function signinUser(user, history) {
           history.push('/landingpage');
         })
         .catch((error) => {
-          console.log(error.response.data);
           dispatch({ type: ActionTypes.EXISTING_USER });
+          history.push('/signup');
         });
     };
   }
