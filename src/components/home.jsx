@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom"; //BrowserRouter, Link,
 import { Button } from "react-bootstrap";
-import Signin from './signin';
+import Signup from './signup';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css_files/home.css";
-import "./css_files/signIn.css"
+import "./css_files/signUp.css"
 
 
 class home extends Component {
@@ -65,7 +65,7 @@ class home extends Component {
               {" "}
               Sign up for our Beta launch! 
             </Button>
-            <Signin show={this.state.show} onClose={this.showModal}/>
+            <Signup show={this.state.show} onClose={this.showModal}/>
           </div>
         </div>
 
@@ -82,7 +82,6 @@ class home extends Component {
         <p id="reliable">Reliable</p>
         <div className="rcorners2">A safe and reliable platform controlled for quality and consistency.</div>
         <br/>
-        <img src="images/investment_ideas.png" alt="investment dashboard" />
           <div className="container">
           <br/>
           </div>

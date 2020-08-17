@@ -4,6 +4,7 @@ html {
 
 #sign-in {
     position: absolute;
+    z-index: 10;
     left: 592px;
     top: 394px;
     width: 735px;
@@ -41,7 +42,7 @@ html {
 #first-to-know {
     background: #F2F2F2;
     position: absolute;
-    top: 130px;
+    top: 95px;
 }
 
 form {
@@ -65,8 +66,6 @@ form {
     width: 500px;
 }
 
-form > button {
+#signUpBtn{
     position: relative;
-    left: 230px;
-    top: 475px;
 }

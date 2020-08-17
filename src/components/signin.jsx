@@ -15,7 +15,6 @@ class Signin extends Component {
     this.onInputChangeEmail = this.onInputChangeEmail.bind(this);
     this.onInputChangePassword = this.onInputChangePassword.bind(this);
     this.onClickSignIn = this.onClickSignIn.bind(this);
-    this.xOut = this.xOut.bind(this);
   }
 
   onInputChangeEmail(event) {
@@ -41,16 +40,10 @@ class Signin extends Component {
   }
 
   render() {
-    if (!this.props.show) {
-      return null;
-    }
 
     return (
       <div id="sign-in">
-        <p>Sign Up!</p>
-        <button type="button" id="close-button" onClick={this.xOut}>&times;</button>
         <Form>
-          <p id="first-to-know">Be the first to know about our beta!</p>
           <Form.Group controlId="formBasicEmail">
             <Form.Control type="email" placeholder="Enter email" onChange={this.onInputChangeEmail}/>
             <Form.Text className="text-muted">

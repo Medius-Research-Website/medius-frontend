@@ -21,6 +21,7 @@ class Signin extends Component {
     this.onInputChangeFirstName = this.onInputChangeFirstName.bind(this);
     this.onInputChangeLastName = this.onInputChangeLastName.bind(this);
     this.onClickSignIn = this.onClickSignIn.bind(this);
+    this.xOut = this.xOut.bind(this);
   }
 
   onInputChangeEmail(event) {
@@ -44,6 +45,8 @@ class Signin extends Component {
   }
 
   onClickSignIn() {
+    this.props.onClose();
+
     const user = {
       email: this.state.email,
       password: this.state.password,
@@ -54,35 +57,41 @@ class Signin extends Component {
     this.props.signupUser(user, this.props.history);
   }
 
+  xOut() {
+    this.props.onClose();
+  }
+
   render() {
+    if (!this.props.show) {
+      return null;
+    }
+
     return (
       <div id="sign-in">
+        <p>Sign Up!</p>
+        <button type="button" id="close-button" onClick={this.xOut}>&times;</button>
         <Form>
+        <p id="first-to-know">Be the first to know about our beta!</p>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
             <Form.Control type="email" placeholder="Enter email" onChange={this.onInputChangeEmail}/>
             <Form.Text className="text-muted">
               We'll never share your email with anyone else.
             </Form.Text>
           </Form.Group>
           <Form.Group controlId="formBasicFirstName">
-            <Form.Label>First Name</Form.Label>
             <Form.Control type="text" placeholder="First Name" onChange={this.onInputChangeFirstName}/>
           </Form.Group>
           <Form.Group controlId="formBasicLastName">
-            <Form.Label>Last Name</Form.Label>
             <Form.Control type="text" placeholder="Last Name" onChange={this.onInputChangeLastName}/>
           </Form.Group>
           <Form.Group controlId="formBasicUsername">
-            <Form.Label>Username</Form.Label>
             <Form.Control type="text" placeholder="Username" onChange={this.onInputChangeUsername}/>
           </Form.Group>
           <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
             <Form.Control type="password" placeholder="Password" onChange={this.onInputChangePassword}/>
           </Form.Group>
           <Link to="landingpage">
-            <Button variant="primary" type="submit" onClick={this.onClickSignIn}>
+            <Button id="signUpBtn" variant="primary" type="submit" onClick={this.onClickSignIn}>
               Submit
             </Button>
           </Link>
