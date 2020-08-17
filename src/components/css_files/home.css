@@ -14,7 +14,7 @@ html {
     height: 297px;
     left: 90px;
     top: 275px;
-    background: url(desktop.png);
+    background: url(images/desktop.png);
     background-size: auto;
     display: flex;
 /* 
@@ -33,7 +33,7 @@ html {
 }
 
 .page2 {
-    background-image: url(green_bg.png);
+    background-image: url(images/green_bg.png);
     background-color: rgb(221, 221, 221);
     width: 100%;
 }
@@ -180,8 +180,12 @@ b {
     width: 270px;
     height: 110px;  
     font-size: medium;
-    margin-top: 140px;
-    margin-left: 40px;
+    /* margin-top: 140px;
+    margin-left: 40px;*/
+
+    position: absolute;
+    left: 118px;
+    top: 800px;
 }
 
 .rcorners2 {
@@ -193,6 +197,10 @@ b {
     font-size: medium;
     margin-top: 70px;
     margin-left: 40px;
+
+    position: absolute;
+    left: 250px;
+    top: 1000px;
 }
 
 .rcorners3 {
@@ -204,4 +212,53 @@ b {
     font-size: medium;
     margin-top: 15px;
     margin-left: 420px;
+
+    position: absolute;
+    left: 95px;
+    top: 785px;
+}
+
+#access {
+    font-family: 'Nexa';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 50px;
+    line-height: 50px;
+
+    color: #000000;
+    background-color: transparent;
+
+    position: absolute;
+    left: 140px;
+    top: 775;
+}
+
+#collaborate {
+    font-family: 'Nexa Bold';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 50px;
+    line-height: 50px;
+    
+    color: #000000;
+    background-color: transparent;
+
+    position: absolute;
+    left: 500px;
+    top: 740px;
+}
+
+#reliable {
+    font-family: Nexa Bold;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 50px;
+    line-height: 50px;
+
+    color: #000000;
+    background-color: transparent;
+
+    position: absolute;
+    left: 340px;
+    top: 1010px;
 }

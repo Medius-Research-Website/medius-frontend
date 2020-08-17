@@ -71,12 +71,18 @@ class home extends Component {
 
         {/* <div class="jumbotron jumbotron-fluid float-left"> */}
         <div className="float-left page2">
-        <div className="rcorners1">Investment information, data, and research completely free. No paywalls.</div>
+        <p id="access">Accesible</p>
+        <div className="rcorners1">
+          Investment information, data, and research completely free. No paywalls.
+          </div>
         <br/>
+        <p id="collaborate">Collaborative</p>
         <div className="rcorners3">Engage in a community built on reciprocity. Share information, make friends, build a following.</div>
-
+        
+        <p id="reliable">Reliable</p>
         <div className="rcorners2">A safe and reliable platform controlled for quality and consistency.</div>
         <br/>
+        <img src="images/investment_ideas.png" alt="investment dashboard" />
           <div className="container">
           <br/>
           </div>
