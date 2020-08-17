@@ -1,0 +1,67 @@
+html {
+    box-sizing: border-box;
+}
+
+#sign-in {
+    position: absolute;
+    left: 592px;
+    top: 394px;
+    width: 735px;
+    height: 610px;
+
+    filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.25));
+}
+
+#close-button {
+    position: absolute;
+    left: -3px;
+    top: -10px;
+    height: 30px;
+    background-color:#5A786F;
+    border: 0;
+    border-radius: 30px;
+}
+
+#sign-in > p {
+    width: 716px;
+    height: 68px;
+
+    background: #F2F2F2;
+    border: 1px solid #292929;
+    border-radius: 20px;
+
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+#first-to-know {
+    background: #F2F2F2;
+}
+
+form {
+    width: 716px;
+    height: 500px;
+
+    background: #F2F2F2;
+    border: 1px solid #292929;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-control {
+    box-sizing: border-box;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+
+form > button {
+    position: relative;
+    left: 230px;
+    top: 475px;
+}

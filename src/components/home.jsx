@@ -1,17 +1,33 @@
 import React, { Component } from "react";
-import { BrowserRouter, Link, NavLink } from "react-router-dom";
-import { Jumbotron, Button } from "react-bootstrap";
+import { NavLink } from "react-router-dom"; //BrowserRouter, Link,
+import { Button } from "react-bootstrap";
+import Signin from './signin';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css_files/home.css";
+import "./css_files/signIn.css"
 
 
 class home extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      show: false,
+    };
+  }
+
+  showModal = () => {
+    this.setState({
+      show: !this.state.show
+    });
+  };
+
   render() {
     return (
       // <div class="container full-height-grow">
-      <div class="full-height-grow">  
-        <header class="main-header">
-          <div class="brand-logo-name">
+      <div className="full-height-grow">  
+        <header className="main-header">
+          <div className="brand-logo-name">
             <NavLink to=""> medius </NavLink>
           </div>
           <nav className="main-nav">
@@ -45,19 +61,16 @@ class home extends Component {
               and research from top universities, all for free.
               <br />
               <br />
-              <BrowserRouter>
-            <Link to="/home">
-              <Button type="button" className="btn-primary">
-                {" "}
-                Join the Waitlist 
-              </Button>
-            </Link>
-          </BrowserRouter>
+            <Button type="button" className="btn-primary" onClick={this.showModal}>
+              {" "}
+              Sign up for our Beta launch! 
+            </Button>
+            <Signin show={this.state.show} onClose={this.showModal}/>
           </div>
         </div>
 
         {/* <div class="jumbotron jumbotron-fluid float-left"> */}
-        <div class="float-left page2">
+        <div className="float-left page2">
         <div className="rcorners1">Investment information, data, and research completely free. No paywalls.</div>
         <br/>
         <div className="rcorners3">Engage in a community built on reciprocity. Share information, make friends, build a following.</div>
@@ -70,14 +83,14 @@ class home extends Component {
         </div>
 
         <footer className="footer">
-          <div class="row">
-              <div class="column">
+          <div className="row">
+              <div className="column">
                 <br/>
                 <br/>
                 <b>medius</b>
               </div>
 
-              <div class="column2">
+              <div className="column2">
                 <b>connect</b>
                 <br/>
                 <br/>
@@ -90,7 +103,7 @@ class home extends Component {
                 facebook
               </div>
 
-              <div class="column2">
+              <div className="column2">
               <b>company</b>
                   <br/>
                   <br/>
