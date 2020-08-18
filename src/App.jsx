@@ -12,6 +12,10 @@ import LandingPage from "./pages/landingPage";
 import Community from "./pages/communityPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+const FallBack = (props) => {
+  return <div>URL Not Found</div>;
+};
+
 function App() {
   return (
     <Router>
@@ -24,6 +28,7 @@ function App() {
         <Route exact path="/signin" component={Signin} />
         <PrivateRoute exact path="/landingpage" component={LandingPage} />
         <Route exact path="/communitypage" component={Community} />
+        <Route component={FallBack} />
       </div>
     </Router>
   );

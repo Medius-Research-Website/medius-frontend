@@ -26,17 +26,12 @@ class Signin extends Component {
   }
 
   onClickSignIn() {
-    this.props.onClose();
 
     const user = {
       email: this.state.email,
       password: this.state.password,
     };
     this.props.signinUser(user, this.props.history);
-  }
-
-  xOut() {
-    this.props.onClose();
   }
 
   render() {

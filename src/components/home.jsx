@@ -32,13 +32,13 @@ class home extends Component {
           </div>
           <nav className="main-nav">
             <ul>
-              <li>
+              {/*<li>
                 <NavLink to="/signin"> Sign in </NavLink>
               </li>
               <li>
                 <NavLink to="/signup"> Get Started </NavLink>
               </li>
-              {/* <li>
+              <li>
                 <Link to="/communityPage"> Community </Link>
               </li> */}
             </ul>
