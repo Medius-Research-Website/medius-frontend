@@ -20,7 +20,7 @@ class Signin extends Component {
     this.onInputChangeUsername = this.onInputChangeUsername.bind(this);
     this.onInputChangeFirstName = this.onInputChangeFirstName.bind(this);
     this.onInputChangeLastName = this.onInputChangeLastName.bind(this);
-    this.onClickSignIn = this.onClickSignIn.bind(this);
+    this.onClickSignUp = this.onClickSignUp.bind(this);
     this.xOut = this.xOut.bind(this);
   }
 
@@ -44,7 +44,7 @@ class Signin extends Component {
     this.setState({ username: event.target.value });
   }
 
-  onClickSignIn() {
+  onClickSignUp() {
     this.props.onClose();
 
     const user = {
@@ -67,7 +67,7 @@ class Signin extends Component {
     }
 
     return (
-      <div id="sign-in">
+      <div id="sign-up">
         <p>Sign Up!</p>
         <button type="button" id="close-button" onClick={this.xOut}>&times;</button>
         <Form>
@@ -91,7 +91,7 @@ class Signin extends Component {
             <Form.Control type="password" placeholder="Password" onChange={this.onInputChangePassword}/>
           </Form.Group>
           <Link to="landingpage">
-            <Button id="signUpBtn" variant="primary" type="submit" onClick={this.onClickSignIn}>
+            <Button id="signUpBtn" variant="primary" type="submit" onClick={this.onClickSignUp}>
               Submit
             </Button>
           </Link>

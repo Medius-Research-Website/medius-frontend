@@ -26,7 +26,6 @@ class Signin extends Component {
   }
 
   onClickSignIn() {
-
     const user = {
       email: this.state.email,
       password: this.state.password,
@@ -35,7 +34,6 @@ class Signin extends Component {
   }
 
   render() {
-
     return (
       <div id="sign-in">
         <Form>

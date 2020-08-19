@@ -44,7 +44,7 @@ export function signinUser(user, history) {
     return (dispatch) => {
       axios.post(`${ROOT_URL}/signup`, user)
         .then((response) => {
-          console.log("success")
+          console.log("success");
           dispatch({ type: ActionTypes.AUTH_USER });
           localStorage.setItem('token', response.data.token);
           history.push('/landingpage');
@@ -52,7 +52,7 @@ export function signinUser(user, history) {
         .catch((error) => {
           console.log("failure");
           // console.log(error.response.data);
-          // dispatch({ type: ActionTypes.INVALID_CREDENTIALS });
+          dispatch({ type: ActionTypes.INVALID_CREDENTIALS });
         });
     };
   }
