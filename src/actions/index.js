@@ -23,6 +23,12 @@ export function authError(error) {
   };
 }
 
+export function clear() {
+  return (dispatch) => {
+    dispatch({ type: ActionTypes.CLEAR })
+  }
+}
+
 // fetches all relevant information about current user
 export function signinUser(user, history) {
   console.log('pushing sign in user');
@@ -34,7 +40,6 @@ export function signinUser(user, history) {
           history.push('/landingpage');
         })
         .catch((error) => {
-          console.log(error.response.data);
           dispatch({ type: ActionTypes.INVALID_CREDENTIALS });
         });
     };
@@ -50,9 +55,8 @@ export function signinUser(user, history) {
           history.push('/landingpage');
         })
         .catch((error) => {
-          console.log("failure");
-          // console.log(error.response.data);
-          dispatch({ type: ActionTypes.INVALID_CREDENTIALS });
+          dispatch({ type: ActionTypes.EXISTING_USER });
+          history.push('/signup');
         });
     };
   }
@@ -167,4 +171,3 @@ export function deletePost(id, history) {
       });
   };
 }
-

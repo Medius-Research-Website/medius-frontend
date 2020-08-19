@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { signupUser } from "../actions";
+import { signupUser, clear } from "../actions";
 import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-class Signin extends Component {
+class SignUp extends Component {
   constructor(props) {
     super(props);
 
@@ -101,4 +101,8 @@ class Signin extends Component {
   }
 }
 
-export default connect(null, { signupUser })(Signin);
+const mapStateToProps = (state) => ({
+  userExists: state.error.userExists,
+});
+
+export default connect(mapStateToProps, { signupUser, clear })(SignUp);
