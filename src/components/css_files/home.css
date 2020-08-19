@@ -8,6 +8,7 @@ html {
 }
 
 
+
 .monitor {
     position: absolute;
     width: 430px;
@@ -17,14 +18,18 @@ html {
     background: url(images/desktop.png);
     background-size: auto;
     display: flex;
-/* 
-    background-image: url(desktop.png);
-    flex-grow: 1;
-    max-height: 70vh;
-    min-width: 30vw;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center; */
+}
+
+.screen {
+    float: right;
+    background: url(images/screen.png);
+    width: 695px;
+    height: 480px;
+    right: 90px;
+    top: 375px;
+    margin-top: 30px;
+    margin-right: 40px;
+    display: flex;
 }
 
 .page1 {
@@ -75,6 +80,7 @@ h2_1 {
     color: #5A786F;
 }
 
+
 span {
     font-size: 70px;
     color: #424E93;
@@ -93,13 +99,13 @@ span1 {
 }
 
 .main-nav a{
-    color: inherit;
+    /* color: inherit; */
     text-decoration: none;
     padding: 1rem;
 }
 
 .main-nav a:hover {
-    color: #4fc0cf
+    color: #0f4718
 }
 
 .main-header {
@@ -181,6 +187,7 @@ b {
     width: 270px;
     height: 110px;  
     font-size: medium;
+    margin-top: 90px;
     /* margin-top: 140px;
     margin-left: 40px;*/
 
@@ -196,7 +203,7 @@ b {
     width: 270px;
     height: 100px;  
     font-size: medium;
-    margin-top: 70px;
+    margin-top: 110px;
     margin-left: 40px;
 
     position: absolute;
@@ -211,7 +218,7 @@ b {
     width: 270px;
     height: 110px;  
     font-size: medium;
-    margin-top: 15px;
+    margin-top: 100px;
     margin-left: 420px;
 
     position: absolute;
@@ -220,12 +227,13 @@ b {
 }
 
 #access {
-    font-family: 'Nexa';
+    /* font-family: 'Nexa'; */
+    font-family: 'Oxygen', sans-serif;
     font-style: normal;
     font-weight: bold;
-    font-size: 50px;
+    font-size: 40px;
     line-height: 50px;
-
+    margin-top: 60px;
     color: #000000;
     background-color: transparent;
 
@@ -235,31 +243,31 @@ b {
 }
 
 #collaborate {
-    font-family: 'Nexa Bold';
+    /* font-family: 'Nexa Bold'; */
+    font-family: 'Oxygen', sans-serif;
     font-style: normal;
     font-weight: bold;
-    font-size: 50px;
+    font-size: 40px;
     line-height: 50px;
-    
     color: #000000;
     background-color: transparent;
-
+    margin-top: 85px;
     position: absolute;
     left: 500px;
     top: 740px;
 }
 
 #reliable {
-    font-family: Nexa Bold;
+    /* font-family: Nexa Bold; */
+    font-family: 'Oxygen', sans-serif;
     font-style: normal;
     font-weight: bold;
-    font-size: 50px;
+    font-size: 40px;
     line-height: 50px;
-
     color: #000000;
     background-color: transparent;
-
+    margin-top: 40px;
     position: absolute;
-    left: 340px;
+    left: 330px;
     top: 1010px;
 }
