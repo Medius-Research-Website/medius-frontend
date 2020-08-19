@@ -31,6 +31,7 @@ export function clear() {
 
 // fetches all relevant information about current user
 export function signinUser(user, history) {
+  console.log('pushing sign in user');
     return (dispatch) => {
       axios.post(`${ROOT_URL}/signin`, user)
         .then((response) => {
@@ -48,6 +49,7 @@ export function signinUser(user, history) {
     return (dispatch) => {
       axios.post(`${ROOT_URL}/signup`, user)
         .then((response) => {
+          console.log("success");
           dispatch({ type: ActionTypes.AUTH_USER });
           localStorage.setItem('token', response.data.token);
           history.push('/landingpage');
@@ -169,4 +171,3 @@ export function deletePost(id, history) {
       });
   };
 }
-

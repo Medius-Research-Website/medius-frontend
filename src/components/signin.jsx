@@ -40,7 +40,6 @@ class Signin extends Component {
         <div id="sign-in">
         <Form>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
             <Form.Control type="email" placeholder="Enter email" onChange={this.onInputChangeEmail}/>
             <Form.Text className="text-muted">
               We'll never share your email with anyone else.
@@ -48,17 +47,15 @@ class Signin extends Component {
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
             <Form.Control type="password" placeholder="Password" onChange={this.onInputChangePassword}/>
             <Form.Text className="text-muted">
               Invalid Credentials.
             </Form.Text>
           </Form.Group>
-          <Link to="landingpage">
-            <Button variant="primary" type="submit" onClick={this.onClickSignIn}>
-              Submit
-            </Button>
-          </Link>
+
+          <Button variant="primary" type="submit" onClick={this.onClickSignIn}>
+            Lets go!
+          </Button>
         </Form>
       </div>
       )

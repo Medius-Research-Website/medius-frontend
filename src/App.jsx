@@ -17,13 +17,13 @@ function App() {
     <Router>
       <div>
         {/* <Navbar /> */}
-        <Route exact path="/" component={home} />
-        <Route exact path="/about" component={about} />
-        <PrivateRoute exact path="/userprofile" component={userprofile} />
-        <Route exact path="/signup" component={Signup} />
-        <Route exact path="/signin" component={Signin} />
-        <PrivateRoute exact path="/landingpage" component={LandingPage} />
-        <Route exact path="/communitypage" component={Community} />
+          <Route path="/" component={home} />
+          <Route exact path="/about" component={about} />
+          <PrivateRoute exact path="/userprofile" component={userprofile} />
+          <Route exact path="/signup" component={Signup} />
+          <PrivateRoute exact path="/signin" component={Signin} />
+          <Route exact path="/landingpage" component={LandingPage} />
+          <Route exact path="/communitypage" component={Community} />
       </div>
     </Router>
   );
