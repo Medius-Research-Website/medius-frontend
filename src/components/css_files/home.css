@@ -27,12 +27,15 @@ body {
     position: relative;
     left: 1000px;
     top: 0px;
+    width: 35%;
+    margin-left: 0;
 }
  
 .screen {
     background: url(images/screen.png);
     width: 695px;
     height: 480px;
+    margin: 0;
 }
 
 .page1 {
