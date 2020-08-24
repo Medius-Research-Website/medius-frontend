@@ -83,7 +83,7 @@ class home extends Component {
         <br/>
         <p id="collaborate">Collaborative.</p>
         <div className="rcorners3">Engage in a community built on reciprocity. Share information, make friends, build a following.</div>
-        <div className="screen"></div>
+        <div className="image"><div className="screen"></div></div>
         
         <p id="reliable">Reliable.</p>
         <div className="rcorners2">A safe and reliable platform controlled for quality and consistency.</div>

@@ -5,6 +5,11 @@
 
 html {
     scroll-behavior: smooth;
+    width: 100vw;
+}
+
+body {
+    min-width: 2000px;
 }
 
 .monitor {
@@ -18,16 +23,16 @@ html {
     display: flex;
 }
 
+.image {
+    position: relative;
+    left: 1000px;
+    top: 0px;
+}
+ 
 .screen {
-    float: right;
     background: url(images/screen.png);
     width: 695px;
     height: 480px;
-    right: 90px;
-    top: 375px;
-    margin-top: 30px;
-    margin-right: 40px;
-    display: flex;
 }
 
 .page1 {
@@ -51,13 +56,13 @@ html {
 }
 
 .btn-primary {
-border: none;
-border-radius: 20;
-background-image: linear-gradient(#5A786F, #8CA88E);
-position: absolute;
-width: 300px;
-height: 56px;
-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border: none;
+    border-radius: 20;
+    background-image: linear-gradient(#5A786F, #8CA88E);
+    position: absolute;
+    width: 300px;
+    height: 56px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 h3 {
@@ -119,7 +124,7 @@ span1 {
 
 .container {
     /* max-width: 1200px; */
-    max-width: 100%;
+    max-width: 40%;
     margin-top: 5%;
     margin-left: 45%;
     /* margin: 0 auto; */
@@ -278,8 +283,3 @@ b {
     left: 330px;
     top: 1010px;
 }
-
-/*a {
-    font-weight: bolder;
-    color: white;
-}*/
