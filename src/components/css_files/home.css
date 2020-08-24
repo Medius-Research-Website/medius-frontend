@@ -5,9 +5,12 @@
 
 html {
     scroll-behavior: smooth;
+    width: 100vw;
 }
 
-
+body {
+    min-width: 2000px;
+}
 
 .monitor {
     position: absolute;
@@ -20,16 +23,19 @@ html {
     display: flex;
 }
 
+.image {
+    position: relative;
+    left: 1000px;
+    top: 0px;
+    width: 35%;
+    margin-left: 0;
+}
+ 
 .screen {
-    float: right;
     background: url(images/screen.png);
     width: 695px;
     height: 480px;
-    right: 90px;
-    top: 375px;
-    margin-top: 30px;
-    margin-right: 40px;
-    display: flex;
+    margin: 0;
 }
 
 .page1 {
@@ -53,13 +59,13 @@ html {
 }
 
 .btn-primary {
-border: none;
-border-radius: 20;
-background-image: linear-gradient(#5A786F, #8CA88E);
-position: absolute;
-width: 300px;
-height: 56px;
-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border: none;
+    border-radius: 20;
+    background-image: linear-gradient(#5A786F, #8CA88E);
+    position: absolute;
+    width: 300px;
+    height: 56px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 h3 {
@@ -98,14 +104,16 @@ span1 {
     list-style: none;
 }
 
-.main-nav a{
+.main-nav a {
     /* color: inherit; */
     text-decoration: none;
     padding: 1rem;
+    color: white;
 }
 
-.main-nav a:hover {
-    color: #0f4718
+.brand-logo-name > a {
+    color: white;
+    font-weight: bolder;
 }
 
 .main-header {
@@ -119,7 +127,7 @@ span1 {
 
 .container {
     /* max-width: 1200px; */
-    max-width: 100%;
+    max-width: 40%;
     margin-top: 5%;
     margin-left: 45%;
     /* margin: 0 auto; */
@@ -146,6 +154,11 @@ span1 {
     color: white;
     text-align: left;
     padding-left: 30px;
+}
+
+.column2 > a{
+    color: white;
+    font-size: 1em;
 }
 
 b {
@@ -272,9 +285,4 @@ b {
     position: absolute;
     left: 330px;
     top: 1010px;
-}
-
-a {
-    font-weight: bolder;
-    color: white;
 }
