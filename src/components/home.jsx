@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 // import Signup from './signup';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css_files/home.css";
-import "./css_files/signUp.css"
+// import "./css_files/signUp.css"
 
 
 class home extends Component {
@@ -105,26 +105,26 @@ class home extends Component {
                 <b>connect</b>
                 <br/>
                 <br/>
-                twitter
+                <a href="https://mobile.twitter.com/mediusresearch">twitter</a>
                 <br/>
-                facebook
+                <a href="https://www.instagram.com/mediusresearch/">instagram</a>
                 <br/>
-                linkedin
+                <a href="https://www.linkedin.com/company/medius-research">linkedin</a>
                 <br/>
-                facebook
+                <a href="https://www.reddit.com/r/Medius/">reddit</a>
               </div>
 
               <div className="column2">
               <b>company</b>
                   <br/>
                   <br/>
-                  contact us
+                  <a href="mailto:mediusresearch@gmail.com">contact us</a>
                   <br/>
-                  about
+                  {/*about
                   <br/>
                   terms of service
                   <br/>
-                  privacy policy
+                  privacy policy*/}
               </div>
             </div>
         </footer>

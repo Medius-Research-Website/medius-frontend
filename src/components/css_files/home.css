@@ -7,8 +7,6 @@ html {
     scroll-behavior: smooth;
 }
 
-
-
 .monitor {
     position: absolute;
     width: 430px;
@@ -98,14 +96,16 @@ span1 {
     list-style: none;
 }
 
-.main-nav a{
+.main-nav a {
     /* color: inherit; */
     text-decoration: none;
     padding: 1rem;
+    color: white;
 }
 
-.main-nav a:hover {
-    color: #0f4718
+.brand-logo-name > a {
+    color: white;
+    font-weight: bolder;
 }
 
 .main-header {
@@ -146,6 +146,11 @@ span1 {
     color: white;
     text-align: left;
     padding-left: 30px;
+}
+
+.column2 > a{
+    color: white;
+    font-size: 1em;
 }
 
 b {
@@ -274,7 +279,7 @@ b {
     top: 1010px;
 }
 
-a {
+/*a {
     font-weight: bolder;
     color: white;
-}
+}*/
