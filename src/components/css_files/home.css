@@ -107,6 +107,8 @@ span1 {
     justify-content: space-between;
     align-items: center;
     height: 140px;
+    padding-left: 40px;
+    background-color: #303030;;
 }
 
 .container {
@@ -120,7 +122,7 @@ span1 {
 
 
 .full-height-grow {
-    padding: 0 40px;
+    padding: 0px;
     margin: 0 auto;
     /* max-width: 1200px; */
     width: 100%;
@@ -220,8 +222,6 @@ b {
 }
 
 #access {
-    font-family: 'Nexa';
-    font-style: normal;
     font-weight: bold;
     font-size: 50px;
     line-height: 50px;
@@ -235,7 +235,6 @@ b {
 }
 
 #collaborate {
-    font-family: 'Nexa Bold';
     font-style: normal;
     font-weight: bold;
     font-size: 50px;
@@ -250,7 +249,6 @@ b {
 }
 
 #reliable {
-    font-family: Nexa Bold;
     font-style: normal;
     font-weight: bold;
     font-size: 50px;
@@ -262,4 +260,9 @@ b {
     position: absolute;
     left: 340px;
     top: 1010px;
+}
+
+a {
+    font-weight: bolder;
+    color: white;
 }
