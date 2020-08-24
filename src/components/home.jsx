@@ -23,6 +23,7 @@ class home extends Component {
   };
 
   render() {
+    console.log("rendering home page");
     return (
       // <div class="container full-height-grow">
       <div className="full-height-grow">  

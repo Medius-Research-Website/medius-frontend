@@ -1,0 +1,9 @@
+* {
+    font-family: 'Oxygen', sans-serif;
+    /* background-color: #E0E1DD;  */
+    box-sizing: border-box;
+}
+
+feed {
+    background-image: url(./images/green_bg.png);
+}

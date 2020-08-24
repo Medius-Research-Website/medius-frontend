@@ -17,7 +17,7 @@ function App() {
     <Router>
       <div>
         {/* <Navbar /> */}
-          <Route path="/" component={home} />
+          <Route exact path="/" component={home} />
           <Route exact path="/about" component={about} />
           <PrivateRoute exact path="/userprofile" component={userprofile} />
           <Route exact path="/signup" component={Signup} />
