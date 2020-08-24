@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom"; //BrowserRouter, Link,
 import { Button } from "react-bootstrap";
-import Signup from './signup';
+// import Signup from './signup';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css_files/home.css";
 import "./css_files/signUp.css"
@@ -62,11 +62,13 @@ class home extends Component {
               and research from top universities, all for free.
               <br />
               <br />
+            <a href="https://mediusresearch.typeform.com/to/sHXy1QbE">
             <Button type="button" className="btn-primary" onClick={this.showModal}>
               {" "}
               Sign up for our Beta launch! 
             </Button>
-            <Signup show={this.state.show} onClose={this.showModal}/>
+            </a>
+            {/*<Signup show={this.state.show} onClose={this.showModal}/>*/}
           </div>
         </div>
 
