@@ -63,10 +63,10 @@ class home extends Component {
               <br />
               <br />
             <a href="https://mediusresearch.typeform.com/to/sHXy1QbE">
-            <Button type="button" className="btn-primary" onClick={this.showModal}>
-              {" "}
-              Sign up for our Beta launch! 
-            </Button>
+              <Button type="button" className="btn-primary" onClick={this.showModal}>
+                {" "}
+                Sign up for our Beta launch! 
+              </Button>
             </a>
             {/*<Signup show={this.state.show} onClose={this.showModal}/>*/}
           </div>
