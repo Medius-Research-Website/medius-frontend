@@ -4,6 +4,8 @@ import { Button } from "react-bootstrap";
 // import Signup from './signup';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css_files/home.css";
+import DesktopImg from './css_files/images/desktop.png';
+import FeedImg from './css_files/images/screen.png';
 // import "./css_files/signUp.css"
 
 
@@ -46,61 +48,64 @@ class home extends Component {
           </nav>
         </header>
 
-        <div className="float-left page1">
+        <div className="page1">
+          <div className="monitor"> <img src={DesktopImg} alt="tv logo" /></div>
           <div className="container"> 
-            <div className="monitor">
-            </div>
-          <h2>
-            A modern
-              <br/>
-              <h2_1>finance community</h2_1>
-              <br/>
-              built on collaboration
-          </h2>
-              An open forum for sharing high quality investment ideas, stock picks,
-              <br/>
-              and research from top universities, all for free.
-              <br />
-              <br />
-            <a href="https://mediusresearch.typeform.com/to/sHXy1QbE">
-            <Button type="button" className="btn-primary" onClick={this.showModal}>
-              {" "}
-              Sign up for our Beta launch! 
-            </Button>
-            </a>
-            {/*<Signup show={this.state.show} onClose={this.showModal}/>*/}
+            <h2>
+              A modern
+                <br/>
+                <h2_1>finance community</h2_1>
+                <br/>
+                built on collaboration
+            </h2>
+                An open forum for sharing high quality investment ideas, stock picks,
+                and research from top <br /> contributers, all for free.
+                <br />
+                <br />
+              <a href="https://mediusresearch.typeform.com/to/sHXy1QbE">
+                <Button type="button" className="btn-primary" onClick={this.showModal}>
+                  {" "}
+                  Sign up for our Beta launch! 
+                </Button>
+              </a>
+              {/*<Signup show={this.state.show} onClose={this.showModal}/>*/}
           </div>
         </div>
 
-        {/* <div class="jumbotron jumbotron-fluid float-left"> */}
+        <div className="page2">
+          <div id="bubbles">
+            <div id="horiz">
+              <div id="access"> 
+                <p >Accessible.</p>
+                <div className="rcorners1">
+                  Investment information, data, and research completely free. No paywalls.
+                </div>
+              </div>
 
-        <div className="float-left page2">
-        <br/>
-        <p id="access">Accessible.</p>
-        <div className="rcorners1">
-          Investment information, data, and research completely free. No paywalls.
+              <div id="collaborate">
+                <p>Collaborative.</p>
+                <div className="rcorners3">Engage in a community built on reciprocity. Share information, make friends, build a following.</div>
+              </div>
+            </div>
+            
+            <div id="reliable">
+              <p >Reliable.</p>
+              <div className="rcorners2">A safe and reliable platform controlled for quality and consistency.</div>
+            </div>
           </div>
-        <br/>
-        <p id="collaborate">Collaborative.</p>
-        <div className="rcorners3">Engage in a community built on reciprocity. Share information, make friends, build a following.</div>
-        <div className="image"><div className="screen"></div></div>
-        
-        <p id="reliable">Reliable.</p>
-        <div className="rcorners2">A safe and reliable platform controlled for quality and consistency.</div>
-        <br/>
-          <div className="container">
-          <br/>
-          </div>
+
+          <img src={FeedImg} alt="feed-page" />
+
         </div>
 
         <footer className="footer">
-          <div className="row">
-              <div className="column">
-                <br/>
-                <br/>
-                <b>medius</b>
-              </div>
+            <div className="column">
+              <br/>
+              <br/>
+              <b>medius</b>
+            </div>
 
+            <div className="row">
               <div className="column2">
                 <b>connect</b>
                 <br/>
