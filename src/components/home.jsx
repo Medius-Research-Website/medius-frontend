@@ -59,8 +59,7 @@ class home extends Component {
                 built on collaboration
             </h2>
                 An open forum for sharing high quality investment ideas, stock picks,
-                <br/>
-                and research from top universities, all for free.
+                and research from top <br /> contributers, all for free.
                 <br />
                 <br />
               <a href="https://mediusresearch.typeform.com/to/sHXy1QbE">
