@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Profile from "./profile";
 import { fetchUsers } from "../actions";
-
-import "./css_files/profiles.css";
+import "./css_files/profiles.scss";
 
 class Profiles extends Component {
   componentDidMount() {

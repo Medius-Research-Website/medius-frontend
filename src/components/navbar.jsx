@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { signoutUser } from "../actions";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import "./css_files/navbar.css";
+import "./css_files/navbar.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class NavbarInstance extends Component {
@@ -23,7 +23,7 @@ class NavbarInstance extends Component {
       return (
         <Navbar default collapseOnSelect>
           <Navbar.Brand>
-            <NavLink to="landingpage">medius research</NavLink>
+            <NavLink id="title" to="landingpage">medius</NavLink>
           </Navbar.Brand>
           <Nav className="navbar navbar-expand-sm justify-content-end">
             <NavLink className="btn btn-success ml-auto mr-1" to="/signin">

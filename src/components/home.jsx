@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom"; //BrowserRouter, Link,
 import { Button } from "react-bootstrap";
 // import Signup from './signup';
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./css_files/home.css";
+import "./css_files/home.scss";
 import DesktopImg from './css_files/images/desktop.png';
 import FeedImg from './css_files/images/screen.png';
 // import "./css_files/signUp.css"
