@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom"; //BrowserRouter, Link,
 import { Button } from "react-bootstrap";
-// import Signup from './signup';
+import Signup from './signup';
+import Sigin from './signin';
+import NavbarInstance from'./navbar';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css_files/home.scss";
 import DesktopImg from './css_files/images/desktop.png';
@@ -14,13 +16,20 @@ class home extends Component {
     super(props);
 
     this.state = {
-      show: false,
+      showSignup: false,
+      showSignin: false,
     };
   }
 
-  showModal = () => {
+  showSignupModal = () => {
     this.setState({
-      show: !this.state.show
+      showSignup: !this.state.showSignup
+    });
+  };
+
+  showSigninModal = () => {
+    this.setState({
+      showSignin: !this.state.showSignin
     });
   };
 
@@ -33,19 +42,8 @@ class home extends Component {
           <div className="brand-logo-name">
             <NavLink to=""> medius </NavLink>
           </div>
-          <nav className="main-nav">
-            <ul>
-              {/*<li>
-                <NavLink to="/signin"> Sign in </NavLink>
-              </li>
-              <li>
-                <NavLink to="/signup"> Get Started </NavLink>
-              </li>
-              <li>
-                <Link to="/communityPage"> Community </Link>
-              </li> */}
-            </ul>
-          </nav>
+            <Button type="button" id="btn-signin">Sign In</Button>
+            <Sigin show={this.state.showSignin} onClose={this.showSigninModal}/>
         </header>
 
         <div className="page1">
@@ -62,13 +60,12 @@ class home extends Component {
                 and research from top <br /> contributers, all for free.
                 <br />
                 <br />
-              <a href="https://mediusresearch.typeform.com/to/sHXy1QbE">
-                <Button type="button" className="btn-primary" onClick={this.showModal}>
-                  {" "}
+              {/*<a href="https://mediusresearch.typeform.com/to/sHXy1QbE">*/}
+                <Button type="button" className="btn-primary" onClick={this.showSignupModal}>
                   Sign up for our Beta launch! 
                 </Button>
-              </a>
-              {/*<Signup show={this.state.show} onClose={this.showModal}/>*/}
+              {/*</a>*/}
+              <Signup show={this.state.showSignup} onClose={this.showSignupModal}/>
           </div>
         </div>
 

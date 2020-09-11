@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { signinUser, clear } from "../actions";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button , Modal} from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 class Signin extends Component {
@@ -34,10 +34,14 @@ class Signin extends Component {
     this.props.signinUser(user, this.props.history);
   }
 
+  xOut() {
+    this.props.onClose();
+  }
+
   render() {
     if (this.props.invalidCredentials) {
       return (
-        <div id="sign-in">
+      <Modal id="sign-in" show={this.props.showSignin} onHide={this.xOut}>
         <Form>
           <Form.Group controlId="formBasicEmail">
             <Form.Control type="email" placeholder="Enter email" onChange={this.onInputChangeEmail}/>
@@ -57,11 +61,11 @@ class Signin extends Component {
             Lets go!
           </Button>
         </Form>
-      </div>
+      </Modal>
       )
     } else {
       return (
-        <div id="sign-in">
+        <Modal id="sign-in" show={this.props.showSignin} onHide={this.xOut}>
           <Form>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
@@ -81,7 +85,7 @@ class Signin extends Component {
               </Button>
             </Link>
           </Form>
-        </div>
+        </Modal>
       );
     }
   }

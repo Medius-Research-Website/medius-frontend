@@ -1,5 +1,5 @@
 * {
-    font-family: 'Oxygen', sans-serif;
+    font-family: 'Oxygen', 'Nexa Bold',sans-serif;
     /* background-color: #E0E1DD;  */
 }
 
@@ -59,6 +59,17 @@ html {
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
+#btn-signin{
+    border: none;
+    border-radius: 10px;
+    margin-left: 85%;
+    align-self: auto;
+    background-image: linear-gradient(180deg, #5A786F 0%, #5A786F 0.01%);
+    width: 169px;
+    height: auto;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
 h2 {
     font-size: 200%;
     font-weight: bold;
@@ -86,6 +97,14 @@ h2_1 {
     width: 35%;
     height: 60%;
     margin: 5%;
+}
+
+.main-nav {
+    font-family: 'Oxygen', sans-serif;
+    background-color: #292929;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
 
 #bubbles {

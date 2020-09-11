@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { signupUser, clear } from "../actions";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Modal} from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "./css_files/signUp.scss";
 
 class SignUp extends Component {
   constructor(props) {
@@ -62,21 +63,15 @@ class SignUp extends Component {
   }
 
   render() {
-    if (!this.props.show) {
-      return null;
-    }
 
     return (
-      <div id="sign-up">
-        <p>Sign Up!</p>
-        <button type="button" id="close-button" onClick={this.xOut}>&times;</button>
+        <Modal id="sign-up" show={this.props.showSignup} onHide={this.xOut}>
         <Form>
-        <p id="first-to-know">Be the first to know about our beta!</p>
+          <Form.Label id="modal-title">Sign up!</Form.Label>
+          <button type="button" id="close-button" onClick={this.xOut}>&times;</button>
+        <Form.Label id="first-to-know">Be the first to know about our beta!</Form.Label>
           <Form.Group controlId="formBasicEmail">
             <Form.Control type="email" placeholder="Enter email" onChange={this.onInputChangeEmail}/>
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
           </Form.Group>
           <Form.Group controlId="formBasicFirstName">
             <Form.Control type="text" placeholder="First Name" onChange={this.onInputChangeFirstName}/>
@@ -92,11 +87,11 @@ class SignUp extends Component {
           </Form.Group>
           <Link to="landingpage">
             <Button id="signUpBtn" variant="primary" type="submit" onClick={this.onClickSignUp}>
-              Submit
+              Let's go!
             </Button>
           </Link>
         </Form>
-      </div>
+        </Modal>
     );
   }
 }

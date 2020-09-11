@@ -12,7 +12,8 @@ export const ActionTypes = {
   AUTH_ERROR: 'AUTH_ERROR',
   CLEAR: 'CLEAR',
   INVALID_CREDENTIALS: 'INVALID_CREDENTIALS',
-  EXISTING_USER: 'EXISTING USER',
+  EXISTING_USER: 'EXISTING_USER',
+  INCOMPLETE_FORM: 'INCOMPLETE_FORM',
 };
 
 // trigger to deauth if there is error
