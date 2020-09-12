@@ -1,31 +1,29 @@
-import React from "react";
-import "./css_files/post.scss";
+import React, { Component } from 'react';
+// import "./css_files/singlepost.scss";
+import { connect } from 'react-redux';
+import { fetchPost } from '../actions';
 
-export default function Post({ post }) {
-  return (
-        <div className="main">
-          <div>
-            
-          </div>
-          <div className="sidebar">
-            <div className="ticker">Ticker: {post.ticker} </div>
-            <div className="percentage-change">100%</div>
-            <button className="like">
-              <i className="arrow-up up" aria-hidden="true"></i>
-            </button>
-            <button className="dislike">
-              <i className="arrow-down down" aria-hidden="true"></i>
-            </button>
-            <div className="date">Date</div>
-          </div>
-          <div className="information">
-            <div className="title">
-              {post.idea}
-            </div>
-            <p>
-              {post.insight}
-            </p>
-          </div>
-        </div>
-  );
+class post extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {}
+  }
+  componentDidMount() {
+    this.props.fetchPost(this.props.match.params.postID);
+  }
+
+  render() {
+    console.log(this.props.selectedPost);
+    return (
+      <p>{this.props.selectedPost.ticker}</p>
+    );
+  };
+};
+
+function mapStateToProps(reduxState) {
+  return {
+    selectedPost: reduxState.posts.current,
+  };
 }
+
+export default connect(mapStateToProps, { fetchPost })(post);
