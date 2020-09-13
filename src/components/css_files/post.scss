@@ -1,20 +1,44 @@
 .feed__post{
-  border: 1px solid black;
+  
   display:flex;
   gap:22px;
+  
   @mixin wrapping{
-    border: 1px groove gray;
+    
     border-radius: 20px;
     padding:25px;
+    background-color: #F8F8F8;
+    box-shadow: inset 0px -1px 1px #929290;
   }//round-wrapping container
+  @mixin text($type){
+    background:none;
+    color:black;
+    font-family: sans-serif;
+    @if ($type==ticker){
+      font-size: 20px;
+      font-weight: bold;
+      
+    } @else if ($type==company){
+      font-size: 14px;
+      font-weight: bold;
+    } @else if ($type==title){
+      font-size: 14px;
+      font-weight: bold;
+    } @else if ($type==info){
+      font-size: 14px;
+    }
+
+  }
   &__left{
     @include wrapping;    
     flex-basis: 20%;
     @mixin bubble{
       color: white;
       width: fit-content;
-      padding: 10px;
+      padding: 1px 10px;
       border-radius: 10px;
+      font-size: 14px;
+      font-weight: bold;
     }//applied for both sell and buy bubble
     .bubble{
       &--buy{
@@ -26,12 +50,27 @@
         background-color: #936262;
       }
     }//specific selectors for sell/buy bubble
+    .ticker{
+      @include text(ticker);
+    }
+    .company{
+      @include text(company);
+    }
   }
 
   &__right{
     @include wrapping;  
-    
     flex-basis: auto;
+    display: flex;
+    .interaction-stat{
+      flex-basis: 15%;
+    }
+    .post-title{
+      @include text(title);
+    }
+    .info{
+      @include text(info);
+    }
   }
 
 }
