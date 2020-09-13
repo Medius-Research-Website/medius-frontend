@@ -14,6 +14,11 @@
     background:none;
     color:black;
     font-family: sans-serif;
+    @if ($type==info){
+      font-family: 'Oxygen', sans-serif;
+    }@else{
+      font-family: "Nexa", sans-serif;
+    }
     @if ($type==ticker){
       font-size: 20px;
       font-weight: bold;
