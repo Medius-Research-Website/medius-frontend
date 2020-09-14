@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom"; //BrowserRouter, Link,
 import { Button } from "react-bootstrap";
 import Signup from './signup';
-import Sigin from './signin';
+import Signin from './signin';
 import NavbarInstance from'./navbar';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css_files/home.scss";
@@ -32,6 +32,7 @@ class home extends Component {
       showSignin: !this.state.showSignin
     });
   };
+  
 
   render() {
     console.log("rendering home page");
@@ -42,8 +43,8 @@ class home extends Component {
           <div className="brand-logo-name">
             <NavLink to=""> medius </NavLink>
           </div>
-            <Button type="button" id="btn-signin">Sign In</Button>
-            <Sigin show={this.state.showSignin} onClose={this.showSigninModal}/>
+            <Button type="button" id="btn-signin" onClick={this.showSigninModal}>Sign In</Button>
+            <Signin showSignin={this.state.showSignin} onClose={this.showSigninModal}/>
         </header>
 
         <div className="page1">
@@ -65,7 +66,7 @@ class home extends Component {
                   Sign up for our Beta launch! 
                 </Button>
               {/*</a>*/}
-              <Signup show={this.state.showSignup} onClose={this.showSignupModal}/>
+              <Signup showSignup={this.state.showSignup} onClose={this.showSignupModal}/>
           </div>
         </div>
 

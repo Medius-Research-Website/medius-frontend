@@ -34,15 +34,16 @@ class Signin extends Component {
     this.props.signinUser(user, this.props.history);
   }
 
-  xOut() {
+  xOut = () => {
     this.props.onClose();
   }
-
+  
   render() {
     if (this.props.invalidCredentials) {
       return (
       <Modal id="sign-in" show={this.props.showSignin} onHide={this.xOut}>
         <Form>
+          <button type="button" id="close-button" onClick={this.xOut}>&times;</button>
           <Form.Group controlId="formBasicEmail">
             <Form.Control type="email" placeholder="Enter email" onChange={this.onInputChangeEmail}/>
             <Form.Text className="text-muted">
@@ -67,6 +68,7 @@ class Signin extends Component {
       return (
         <Modal id="sign-in" show={this.props.showSignin} onHide={this.xOut}>
           <Form>
+            <button type="button" id="close-button" onClick={this.xOut}>&times;</button>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control type="email" placeholder="Enter email" onChange={this.onInputChangeEmail}/>
