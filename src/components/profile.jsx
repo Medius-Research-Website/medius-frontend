@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import "./css_files/profile.css";
+import "./css_files/profile.scss";
 import { connect } from 'react-redux';
 import { fetchUser } from '../actions';
 
-// need to discuss implementation of component
 class Profile extends Component {
   componentDidMount() {
     // need to confirm where userID is coming from
