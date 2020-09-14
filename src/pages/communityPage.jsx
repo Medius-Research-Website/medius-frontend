@@ -11,7 +11,6 @@ class Community extends Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar />
         <div className="title">Our Community</div>
         <button className="button-community">People</button>
         <button className="button-community">Organizations</button>
