@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchPost } from '../actions';
 import Comments from './comments';
 import Deletecomment from './deletecomment';
+import Navbar from "./navbar";
 
 class singlepost extends Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class singlepost extends Component {
     const { current } = this.props.posts
     return (
       <div>
+        <Navbar />
         <div className="singlepost">
           <div className="graph">
             Graph goes here

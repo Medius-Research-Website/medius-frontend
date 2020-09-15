@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import ReactGA from 'react-ga';
 import home from "./components/home";
 import about from "./components/about";
-import Navbar from "./components/navbar";
 import userprofile from "./components/userprofile";
 import Signup from "./components/signup";
 import Signin from "./components/signin";
@@ -23,7 +22,6 @@ function App() {
   return (
     <Router>
       <div>
-        <Navbar />
           <Route exact path="/" component={home} />
           <Route exact path="/about" component={about} />
           <PrivateRoute exact path="/userprofile" component={userprofile} />
