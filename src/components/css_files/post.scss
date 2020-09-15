@@ -1,7 +1,6 @@
 .feed__post{
-  
+  margin: auto;
   display:flex;
-  gap:22px;
   
   @mixin wrapping{
     
@@ -36,7 +35,7 @@
   }
   &__left{
     @include wrapping;    
-    flex-basis: 20%;
+    flex-basis: auto;
     @mixin bubble{
       color: white;
       width: fit-content;
@@ -65,8 +64,10 @@
 
   &__right{
     @include wrapping;  
-    flex-basis: auto;
+    flex-basis: 75%;
     display: flex;
+    float: right;
+    margin-left: auto;
     .interaction-stat{
       flex-basis: 15%;
     }
