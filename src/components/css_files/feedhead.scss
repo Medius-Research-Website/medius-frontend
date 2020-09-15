@@ -1,0 +1,22 @@
+.feed-head{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    &__component-wrapper{
+        display: flex;
+        flex-direction: row-reverse;
+    }
+    &__title{
+        text-align: center;
+        flex-basis: 75%;
+        border-bottom: solid 1px;
+        font-family: "Nexa", sans-serif;
+        font-weight: bold;
+    }
+    &__input{
+        flex-basis: 75%;
+        & input{
+            width: 100%;
+        }
+    }
+}

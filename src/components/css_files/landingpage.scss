@@ -1,9 +1,19 @@
-* {
-    font-family: 'Oxygen', sans-serif;
-    /* background-color: #E0E1DD;  */
-    box-sizing: border-box;
-}
-
-feed {
+.landing-page {
     background-image: url(./images/green_bg.png);
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 90vh;
+    display: flex;
+    .profile--bubble{
+        flex-basis: 20%;
+    }
+    .trending{
+        flex-basis: 20%;
+    }
+    .feed{
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+        gap: 50px;
+    }
 }
