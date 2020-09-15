@@ -2,6 +2,8 @@ import React from "react";
 
 import "./css_files/post.scss";
 
+
+// this is the small view of a post for the feed page
 export default function Post({ post }) {
   return (
     <div className="feed__post">

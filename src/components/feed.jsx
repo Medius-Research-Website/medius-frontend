@@ -42,7 +42,7 @@ class Feed extends Component {
       return (
         <React.Fragment>
           {this.props.all.map((post) => ( 
-            <Link to={`posts/${post.id}`} style={{ textDecoration: 'none' }} key={idx}>
+            <Link to={`posts/${post.id}`} style={{ textDecoration: 'none' }} key={post.id}>
               <Post post={post} />
             </Link>
           ))}
