@@ -1,5 +1,13 @@
 .graph {
-  // padding: 15px;
+  padding: 25px;
+}
+
+.singlepost {
+  border: 2px solid black;
+  width: 1000px;
+  margin: auto;
+  margin-top: 50px;
+  border-radius: 20px;
 }
 
 .header {
@@ -26,5 +34,30 @@
 }
 
 .comment {
-  padding: 25px;
+  border: 2px solid black;
+  text-align: center;
+  width: 1000px;
+  margin: auto;
+  margin-top: 35px;
+  margin-bottom: 35px;
+  border-radius: 20px;
+}
+
+.comments {
+  display: flex;
+}
+
+.input {
+  border-radius: 45;
+  width: 90%;
+}
+
+.addComment {
+  margin: 20px;
+}
+
+.listOfComments {
+  margin: 20px;
+  width: 90%;
+  list-style-type: none;
 }

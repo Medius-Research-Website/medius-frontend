@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Navbar from "../components/navbar";
 import Profiles from "../components/profiles";
 import * as ReactBootstrap from "react-bootstrap";
 import "./communityPage.css";
