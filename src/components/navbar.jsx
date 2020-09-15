@@ -26,7 +26,7 @@ class NavbarInstance extends Component {
             <NavLink id="title" to="landingpage">medius</NavLink>
           </Navbar.Brand>
           <Nav className="navbar navbar-expand-sm justify-content-end">
-            <NavLink className="btn btn-success ml-auto mr-1" to="/signin">
+            <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons signInBorder" to="/signin">
               Sign In
             </NavLink>
             {/* <button
@@ -37,13 +37,13 @@ class NavbarInstance extends Component {
             >
               <span classNameName="navbar-toggler-icon"></span>
             </button> */}
-            <NavLink className="btn btn-success ml-auto mr-1" to="/signup">
+            <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons" to="/signup">
               Get Started
             </NavLink>
-            <NavLink className="btn btn-success ml-auto mr-1" to="/about">
+            <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons" to="/about">
               About
             </NavLink>
-            <NavLink className="btn btn-success ml-auto mr-1" to="/communitypage">
+            <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons" to="/communitypage">
               Community
             </NavLink>
           </Nav>
@@ -65,13 +65,13 @@ class NavbarInstance extends Component {
             >
               <span classNameName="navbar-toggler-icon"></span>
             </button> */}
-            <NavLink className="btn btn-success ml-auto mr-1" to="/about">
+            <NavLink className="btn ml-auto mr-1 navButtons" to="/about">
               About
             </NavLink>
-            <NavLink className="btn btn-success ml-auto mr-1" to="/communitypage">
+            <NavLink className="btn ml-auto mr-1 navButtons" to="/communitypage">
               Community
             </NavLink>
-            <div className="btn btn-success ml-auto mr-1" onClick={this.onClickSignOut}>
+            <div className="btn ml-auto mr-1 navButtons" onClick={this.onClickSignOut}>
               Sign Out
             </div>
           </Nav>

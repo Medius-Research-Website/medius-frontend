@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./css_files/userprofile.scss";
 import { connect } from 'react-redux';
 import { updateUser } from '../actions';
+import Navbar from "./navbar";
 
 class userprofile extends Component {
   // needs method to call updateUser action
@@ -11,7 +12,7 @@ class userprofile extends Component {
   render() {
     return (
       <div>
-        PROFILE
+        <Navbar />
         <div className="profile-box">
           <div class="profile-photo"></div>
           <div class="profile-info">
