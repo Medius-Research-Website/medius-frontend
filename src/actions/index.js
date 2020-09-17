@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import history from '../history'
 const ROOT_URL = 'http://localhost:9090/api';
 
 export const ActionTypes = {
@@ -31,7 +31,7 @@ export function clear() {
 }
 
 // fetches all relevant information about current user
-export function signinUser(user, history) {
+export function signinUser(user) {
   console.log('pushing sign in user');
     return (dispatch) => {
       axios.post(`${ROOT_URL}/signin`, user)
@@ -41,12 +41,16 @@ export function signinUser(user, history) {
           history.push('/landingpage');
         })
         .catch((error) => {
-          dispatch({ type: ActionTypes.INVALID_CREDENTIALS });
+          if(user.email && user.password) {
+            dispatch({ type: ActionTypes.INVALID_CREDENTIALS })
+          } else {
+            dispatch({ type: ActionTypes.INCOMPLETE_FORM})
+          }
         });
     };
   }
   
-  export function signupUser(user, history) {
+  export function signupUser(user) {
     return (dispatch) => {
       axios.post(`${ROOT_URL}/signup`, user)
         .then((response) => {
@@ -56,14 +60,17 @@ export function signinUser(user, history) {
           history.push('/landingpage');
         })
         .catch((error) => {
-          dispatch({ type: ActionTypes.EXISTING_USER });
-          history.push('/signup');
+          if(user.email &&  user.password){
+            dispatch({ type: ActionTypes.EXISTING_USER });
+          } else {
+            dispatch({ type: ActionTypes.INCOMPLETE_FORM});
+          }
         });
     };
   }
   
   // deletes token from localstorage and deauths
-  export function signoutUser(history) {
+  export function signoutUser() {
     return (dispatch) => {
       localStorage.removeItem('token');
       dispatch({ type: ActionTypes.DEAUTH_USER });
@@ -140,7 +147,7 @@ export function fetchPost(id) {
   };
 }
 
-export function createPost(post, history) {
+export function createPost(post) {
   axios.post(`${ROOT_URL}/posts`, post, { headers: { authorization: localStorage.getItem('token') } })
     .then(() => { history.push('/'); })
     .catch((error) => {
@@ -149,7 +156,7 @@ export function createPost(post, history) {
     });
 }
 
-export function updatePost(id, post, history) {
+export function updatePost(id, post) {
   return (dispatch) => {
     axios.put(`${ROOT_URL}/posts/${id}/`, post, { headers: { authorization: localStorage.getItem('token') } })
       .then((response) => {
@@ -162,7 +169,7 @@ export function updatePost(id, post, history) {
   };
 }
 
-export function deletePost(id, history) {
+export function deletePost(id) {
   return (dispatch) => {
     axios.delete(`${ROOT_URL}/posts/${id}`, { headers: { authorization: localStorage.getItem('token') } })
       .then(() => { history.push('/'); })

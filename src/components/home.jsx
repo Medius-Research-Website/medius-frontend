@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom"; //BrowserRouter, Link,
+import { NavLink} from "react-router-dom"; //BrowserRouter, Link,
 import { Button } from "react-bootstrap";
 import Signup from './signup';
 import Signin from './signin';
-import NavbarInstance from'./navbar';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css_files/home.scss";
 import DesktopImg from './css_files/images/desktop.png';
@@ -11,10 +10,9 @@ import FeedImg from './css_files/images/screen.png';
 // import "./css_files/signUp.css"
 
 
-class home extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       showSignup: false,
       showSignin: false,
@@ -33,9 +31,9 @@ class home extends Component {
     });
   };
   
-
+  
   render() {
-    console.log("rendering home page");
+    
     return (
       // <div class="container full-height-grow">
       <div className="full-height-grow">  
@@ -66,7 +64,7 @@ class home extends Component {
                   Sign up for our Beta launch! 
                 </Button>
               {/*</a>*/}
-              <Signup showSignup={this.state.showSignup} onClose={this.showSignupModal}/>
+              <Signup showSignup={this.state.showSignup} onClose={this.showSignupModal} />
           </div>
         </div>
 
@@ -136,4 +134,4 @@ class home extends Component {
   }
 }
 
-export default home;
+export default Home;

@@ -8,7 +8,7 @@ html {
 }
 
 
-#sign-up {
+#sign-in {
     display: flex;
     filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.25));
 }
@@ -44,7 +44,7 @@ html {
 }
 
 
-#sign-up > p {
+#sign-in> p {
     width: 716px;
     height: 68px;
 
@@ -74,7 +74,6 @@ html {
 form {
     width: 716px;
     height: 587px;
-
     background: #F2F2F2;
     border: 1px solid #292929;
     border-radius: 20px;
@@ -92,10 +91,10 @@ form {
     width: 500px;
 }
 
-#signUpBtn{
+#signInBtn{
     flex: auto;
-    left: 284px;
-    top: 510px;
+    top: 420px;
+    left: 290px;
     width: 141px;
     height: 48px;
     background: linear-gradient(180deg, #5A786F 0%, #8CA88E 100%);
