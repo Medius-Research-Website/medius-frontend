@@ -10,7 +10,7 @@ export default class Deletecomment extends React.Component {
         <div className="username">Username</div> 
         <div style={{marginLeft: 6}}>{this.props.comment.comment}</div>
         <button 
-          style={{ marginLeft: 'auto' }} 
+          style={{ marginLeft: 'auto', borderRadius: 20 }} 
           onClick={() => this.removeComment(this.props.id)}
         >
             Remove
