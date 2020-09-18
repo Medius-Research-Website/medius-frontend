@@ -62,6 +62,7 @@ export function signinUser(user, history) {
           history.push('/landingpage');
         })
         .catch((error) => {
+          console.log(error)
           if(user.email &&  user.password){
             dispatch({ type: ActionTypes.EXISTING_USER });
           } else {
