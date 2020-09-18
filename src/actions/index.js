@@ -13,6 +13,7 @@ export const ActionTypes = {
   CLEAR: 'CLEAR',
   INVALID_CREDENTIALS: 'INVALID_CREDENTIALS',
   EXISTING_USER: 'EXISTING USER',
+  GET_PCT_CHANGE: 'GET_PCT_CHANGE',
 };
 
 // trigger to deauth if there is error
@@ -165,6 +166,19 @@ export function deletePost(id, history) {
   return (dispatch) => {
     axios.delete(`${ROOT_URL}/posts/${id}`, { headers: { authorization: localStorage.getItem('token') } })
       .then(() => { history.push('/'); })
+      .catch((error) => {
+        // dispatch an error, in separate error reducer
+        console.log(error);
+      });
+  };
+}
+
+export function getPctChange(id) {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/posts/ticker/${id}`)
+      .then((response) => {
+        dispatch({ type: ActionTypes.GET_PCT_CHANGE, payload: response.data });
+      })
       .catch((error) => {
         // dispatch an error, in separate error reducer
         console.log(error);
