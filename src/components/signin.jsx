@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { signinUser, clear } from "../actions";
 import { Form, Button , Modal} from "react-bootstrap";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "./css_files/signIn.scss";
 
 class Signin extends Component {
@@ -38,8 +38,7 @@ class Signin extends Component {
         email: this.state.email,
         password: this.state.password,
       };
-        this.props.signinUser(user);
-        this.props.history.push("/landingpage");
+        this.props.signinUser(user, this.props.history);
     }
   }
 

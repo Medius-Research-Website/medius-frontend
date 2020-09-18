@@ -31,16 +31,18 @@ export function clear() {
 }
 
 // fetches all relevant information about current user
-export function signinUser(user) {
+export function signinUser(user, history) {
   console.log('pushing sign in user');
     return (dispatch) => {
       axios.post(`${ROOT_URL}/signin`, user)
         .then((response) => {
+          console.log("succes sign in");
           dispatch({ type: ActionTypes.AUTH_USER, payload: user });
           localStorage.setItem('token', response.data.token);
-          // history.push('/landingpage');
+          history.push('/landingpage');
         })
         .catch((error) => {
+          console.log("error sign in");
           if(user.email && user.password) {
             dispatch({ type: ActionTypes.INVALID_CREDENTIALS })
           } else {
@@ -50,14 +52,14 @@ export function signinUser(user) {
     };
   }
   
-  export function signupUser(user) {
+  export function signupUser(user, history) {
     return (dispatch) => {
       axios.post(`${ROOT_URL}/signup`, user)
         .then((response) => {
           console.log("successfully signed up user");
           dispatch({ type: ActionTypes.AUTH_USER });
           localStorage.setItem('token', response.data.token);
-          // history.push('/landingpage');
+          history.push('/landingpage');
         })
         .catch((error) => {
           if(user.email &&  user.password){

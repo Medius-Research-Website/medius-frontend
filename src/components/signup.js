@@ -61,8 +61,7 @@ class SignUp extends Component {
       };
 
       console.log('calling sign up');
-      this.props.signupUser(user);
-      this.props.history.push("/landingpage");
+      this.props.signupUser(user, this.props.history);
     }
   }
 
