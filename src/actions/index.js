@@ -38,7 +38,7 @@ export function signinUser(user) {
         .then((response) => {
           dispatch({ type: ActionTypes.AUTH_USER, payload: user });
           localStorage.setItem('token', response.data.token);
-          history.push('/landingpage');
+          // history.push('/landingpage');
         })
         .catch((error) => {
           if(user.email && user.password) {
@@ -54,10 +54,10 @@ export function signinUser(user) {
     return (dispatch) => {
       axios.post(`${ROOT_URL}/signup`, user)
         .then((response) => {
-          console.log("success");
+          console.log("successfully signed up user");
           dispatch({ type: ActionTypes.AUTH_USER });
           localStorage.setItem('token', response.data.token);
-          history.push('/landingpage');
+          // history.push('/landingpage');
         })
         .catch((error) => {
           if(user.email &&  user.password){

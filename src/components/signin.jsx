@@ -39,7 +39,7 @@ class Signin extends Component {
         password: this.state.password,
       };
         this.props.signinUser(user);
-
+        this.props.history.push("/landingpage");
     }
   }
 

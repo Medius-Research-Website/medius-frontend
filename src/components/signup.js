@@ -60,7 +60,9 @@ class SignUp extends Component {
         firstName: this.state.firstName,
       };
 
+      console.log('calling sign up');
       this.props.signupUser(user);
+      this.props.history.push("/landingpage");
     }
   }
 
@@ -70,7 +72,7 @@ class SignUp extends Component {
   }
 
   render() {
-    console.log(this.props.userExists)
+    console.log('user exists: ' +this.props.userExists)
     if(this.props.userExists){
       return (
         <Modal id="sign-up" show={this.props.showSignup} onHide={this.xOut}>

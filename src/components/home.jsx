@@ -33,7 +33,8 @@ class Home extends Component {
   
   
   render() {
-    
+    console.log(this.props);
+
     return (
       // <div class="container full-height-grow">
       <div className="full-height-grow">  
@@ -42,7 +43,7 @@ class Home extends Component {
             <NavLink to=""> medius </NavLink>
           </div>
             <Button type="button" id="btn-signin" onClick={this.showSigninModal}>Sign In</Button>
-            <Signin showSignin={this.state.showSignin} onClose={this.showSigninModal}/>
+            <Signin history={this.props.history} showSignin={this.state.showSignin} onClose={this.showSigninModal}/>
         </header>
 
         <div className="page1">
@@ -64,7 +65,7 @@ class Home extends Component {
                   Sign up for our Beta launch! 
                 </Button>
               {/*</a>*/}
-              <Signup showSignup={this.state.showSignup} onClose={this.showSignupModal} />
+              <Signup history={this.props.history} showSignup={this.state.showSignup} onClose={this.showSignupModal} />
           </div>
         </div>
 
