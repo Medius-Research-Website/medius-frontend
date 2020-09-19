@@ -19,13 +19,13 @@ export default class Comments extends Component {
 	render() {
     return (
       <div>
-        <input 
+        <input
           className="input"
           type="text" 
           value={this.state.comment} 
           onChange={this.handleChange}
           placeholder="Add a comment..."
-          style={{padding: 10, borderRadius:20}}
+          style={{padding: 20,borderRadius:20, backgroundColor:'#E0E1DD',border:'none'}}
         />
         <button style={{marginLeft: 6, borderRadius:20}} onClick={() => this.addComment(this.state.comment)}>
           Add
