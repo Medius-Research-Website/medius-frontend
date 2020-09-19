@@ -27,3 +27,14 @@
 .signInBorder {
     border-color: #52796F;
 }
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.navButtons:hover {
+    text-decoration: none;
+    color: white;
+    transform: scale(1.1);
+}
