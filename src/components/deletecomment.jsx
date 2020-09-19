@@ -7,8 +7,8 @@ export default class Deletecomment extends React.Component {
   render() {
     return (
       <div className='comments'>
-        <div className="username">Username</div> {/*only allow first name*/}
-        <div style={{marginLeft: 6}}>{this.props.comment.comment}</div>
+        <div className="username">Akshay Prabhakar</div> {/*only allow first name*/}
+        <div style={{marginLeft: 6}}>| {this.props.comment.comment}</div>
         <div style={{marginLeft:'auto'}}>
           <button 
             style={{ marginLeft: 'auto', borderRadius: 20 }} 
