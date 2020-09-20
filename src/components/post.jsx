@@ -17,7 +17,7 @@ export default function Post({ post, comments, showCommentsHandler, fetchPriceCh
     <div className="feed__post">
       <div className="feed__post__left">
         <p className="ticker">{post.ticker} </p>
-        <p className="company">Company: {post.industry}</p>
+        <p className="company">Industry: {post.industry}</p>
         <p className="company">{priceChange>0?"+":""}{Math.round(priceChange*100)/100}% since post</p>
         <div className="bubble--sell">Sell/Buy</div>
       </div>

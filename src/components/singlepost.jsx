@@ -6,6 +6,7 @@ import Comments from './comments';
 import Deletecomment from './deletecomment';
 import Navbar from "./navbar";
 
+// this is the full page for a single post
 class singlepost extends Component {
   constructor(props) {
     super(props);
