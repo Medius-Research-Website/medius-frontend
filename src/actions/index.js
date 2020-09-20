@@ -7,6 +7,8 @@ export const ActionTypes = {
   FETCH_POST: 'FETCH_POST',
   FETCH_USERS: 'FETCH_USERS',
   FETCH_USER: 'FETCH_USER',
+  FETCH_COMMENT:'FETCH_COMMENT',
+  FETCH_PRICE_CHANGE:'FETCH_PRICE_CHANGE',
   AUTH_USER: 'AUTH_USER',
   DEAUTH_USER: 'DEAUTH_USER',
   AUTH_ERROR: 'AUTH_ERROR',
@@ -83,47 +85,47 @@ export function signinUser(user, history) {
     };
   }
 
-  // returns public information for all users (need to narrow this, how do we want to present profiles?)
-  export function fetchUsers() {
-    return (dispatch) => {
-      axios.get(`${ROOT_URL}/user/`)
-        .then((response) => {
-          dispatch({ type: ActionTypes.FETCH_USERS, payload: response.data });
-        })
-        .catch((error) => {
-          // dispatch an error, in separate error reducer
-          console.log(error);
-        });
-    };
-  }
+// returns public information for all users (need to narrow this, how do we want to present profiles?)
+export function fetchUsers() {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/user/`)
+      .then((response) => {
+        dispatch({ type: ActionTypes.FETCH_USERS, payload: response.data });
+      })
+      .catch((error) => {
+        // dispatch an error, in separate error reducer
+        console.log(error);
+      });
+  };
+}
 
-  // only returns public information for a user
-  export function fetchUser(id) {
-    return (dispatch) => {
-      axios.get(`${ROOT_URL}/user/${id}/`)
-        .then((response) => {
-          dispatch({ type: ActionTypes.FETCH_USER, payload: response.data });
-        })
-        .catch((error) => {
-          // dispatch an error, in separate error reducer
-          console.log(error);
-        });
-    };
-  }
+// only returns public information for a user
+export function fetchUser(id) {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/user/${id}/`)
+      .then((response) => {
+        dispatch({ type: ActionTypes.FETCH_USER, payload: response.data });
+      })
+      .catch((error) => {
+        // dispatch an error, in separate error reducer
+        console.log(error);
+      });
+  };
+}
 
-  // only can update current user
-  export function updateUser(id, fields) {
-    return (dispatch) => {
-      axios.get(`${ROOT_URL}/user/${id}/`, fields)
-        .then((response) => {
-          dispatch({ type: ActionTypes.AUTH_USER, payload: response.data });
-        })
-        .catch((error) => {
-          // dispatch an error, in separate error reducer
-          console.log(error);
-        });
-    };
-  }
+// only can update current user
+export function updateUser(id, fields) {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/user/${id}/`, fields)
+      .then((response) => {
+        dispatch({ type: ActionTypes.AUTH_USER, payload: response.data });
+      })
+      .catch((error) => {
+        // dispatch an error, in separate error reducer
+        console.log(error);
+      });
+  };
+}
   
 
 export function fetchPosts() {
@@ -152,7 +154,33 @@ export function fetchPost(id) {
   };
 }
 
-export function createPost(post) {
+export function fetchPriceChange(id) {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/posts/ticker/${id}/`, { headers: { authorization: localStorage.getItem('token') }})
+      .then((response) => {
+        dispatch({ type: ActionTypes.FETCH_PRICE_CHANGE, payload: {...response.data, id }});
+      })
+      .catch((error) => {
+        // dispatch an error, in separate error reducer
+        console.log(error);
+      });
+  };
+}
+
+export function fetchCommentsByPost(id){
+  return (dispatch)=>{
+    axios.get(`${ROOT_URL}/posts/comments/${id}/`,{ headers: { authorization: localStorage.getItem('token') } })
+      .then((response) => {
+        dispatch({type: ActionTypes.FETCH_COMMENT, payload: {...response.data,id }} )
+      })
+      .catch((error) => {
+        // dispatch an error, in separate error reducer
+        console.log(error);
+      });
+  }
+}
+
+export function createPost(post, history) {
   axios.post(`${ROOT_URL}/posts`, post, { headers: { authorization: localStorage.getItem('token') } })
     .then(() => { history.push('/'); })
     .catch((error) => {
@@ -184,3 +212,5 @@ export function deletePost(id) {
       });
   };
 }
+
+

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { signupUser, clear } from "../actions";
 import { Form, Button, Modal} from "react-bootstrap";
 import "./css_files/signUp.scss";
-import { wait } from "@testing-library/react";
+// import { wait } from "@testing-library/react";
 
 class SignUp extends Component {
   constructor(props) {

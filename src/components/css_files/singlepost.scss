@@ -1,0 +1,63 @@
+.graph {
+  padding: 25px;
+}
+
+.singlepost {
+  border: 2px solid black;
+  width: 1000px;
+  margin: auto;
+  margin-top: 50px;
+  border-radius: 20px;
+}
+
+.header {
+  height: auto;
+  padding: 25px;
+  font-weight: bold;  
+}
+
+.ticker-post {
+  margin-top: 20px;
+  font-size: 28px;
+}
+
+.percentage-post {
+  color: green;
+}
+
+.description {
+  padding: 25px;
+}
+
+.percent {
+  display: flex;
+}
+
+.comment {
+  border: 2px solid black;
+  text-align: center;
+  width: 1000px;
+  margin: auto;
+  margin-top: 35px;
+  margin-bottom: 35px;
+  border-radius: 20px;
+}
+
+.comments {
+  display: flex;
+}
+
+.input {
+  border-radius: 45;
+  width: 90%;
+}
+
+.addComment {
+  margin: 20px;
+}
+
+.listOfComments {
+  margin: 20px;
+  width: 90%;
+  list-style-type: none;
+}

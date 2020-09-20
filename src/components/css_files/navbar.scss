@@ -3,7 +3,7 @@
 }
 
 .navbar {
-    font-family: 'Oxygen', sans-serif;
+    font-family: 'Nexa Bold', 'Oxygen', sans-serif;
     background-color: #292929;
     display: flex;
     justify-content: space-between;
@@ -13,4 +13,28 @@
     color: white;
     font-weight: bolder;
     text-decoration: none;
+}
+
+.selected {
+    background-color: #52796F;
+    color: white;
+}
+
+.navButtons {
+    color: white;
+}
+
+.signInBorder {
+    border-color: #52796F;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.navButtons:hover {
+    text-decoration: none;
+    color: white;
+    transform: scale(1.1);
 }

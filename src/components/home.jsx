@@ -70,6 +70,7 @@ class Home extends Component {
         </div>
 
         <div className="page2">
+          <p id="mobile">Our Core Pillars</p>
           <div id="bubbles">
             <div id="horiz">
               <div id="access"> 
@@ -97,8 +98,6 @@ class Home extends Component {
 
         <footer className="footer">
             <div className="column">
-              <br/>
-              <br/>
               <b>medius</b>
             </div>
 
