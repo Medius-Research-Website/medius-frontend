@@ -14,14 +14,13 @@ const PostsReducer = (state = initialState, action) => {
     case ActionTypes.FETCH_POST:
       return { ...state, current: action.payload };
     case ActionTypes.FETCH_COMMENT:
-      let comments = state.comments;
-      let data = action.payload;
-      comments[data.id]=data.response.comments;
-      return { ...state, comments: {...comments}};
+      let currentComments = state.comments;
+      currentComments[action.payload.id]=action.payload.comments;
+      return { ...state, comments: {...currentComments}};
     case ActionTypes.FETCH_PRICE_CHANGE:
       let currentPriceChange=state.priceChange;
-      currentPriceChange[payload.id]=payload.change;
-      return {...state, priceChange:{...priceChange}};
+      currentPriceChange[action.payload.id]=action.payload.change;
+      return {...state, priceChange:{...currentPriceChange}};
     default:
       return state;
   }

@@ -154,11 +154,11 @@ export function fetchPriceChange(id) {
   };
 }
 
-export function fetchComment(postId){
+export function fetchCommentsByPost(id){
   return (dispatch)=>{
-    axios.get(`${ROOT_URL}/posts/comments/${postId}/`,{ headers: { authorization: localStorage.getItem('token') } })
+    axios.get(`${ROOT_URL}/posts/comments/${id}/`,{ headers: { authorization: localStorage.getItem('token') } })
       .then((response) => {
-        dispatch({type: ActionTypes.FETCH_COMMENT, payload: {id:postId,response:response.data }} )
+        dispatch({type: ActionTypes.FETCH_COMMENT, payload: {...response.data,id }} )
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer

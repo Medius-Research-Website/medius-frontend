@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Post from "./post";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { fetchPosts,fetchComment } from "../actions";
+import { fetchPosts,fetchCommentsByPost, fetchPriceChange } from "../actions";
 
 class Feed extends Component {
   componentDidMount() {
@@ -18,9 +18,13 @@ class Feed extends Component {
           {this.props.all.map((post) => ( 
               <Post post={post} 
               comments={this.props.comments[post.id]||[]} 
+              priceChange={this.props.priceChange[post.id]||0}
               showCommentsHandler={()=>{//this function is to handle fetching comments to show
-                    this.props.fetchComment(post.id);
+                    this.props.fetchCommentsByPost(post.id);
                 }}
+              fetchPriceChange={()=>{
+                this.props.fetchPriceChange(post.id);
+              }}
               key={post.id}/>
           ))}
         </React.Fragment>
@@ -38,8 +42,9 @@ class Feed extends Component {
 
 const mapStateToProps = (state) => ({
   all: state.posts.all || [],
-  comments: state.posts.comments || {}
+  comments: state.posts.comments || {},
+  priceChange: state.posts.priceChange||{}
 });
 
 
-export default withRouter(connect(mapStateToProps, { fetchPosts, fetchComment } )(Feed));
+export default withRouter(connect(mapStateToProps, { fetchPosts, fetchCommentsByPost, fetchPriceChange } )(Feed));
