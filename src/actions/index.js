@@ -7,6 +7,7 @@ export const ActionTypes = {
   FETCH_POST: 'FETCH_POST',
   FETCH_USERS: 'FETCH_USERS',
   FETCH_USER: 'FETCH_USER',
+  FETCH_COMMENT:'FETCH_COMMENT',
   AUTH_USER: 'AUTH_USER',
   DEAUTH_USER: 'DEAUTH_USER',
   AUTH_ERROR: 'AUTH_ERROR',
@@ -138,6 +139,19 @@ export function fetchPost(id) {
       });
   };
 }
+export function fetchComment(postId){
+  return (dispatch)=>{
+    axios.get(`${ROOT_URL}/posts/comments/${postId}`,{ headers: { authorization: localStorage.getItem('token') } })
+      .then((response) => {
+        console.log(response);
+        dispatch({type: ActionTypes.FETCH_COMMENT, payload: {id:postId,comments:[{text:"abc"}] }} )
+      })
+      .catch((error) => {
+        // dispatch an error, in separate error reducer
+        console.log(error);
+      });
+  }
+}
 
 export function createPost(post, history) {
   axios.post(`${ROOT_URL}/posts`, post, { headers: { authorization: localStorage.getItem('token') } })
@@ -171,3 +185,5 @@ export function deletePost(id, history) {
       });
   };
 }
+
+

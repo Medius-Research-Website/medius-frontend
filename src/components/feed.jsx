@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Post from "./post";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
-import { fetchPosts } from "../actions";
+import { fetchPosts,fetchComment } from "../actions";
 
 class Feed extends Component {
   componentDidMount() {
@@ -16,7 +16,13 @@ class Feed extends Component {
       return (
         <React.Fragment>
           {this.props.all.map((post) => ( 
-              <Post post={post} key={post.id}/>
+              <Post post={post} 
+              comments={this.props.comments[post.id]||[]} 
+              showCommentsHandler={()=>{//this function call to fetch comment for post when the first time click on "view more comments"
+                  if (!(post.id in this.props.comments))
+                    this.props.fetchComment(post.id);
+                }}
+              key={post.id}/>
           ))}
         </React.Fragment>
       );
@@ -33,7 +39,8 @@ class Feed extends Component {
 
 const mapStateToProps = (state) => ({
   all: state.posts.all || [],
+  comments: state.posts.comments || {}
 });
 
 
-export default withRouter(connect(mapStateToProps, { fetchPosts } )(Feed));
+export default withRouter(connect(mapStateToProps, { fetchPosts, fetchComment } )(Feed));
