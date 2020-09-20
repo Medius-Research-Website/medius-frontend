@@ -35,7 +35,8 @@
   }
   &__left{
     @include wrapping;    
-    flex-basis: auto;
+    height: fit-content;
+    flex-basis: 24%;
     @mixin bubble{
       color: white;
       width: fit-content;
@@ -43,7 +44,11 @@
       border-radius: 10px;
       font-size: 14px;
       font-weight: bold;
+      margin-top:20px;
     }//applied for both sell and buy bubble
+    & p{
+      margin-bottom: 0px;
+    }
     .bubble{
       &--buy{
         @include bubble;

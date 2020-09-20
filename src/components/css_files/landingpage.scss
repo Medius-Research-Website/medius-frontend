@@ -4,6 +4,7 @@
     background-attachment: fixed;
     min-height: 90vh;
     display: flex;
+    min-width: 100vw;
     .profile--bubble{
         flex-basis: 20%;
     }
@@ -15,5 +16,6 @@
         flex-direction: column;
         padding: 30px;
         gap: 50px;
+        flex-basis: 60%;
     }
 }
