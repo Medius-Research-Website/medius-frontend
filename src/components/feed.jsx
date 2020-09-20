@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Post from "./post";
 import { connect } from "react-redux";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { fetchPosts,fetchComment } from "../actions";
 
 class Feed extends Component {

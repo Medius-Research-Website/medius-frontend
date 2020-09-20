@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-
+import {Link} from 'react-router-dom';
 import "./css_files/post.scss";
 
 
@@ -18,21 +18,22 @@ export default function Post({ post, comments, showCommentsHandler }) {
         <p className="company">Company: {post.industry}</p>
         <div className="bubble--sell">Sell/Buy</div>
       </div>
-      
       <div className="feed__post__right">
-        <div className="feed__post__right__content">
-          <div className="interaction-stat">
-            Like/Comment placeholder
+        <Link to={`post/${post.id}`}  style={{ textDecoration: 'none' }}>
+          <div className="feed__post__right__content">
+            <div className="interaction-stat">
+              Like/Comment placeholder
+            </div>
+            <div className="content">
+              <p className="post-title">
+                {post.idea}
+              </p>
+              <p className="info">
+                {post.insight}
+              </p>
+            </div>
           </div>
-          <div className="content">
-            <p className="post-title">
-              {post.idea}
-            </p>
-            <p className="info">
-              {post.insight}
-            </p>
-          </div>
-        </div>
+        </Link>
         <div className="feed__post__right__comment">
           {showComment
             ?(//showing comments//using placeholder since not handle change author id --> author name yet
