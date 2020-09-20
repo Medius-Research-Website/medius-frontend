@@ -7,6 +7,8 @@ export const ActionTypes = {
   FETCH_POST: 'FETCH_POST',
   FETCH_USERS: 'FETCH_USERS',
   FETCH_USER: 'FETCH_USER',
+  FETCH_COMMENT:'FETCH_COMMENT',
+  FETCH_PRICE_CHANGE:'FETCH_PRICE_CHANGE',
   AUTH_USER: 'AUTH_USER',
   DEAUTH_USER: 'DEAUTH_USER',
   AUTH_ERROR: 'AUTH_ERROR',
@@ -140,6 +142,32 @@ export function fetchPost(id) {
   };
 }
 
+export function fetchPriceChange(id) {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/posts/ticker/${id}/`, { headers: { authorization: localStorage.getItem('token') }})
+      .then((response) => {
+        dispatch({ type: ActionTypes.FETCH_PRICE_CHANGE, payload: {...response.data, id }});
+      })
+      .catch((error) => {
+        // dispatch an error, in separate error reducer
+        console.log(error);
+      });
+  };
+}
+
+export function fetchCommentsByPost(id){
+  return (dispatch)=>{
+    axios.get(`${ROOT_URL}/posts/comments/${id}/`,{ headers: { authorization: localStorage.getItem('token') } })
+      .then((response) => {
+        dispatch({type: ActionTypes.FETCH_COMMENT, payload: {...response.data,id }} )
+      })
+      .catch((error) => {
+        // dispatch an error, in separate error reducer
+        console.log(error);
+      });
+  }
+}
+
 export function createPost(post, history) {
   axios.post(`${ROOT_URL}/posts`, post, { headers: { authorization: localStorage.getItem('token') } })
     .then(() => { history.push('/'); })
@@ -173,15 +201,3 @@ export function deletePost(id, history) {
   };
 }
 
-export function getPctChange(id) {
-  return (dispatch) => {
-    axios.get(`${ROOT_URL}/posts/ticker/${id}`)
-      .then((response) => {
-        dispatch({ type: ActionTypes.GET_PCT_CHANGE, payload: response.data });
-      })
-      .catch((error) => {
-        // dispatch an error, in separate error reducer
-        console.log(error);
-      });
-  };
-}

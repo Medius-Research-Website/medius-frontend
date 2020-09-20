@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import "./css_files/singlepost.scss";
 import { connect } from 'react-redux';
-import { fetchPost, getPctChange } from '../actions';
+import { fetchPost, fetchPriceChange } from '../actions';
 import Comments from './comments';
 import Deletecomment from './deletecomment';
 import Navbar from "./navbar";
 
+// this is the full page for a single post
 class singlepost extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +17,7 @@ class singlepost extends Component {
   }
   async componentDidMount() {
     await this.props.fetchPost(this.props.match.params.postID)
-    await this.props.getPctChange(this.props.match.params.postID)
+    await this.props.fetchPriceChange(this.props.match.params.postID)
   }
   handleChange = e => {
     this.setState({ value: e.target.value })
@@ -82,4 +83,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { fetchPost, getPctChange })(singlepost);
+export default connect(mapStateToProps, { fetchPost, fetchPriceChange })(singlepost);

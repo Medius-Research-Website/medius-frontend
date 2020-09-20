@@ -54,7 +54,7 @@ class NavbarInstance extends Component {
       return (
         <Navbar default collapseOnSelect>
           <Navbar.Brand>
-            <NavLink to="landingpage">medius research</NavLink>
+            <NavLink id="title" to="landingpage">medius</NavLink>
           </Navbar.Brand>
           <Nav className="navbar navbar-expand-sm justify-content-end">
             {/* <button
@@ -65,13 +65,13 @@ class NavbarInstance extends Component {
             >
               <span classNameName="navbar-toggler-icon"></span>
             </button> */}
-            <NavLink className="btn ml-auto mr-1 navButtons" to="/about">
+            <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons" to="/about">
               About
             </NavLink>
-            <NavLink className="btn ml-auto mr-1 navButtons" to="/communitypage">
+            <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons" to="/communitypage">
               Community
             </NavLink>
-            <div className="btn ml-auto mr-1 navButtons" onClick={this.onClickSignOut}>
+            <div activeClassName="selected" className="btn ml-auto mr-1 navButtons signInBorder" onClick={this.onClickSignOut}>
               Sign Out
             </div>
           </Nav>

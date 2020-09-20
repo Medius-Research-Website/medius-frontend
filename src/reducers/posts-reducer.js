@@ -3,7 +3,8 @@ import { ActionTypes } from '../actions';
 const initialState = {
   all: [],
   current: {},
-  pctChange: 0,
+  comments: {},
+  priceChange:{},
 };
 
 const PostsReducer = (state = initialState, action) => {
@@ -12,8 +13,14 @@ const PostsReducer = (state = initialState, action) => {
       return { ...state, all: action.payload };
     case ActionTypes.FETCH_POST:
       return { ...state, current: action.payload };
-    case ActionTypes.GET_PCT_CHANGE:
-      return { ...state, pctChange: action.payload };
+    case ActionTypes.FETCH_COMMENT:
+      let currentComments = state.comments;
+      currentComments[action.payload.id]=action.payload.comments;
+      return { ...state, comments: {...currentComments}};
+    case ActionTypes.FETCH_PRICE_CHANGE:
+      let currentPriceChange=state.priceChange;
+      currentPriceChange[action.payload.id]=action.payload.change;
+      return {...state, priceChange:{...currentPriceChange}};
     default:
       return state;
   }
