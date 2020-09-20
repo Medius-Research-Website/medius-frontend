@@ -30,7 +30,6 @@
       font-size: 14px;
     } @else if ($type==comment){
       font-size: 14px;
-      text-decoration: underline;
     }
 
   }
@@ -88,8 +87,16 @@
         text-align: center;
         @include text(comment);
         margin-bottom: 0px;
+        text-decoration: underline;
       }
       padding: 10px;
+      &__content{
+        @include text(comment);
+      }
+      &__author{
+        @include text(comment);
+        font-weight: bold;
+      }
     }
     
     flex-basis: 75%;

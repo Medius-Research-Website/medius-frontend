@@ -15,7 +15,7 @@ const PostsReducer = (state = initialState, action) => {
     case ActionTypes.FETCH_COMMENT:
       let comments = state.comments;
       let data = action.payload;
-      comments[data.id]=data.response.comments||[];
+      comments[data.id]=data.response.comments;
       return { ...state, comments: {...comments}};
     default:
       return state;
