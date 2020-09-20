@@ -4,6 +4,7 @@ const initialState = {
   all: [],
   current: {},
   comments: {},
+  priceChange:{},
 };
 
 const PostsReducer = (state = initialState, action) => {
@@ -17,6 +18,10 @@ const PostsReducer = (state = initialState, action) => {
       let data = action.payload;
       comments[data.id]=data.response.comments;
       return { ...state, comments: {...comments}};
+    case ActionTypes.FETCH_PRICE_CHANGE:
+      let currentPriceChange=state.priceChange;
+      currentPriceChange[payload.id]=payload.change;
+      return {...state, priceChange:{...priceChange}};
     default:
       return state;
   }
