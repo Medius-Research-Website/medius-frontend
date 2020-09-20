@@ -62,10 +62,12 @@ export function signinUser(user, history) {
           history.push('/landingpage');
         })
         .catch((error) => {
-          console.log(error)
-          if(user.email &&  user.password){
+          if(error.response.status === 500){
+            console.log('error 500, user already exists!', + error)
             dispatch({ type: ActionTypes.EXISTING_USER });
-          } else {
+          } 
+          if(error.response.status === 422) {
+            console.log('error 422, must fill out the form!', + error)
             dispatch({ type: ActionTypes.INCOMPLETE_FORM});
           }
         });
