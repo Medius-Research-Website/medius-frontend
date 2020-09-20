@@ -5,6 +5,7 @@ const initialState = {
   current: {},
   comments: {},
   priceChange:{},
+  newPostModal:false
 };
 
 const PostsReducer = (state = initialState, action) => {
@@ -21,6 +22,8 @@ const PostsReducer = (state = initialState, action) => {
       let currentPriceChange=state.priceChange;
       currentPriceChange[action.payload.id]=action.payload.change;
       return {...state, priceChange:{...currentPriceChange}};
+    case ActionTypes.TOGGLE_NEW_POST_MODAL:
+      return {...state, newPostModal: !state.newPostModal};
     default:
       return state;
   }

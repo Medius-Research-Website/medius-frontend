@@ -10,6 +10,7 @@ export const ActionTypes = {
   FETCH_COMMENT:'FETCH_COMMENT',
   FETCH_PRICE_CHANGE:'FETCH_PRICE_CHANGE',
   AUTH_USER: 'AUTH_USER',
+  TOGGLE_NEW_POST_MODAL: 'TOGGLE_NEW_POST_MODAL',
   DEAUTH_USER: 'DEAUTH_USER',
   AUTH_ERROR: 'AUTH_ERROR',
   CLEAR: 'CLEAR',
@@ -200,4 +201,9 @@ export function deletePost(id, history) {
   };
 }
 
-
+export function toggleNewPostModal(){
+  return (dispatch)=>{
+    console.log("TOG");
+    dispatch({type:ActionTypes.TOGGLE_NEW_POST_MODAL});
+  }
+}
