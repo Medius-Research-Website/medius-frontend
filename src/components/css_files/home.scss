@@ -176,11 +176,16 @@ h2_1 {
     font-size: 1em;
 }
 
+#mobile {
+    display: none;
+}
+
 @media only screen and (max-width: 400px) {
 
  .page1 {
      flex-direction: column;
      width: 100%;
+     min-height: 110vw;
      margin: 0;
      padding: 3%;
 
@@ -191,7 +196,8 @@ h2_1 {
      .container {
          padding: 0;
          margin: 0;
-         font-size: 0.5em;
+         font-size: 0.8em;
+         width: 60%;
      }
 
      button {
@@ -201,18 +207,48 @@ h2_1 {
  }
 
  .page2 {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    min-height: 100vw;
+
+    p {
+        width: 70%;
+    }
+
     img {
         display: none;
     }
 
     #bubbles {
-        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 75%;
+    }
+
+    #reliable, #access, #collaborate {
+        align-items: center;
+    }
+
+    .rcorners2 {
+        width: 100%;
+    }
+
+    #horiz {
+        flex-direction: column;
     }
   }
 
   .footer {
       flex-direction: column;
       align-items: center;
+      padding-top: 3%;
+      padding-bottom: 3%;
+
+      br {
+          height: 0px;
+      }
       
       .column {
           margin-right: 30%;
@@ -221,5 +257,9 @@ h2_1 {
       .row {
         flex-direction: column;
       }
+  }
+
+  #mobile {
+      display: flex;
   }
 }
