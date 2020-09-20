@@ -10,7 +10,7 @@ export default function Post({ post, comments, showCommentsHandler }) {
     e.stopPropagation();
     setShowComment(prev=>!prev);
   }
-  const tempComment=[{text:"A",id:1},{text:"A",id:2},{text:"A",id:3}];
+  
   return (
     <div className="feed__post">
       <div className="feed__post__left">
@@ -37,7 +37,7 @@ export default function Post({ post, comments, showCommentsHandler }) {
           {showComment
             ?(//showing comments//using placeholder since not handle change author id --> author name yet
               <div>
-            {tempComment.map((comment)=>
+            {comments.map((comment)=>
               <p className="feed__post__right__comment__content" key={comment.id}>
                 <span className="feed__post__right__comment__author">{`${"Author placeholder"}`}</span> 
                 {`: ${comment.text}`}</p>
