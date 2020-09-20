@@ -11,15 +11,14 @@ class Feed extends Component {
 
   // access posts through this.props.allPosts; display iteratively through .map()
   render() {
-    console.log(this.props.all.length);
+    
     if (this.props.all.length !== 0) {
       return (
         <React.Fragment>
           {this.props.all.map((post) => ( 
               <Post post={post} 
               comments={this.props.comments[post.id]||[]} 
-              showCommentsHandler={()=>{//this function call to fetch comment for post when the first time click on "view more comments"
-                  if (!(post.id in this.props.comments))
+              showCommentsHandler={()=>{//this function is to handle fetching comments to show
                     this.props.fetchComment(post.id);
                 }}
               key={post.id}/>

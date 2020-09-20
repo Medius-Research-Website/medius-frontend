@@ -143,8 +143,7 @@ export function fetchComment(postId){
   return (dispatch)=>{
     axios.get(`${ROOT_URL}/posts/comments/${postId}`,{ headers: { authorization: localStorage.getItem('token') } })
       .then((response) => {
-        console.log(response);
-        dispatch({type: ActionTypes.FETCH_COMMENT, payload: {id:postId,comments:[{text:"abc"}] }} )
+        dispatch({type: ActionTypes.FETCH_COMMENT, payload: {id:postId,response:response.data }} )
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
