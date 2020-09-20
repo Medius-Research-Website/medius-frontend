@@ -5,7 +5,13 @@ import "../components/css_files/landingpage.scss";
 import FeedHead from "../components/feedhead";
 class LandingPage extends Component {
   state = {};
+
+  componentDidMount() {
+    console.log('launching landing page')
+  }
+
   render() {
+    console.log("rendering landing page");
     return (
       <React.Fragment>
         <Navbar  />
