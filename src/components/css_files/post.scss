@@ -1,7 +1,5 @@
 .feed__post{
-  margin: auto;
   display:flex;
-  
   @mixin wrapping{
     
     border-radius: 20px;
@@ -30,6 +28,9 @@
       font-weight: bold;
     } @else if ($type==info){
       font-size: 14px;
+    } @else if ($type==comment){
+      font-size: 14px;
+      text-decoration: underline;
     }
 
   }
@@ -68,20 +69,35 @@
   }
 
   &__right{
-    @include wrapping;  
+    &__content{
+      @include wrapping;  
+      display: flex;
+      .interaction-stat{
+        flex-basis: 15%;
+      }
+      .post-title{
+        @include text(title);
+      }
+      .info{
+        @include text(info);
+      }
+    }
+    &__comment{
+      @include wrapping;  
+      .comment-toggle{
+        text-align: center;
+        @include text(comment);
+        margin-bottom: 0px;
+      }
+      padding: 10px;
+    }
+    
     flex-basis: 75%;
     display: flex;
     float: right;
     margin-left: auto;
-    .interaction-stat{
-      flex-basis: 15%;
-    }
-    .post-title{
-      @include text(title);
-    }
-    .info{
-      @include text(info);
-    }
+    flex-direction: column;
+    
   }
 
 }
