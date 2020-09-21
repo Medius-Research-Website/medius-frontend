@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import history from '../history'
 const ROOT_URL = 'http://localhost:9090/api';
 
 export const ActionTypes = {
@@ -14,8 +14,8 @@ export const ActionTypes = {
   AUTH_ERROR: 'AUTH_ERROR',
   CLEAR: 'CLEAR',
   INVALID_CREDENTIALS: 'INVALID_CREDENTIALS',
-  EXISTING_USER: 'EXISTING USER',
-  GET_PCT_CHANGE: 'GET_PCT_CHANGE',
+  EXISTING_USER: 'EXISTING_USER',
+  INCOMPLETE_FORM: 'INCOMPLETE_FORM',
 };
 
 // trigger to deauth if there is error
@@ -34,44 +34,56 @@ export function clear() {
 
 // fetches all relevant information about current user
 export function signinUser(user, history) {
-console.log('pushing sign in user');
-  return (dispatch) => {
-    axios.post(`${ROOT_URL}/signin`, user)
-      .then((response) => {
-        dispatch({ type: ActionTypes.AUTH_USER, payload: user });
-        localStorage.setItem('token', response.data.token);
-        history.push('/landingpage');
-      })
-      .catch((error) => {
-        dispatch({ type: ActionTypes.INVALID_CREDENTIALS });
-      });
-  };
-}
+  console.log('pushing sign in user');
+    return (dispatch) => {
+      axios.post(`${ROOT_URL}/signin`, user)
+        .then((response) => {
+          console.log("succes sign in");
+          dispatch({ type: ActionTypes.AUTH_USER, payload: user });
+          localStorage.setItem('token', response.data.token);
+          history.push('/landingpage');
+        })
+        .catch((error) => {
+          console.log("error sign in");
+          if(user.email && user.password) {
+            dispatch({ type: ActionTypes.INVALID_CREDENTIALS })
+          } else {
+            dispatch({ type: ActionTypes.INCOMPLETE_FORM})
+          }
+        });
+    };
+  }
   
-export function signupUser(user, history) {
-  return (dispatch) => {
-    axios.post(`${ROOT_URL}/signup`, user)
-      .then((response) => {
-        console.log("success");
-        dispatch({ type: ActionTypes.AUTH_USER });
-        localStorage.setItem('token', response.data.token);
-        history.push('/landingpage');
-      })
-      .catch((error) => {
-        dispatch({ type: ActionTypes.EXISTING_USER });
-        history.push('/signup');
-      });
-  };
-}
+  export function signupUser(user, history) {
+    return (dispatch) => {
+      axios.post(`${ROOT_URL}/signup`, user)
+        .then((response) => {
+          console.log("successfully signed up user");
+          dispatch({ type: ActionTypes.AUTH_USER });
+          localStorage.setItem('token', response.data.token);
+          history.push('/landingpage');
+        })
+        .catch((error) => {
+          if(error.response.status === 500){
+            console.log('error 500, user already exists!', + error)
+            dispatch({ type: ActionTypes.EXISTING_USER });
+          } 
+          if(error.response.status === 422) {
+            console.log('error 422, must fill out the form!', + error)
+            dispatch({ type: ActionTypes.INCOMPLETE_FORM});
+          }
+        });
+    };
+  }
   
-// deletes token from localstorage and deauths
-export function signoutUser(history) {
-  return (dispatch) => {
-    localStorage.removeItem('token');
-    dispatch({ type: ActionTypes.DEAUTH_USER });
-    history.push('/');
-  };
-}
+  // deletes token from localstorage and deauths
+  export function signoutUser() {
+    return (dispatch) => {
+      localStorage.removeItem('token');
+      dispatch({ type: ActionTypes.DEAUTH_USER });
+      history.push('/');
+    };
+  }
 
 // returns public information for all users (need to narrow this, how do we want to present profiles?)
 export function fetchUsers() {
@@ -177,7 +189,7 @@ export function createPost(post, history) {
     });
 }
 
-export function updatePost(id, post, history) {
+export function updatePost(id, post) {
   return (dispatch) => {
     axios.put(`${ROOT_URL}/posts/${id}/`, post, { headers: { authorization: localStorage.getItem('token') } })
       .then((response) => {
@@ -190,7 +202,7 @@ export function updatePost(id, post, history) {
   };
 }
 
-export function deletePost(id, history) {
+export function deletePost(id) {
   return (dispatch) => {
     axios.delete(`${ROOT_URL}/posts/${id}`, { headers: { authorization: localStorage.getItem('token') } })
       .then(() => { history.push('/'); })
