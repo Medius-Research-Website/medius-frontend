@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "./css_files/singlepost.scss";
 import { connect } from 'react-redux';
-import { fetchPost, fetchPriceChange } from '../actions';
+import { fetchPost, singlePriceChange } from '../actions';
 import Comments from './comments';
 import Deletecomment from './deletecomment';
 import Navbar from "./navbar";
@@ -17,7 +17,7 @@ class singlepost extends Component {
   }
   async componentDidMount() {
     await this.props.fetchPost(this.props.match.params.postID)
-    await this.props.fetchPriceChange(this.props.match.params.postID)
+    await this.props.singlePriceChange(this.props.match.params.postID)
   }
   handleChange = e => {
     this.setState({ value: e.target.value })
@@ -35,8 +35,8 @@ class singlepost extends Component {
     });
   }
   render() {
-    const { current, pctChange } = this.props.posts
-    const pct = (Math.round(pctChange.change * 100) / 100).toFixed(2);
+    const { current, singlePriceChange } = this.props.posts
+    const pct = (Math.round(singlePriceChange.change * 100) / 100).toFixed(2);
     return (
       <div className="bgcolor">
         <Navbar />
@@ -83,4 +83,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { fetchPost, fetchPriceChange })(singlepost);
+export default connect(mapStateToProps, { fetchPost, singlePriceChange })(singlepost);
