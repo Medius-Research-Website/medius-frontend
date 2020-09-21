@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "./css_files/singlepost.scss";
 import { connect } from 'react-redux';
-import { fetchPost } from '../actions';
+import { fetchPost, fetchPriceChange } from '../actions';
 import Comments from './comments';
 import Deletecomment from './deletecomment';
 import Navbar from "./navbar";
@@ -17,6 +17,7 @@ class singlepost extends Component {
   }
   async componentDidMount() {
     await this.props.fetchPost(this.props.match.params.postID)
+    await this.props.fetchPriceChange(this.props.match.params.postID)
   }
   handleChange = e => {
     this.setState({ value: e.target.value })
@@ -34,9 +35,10 @@ class singlepost extends Component {
     });
   }
   render() {
-    const { current } = this.props.posts
+    const { current, pctChange } = this.props.posts
+    const pct = (Math.round(pctChange.change * 100) / 100).toFixed(2);
     return (
-      <div>
+      <div className="bgcolor">
         <Navbar />
         <div className="singlepost">
           <div className="graph">
@@ -48,27 +50,27 @@ class singlepost extends Component {
             <div className="company">Company: Tesla{}</div>
             <div className="sector">Sector: Automotive {current.sector}</div>
             <div className="percent">
-              <div className="percentage-post">+1.76 (2.80%)</div> 
-              <div style={{marginLeft: 6}}>since post</div>
+              <div className="percentage-post">
+                {!isNaN(pct) ? pct + ' (-2.8%)' : null}
+              </div> 
+              {!isNaN(pct) ? <div style={{marginLeft: 6}}>since post</div> : null}
             </div>
           </div>
           <div className="description">
-            description
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut urna semper risus vestibulum tristique. Phasellus viverra tortor ligula. Proin condimentum nibh a ligula dapibus ullamcorper vel non ipsum. Vestibulum pretium libero non pulvinar vulputate. Mauris orci diam, lacinia vel rutrum efficitur, blandit nec mi. Proin vitae mi lorem. Donec porta condimentum massa nec tempor. Praesent rutrum lacinia massa, eu efficitur mauris vulputate ut. Fusce lacus metus, suscipit a facilisis quis, ultricies ac leo. Maecenas nibh libero, aliquam id ultricies vel, aliquam non nulla. Donec felis sapien, finibus ac eros in, suscipit dapibus velit. Pellentesque dapibus elit mauris, vel dignissim odio fermentum sit amet. Proin et turpis vitae felis rhoncus malesuada vitae vel nisl. Nulla metus velit, vestibulum in magna eu, faucibus commodo lacus. Sed neque neque, tempor ac aliquam ac, maximus a tortor. Sed sodales auctor massa non ullamcorper.
           </div>
         </div>
         <div className="comment">
           <div className="addComment">
             <Comments comment="" addComment={this.addComment} />
           </div>
-          <ul className="listOfComments">
-            {
-              this.state.comments.map( comment => 
-                <li style={{marginTop:15}}>
-                  <Deletecomment className comment={comment} key={comment.id} id={comment.id} removeComment={this.removeComment} />
-                </li>
-              )
-            }
-          </ul>
+          {
+            this.state.comments.map( comment => 
+              <div className="listOfComments" style={{marginTop:25}}>
+                <Deletecomment className comment={comment} key={comment.id} id={comment.id} removeComment={this.removeComment} />
+              </div>
+            )
+          }
         </div>
       </div>
     );
@@ -77,8 +79,8 @@ class singlepost extends Component {
 
 function mapStateToProps(state) {
   return {
-    posts: state.posts
+    posts: state.posts,
   };
 }
 
-export default connect(mapStateToProps, { fetchPost })(singlepost);
+export default connect(mapStateToProps, { fetchPost, fetchPriceChange })(singlepost);

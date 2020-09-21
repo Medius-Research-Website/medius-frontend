@@ -1,13 +1,36 @@
+:focus {outline:0 !important;}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-image: url(images/green_bg.png);
+  background-color: #E0E1DD;
+  background-size: auto 100%;
+  height: auto;
+}
+
+.bgcolor {
+  // background-color: #E0E1DD;
+  // background-color: rgb(221, 221, 221);
+  height: 100%;
+  width: 100%;
+}
+
 .graph {
   padding: 25px;
 }
 
 .singlepost {
-  border: 2px solid black;
-  width: 1000px;
+  // border: 2px solid black;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  width: 700px;
   margin: auto;
   margin-top: 50px;
   border-radius: 20px;
+  margin-top: 140px;
 }
 
 .header {
@@ -34,9 +57,11 @@
 }
 
 .comment {
-  border: 2px solid black;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  background-color: white;
   text-align: center;
-  width: 1000px;
+  width: 700px;
   margin: auto;
   margin-top: 35px;
   margin-bottom: 35px;
@@ -54,10 +79,14 @@
 
 .addComment {
   margin: 20px;
+  
 }
 
 .listOfComments {
   margin: 20px;
-  width: 90%;
+  width: auto;
   list-style-type: none;
+  background-color: #E0E1DD; //change to background light green
+  border-radius: 20px;
+  padding: 28px;
 }
