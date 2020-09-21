@@ -1,0 +1,43 @@
+.feed__modal{
+    &__background{
+        background-color: hsla(0%,0,0,0);
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 0;
+    }
+    &__form{
+        @mixin wrapping{
+            border: 1px solid #292929;
+            border-radius: 20px;
+            padding:25px;
+            background-color: #F2F2F2;
+            box-shadow: inset 0px -1px 1px #929290;
+        }//round-wrapping container
+        z-index: 1;
+        position: absolute;
+        width:735px;
+        
+        top:50%;
+        left:50%;
+        transform: translateX(-50%) translateY(-50%);
+        &__close-button{
+            
+            float: right;
+            right: 5px;
+            
+        }
+        &__title{
+            @include wrapping();
+            text-align: center;
+            font-family: "Nexa", sans-serif;
+            font-size: 20px;
+            font-weight: bold;
+            color:black;
+        }
+        &__main{
+            @include wrapping();
+            
+        }
+    }
+}

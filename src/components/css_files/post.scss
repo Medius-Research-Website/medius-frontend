@@ -1,10 +1,9 @@
 .feed__post{
   display:flex;
   @mixin wrapping{
-    
-    border-radius: 20px;
+  //  border-radius: 20px;
     padding:25px;
-    background-color: #F8F8F8;
+    background-color: #F2F2F2;
     box-shadow: inset 0px -1px 1px #929290;
   }//round-wrapping container
   @mixin text($type){

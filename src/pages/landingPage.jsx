@@ -6,7 +6,13 @@ import FeedHead from "../components/feedhead";
 import NewPostModal from "../components/newpostmodal";
 class LandingPage extends Component {
   state = {};
+
+  componentDidMount() {
+    console.log('launching landing page')
+  }
+
   render() {
+    console.log("rendering landing page");
     return (
       <React.Fragment>
         <Navbar  />
