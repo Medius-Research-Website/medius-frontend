@@ -6,8 +6,7 @@ import Navbar from "./navbar";
 
 class Profile extends Component {
   componentDidMount() {
-    // need to confirm where userID is coming from
-    // this.props.fetchPost(this.props.match.params.userID);
+  
   }
 
   // access user through this.props.selectedUser
