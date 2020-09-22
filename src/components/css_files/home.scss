@@ -1,5 +1,5 @@
 * {
-    font-family: 'Oxygen', sans-serif;
+    font-family: 'Oxygen', 'Nexa Bold',sans-serif;
     /* background-color: #E0E1DD;  */
 }
 
@@ -59,6 +59,17 @@ html {
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
+#btn-signin{
+    border: none;
+    border-radius: 10px;
+    margin-left: 78%;
+    align-self: auto;
+    background-image: linear-gradient(180deg, #5A786F 0%, #5A786F 0.01%);
+    width: 169px;
+    height: auto;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
 h2 {
     font-size: 200%;
     font-weight: bold;
@@ -86,6 +97,14 @@ h2_1 {
     width: 35%;
     height: 60%;
     margin: 5%;
+}
+
+.main-nav {
+    font-family: 'Oxygen', sans-serif;
+    background-color: #292929;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
 
 #bubbles {
@@ -149,6 +168,7 @@ h2_1 {
     padding-left: 30px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 .column {
@@ -157,8 +177,7 @@ h2_1 {
 }
 
 .row {
-    width: 60%;
-    padding-left: 40%;
+    width: 40%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -174,4 +193,92 @@ h2_1 {
 .column2 > a{
     color: white;
     font-size: 1em;
+}
+
+#mobile {
+    display: none;
+}
+
+@media only screen and (max-width: 400px) {
+
+ .page1 {
+     flex-direction: column;
+     width: 100%;
+     min-height: 110vw;
+     margin: 0;
+     padding: 3%;
+
+     .monitor {
+         display: none;
+     }
+
+     .container {
+         padding: 0;
+         margin: 0;
+         font-size: 0.8em;
+         width: 60%;
+     }
+
+     button {
+         width: 75%;
+         font-size: 0.5em;
+     }
+ }
+
+ .page2 {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    min-height: 100vw;
+
+    p {
+        width: 70%;
+    }
+
+    img {
+        display: none;
+    }
+
+    #bubbles {
+        flex-direction: column;
+        align-items: center;
+        width: 75%;
+    }
+
+    #reliable, #access, #collaborate {
+        align-items: center;
+    }
+
+    .rcorners2 {
+        width: 100%;
+    }
+
+    #horiz {
+        flex-direction: column;
+    }
+  }
+
+  .footer {
+      flex-direction: column;
+      align-items: center;
+      padding-top: 3%;
+      padding-bottom: 3%;
+
+      br {
+          height: 0px;
+      }
+      
+      .column {
+          margin-right: 30%;
+      }
+
+      .row {
+        flex-direction: column;
+      }
+  }
+
+  #mobile {
+      display: flex;
+  }
 }

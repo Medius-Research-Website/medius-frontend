@@ -2,25 +2,28 @@ import React, { Component } from "react";
 import "./css_files/profile.scss";
 import { connect } from 'react-redux';
 import { fetchUser } from '../actions';
+import Navbar from "./navbar";
 
 class Profile extends Component {
   componentDidMount() {
-    // need to confirm where userID is coming from
-    // this.props.fetchPost(this.props.match.params.userID);
+  
   }
 
   // access user through this.props.selectedUser
   render() {
     return (
-      <div className="profile-box">
-        <button className="close-button">x</button>
-        <div>
-          <p style={{ fontWeight: "bold" }}>Timothy Park</p>
+      <div>
+        <Navbar />
+        <div className="profile-box">
+          <button className="close-button">x</button>
+          <div>
+            <p style={{ fontWeight: "bold" }}>Timothy Park</p>
+          </div>
+          <div className="occupation">
+            <p>Student at Boston University</p>
+          </div>
+          <button className="button">Connect</button>
         </div>
-        <div className="occupation">
-          <p>Student at Boston University</p>
-        </div>
-        <button className="button">Connect</button>
       </div>
     );
   }

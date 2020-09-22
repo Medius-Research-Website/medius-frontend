@@ -19,33 +19,33 @@ class NavbarInstance extends Component {
   }
 
   render() {
-    if (!this.props.authenticated){
+    if (this.props.authenticated){
       return (
         <Navbar default collapseOnSelect>
           <Navbar.Brand>
             <NavLink id="title" to="landingpage">medius</NavLink>
           </Navbar.Brand>
           <Nav className="navbar navbar-expand-sm justify-content-end">
-            <NavLink className="btn btn-success ml-auto mr-1" to="/signin">
+            {/* <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons signInBorder" to="/signin">
               Sign In
             </NavLink>
-            {/* <button
+            <button
               className="navbar-toggler"
               type="button"
               data-toggle="collapse"
               data-target="#navbarSupportedContent"
             >
               <span classNameName="navbar-toggler-icon"></span>
-            </button> */}
-            <NavLink className="btn btn-success ml-auto mr-1" to="/signup">
+            </button>
+            <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons" to="/signup">
               Get Started
             </NavLink>
-            <NavLink className="btn btn-success ml-auto mr-1" to="/about">
+            <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons" to="/about">
               About
             </NavLink>
-            <NavLink className="btn btn-success ml-auto mr-1" to="/communitypage">
+            <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons" to="/communitypage">
               Community
-            </NavLink>
+            </NavLink>*/}
           </Nav>
         </Navbar>
       );
@@ -54,7 +54,7 @@ class NavbarInstance extends Component {
       return (
         <Navbar default collapseOnSelect>
           <Navbar.Brand>
-            <NavLink to="landingpage">medius research</NavLink>
+            <NavLink id="title" to="landingpage">medius</NavLink>
           </Navbar.Brand>
           <Nav className="navbar navbar-expand-sm justify-content-end">
             {/* <button
@@ -64,14 +64,14 @@ class NavbarInstance extends Component {
               data-target="#navbarSupportedContent"
             >
               <span classNameName="navbar-toggler-icon"></span>
-            </button> */}
-            <NavLink className="btn btn-success ml-auto mr-1" to="/about">
+            </button> 
+            <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons" to="/about">
               About
             </NavLink>
-            <NavLink className="btn btn-success ml-auto mr-1" to="/communitypage">
+            <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons" to="/communitypage">
               Community
-            </NavLink>
-            <div className="btn btn-success ml-auto mr-1" onClick={this.onClickSignOut}>
+            </NavLink>*/}
+            <div activeClassName="selected" className="btn ml-auto mr-1 navButtons signInBorder" onClick={this.onClickSignOut}>
               Sign Out
             </div>
           </Nav>
