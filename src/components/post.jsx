@@ -10,18 +10,16 @@ export default function Post({ post, comments, showCommentsHandler, fetchPriceCh
     e.stopPropagation();
     setShowComment(prev=>!prev);
   }
-
   useEffect(()=>{
     fetchPriceChange();
   },[]);//equivalent with component did mount
-
   return (
     <div className="feed__post">
       <div className="feed__post__left">
         <p className="ticker">{post.ticker} </p>
         <p className="company">Industry: {post.industry}</p>
         <p className="company">{priceChange>0?"+":""}{Math.round(priceChange*100)/100}% since post</p>
-        { post.sell ? ( <div className="bubble--sell">Sell</div> ) : ( <div className="bubble--buy">Buy</div> ) }
+        <div className="bubble--sell">Sell/Buy</div>
       </div>
       <div className="feed__post__right">
         <Link to={`post/${post.id}`}  style={{ textDecoration: 'none' }}>

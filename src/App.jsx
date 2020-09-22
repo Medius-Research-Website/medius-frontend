@@ -17,8 +17,6 @@ import singlepost from "./components/singlepost";*/
 const trackingId = "UA-176041306-1"
 ReactGA.initialize(trackingId);
 
-
-
 function App() {
   return (
     <Router history={history}>
