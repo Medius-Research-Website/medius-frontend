@@ -1,10 +1,6 @@
 import React from "react";
 import "./App.css";
-<<<<<<< HEAD
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-=======
 import { BrowserRouter as Router, Route} from "react-router-dom";
->>>>>>> 176687dc57e04ea773cbbcb8276a919b77a4e2a2
 import ReactGA from 'react-ga';
 import Home from "./components/home";
 import about from "./components/about";
@@ -15,12 +11,8 @@ import PrivateRoute from './components/privateroute';
 import LandingPage from "./pages/landingPage";
 import Community from "./pages/communityPage";
 import "bootstrap/dist/css/bootstrap.min.css";
-<<<<<<< HEAD
-import post from "./components/post";
-=======
 import history from './history'
 import singlepost from "./components/singlepost";
->>>>>>> 176687dc57e04ea773cbbcb8276a919b77a4e2a2
 
 const trackingId = "UA-176041306-1"
 ReactGA.initialize(trackingId);
