@@ -42,8 +42,8 @@ class Home extends Component {
           <div className="brand-logo-name">
             <NavLink to=""> medius </NavLink>
           </div>
-            {/*<Button type="button" id="btn-signin" onClick={this.showSigninModal}>Sign In</Button>
-            <Signin history={this.props.history} showSignin={this.state.showSignin} onClose={this.showSigninModal}/> */}
+            <Button type="button" id="btn-signin" onClick={this.showSigninModal}>Sign In</Button>
+            <Signin history={this.props.history} showSignin={this.state.showSignin} onClose={this.showSigninModal}/>
         </header>
 
         <div className="page1">
@@ -60,12 +60,12 @@ class Home extends Component {
                 and research from top <br /> contributers, all for free.
                 <br />
                 <br />
-              <a href="https://mediusresearch.typeform.com/to/sHXy1QbE">
-                <Button type="button" className="btn-primary">
+              {/*<a href="https://mediusresearch.typeform.com/to/sHXy1QbE"> */}
+                <Button type="button" className="btn-primary" onClick={this.showSignupModal}>
                   Sign up for our Beta launch! 
                 </Button>
-              </a>
-              {/* <Signup history={this.props.history} showSignup={this.state.showSignup} onClose={this.showSignupModal} /> */}
+              {/*</a> */}
+              <Signup history={this.props.history} showSignup={this.state.showSignup} onClose={this.showSignupModal} />
           </div>
         </div>
 
