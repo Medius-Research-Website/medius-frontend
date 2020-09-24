@@ -17,6 +17,7 @@ export const ActionTypes = {
   EXISTING_USER: 'EXISTING_USER',
   INCOMPLETE_FORM: 'INCOMPLETE_FORM',
   SINGLE_PRICE_CHANGE: 'SINGLE_PRICE_CHANGE',
+  ADD_COMMENT: 'ADD_COMMENT'
 };
 
 // trigger to deauth if there is error
@@ -178,6 +179,21 @@ export function fetchCommentsByPost(id){
         // dispatch an error, in separate error reducer
         console.log(error);
       });
+  }
+};
+
+export function addComment(id) {
+  return (dispatch) => {
+  console.log(dispatch, 'iiiii', id)
+  axios.post(`${ROOT_URL}/posts/comments/${id}`)
+    .then((response) => {
+      console.log(response, 'res')
+      dispatch({type: ActionTypes.ADD_COMMENT, payload: response.data });
+    })
+    .catch((error) => {
+      // dispatch an error, in separate error reducer
+      console.log(error);
+    });
   }
 }
 

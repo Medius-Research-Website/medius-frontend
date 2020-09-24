@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import "./css_files/singlepost.scss";
 import { connect } from 'react-redux';
-import { fetchPost, singlePriceChange } from '../actions';
+import { fetchPost, singlePriceChange, fetchCommentsByPost, addComment } from '../actions';
 import Comments from './comments';
-import Deletecomment from './deletecomment';
 import Navbar from "./navbar";
 
 // this is the full page for a single post
@@ -16,27 +15,31 @@ class singlepost extends Component {
     }
   }
   async componentDidMount() {
-    await this.props.fetchPost(this.props.match.params.postID)
-    await this.props.singlePriceChange(this.props.match.params.postID)
+    await this.props.fetchPost(this.props.match.params.postID);
+    await this.props.singlePriceChange(this.props.match.params.postID);
+    await this.props.fetchCommentsByPost(this.props.match.params.postID);
   }
   handleChange = e => {
     this.setState({ value: e.target.value })
   }
   addComment = comment => {
-    let comments = this.state.comments.slice();
-    comments.push({ id: this.state.nextId, comment: comment});
-    this.setState(prevState => {
-      return {comments: comments, nextId: prevState.nextId + 1}
-   })
+    const { comments } = this.props.posts
+    let key = this.props.match.params.postID;
+    let data = {text: comment, author: this.props.match.params.postID};
+    comments[key].push(data);
+    console.log(comments[key], 'yuh', comment, 'yeo', data, 'cim', comments)
+      // let comments = this.state.comments.slice();
+    // comments.push({ id: this.state.nextId, comment: comment});
+  //   this.setState(prevState => {
+  //     return {comments: comments, nextId: prevState.nextId + 1}
+  //  })
   }
-  removeComment = id => {
-    this.setState({
-      comments: this.state.comments.filter( comment => comment.id !== id)
-    });
-  }
+  
   render() {
-    const { current, singlePriceChange } = this.props.posts
+    const { current, singlePriceChange, comments } = this.props.posts
     const pct = (Math.round(singlePriceChange.change * 100) / 100).toFixed(2);
+    let key = this.props.match.params.postID;
+    console.log(this.props,'p', this.state.comments, comments[key])
     return (
       <div className="bgcolor">
         <Navbar />
@@ -50,8 +53,8 @@ class singlepost extends Component {
             <div className="company">Company: Tesla{}</div>
             <div className="sector">Sector: Automotive {current.sector}</div>
             <div className="percent">
-              <div className="percentage-post">
-                {!isNaN(pct) ? pct + ' (-2.8%)' : null}
+              <div className={pct.split('')[0] === '-' ? "negative-percent" : 'positive-percent'} >
+                {!isNaN(pct) ? pct + ' percent changed value here' : null}
               </div> 
               {!isNaN(pct) ? <div style={{marginLeft: 6}}>since post</div> : null}
             </div>
@@ -65,9 +68,22 @@ class singlepost extends Component {
             <Comments comment="" addComment={this.addComment} />
           </div>
           {
-            this.state.comments.map( comment => 
+            !comments[key] ? null : comments[key].map( comment => 
               <div className="listOfComments" style={{marginTop:25}}>
-                <Deletecomment className comment={comment} key={comment.id} id={comment.id} removeComment={this.removeComment} />
+                <div className="comments">
+                  <div className="username">{comment.author} &nbsp;</div> {/*only allow first name*/}
+                  <div>{comment.text}</div>
+                </div>
+              </div>
+            )
+          }
+          {
+            this.state.comments.length === 0 ? null : this.state.comments.map( comment => 
+              <div className="listOfComments" style={{marginTop:25}}>
+                <div className="comments">
+                  <div className="username">Akshay Prabhakar &nbsp;</div>
+                  <div>{comment.comment}</div>
+                </div>
               </div>
             )
           }
@@ -83,4 +99,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { fetchPost, singlePriceChange })(singlepost);
+export default connect(mapStateToProps, { fetchPost, singlePriceChange, fetchCommentsByPost, addComment })(singlepost);

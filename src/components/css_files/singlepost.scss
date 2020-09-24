@@ -44,8 +44,12 @@ body {
   font-size: 28px;
 }
 
-.percentage-post {
+.positive-percent {
   color: green;
+}
+
+.negative-percent {
+  color: red
 }
 
 .description {
@@ -89,4 +93,15 @@ body {
   background-color: #E0E1DD; //change to background light green
   border-radius: 20px;
   padding: 28px;
+}
+
+.username {
+  // float: left;
+}
+
+.vertical-line {
+  float: left;
+  // height: 100px;
+  width: 1px;
+  background-color: black;
 }
