@@ -35,7 +35,7 @@ class singlepost extends Component {
     });
   }
   render() {
-    const { current, singlePriceChange } = this.props.posts
+    const { current, singlePriceChange, singleCurrVal } = this.props.posts
     const pct = (Math.round(singlePriceChange.change * 100) / 100).toFixed(2);
     return (
       <div className="bgcolor">
