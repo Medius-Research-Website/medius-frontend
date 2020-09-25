@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { updateUser } from '../actions';
 import Navbar from "./navbar";
 
+
 class userprofile extends Component {
   // needs method to call updateUser action
 
