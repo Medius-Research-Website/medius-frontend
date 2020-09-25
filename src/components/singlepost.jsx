@@ -40,11 +40,13 @@ class singlepost extends Component {
   }
   
   render() {
-    const { current, singlePriceChange, comments, text } = this.props.posts
-    const pct = (Math.round(singlePriceChange.change * 100) / 100).toFixed(2);
+    const { current, singlePriceChange, comments, singleCurrVal } = this.props.posts
+    const pct = Math.round(singlePriceChange).toFixed(2);
     let key = this.props.match.params.postID;
-    console.log(this.props,'p', this.state.comments, comments[key])
+    //console.log(this.props,'p', this.state.comments, comments[key])
     // console.log(comments,'commentsz')
+    console.log(singleCurrVal);
+    console.log(pct);
     return (
       <div className="bgcolor">
         <Navbar />
@@ -59,9 +61,9 @@ class singlepost extends Component {
             <div className="sector">Sector: Automotive {current.sector}</div>
             <div className="percent">
               <div className={pct.split('')[0] === '-' ? "negative-percent" : 'positive-percent'} >
-                {!isNaN(pct) ? pct + ' percent changed value here' : null}
+                {!isNaN(pct) ? singleCurrVal + ' (' +pct + ' ' : null}
               </div> 
-              {!isNaN(pct) ? <div style={{marginLeft: 6}}>since post</div> : null}
+              {!isNaN(pct) ? <div style={{marginLeft: 6}}>since post)</div> : null}
             </div>
           </div>
           <div className="description">

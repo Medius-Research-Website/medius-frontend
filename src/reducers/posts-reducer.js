@@ -6,7 +6,8 @@ const initialState = {
   comments: {},
   priceChange:{},
   singlePriceChange: 0,
-  text: []
+  text: [],
+  singleCurrVal: 0,
 };
 
 const PostsReducer = (state = initialState, action) => {
@@ -24,7 +25,8 @@ const PostsReducer = (state = initialState, action) => {
       currentPriceChange[action.payload.id]=action.payload.change;
       return {...state, priceChange:{...currentPriceChange}};
     case ActionTypes.SINGLE_PRICE_CHANGE:
-      return {...state, singlePriceChange: action.payload};
+      console.log(action.payload);
+      return {...state, singlePriceChange: action.payload.change, singleCurrVal: action.payload.currVal };
     case ActionTypes.ADD_COMMENT:
     let currentCommentss = state.comments;
       return { ...state, comments: {...currentCommentss, comment: action.payload } };

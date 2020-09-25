@@ -79,7 +79,7 @@ export function signinUser(user, history) {
   }
   
   // deletes token from localstorage and deauths
-  export function signoutUser() {
+  export function signoutUser(history) {
     return (dispatch) => {
       localStorage.removeItem('token');
       dispatch({ type: ActionTypes.DEAUTH_USER });
