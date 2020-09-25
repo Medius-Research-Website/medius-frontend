@@ -182,18 +182,11 @@ export function fetchCommentsByPost(id){
   }
 };
 
-export function addComment(id) {
-  return (dispatch) => {
-  console.log(dispatch, 'iiiii', id)
-  axios.post(`${ROOT_URL}/posts/comments/${id}`)
-    .then((response) => {
-      console.log(response, 'res')
-      dispatch({type: ActionTypes.ADD_COMMENT, payload: response.data });
-    })
-    .catch((error) => {
-      // dispatch an error, in separate error reducer
-      console.log(error);
-    });
+export const addComment = (comment)  => {
+  console.log(comment, 'com')
+  return {
+    type: ActionTypes.ADD_COMMENT, 
+    payload: comment
   }
 }
 

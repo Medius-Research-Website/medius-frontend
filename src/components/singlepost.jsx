@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import "./css_files/singlepost.scss";
 import { connect } from 'react-redux';
 import { fetchPost, singlePriceChange, fetchCommentsByPost, addComment } from '../actions';
-import Comments from './comments';
 import Navbar from "./navbar";
 
 // this is the full page for a single post
@@ -11,7 +10,8 @@ class singlepost extends Component {
     super(props);
     this.state = {
       comments: [],
-      nextId: 1
+      nextId: 1,
+      comment: ''
     }
   }
   async componentDidMount() {
@@ -19,27 +19,32 @@ class singlepost extends Component {
     await this.props.singlePriceChange(this.props.match.params.postID);
     await this.props.fetchCommentsByPost(this.props.match.params.postID);
   }
-  handleChange = e => {
-    this.setState({ value: e.target.value })
+  handleChange = (e, comment) => {
+    this.setState({ comment: e.target.value })
+    console.log(comment, 'kir', e.target.value)
   }
   addComment = comment => {
     const { comments } = this.props.posts
     let key = this.props.match.params.postID;
     let data = {text: comment, author: this.props.match.params.postID};
     comments[key].push(data);
-    console.log(comments[key], 'yuh', comment, 'yeo', data, 'cim', comments)
-      // let comments = this.state.comments.slice();
+    this.props.addComment(comment);
+    this.setState({ comment: '' })
+    console.log(comments[key], 'yuh', comment, 'yeo', data, 'cim', comments, 'ts', this.state, 'commmmmmmmm', comment)
+    // let comments = this.state.comments.slice();
     // comments.push({ id: this.state.nextId, comment: comment});
-  //   this.setState(prevState => {
-  //     return {comments: comments, nextId: prevState.nextId + 1}
-  //  })
+    
+    // this.setState(prevState => {
+    //   return {comments: comments, nextId: prevState.nextId + 1}
+    // })
   }
   
   render() {
-    const { current, singlePriceChange, comments } = this.props.posts
+    const { current, singlePriceChange, comments, text } = this.props.posts
     const pct = (Math.round(singlePriceChange.change * 100) / 100).toFixed(2);
     let key = this.props.match.params.postID;
     console.log(this.props,'p', this.state.comments, comments[key])
+    // console.log(comments,'commentsz')
     return (
       <div className="bgcolor">
         <Navbar />
@@ -65,7 +70,19 @@ class singlepost extends Component {
         </div>
         <div className="comment">
           <div className="addComment">
-            <Comments comment="" addComment={this.addComment} />
+            <input
+              className="input"
+              type="text" 
+              value={this.state.comment} 
+              onChange={this.handleChange}
+              placeholder="Add a comment..."
+              style={{padding: 20,borderRadius:20, backgroundColor:'#E0E1DD',border:'none'}}
+            />
+            <button 
+              style={{backgroundColor:'#5A786F',color:'white', marginLeft:10,borderRadius:20}} 
+                onClick={() => this.addComment(this.state.comment)}>
+                  Add
+            </button>
           </div>
           {
             !comments[key] ? null : comments[key].map( comment => 
@@ -73,16 +90,6 @@ class singlepost extends Component {
                 <div className="comments">
                   <div className="username">{comment.author} &nbsp;</div> {/*only allow first name*/}
                   <div>{comment.text}</div>
-                </div>
-              </div>
-            )
-          }
-          {
-            this.state.comments.length === 0 ? null : this.state.comments.map( comment => 
-              <div className="listOfComments" style={{marginTop:25}}>
-                <div className="comments">
-                  <div className="username">Akshay Prabhakar &nbsp;</div>
-                  <div>{comment.comment}</div>
                 </div>
               </div>
             )
