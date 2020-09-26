@@ -25,6 +25,8 @@ const PostsReducer = (state = initialState, action) => {
       return {...state, priceChange:{...currentPriceChange}};
     case ActionTypes.SINGLE_PRICE_CHANGE:
       return {...state, singlePriceChange: action.payload.change, singleCurrVal: action.payload.currVal };
+    case ActionTypes.FETCH_USER_POSTS:
+      return {...state, all: action.payload }
     default:
       return state;
   }
