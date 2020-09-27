@@ -1,7 +1,8 @@
 .feed__post{
   display:flex;
+  flex-direction: row-reverse;;
   @mixin wrapping{
-  //  border-radius: 20px;
+    border-radius: 20px;
     padding:25px;
     background-color: #F2F2F2;
     box-shadow: inset 0px -1px 1px #929290;
@@ -36,6 +37,8 @@
     @include wrapping;    
     height: fit-content;
     flex-basis: 24%;
+    max-width: 24%;
+    word-wrap: break-word;
     @mixin bubble{
       color: white;
       width: fit-content;
@@ -47,6 +50,7 @@
     }//applied for both sell and buy bubble
     & p{
       margin-bottom: 0px;
+      
     }
     .bubble{
       &--buy{
@@ -81,7 +85,9 @@
       }
     }
     &__comment{
+      
       @include wrapping;  
+      margin-top: 7px;
       .comment-toggle{
         text-align: center;
         @include text(comment);
@@ -98,12 +104,11 @@
       }
     }
     
-    flex-basis: 75%;
+    flex-basis: 74%;
     display: flex;
-    float: right;
+    
     margin-left: auto;
     flex-direction: column;
-    
   }
 
 }
