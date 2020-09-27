@@ -17,6 +17,7 @@ export const ActionTypes = {
   INVALID_CREDENTIALS: 'INVALID_CREDENTIALS',
   EXISTING_USER: 'EXISTING_USER',
   INCOMPLETE_FORM: 'INCOMPLETE_FORM',
+  SINGLE_PRICE_CHANGE: 'SINGLE_PRICE_CHANGE',
 };
 
 // trigger to deauth if there is error
@@ -78,7 +79,7 @@ export function signinUser(user, history) {
   }
   
   // deletes token from localstorage and deauths
-  export function signoutUser() {
+  export function signoutUser(history) {
     return (dispatch) => {
       localStorage.removeItem('token');
       dispatch({ type: ActionTypes.DEAUTH_USER });
@@ -216,7 +217,17 @@ export function deletePost(id) {
 
 export function toggleNewPostModal(){
   return (dispatch)=>{
-    console.log("TOG");
     dispatch({type:ActionTypes.TOGGLE_NEW_POST_MODAL});
   }
+export function singlePriceChange(id) {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/posts/ticker/${id}/`, { headers: { authorization: localStorage.getItem('token') }})
+      .then((response) => {
+        dispatch({ type: ActionTypes.SINGLE_PRICE_CHANGE, payload: response.data});
+      })
+      .catch((error) => {
+        // dispatch an error, in separate error reducer
+        console.log(error);
+      });
+  };
 }

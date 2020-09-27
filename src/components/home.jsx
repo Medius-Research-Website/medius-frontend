@@ -60,11 +60,9 @@ class Home extends Component {
                 and research from top <br /> contributers, all for free.
                 <br />
                 <br />
-              {/*<a href="https://mediusresearch.typeform.com/to/sHXy1QbE">*/}
                 <Button type="button" className="btn-primary" onClick={this.showSignupModal}>
                   Sign up for our Beta launch! 
                 </Button>
-              {/*</a>*/}
               <Signup history={this.props.history} showSignup={this.state.showSignup} onClose={this.showSignupModal} />
           </div>
         </div>

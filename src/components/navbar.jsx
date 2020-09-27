@@ -19,24 +19,24 @@ class NavbarInstance extends Component {
   }
 
   render() {
-    if (!this.props.authenticated){
+    if (this.props.authenticated){
       return (
         <Navbar default collapseOnSelect>
           <Navbar.Brand>
-            <NavLink id="title" to="landingpage">medius</NavLink>
+            <NavLink id="title" to="/landingpage">medius</NavLink>
           </Navbar.Brand>
           <Nav className="navbar navbar-expand-sm justify-content-end">
-            <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons signInBorder" to="/signin">
+            {/* <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons signInBorder" to="/signin">
               Sign In
             </NavLink>
-            {/* <button
+            <button
               className="navbar-toggler"
               type="button"
               data-toggle="collapse"
               data-target="#navbarSupportedContent"
             >
               <span classNameName="navbar-toggler-icon"></span>
-            </button> */}
+            </button>
             <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons" to="/signup">
               Get Started
             </NavLink>
@@ -45,7 +45,7 @@ class NavbarInstance extends Component {
             </NavLink>
             <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons" to="/communitypage">
               Community
-            </NavLink>
+            </NavLink>*/}
           </Nav>
         </Navbar>
       );
@@ -64,13 +64,13 @@ class NavbarInstance extends Component {
               data-target="#navbarSupportedContent"
             >
               <span classNameName="navbar-toggler-icon"></span>
-            </button> */}
+            </button> 
             <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons" to="/about">
               About
             </NavLink>
             <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons" to="/communitypage">
               Community
-            </NavLink>
+            </NavLink>*/}
             <div activeClassName="selected" className="btn ml-auto mr-1 navButtons signInBorder" onClick={this.onClickSignOut}>
               Sign Out
             </div>

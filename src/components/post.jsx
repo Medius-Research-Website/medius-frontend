@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import {Link} from 'react-router-dom';
 import "./css_files/post.scss";
 
@@ -19,7 +19,7 @@ export default function Post({ post, comments, showCommentsHandler, fetchPriceCh
         <p className="ticker">{post.ticker} </p>
         <p className="company">Industry: {post.industry}</p>
         <p className="company">{priceChange>0?"+":""}{Math.round(priceChange*100)/100}% since post</p>
-        <div className="bubble--sell">Sell/Buy</div>
+        { post.sell ? ( <div className="bubble--sell">Sell</div> ) : ( <div className="bubble--buy">Buy</div> ) }
       </div>
       <div className="feed__post__right">
         <Link to={`post/${post.id}`}  style={{ textDecoration: 'none' }}>

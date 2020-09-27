@@ -77,8 +77,8 @@ class Signin extends Component {
     } else {
       return (
         <Modal id="sign-in" show={this.props.showSignin} onHide={this.xOut}>
+          <button type="button" id="close-button" onClick={this.xOut}>&times;</button>
           <Form noValidate validated={this.state.validated}>
-            <button type="button" id="close-button" onClick={this.xOut}>&times;</button>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control required type="email" placeholder="Enter email" onChange={this.onInputChangeEmail}/>
