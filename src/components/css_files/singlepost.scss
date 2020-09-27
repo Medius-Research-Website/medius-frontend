@@ -78,7 +78,7 @@ body {
 
 .input {
   border-radius: 45;
-  width: 90%;
+  width: 87%;
 }
 
 .addComment {
@@ -93,4 +93,12 @@ body {
   background-color: #E0E1DD; //change to background light green
   border-radius: 20px;
   padding: 28px;
+}
+
+.addButton {
+  background-color: '#5A786F';
+  color: 'white';
+  margin-left: 10;
+  border-radius:20;
+  width: 'auto'
 }

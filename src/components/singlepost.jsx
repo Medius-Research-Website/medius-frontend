@@ -27,9 +27,11 @@ class singlepost extends Component {
     const { comments } = this.props.posts
     let key = this.props.match.params.postID;
     let data = {text: comment, author: this.props.match.params.postID};
-    comments[key].push(data);
-    this.props.addComment(comment);
-    this.setState({ comment: '' })
+    if (comment.length > 0) {    
+      comments[key].push(data);
+      this.props.addComment(comment);
+      this.setState({ comment: '' })
+    }
     console.log(comments[key], 'yuh', comment, 'yeo', data, 'cim', comments, 'ts', this.state, 'commmmmmmmm', comment)
     // let comments = this.state.comments.slice();
     // comments.push({ id: this.state.nextId, comment: comment});
@@ -79,8 +81,8 @@ class singlepost extends Component {
               style={{padding: 20,borderRadius:20, backgroundColor:'#E0E1DD',border:'none'}}
             />
             <button 
-              style={{backgroundColor:'#5A786F',color:'white', marginLeft:10,borderRadius:20}} 
-                onClick={() => this.addComment(this.state.comment)}>
+              style={{backgroundColor:'#5A786F',color:'white',marginLeft:10,borderRadius:20,padding:15}} 
+                onClick={() => this.addComment(this.state.comment)}> {/* this.props.addComment(comment) */}
                   Add
             </button>
           </div>
