@@ -219,6 +219,7 @@ export function toggleNewPostModal(){
   return (dispatch)=>{
     dispatch({type:ActionTypes.TOGGLE_NEW_POST_MODAL});
   }
+}
 export function singlePriceChange(id) {
   return (dispatch) => {
     axios.get(`${ROOT_URL}/posts/ticker/${id}/`, { headers: { authorization: localStorage.getItem('token') }})

@@ -23,8 +23,12 @@
         transform: translateX(-50%) translateY(-50%);
         &__close-button{
             
-            float: right;
-            right: 5px;
+            transform: translateX(-50%) translateY(50%);
+            border-radius: 100%;
+            background: green;
+            border:none;
+            color: white;
+            
             
         }
         &__title{
@@ -37,6 +41,73 @@
         }
         &__main{
             @include wrapping();
+            &--ini{
+                display: flex;
+                flex-direction: row;
+                height: 300px;
+                div{
+                    @include wrapping();
+                    border:none;
+                    flex-basis: 50%;
+                    margin:10px;
+                    display:flex;
+                    padding:auto;
+                    span{
+                        margin:auto;
+                        display:block;
+                    }
+                }
+            }
+            .input{
+                &--ticker,&--idea,&--insight{
+                    display: block;
+                    width: 100%;
+                    padding: 5px;
+                    border-radius: 20px;
+                    border:none;
+                    margin:10px;
+                }
+                &--idea{
+                    height:300px;
+                    text-align: start;
+                    
+                }
+                &--submit{
+                    margin-left:auto;
+                }
+                &--toggle-and-submit{
+                    display: flex;
+                    flex-direction: row;
+                }
+                &--error{
+                    color:red;
+                    background: none;
+                }
+                
+            }
+            .inactive{
+                color:grey;
+            }
+            .form__switch{
+                margin: auto 15px;
+                background:green;
+                height:20px;
+                width:50px;
+                border-radius: 5px;
+                &__slider{
+                    background:white;
+                    height: 30px;
+                    width:30px;
+                    border-radius: 100%;
+                    transform: translateY(-5px) translateX(-10px);
+                    border: green 1px solid;
+                    transition: ease-in 0.5s;
+                }
+                .active{
+                    transform: translateY(-5px) translateX(30px);
+                }
+                
+            }
             
         }
     }
