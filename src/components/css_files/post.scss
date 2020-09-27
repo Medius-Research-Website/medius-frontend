@@ -30,6 +30,8 @@
       font-size: 14px;
     } @else if ($type==comment){
       font-size: 14px;
+    } @else if ($type==price-change){
+      font-size: 14px;
     }
 
   }
@@ -68,6 +70,15 @@
     .company{
       @include text(company);
     }
+    .price-change{
+      @include text(price-change);
+      &--positive{
+        color:green;
+      }
+      &--negative{
+        color:red;
+      }
+    }
   }
 
   &__right{
@@ -102,6 +113,7 @@
         @include text(comment);
         font-weight: bold;
       }
+
     }
     
     flex-basis: 74%;
