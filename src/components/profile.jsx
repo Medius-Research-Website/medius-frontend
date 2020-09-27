@@ -3,13 +3,17 @@ import "./css_files/profile.scss";
 import { connect } from 'react-redux';
 import { fetchUser } from '../actions';
 import Navbar from "./navbar";
+import { TransferWithinAStation } from "@material-ui/icons";
 
 class Profile extends Component {
   componentDidMount() {
-  
+    this.props.fetchUser(this.props.match.params.userID);
   }
 
   // access user through this.props.selectedUser
+  // should check if currentUser's username is same as selectedUser's username to determine
+  // if the person is viewing their own page. if it's there page add some kind of edit button
+  // to change their bio
   render() {
     return (
       <div>
@@ -17,7 +21,7 @@ class Profile extends Component {
         <div className="profile-box">
           <button className="close-button">x</button>
           <div>
-            <p style={{ fontWeight: "bold" }}>Timothy Park</p>
+            <p>Timothy Park</p>
           </div>
           <div className="occupation">
             <p>Student at Boston University</p>
@@ -31,7 +35,8 @@ class Profile extends Component {
 
 function mapStateToProps(reduxState) {
   return {
-    selectedUser: reduxState.auth.selectedUser,
+    selectedUser: reduxState.auth.selectedUser,       // this is the person whose profile we're viewing
+    currentUser: reduxState.auth.user,                // this is the person who's signed in
   };
 }
 
