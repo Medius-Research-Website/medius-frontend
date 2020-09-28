@@ -9,6 +9,7 @@ export const ActionTypes = {
   FETCH_USER: 'FETCH_USER',
   FETCH_COMMENT:'FETCH_COMMENT',
   FETCH_PRICE_CHANGE:'FETCH_PRICE_CHANGE',
+  FETCH_USER_POSTS: 'FETCH_USER_POSTS',
   AUTH_USER: 'AUTH_USER',
   TOGGLE_NEW_POST_MODAL: 'TOGGLE_NEW_POST_MODAL',
   DEAUTH_USER: 'DEAUTH_USER',
@@ -127,6 +128,18 @@ export function updateUser(id, fields) {
         console.log(error);
       });
   };
+}
+
+export function fetchUserPosts(id) {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/user/posts/${id}`)
+    .then((response) => {
+      dispatch({ type: ActionTypes.FETCH_USER_POSTS, payload: response.data});
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }
 }
   
 
