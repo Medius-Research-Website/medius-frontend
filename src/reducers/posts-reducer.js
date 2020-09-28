@@ -27,9 +27,9 @@ const PostsReducer = (state = initialState, action) => {
     case ActionTypes.SINGLE_PRICE_CHANGE:
       console.log(action.payload);
       return {...state, singlePriceChange: action.payload.change, singleCurrVal: action.payload.currVal };
-    case ActionTypes.ADD_COMMENT:
+    /* case ActionTypes.ADD_COMMENT:
     let currentCommentss = state.comments;
-      return { ...state, comments: {...currentCommentss, comment: action.payload } };
+      return { ...state, comments: {...currentCommentss, comment: action.payload } };*/
     default:
       return state;
   }

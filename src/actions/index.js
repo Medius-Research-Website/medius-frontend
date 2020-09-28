@@ -182,12 +182,14 @@ export function fetchCommentsByPost(id){
   }
 };
 
-export const addComment = (comment)  => {
-  console.log(comment, 'com')
-  return {
-    type: ActionTypes.ADD_COMMENT, 
-    payload: comment
-  }
+export function addComment(comment, postID) {
+  axios.post(`${ROOT_URL}/posts/comments/${postID}`, comment, { headers: { authorization: localStorage.getItem('token') } })
+  .then((response) => {
+    console.log('added');
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 }
 
 export function createPost(post, history) {

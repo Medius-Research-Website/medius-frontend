@@ -14,17 +14,22 @@ class singlepost extends Component {
       comment: ''
     }
   }
+
   async componentDidMount() {
     await this.props.fetchPost(this.props.match.params.postID);
     await this.props.singlePriceChange(this.props.match.params.postID);
     await this.props.fetchCommentsByPost(this.props.match.params.postID);
   }
+
   handleChange = (e, comment) => {
     this.setState({ comment: e.target.value })
     console.log(comment, 'kir', e.target.value)
   }
-  addComment = comment => {
-    const { comments } = this.props.posts
+
+  createComment = (comment) => {
+
+    this.props.addComment(comment, this.props.match.params.postID);
+    /* const { comments } = this.props.posts
     let key = this.props.match.params.postID;
     let data = {text: comment, author: this.props.match.params.postID};
     if (comment.length > 0) {    
@@ -38,7 +43,7 @@ class singlepost extends Component {
     
     // this.setState(prevState => {
     //   return {comments: comments, nextId: prevState.nextId + 1}
-    // })
+    // })*/
   }
   
   render() {
@@ -84,7 +89,7 @@ class singlepost extends Component {
             />
             <button 
               style={{backgroundColor:'#5A786F',color:'white',marginLeft:10,borderRadius:20,padding:15}} 
-                onClick={() => this.addComment(this.state.comment)}> {/* this.props.addComment(comment) */}
+                onClick={() => this.createComment(this.state.comment)}> {/* this.props.addComment(comment) */}
                   Add
             </button>
           </div>
