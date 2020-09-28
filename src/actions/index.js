@@ -10,6 +10,7 @@ export const ActionTypes = {
   FETCH_COMMENT:'FETCH_COMMENT',
   FETCH_PRICE_CHANGE:'FETCH_PRICE_CHANGE',
   AUTH_USER: 'AUTH_USER',
+  TOGGLE_NEW_POST_MODAL: 'TOGGLE_NEW_POST_MODAL',
   DEAUTH_USER: 'DEAUTH_USER',
   AUTH_ERROR: 'AUTH_ERROR',
   CLEAR: 'CLEAR',
@@ -214,6 +215,11 @@ export function deletePost(id) {
   };
 }
 
+export function toggleNewPostModal(){
+  return (dispatch)=>{
+    dispatch({type:ActionTypes.TOGGLE_NEW_POST_MODAL});
+  }
+}
 export function singlePriceChange(id) {
   return (dispatch) => {
     axios.get(`${ROOT_URL}/posts/ticker/${id}/`, { headers: { authorization: localStorage.getItem('token') }})

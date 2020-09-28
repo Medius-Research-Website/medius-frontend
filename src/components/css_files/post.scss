@@ -1,10 +1,10 @@
 .feed__post{
   display:flex;
+  flex-direction: row-reverse;;
   @mixin wrapping{
-    
     border-radius: 20px;
     padding:25px;
-    background-color: #F8F8F8;
+    background-color: #F2F2F2;
     box-shadow: inset 0px -1px 1px #929290;
   }//round-wrapping container
   @mixin text($type){
@@ -30,6 +30,8 @@
       font-size: 14px;
     } @else if ($type==comment){
       font-size: 14px;
+    } @else if ($type==price-change){
+      font-size: 14px;
     }
 
   }
@@ -37,6 +39,8 @@
     @include wrapping;    
     height: fit-content;
     flex-basis: 24%;
+    max-width: 24%;
+    word-wrap: break-word;
     @mixin bubble{
       color: white;
       width: fit-content;
@@ -48,6 +52,7 @@
     }//applied for both sell and buy bubble
     & p{
       margin-bottom: 0px;
+      
     }
     .bubble{
       &--buy{
@@ -64,6 +69,15 @@
     }
     .company{
       @include text(company);
+    }
+    .price-change{
+      @include text(price-change);
+      &--positive{
+        color:green;
+      }
+      &--negative{
+        color:red;
+      }
     }
   }
 
@@ -82,7 +96,9 @@
       }
     }
     &__comment{
+      
       @include wrapping;  
+      margin-top: 7px;
       .comment-toggle{
         text-align: center;
         @include text(comment);
@@ -97,14 +113,14 @@
         @include text(comment);
         font-weight: bold;
       }
+
     }
     
-    flex-basis: 75%;
+    flex-basis: 74%;
     display: flex;
-    float: right;
+    
     margin-left: auto;
     flex-direction: column;
-    
   }
 
 }
