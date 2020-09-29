@@ -38,17 +38,17 @@ export function clear() {
 
 // fetches all relevant information about current user
 export function signinUser(user, history) {
-  console.log('pushing sign in user');
+  // console.log('pushing sign in user');
     return (dispatch) => {
       axios.post(`${ROOT_URL}/signin`, user)
         .then((response) => {
-          console.log("succes sign in");
-          dispatch({ type: ActionTypes.AUTH_USER, payload: user });
+          // console.log(response, 'response');
+          dispatch({ type: ActionTypes.AUTH_USER, payload: response.data.user });
           localStorage.setItem('token', response.data.token);
           history.push('/landingpage');
         })
         .catch((error) => {
-          console.log("error sign in");
+          // console.log("error sign in");
           if(user.email && user.password) {
             dispatch({ type: ActionTypes.INVALID_CREDENTIALS })
           } else {
@@ -62,8 +62,8 @@ export function signinUser(user, history) {
     return (dispatch) => {
       axios.post(`${ROOT_URL}/signup`, user)
         .then((response) => {
-          console.log("successfully signed up user");
-          dispatch({ type: ActionTypes.AUTH_USER });
+          // console.log("successfully signed up user");
+          dispatch({ type: ActionTypes.AUTH_USER, payload: response.data.user });
           localStorage.setItem('token', response.data.token);
           history.push('/landingpage');
         })
@@ -197,14 +197,16 @@ export function fetchCommentsByPost(id){
 };
 
 export function addComment(comment, postID) {
-  console.log(comment);
-  axios.post(`${ROOT_URL}/posts/comments/${postID}`, comment, { headers: { authorization: localStorage.getItem('token') } })
-  .then((response) => {
-    console.log('added');
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+  console.log(comment, 'action');
+  return (dispatch) => {
+    axios.post(`${ROOT_URL}/posts/comments/${postID}`, comment, { headers: { authorization: localStorage.getItem('token') } })
+    .then((response) => {
+      dispatch({ type: ActionTypes.FETCH_COMMENT, payload: response.data });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  } 
 }
 
 export function createPost(post, history) {

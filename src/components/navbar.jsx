@@ -19,7 +19,7 @@ class NavbarInstance extends Component {
   }
 
   render() {
-    if (this.props.authenticated){
+    if (!this.props.authenticated){
       return (
         <Navbar default collapseOnSelect>
           <Navbar.Brand>
@@ -71,7 +71,7 @@ class NavbarInstance extends Component {
             <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons" to="/communitypage">
               Community
             </NavLink>*/}
-            <div activeclassname="selected" className="btn ml-auto mr-1 navButtons signInBorder" onClick={this.onClickSignOut}>
+            <div activeClassName="selected" className="btn ml-auto mr-1 navButtons signInBorder" onClick={this.onClickSignOut}>
               Sign Out
             </div>
           </Nav>

@@ -26,7 +26,7 @@ export default function Post({ post,  showCommentsHandler, fetchPriceChange }) {
   return (
     <div className="feed__post">
       <div className="feed__post__right">
-        <Link to={`post/${post.id}`}  style={{ textDecoration: 'none' }}>
+        <Link to={`posts/${post.id}`}  style={{ textDecoration: 'none' }}>
           <div className="feed__post__right__content">
             <div className="interaction-stat">
               Like/Comment placeholder

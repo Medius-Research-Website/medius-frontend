@@ -22,6 +22,11 @@ class singlepost extends Component {
     console.log(this.props);
   }
 
+  componentDidUpdate(){
+    // console.log('update');
+    // this.props.fetchCommentsByPost(this.props.match.params.postID);
+  }
+
   handleChange = (e, comment) => {
     this.setState({ comment: e.target.value })
     // console.log(comment, 'kir', e.target.value)
@@ -29,29 +34,12 @@ class singlepost extends Component {
 
   createComment = (comment) => {
 
-    console.log(comment);
     const fields = {
       text: comment,
       author: this.props.user.username,
     };
-    console.log(fields);
     this.props.addComment(fields, this.props.match.params.postID);
-
-    /* const { comments } = this.props.posts
-    let key = this.props.match.params.postID;
-    let data = {text: comment, author: this.props.match.params.postID};
-    if (comment.length > 0) {    
-      comments[key].push(data);
-      this.props.addComment(comment);
-      this.setState({ comment: '' })
-    }
-    console.log(comments[key], 'yuh', comment, 'yeo', data, 'cim', comments, 'ts', this.state, 'commmmmmmmm', comment)
-    // let comments = this.state.comments.slice();
-    // comments.push({ id: this.state.nextId, comment: comment});
-    
-    // this.setState(prevState => {
-    //   return {comments: comments, nextId: prevState.nextId + 1}
-    // })*/
+    this.setState({ comment: ''})
   }
   
   render() {
@@ -62,7 +50,7 @@ class singlepost extends Component {
     // console.log(comments,'commentsz')
     //console.log(singleCurrVal);
     //console.log(pct);
-    console.log(comments)
+    // console.log(comments)
     return (
       <div className="bgcolor">
         <Navbar />
