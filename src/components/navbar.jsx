@@ -23,7 +23,7 @@ class NavbarInstance extends Component {
       return (
         <Navbar default collapseOnSelect>
           <Navbar.Brand>
-            <NavLink id="title" to="landingpage">medius</NavLink>
+            <NavLink id="title" to="/landingpage">medius</NavLink>
           </Navbar.Brand>
           <Nav className="navbar navbar-expand-sm justify-content-end">
             {/* <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons signInBorder" to="/signin">

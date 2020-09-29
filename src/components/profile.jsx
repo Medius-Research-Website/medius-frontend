@@ -3,12 +3,14 @@ import "./css_files/profile.scss";
 import { connect } from 'react-redux';
 import { fetchUser } from '../actions';
 import Navbar from "./navbar";
+import { Button } from 'react-bootstrap';
 import { TransferWithinAStation } from "@material-ui/icons";
 
 class Profile extends Component {
   componentDidMount() {
     this.props.fetchUser(this.props.match.params.userID);
   }
+
 
   // access user through this.props.selectedUser
   // should check if currentUser's username is same as selectedUser's username to determine
@@ -21,6 +23,7 @@ class Profile extends Component {
         <div className="profile-box">
           <button className="close-button">x</button>
           <div>
+            {(this.props.selectedUser === this.props.currentUser) ? <Button>Edit</Button> : <></>}
             <p>Timothy Park</p>
           </div>
           <div className="occupation">

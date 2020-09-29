@@ -5,6 +5,7 @@ const initialState = {
   current: {},
   comments: {},
   priceChange:{},
+  newPostModal:false,
   singlePriceChange: 0,
   text: [],
   singleCurrVal: 0,
@@ -24,12 +25,16 @@ const PostsReducer = (state = initialState, action) => {
       let currentPriceChange=state.priceChange;
       currentPriceChange[action.payload.id]=action.payload.change;
       return {...state, priceChange:{...currentPriceChange}};
+    case ActionTypes.TOGGLE_NEW_POST_MODAL:
+      return {...state, newPostModal: !state.newPostModal};
     case ActionTypes.SINGLE_PRICE_CHANGE:
       console.log(action.payload);
       return {...state, singlePriceChange: action.payload.change, singleCurrVal: action.payload.currVal };
     /* case ActionTypes.ADD_COMMENT:
     let currentCommentss = state.comments;
       return { ...state, comments: {...currentCommentss, comment: action.payload } };*/
+    case ActionTypes.FETCH_USER_POSTS:
+      return {...state, all: action.payload }
     default:
       return state;
   }

@@ -9,7 +9,9 @@ export const ActionTypes = {
   FETCH_USER: 'FETCH_USER',
   FETCH_COMMENT:'FETCH_COMMENT',
   FETCH_PRICE_CHANGE:'FETCH_PRICE_CHANGE',
+  FETCH_USER_POSTS: 'FETCH_USER_POSTS',
   AUTH_USER: 'AUTH_USER',
+  TOGGLE_NEW_POST_MODAL: 'TOGGLE_NEW_POST_MODAL',
   DEAUTH_USER: 'DEAUTH_USER',
   AUTH_ERROR: 'AUTH_ERROR',
   CLEAR: 'CLEAR',
@@ -128,6 +130,18 @@ export function updateUser(id, fields) {
       });
   };
 }
+
+export function fetchUserPosts(id) {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/user/posts/${id}`)
+    .then((response) => {
+      dispatch({ type: ActionTypes.FETCH_USER_POSTS, payload: response.data});
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }
+}
   
 
 export function fetchPosts() {
@@ -226,6 +240,11 @@ export function deletePost(id) {
   };
 }
 
+export function toggleNewPostModal(){
+  return (dispatch)=>{
+    dispatch({type:ActionTypes.TOGGLE_NEW_POST_MODAL});
+  }
+}
 export function singlePriceChange(id) {
   return (dispatch) => {
     axios.get(`${ROOT_URL}/posts/ticker/${id}/`, { headers: { authorization: localStorage.getItem('token') }})

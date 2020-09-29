@@ -102,3 +102,23 @@ body {
   border-radius:20;
   width: 'auto'
 }
+
+.bubble--buy{
+  background-color: #5A786F;
+  color: white;
+  width: fit-content;
+  padding: 1px 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.bubble--sell{
+  background-color: #936262;
+  color: white;
+  width: fit-content;
+  padding: 1px 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
