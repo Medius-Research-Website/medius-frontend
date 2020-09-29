@@ -210,12 +210,14 @@ export function addComment(comment, postID) {
 }
 
 export function createPost(post, history) {
-  axios.put(`${ROOT_URL}/posts`, post, { headers: { authorization: localStorage.getItem('token') } })
-    .then(() => { history.push('/'); })
-    .catch((error) => {
-      // dispatch an error, in separate error reducer
-      console.log(error);
-    });
+  return (dispatch) => {
+    axios.put(`${ROOT_URL}/posts`, post, { headers: { authorization: localStorage.getItem('token') } })
+      .then(() => { history.push('/'); })
+      .catch((error) => {
+        // dispatch an error, in separate error reducer
+        console.log(error);
+      });
+  }
 }
 
 export function updatePost(id, post) {
