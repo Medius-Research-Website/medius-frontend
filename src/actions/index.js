@@ -183,6 +183,7 @@ export function fetchCommentsByPost(id){
 };
 
 export function addComment(comment, postID) {
+  console.log(comment);
   axios.post(`${ROOT_URL}/posts/comments/${postID}`, comment, { headers: { authorization: localStorage.getItem('token') } })
   .then((response) => {
     console.log('added');
@@ -193,7 +194,7 @@ export function addComment(comment, postID) {
 }
 
 export function createPost(post, history) {
-  axios.post(`${ROOT_URL}/posts`, post, { headers: { authorization: localStorage.getItem('token') } })
+  axios.put(`${ROOT_URL}/posts`, post, { headers: { authorization: localStorage.getItem('token') } })
     .then(() => { history.push('/'); })
     .catch((error) => {
       // dispatch an error, in separate error reducer

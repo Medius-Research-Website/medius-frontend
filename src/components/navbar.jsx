@@ -71,7 +71,7 @@ class NavbarInstance extends Component {
             <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons" to="/communitypage">
               Community
             </NavLink>*/}
-            <div activeClassName="selected" className="btn ml-auto mr-1 navButtons signInBorder" onClick={this.onClickSignOut}>
+            <div activeclassname="selected" className="btn ml-auto mr-1 navButtons signInBorder" onClick={this.onClickSignOut}>
               Sign Out
             </div>
           </Nav>

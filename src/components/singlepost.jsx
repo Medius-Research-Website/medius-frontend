@@ -19,16 +19,24 @@ class singlepost extends Component {
     await this.props.fetchPost(this.props.match.params.postID);
     await this.props.singlePriceChange(this.props.match.params.postID);
     await this.props.fetchCommentsByPost(this.props.match.params.postID);
+    console.log(this.props);
   }
 
   handleChange = (e, comment) => {
     this.setState({ comment: e.target.value })
-    console.log(comment, 'kir', e.target.value)
+    // console.log(comment, 'kir', e.target.value)
   }
 
   createComment = (comment) => {
 
-    this.props.addComment(comment, this.props.match.params.postID);
+    console.log(comment);
+    const fields = {
+      text: comment,
+      author: this.props.user.username,
+    };
+    console.log(fields);
+    this.props.addComment(fields, this.props.match.params.postID);
+
     /* const { comments } = this.props.posts
     let key = this.props.match.params.postID;
     let data = {text: comment, author: this.props.match.params.postID};
@@ -52,8 +60,9 @@ class singlepost extends Component {
     let key = this.props.match.params.postID;
     //console.log(this.props,'p', this.state.comments, comments[key])
     // console.log(comments,'commentsz')
-    console.log(singleCurrVal);
-    console.log(pct);
+    //console.log(singleCurrVal);
+    //console.log(pct);
+    console.log(comments)
     return (
       <div className="bgcolor">
         <Navbar />
@@ -95,7 +104,7 @@ class singlepost extends Component {
           </div>
           {
             !comments[key] ? null : comments[key].map( comment => 
-              <div className="listOfComments" style={{marginTop:25}}>
+              <div className="listOfComments" key={comment.id} style={{marginTop:25}}>
                 <div className="comments">
                   <div className="username">{comment.author} &nbsp;</div> {/*only allow first name*/}
                   <div>{comment.text}</div>
@@ -112,6 +121,7 @@ class singlepost extends Component {
 function mapStateToProps(state) {
   return {
     posts: state.posts,
+    user: state.auth.user,
   };
 }
 
