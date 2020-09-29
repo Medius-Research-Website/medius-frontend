@@ -8,11 +8,11 @@ class LandingPage extends Component {
   state = {};
 
   componentDidMount() {
-    console.log('launching landing page')
+    // console.log('launching landing page')
   }
 
   render() {
-    console.log("rendering landing page");
+    // console.log("rendering landing page");
     return (
       <React.Fragment>
         <Navbar  />

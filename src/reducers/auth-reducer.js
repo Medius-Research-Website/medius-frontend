@@ -2,8 +2,8 @@ import { ActionTypes } from '../actions';
 
 const initialState = {
   authenticated: false,
-  user: '', // stored information about CURRENT user
-  selectedUser: '', // information for public viewing about other users
+  user: [], // stored information about CURRENT user
+  selectedUser: [], // information for public viewing about other users
   all: [], // consider separate reducer?
 };
 

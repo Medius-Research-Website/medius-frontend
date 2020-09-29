@@ -25,7 +25,6 @@ function App() {
         {/* <Navbar /> */}
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={about} />
-          <PrivateRoute exact path="/userprofile" component={userprofile} />
           <Route exact path="/signup" component={Signup} />
           <PrivateRoute exact path="/signin" component={Signin} />
           <Route exact path="/landingpage" component={LandingPage}/>

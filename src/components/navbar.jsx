@@ -19,7 +19,7 @@ class NavbarInstance extends Component {
   }
 
   render() {
-    if (this.props.authenticated){
+    if (!this.props.authenticated){
       return (
         <Navbar default collapseOnSelect>
           <Navbar.Brand>

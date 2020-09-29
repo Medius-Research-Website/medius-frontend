@@ -13,11 +13,11 @@ class Feed extends Component {
   }
   // access posts through this.props.allPosts; display iteratively through .map()
   render() {
-    console.log(this.props.all);
+    // console.log(this.props.all);
     if (this.props.all.length !== 0) {
       return (
         <React.Fragment>
-          {this.props.all.map((post) => {console.log(post.id);return( 
+          {this.props.all.map((post) => {return( 
               <Post post={post} 
               //comments={this.props.comments[post.id]||[]} 
               //priceChange={this.props.priceChange[post.id]||0}
