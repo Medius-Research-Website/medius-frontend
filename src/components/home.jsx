@@ -52,7 +52,7 @@ class Home extends Component {
             <h2>
               A modern
                 <br/>
-                <h3>finance community</h3>
+                <p>finance community</p>
                 built on collaboration
             </h2>
                 An open forum for sharing high quality investment ideas, stock picks,

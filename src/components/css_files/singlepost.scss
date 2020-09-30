@@ -37,11 +37,17 @@ body {
   height: auto;
   padding: 25px;
   font-weight: bold;  
+
+  h3 {
+    margin: 1%;
+    color: black;
+    font-size: 2em;
+  }
 }
 
 .ticker-post {
   margin-top: 20px;
-  font-size: 28px;
+  font-size: 22px;
 }
 
 .positive-percent {

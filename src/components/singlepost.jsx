@@ -55,14 +55,13 @@ class singlepost extends Component {
       <div className="bgcolor">
         <Navbar />
         <div className="singlepost">
-          <div className="graph">
+          {/*<div className="graph">
             Graph goes here
-          </div>
+          </div>*/}
           <div className="header">
-            <h3>Brief intro</h3>
+            <h3>{current.insight}</h3>
             <div className="ticker-post">{current.ticker}</div>
-            <div className="company">Company: Tesla{}</div>
-            <div className="sector">Sector: Automotive {current.sector}</div>
+            <div className="sector">Sector: {current.sector}</div>
             <div className="percent">
               <div className={pct.split('')[0] === '-' ? "negative-percent" : 'positive-percent'} >
                 {!isNaN(pct) ? singleCurrVal + ' (' +pct + ' ' : null}

@@ -12,12 +12,13 @@ html {
     display: flex;
     filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.25));
     border-radius: 20px;
-    min-height: 90vh;
+    min-height: 70vh;
 }
 
 .modal-content{
     background-color: transparent !important;
     border: 0 !important;
+    //height: 100% !important;
 }  
 
 
@@ -81,7 +82,7 @@ html {
 
 form {
     width: 100%;
-    max-height: 80%;
+    max-height: 100%;
     border: 1px solid #292929;
     border-radius: 40px;
 
@@ -101,8 +102,8 @@ form {
 
 #signInBtn{
     flex: auto;
-    top: 500px;
-    left: 175px;
+    top: 80%;
+    left: 35%;
     width: 141px;
     height: 48px;
     background: linear-gradient(180deg, #5A786F 0%, #8CA88E 100%);

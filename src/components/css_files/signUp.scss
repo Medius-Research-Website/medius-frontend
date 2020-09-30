@@ -1,5 +1,5 @@
 * {
-    font-family: 'Oxygen', 'Nexa Bold',sans-serif;
+    font-family: 'Oxygen',sans-serif;
     /* background-color: #E0E1DD;  */
 }
 
@@ -11,20 +11,20 @@ html {
 #sign-up {
     display: flex;
     filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.25));
-    min-height: 100%;
-}
+    min-height: 80vh;
+    position: relative;
 
-#modal-title {
-    width: 123px;
-    height: 39px;
-    left: 907px;
-    top: 437px;
-    font-family: 'Oxygen';
-    font-style: normal;
-    font-weight: bold;
-    font-size: 32px;
-    line-height: 32px;
-    color: #000000;
+    #modal-title {
+        width: 123px;
+        height: 39px;
+        left: 907px;
+        top: -100px;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 32px;
+        line-height: 32px;
+        color: black;
+    }
 }
 
 #close-button {
@@ -64,7 +64,7 @@ html {
     width: 335px;
     height: 25px;
     left: 801px;
-    font-family: 'Oxygen';
+    // -family: 'Oxygen';
     font-style: normal;
     font-weight: bold;
     font-size: 20px;
@@ -96,7 +96,7 @@ form {
 #signUpBtn{
     flex: auto;
     left: 180px;
-    top: 625px;
+    top: 87%;
     width: 141px;
     height: 48px;
     background: linear-gradient(180deg, #5A786F 0%, #8CA88E 100%);
