@@ -5,7 +5,6 @@ import ReactGA from 'react-ga';
 import Home from "./components/home";
 import history from './history'
 import about from "./components/about";
-import userprofile from "./components/userprofile";
 import Signup from "./components/signup";
 import Signin from "./components/signin";
 import PrivateRoute from './components/privateroute';

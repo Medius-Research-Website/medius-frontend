@@ -2,6 +2,10 @@ import React from 'react';
 import "./css_files/feedhead.scss";
 import { connect } from "react-redux";
 import { toggleNewPostModal } from "../actions";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
+
+
 function FeedHead(props){//contain the title and the input box
     return(
         <div className="feed-head">
@@ -12,11 +16,17 @@ function FeedHead(props){//contain the title and the input box
             </div>
             <div className="feed-head__component-wrapper">
                 <div onClick={(e)=>{props.toggleNewPostModal();}} className="feed-head__input">
-                    <input type="text" value="" placeholder="got an investment idea? voice it!"/>{/*this one will be replaced later with properly implement*/}
+                    <p><FontAwesomeIcon icon={faEdit} />     got an investment idea? voice it!</p>
                 </div>
             </div>
         </div>
     )
 }
 
-export default connect((state)=>{},{toggleNewPostModal})(FeedHead);
+function mapStateToProps(reduxState) {
+    return {
+        toggleNewPostModal: reduxState.posts.toggleNewPostModal,
+    };
+  }
+
+export default connect(mapStateToProps, {toggleNewPostModal})(FeedHead);

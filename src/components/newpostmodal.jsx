@@ -3,6 +3,9 @@ import './css_files/newpostmodal.scss';
 import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
 import { toggleNewPostModal, createPost } from "../actions";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLightbulb, faUpload } from '@fortawesome/free-solid-svg-icons'
+
 const InitialState=0;
 const IdeaFormState=1;
 const FileFormState=2;
@@ -44,11 +47,13 @@ class NewPostModal extends Component{
                         ?(<div className="feed__modal__form__main feed__modal__form__main--ini">
                             <div className="feed__modal__form__main--ini__idea" onClick={(e)=>{this.setState({formState : IdeaFormState});}}>
                                 <span>
+                                    <FontAwesomeIcon icon={faLightbulb} className="fa-7x"/> 
                                     post an investment idea
                                 </span>
                             </div>
                             <div className="feed__modal__form__main--ini__file" onClick={(e)=>{this.setState({formState : FileFormState});}}>
                                 <span>
+                                <FontAwesomeIcon icon={faUpload} className="fa-7x"/>
                                     upload a file
                                 </span>
                             </div>
@@ -109,7 +114,7 @@ const InvestmentIdeaForm = (props)=>{
                 onChange={(e)=>{setInsight(e.target.value)}}
                 className="input--insight"
                 type="text" placeholder="What is your unique insight? (int one sentence)"/>
-            <input 
+            <textarea 
                 value={idea}
                 onChange={(e)=>{setIdea(e.target.value)}}
                 className="input--idea"
@@ -120,7 +125,7 @@ const InvestmentIdeaForm = (props)=>{
                     value={!sell}
                     toggle={()=>{setSell(prev=>!prev);}}/>
                 <span className={`${sell?"inactive":null}`}>Buy</span>
-                <button onClick={submitHandler} className="input--submit"> Post </button>
+                <button onClick={submitHandler} className="input--submit btn btn-success"> Post </button>
             </div>
             {errorMessages.map((errorMessage,idx)=>
                 <p key={idx} className="input--error">{errorMessage}</p>
@@ -146,7 +151,7 @@ const FileUpLoadForm = (props)=>{
     return(
         <div className="feed__modal__form__main">
             <input className="js-file-uploader" type="file"/>
-            <button onClick={submitHandler} className="input--submit"> Post </button>
+            <button onClick={submitHandler} className="input--submit btn btn-success"> Post </button>
         </div>
     )
 

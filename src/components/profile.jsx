@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { fetchUser } from '../actions';
 import Navbar from "./navbar";
 import { Button } from 'react-bootstrap';
-import { TransferWithinAStation } from "@material-ui/icons";
+// import { TransferWithinAStation } from "@material-ui/icons";
 
 class Profile extends Component {
   componentDidMount() {
