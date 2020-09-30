@@ -52,12 +52,11 @@ class Home extends Component {
             <h2>
               A modern
                 <br/>
-                <h2_1>finance community</h2_1>
-                <br/>
+                <h3>finance community</h3>
                 built on collaboration
             </h2>
                 An open forum for sharing high quality investment ideas, stock picks,
-                and research from top <br /> contributers, all for free.
+                and research from top contributers, all for free.
                 <br />
                 <br />
                 <Button type="button" className="btn-primary" onClick={this.showSignupModal}>

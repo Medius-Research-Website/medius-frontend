@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
@@ -19,6 +20,7 @@ class NavbarInstance extends Component {
   }
 
   render() {
+    console.log(this.props.user);
     if (!this.props.authenticated){
       return (
         <Navbar default collapseOnSelect>
@@ -70,6 +72,9 @@ class NavbarInstance extends Component {
             </NavLink>
             <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons" to="/communitypage">
               Community
+            </NavLink>
+            <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons" to={`/users/${this.props.user.id}`}>
+              My Profile
             </NavLink>*/}
             <div activeClassName="selected" className="btn ml-auto mr-1 navButtons signInBorder" onClick={this.onClickSignOut}>
               Sign Out
@@ -84,6 +89,7 @@ class NavbarInstance extends Component {
 const mapStateToProps = (state) => (
   {
     authenticated: state.auth.authenticated,
+    user: state.auth.user,
   }
 );
 

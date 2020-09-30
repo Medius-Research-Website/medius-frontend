@@ -95,7 +95,7 @@ class singlepost extends Component {
             !comments[key] ? null : comments[key].map( comment => 
               <div className="listOfComments" key={comment.id} style={{marginTop:25}}>
                 <div className="comments">
-                  <div className="username">{comment.author} &nbsp;</div> {/*only allow first name*/}
+                  <div className="username">{comment.author}: &nbsp;</div> {/*only allow first name*/}
                   <div>{comment.text}</div>
                 </div>
               </div>
