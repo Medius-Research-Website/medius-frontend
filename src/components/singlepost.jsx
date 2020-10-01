@@ -13,8 +13,6 @@ class singlepost extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      comments: [],
-      nextId: 1,
       comment: ''
     }
   }
@@ -23,17 +21,10 @@ class singlepost extends Component {
     await this.props.fetchPost(this.props.match.params.postID);
     await this.props.singlePriceChange(this.props.match.params.postID);
     await this.props.fetchCommentsByPost(this.props.match.params.postID);
-    console.log(this.props);
   }
 
-  componentDidUpdate(){
-    // console.log('update');
-    // this.props.fetchCommentsByPost(this.props.match.params.postID);
-  }
-
-  handleChange = (e, comment) => {
+  handleChange = (e) => {
     this.setState({ comment: e.target.value })
-    // console.log(comment, 'kir', e.target.value)
   }
 
   createComment = (comment) => {
@@ -44,18 +35,14 @@ class singlepost extends Component {
       authorID: this.props.user.id,
     };
     this.props.addComment(fields, this.props.match.params.postID);
-    this.setState({ comment: ''})
+    this.setState({ comment: ''});
   }
   
   render() {
     const { current, singlePriceChange, comments, singleCurrVal } = this.props.posts;
     const pct = Math.round(singlePriceChange).toFixed(2);
     let key = this.props.match.params.postID;
-    //console.log(this.props,'p', this.state.comments, comments[key])
-    // console.log(comments,'commentsz')
-    //console.log(singleCurrVal);
-    //console.log(pct);
-    // console.log(comments)
+
     return (
       <div className="bgcolor">
         <Navbar />
@@ -113,6 +100,7 @@ class singlepost extends Component {
 };
 
 function mapStateToProps(state) {
+  console.log('remapping state to props');
   return {
     posts: state.posts,
     user: state.auth.user,

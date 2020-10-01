@@ -19,7 +19,7 @@ const PostsReducer = (state = initialState, action) => {
       return { ...state, current: action.payload };
     case ActionTypes.FETCH_COMMENT:
       let currentComments = state.comments;
-      currentComments[action.payload.id]=action.payload.comments;
+      currentComments[action.payload.postID]=action.payload.comments;
       return { ...state, comments: {...currentComments}};
     case ActionTypes.FETCH_PRICE_CHANGE:
       let currentPriceChange=state.priceChange;
@@ -29,9 +29,10 @@ const PostsReducer = (state = initialState, action) => {
       return {...state, newPostModal: !state.newPostModal};
     case ActionTypes.SINGLE_PRICE_CHANGE:
       return {...state, singlePriceChange: action.payload.change, singleCurrVal: action.payload.currVal };
-    /* case ActionTypes.ADD_COMMENT:
-    let currentCommentss = state.comments;
-      return { ...state, comments: {...currentCommentss, comment: action.payload } };*/
+    case ActionTypes.ADD_COMMENT: // needs it's own reducer to support hot reloading
+    let currComments = state.comments;
+    currComments[action.payload.postID].push(action.payload.newComment);
+      return { ...state, comments: {...currComments} };
     case ActionTypes.FETCH_USER_POSTS:
       return {...state, all: action.payload }
     default:
