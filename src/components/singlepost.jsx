@@ -3,6 +3,10 @@ import "./css_files/singlepost.scss";
 import { connect } from 'react-redux';
 import { fetchPost, singlePriceChange, fetchCommentsByPost, addComment } from '../actions';
 import Navbar from "./navbar";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+// import { ThreeSixtySharp } from '@material-ui/icons';
 
 // this is the full page for a single post
 class singlepost extends Component {
@@ -37,13 +41,14 @@ class singlepost extends Component {
     const fields = {
       text: comment,
       author: this.props.user.username,
+      authorID: this.props.user.id,
     };
     this.props.addComment(fields, this.props.match.params.postID);
     this.setState({ comment: ''})
   }
   
   render() {
-    const { current, singlePriceChange, comments, singleCurrVal } = this.props.posts
+    const { current, singlePriceChange, comments, singleCurrVal } = this.props.posts;
     const pct = Math.round(singlePriceChange).toFixed(2);
     let key = this.props.match.params.postID;
     //console.log(this.props,'p', this.state.comments, comments[key])
@@ -54,10 +59,11 @@ class singlepost extends Component {
     return (
       <div className="bgcolor">
         <Navbar />
+        <Link to="/landingpage" >
+          <button className="btn btn-primary back-button">
+            <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
+          </Link>
         <div className="singlepost">
-          {/*<div className="graph">
-            Graph goes here
-          </div>*/}
           <div className="header">
             <h3>{current.insight}</h3>
             <div className="ticker-post">{current.ticker}</div>
@@ -94,7 +100,7 @@ class singlepost extends Component {
             !comments[key] ? null : comments[key].map( comment => 
               <div className="listOfComments" key={comment.id} style={{marginTop:25}}>
                 <div className="comments">
-                  <div className="username">{comment.author}: &nbsp;</div> {/*only allow first name*/}
+                  <Link to={`/users/${comment.authorID}`} ><div className="username">{comment.author}: &nbsp;</div></Link>
                   <div>{comment.text}</div>
                 </div>
               </div>

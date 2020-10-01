@@ -47,7 +47,7 @@ export default function Post({ post,  showCommentsHandler, fetchPriceChange }) {
               <div>
             {comments.map((comment)=>
               <p className="feed__post__right__comment__content" key={comment.id}>
-                <span className="feed__post__right__comment__author">{`${comment.author}`}</span> 
+                <Link to={`/users/${comment.authorID}`} ><span className="feed__post__right__comment__author">{`${comment.author}`}</span> </Link>
                 {`: ${comment.text}`}</p>
               )}
               <p onClick={onCommentToggle} className="comment-toggle">hide comments</p>
