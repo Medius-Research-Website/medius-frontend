@@ -183,11 +183,11 @@ export function fetchPriceChange(id) {
   };
 }
 
-export function fetchCommentsByPost(id){
+export function fetchCommentsByPost(postID){
   return (dispatch)=>{
-    axios.get(`${ROOT_URL}/posts/comments/${id}/`,{ headers: { authorization: localStorage.getItem('token') } })
+    axios.get(`${ROOT_URL}/posts/comments/${postID}/`,{ headers: { authorization: localStorage.getItem('token') } })
       .then((response) => {
-        dispatch({type: ActionTypes.FETCH_COMMENT, payload: {...response.data,id }} )
+        dispatch({type: ActionTypes.FETCH_COMMENT, payload: {...response.data, postID }} )
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
@@ -197,11 +197,10 @@ export function fetchCommentsByPost(id){
 };
 
 export function addComment(comment, postID) {
-  console.log(comment, 'action');
   return (dispatch) => {
     axios.post(`${ROOT_URL}/posts/comments/${postID}`, comment, { headers: { authorization: localStorage.getItem('token') } })
     .then((response) => {
-      dispatch({ type: ActionTypes.FETCH_COMMENT, payload: response.data });
+      dispatch({ type: ActionTypes.ADD_COMMENT, payload: {...response.data, postID }});
     })
     .catch((error) => {
       console.log(error);

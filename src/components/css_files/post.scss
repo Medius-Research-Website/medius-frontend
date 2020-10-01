@@ -96,6 +96,10 @@
       }
     }
     &__comment{
+
+      a {
+        text-decoration: none;
+      }
       
       @include wrapping;  
       margin-top: 7px;

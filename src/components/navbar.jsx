@@ -20,7 +20,6 @@ class NavbarInstance extends Component {
   }
 
   render() {
-    console.log(this.props.user);
     if (!this.props.authenticated){
       return (
         <Navbar default collapseOnSelect>
@@ -56,7 +55,7 @@ class NavbarInstance extends Component {
       return (
         <Navbar default collapseOnSelect>
           <Navbar.Brand>
-            <NavLink id="title" to="landingpage">medius</NavLink>
+            <NavLink id="title" to="/landingpage">medius</NavLink>
           </Navbar.Brand>
           <Nav className="navbar navbar-expand-sm justify-content-end">
             {/* <button
@@ -76,7 +75,7 @@ class NavbarInstance extends Component {
             <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons" to={`/users/${this.props.user.id}`}>
               My Profile
             </NavLink>*/}
-            <div activeClassName="selected" className="btn ml-auto mr-1 navButtons signInBorder" onClick={this.onClickSignOut}>
+            <div className="btn ml-auto mr-1 navButtons signInBorder" onClick={this.onClickSignOut}>
               Sign Out
             </div>
           </Nav>

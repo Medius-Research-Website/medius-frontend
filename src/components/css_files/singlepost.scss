@@ -28,15 +28,20 @@ body {
   background-color: white;
   width: 700px;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 7%;
   border-radius: 20px;
-  margin-top: 140px;
+}
+
+.back-button {
+  width: 200px;
+  margin-left: 20vw;
+  margin-top: 1%;
 }
 
 .header {
   height: auto;
   padding: 25px;
-  font-weight: bold;  
+  font-weight: bold;
 
   h3 {
     margin: 1%;
@@ -76,6 +81,11 @@ body {
   margin-top: 35px;
   margin-bottom: 35px;
   border-radius: 20px;
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
 }
 
 .comments {
