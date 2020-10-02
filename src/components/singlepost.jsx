@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "./css_files/singlepost.scss";
 import { connect } from 'react-redux';
-import { fetchPost, singlePriceChange, fetchCommentsByPost, addComment } from '../actions';
+import { fetchPost, singlePriceChange, fetchCommentsByPost, addComment, fetchUser } from '../actions';
 import Navbar from "./navbar";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -21,6 +21,7 @@ class singlepost extends Component {
     await this.props.fetchPost(this.props.match.params.postID);
     await this.props.singlePriceChange(this.props.match.params.postID);
     await this.props.fetchCommentsByPost(this.props.match.params.postID);
+    
   }
 
   handleChange = (e) => {
@@ -34,7 +35,11 @@ class singlepost extends Component {
       author: this.props.user.username,
       authorID: this.props.user.id,
     };
-    this.props.addComment(fields, this.props.match.params.postID);
+    if (fields.author && fields.text) {
+      this.props.addComment(fields, this.props.match.params.postID);
+    } else {
+      console.log('You need to be signed in to comment');
+    }
     this.setState({ comment: ''});
   }
   
@@ -42,7 +47,7 @@ class singlepost extends Component {
     const { current, singlePriceChange, comments, singleCurrVal } = this.props.posts;
     const pct = Math.round(singlePriceChange).toFixed(2);
     let key = this.props.match.params.postID;
-
+    console.log(this.props, 'props')
     return (
       <div className="bgcolor">
         <Navbar />
@@ -50,6 +55,11 @@ class singlepost extends Component {
           <button className="btn btn-primary back-button">
             <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
           </Link>
+        <div className="author">
+        {/* hey lol
+          {this.props.user.firstName}
+          {this.props.user.lastName} */}
+        </div>
         <div className="singlepost">
           <div className="header">
             <h3>{current.insight}</h3>
@@ -89,6 +99,7 @@ class singlepost extends Component {
                 <div className="comments">
                   <Link to={`/users/${comment.authorID}`} ><div className="username">{comment.author}: &nbsp;</div></Link>
                   <div>{comment.text}</div>
+                  <div style={{marginLeft:'auto', marginTop:'auto', fontSize:14}}>{new Date(comment.createdAt).toLocaleDateString()}</div>
                 </div>
               </div>
             )
@@ -100,11 +111,11 @@ class singlepost extends Component {
 };
 
 function mapStateToProps(state) {
-  console.log('remapping state to props');
+  console.log('remapping state to props', state);
   return {
     posts: state.posts,
     user: state.auth.user,
   };
 }
 
-export default connect(mapStateToProps, { fetchPost, singlePriceChange, fetchCommentsByPost, addComment })(singlepost);
+export default connect(mapStateToProps, { fetchPost, singlePriceChange, fetchCommentsByPost, addComment, fetchUser })(singlepost);
