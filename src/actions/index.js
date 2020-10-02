@@ -7,6 +7,7 @@ export const ActionTypes = {
   FETCH_POST: 'FETCH_POST',
   FETCH_USERS: 'FETCH_USERS',
   FETCH_USER: 'FETCH_USER',
+  FETCH_CURRENT_USER: 'FETCH_CURRENT_USER',
   FETCH_COMMENT:'FETCH_COMMENT',
   FETCH_PRICE_CHANGE:'FETCH_PRICE_CHANGE',
   FETCH_USER_POSTS: 'FETCH_USER_POSTS',
@@ -43,9 +44,9 @@ export function signinUser(user, history) {
     return (dispatch) => {
       axios.post(`${ROOT_URL}/signin`, user)
         .then((response) => {
-          // console.log(response, 'response');
           dispatch({ type: ActionTypes.AUTH_USER, payload: response.data.user });
-          localStorage.setItem('token', response.data.token);
+          localStorage.setItem('token', response.data.token)
+          localStorage.setItem('userID', response.data.user.id)
           history.push('/landingpage');
         })
         .catch((error) => {
@@ -65,7 +66,9 @@ export function signinUser(user, history) {
         .then((response) => {
           // console.log("successfully signed up user");
           dispatch({ type: ActionTypes.AUTH_USER, payload: response.data.user });
+          console.log(response.data.user.id)
           localStorage.setItem('token', response.data.token);
+          localStorage.setItem('userID', response.data.user.id);
           history.push('/landingpage');
         })
         .catch((error) => {
@@ -85,6 +88,7 @@ export function signinUser(user, history) {
   export function signoutUser(history) {
     return (dispatch) => {
       localStorage.removeItem('token');
+      localStorage.removeItem('userID');
       dispatch({ type: ActionTypes.DEAUTH_USER });
       history.push('/');
     };
@@ -110,6 +114,20 @@ export function fetchUser(id) {
     axios.get(`${ROOT_URL}/user/${id}/`)
       .then((response) => {
         dispatch({ type: ActionTypes.FETCH_USER, payload: response.data });
+      })
+      .catch((error) => {
+        // dispatch an error, in separate error reducer
+        console.log(error);
+      });
+  };
+}
+
+export function fetchCurrentUser(id) {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/user/${id}/`)
+      .then((response) => {
+        console.log(response, 'fetch current user action')
+        dispatch({ type: ActionTypes.FETCH_CURRENT_USER, payload: response.data });
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
