@@ -100,7 +100,6 @@ class singlepost extends Component {
 };
 
 function mapStateToProps(state) {
-  console.log('remapping state to props');
   return {
     posts: state.posts,
     user: state.auth.user,

@@ -19,7 +19,8 @@ export const ActionTypes = {
   EXISTING_USER: 'EXISTING_USER',
   INCOMPLETE_FORM: 'INCOMPLETE_FORM',
   SINGLE_PRICE_CHANGE: 'SINGLE_PRICE_CHANGE',
-  ADD_COMMENT: 'ADD_COMMENT'
+  ADD_COMMENT: 'ADD_COMMENT',
+  ADD_POST: 'ADD_POST'
 };
 
 // trigger to deauth if there is error
@@ -211,7 +212,10 @@ export function addComment(comment, postID) {
 export function createPost(post, history) {
   return (dispatch) => {
     axios.put(`${ROOT_URL}/posts`, post, { headers: { authorization: localStorage.getItem('token') } })
-      .then(() => { history.push('/'); })
+      .then((response) => { 
+        // console.log(response);
+        dispatch({ type: ActionTypes.ADD_POST, payload: response.data });
+      })
       .catch((error) => {
         // dispatch an error, in separate error reducer
         console.log(error);
