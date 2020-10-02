@@ -33,6 +33,12 @@ const PostsReducer = (state = initialState, action) => {
     let currComments = state.comments;
     currComments[action.payload.postID].push(action.payload.newComment);
       return { ...state, comments: {...currComments} };
+    case ActionTypes.ADD_POST: // needs it's own reducer to support hot reloading
+    console.log(state.all);
+    let currPosts = state.all;
+    currPosts[currPosts.length] = action.payload.newPost;
+    console.log(currPosts);
+      return { ...state, all: currPosts };
     case ActionTypes.FETCH_USER_POSTS:
       return {...state, all: action.payload }
     default:

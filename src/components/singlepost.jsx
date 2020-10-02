@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "./css_files/singlepost.scss";
 import { connect } from 'react-redux';
-import { fetchPost, singlePriceChange, fetchCommentsByPost, addComment } from '../actions';
+import { fetchPost, singlePriceChange, fetchCommentsByPost, addComment, fetchCurrentUser } from '../actions';
 import Navbar from "./navbar";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -21,6 +21,7 @@ class singlepost extends Component {
     await this.props.fetchPost(this.props.match.params.postID);
     await this.props.singlePriceChange(this.props.match.params.postID);
     await this.props.fetchCommentsByPost(this.props.match.params.postID);
+    await this.props.fetchCurrentUser(localStorage.getItem('userID'));
   }
 
   handleChange = (e) => {
@@ -100,11 +101,11 @@ class singlepost extends Component {
 };
 
 function mapStateToProps(state) {
-  console.log('remapping state to props');
   return {
     posts: state.posts,
     user: state.auth.user,
+    authenticated: state.auth.authenticated,
   };
 }
 
-export default connect(mapStateToProps, { fetchPost, singlePriceChange, fetchCommentsByPost, addComment })(singlepost);
+export default connect(mapStateToProps, { fetchPost, singlePriceChange, fetchCommentsByPost, addComment, fetchCurrentUser })(singlepost);
