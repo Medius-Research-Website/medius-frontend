@@ -9,6 +9,7 @@ import { Button } from 'react-bootstrap';
 class Profile extends Component {
   componentDidMount() {
     this.props.fetchUser(this.props.match.params.userID);
+    this.props.fetchCurrentUser(localStorage.getItem('userID'));
   }
 
 
