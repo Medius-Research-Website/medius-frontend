@@ -17,22 +17,26 @@ class NewPostModal extends Component{
             formState:InitialState
         }
     }
+
     submit(post){
         //handleSubmission
         console.log(post);
-        //this.props.createPost(post,this.props.history);
+        this.props.createPost(post, this.props.history);
         //still have error: Action mus be a plain object ....
         this.closeModal();
     }
+
     submitFile(files){
         console.log(files);
         //need action to handle this
         this.closeModal();
     }
+
     closeModal(){
         this.setState({formState:InitialState})
         this.props.toggleNewPostModal();
     }
+
     render(){
         if (this.props.show)
             return(

@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import "./css_files/singlepost.scss";
 import { connect } from 'react-redux';
+<<<<<<< HEAD
 import { fetchPost, singlePriceChange, fetchCommentsByPost, addComment, fetchUser } from '../actions';
+=======
+import { fetchPost, singlePriceChange, fetchCommentsByPost, addComment, fetchCurrentUser } from '../actions';
+>>>>>>> ed203a195a85068e27a4da4c0e066436df045a42
 import Navbar from "./navbar";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -21,7 +25,7 @@ class singlepost extends Component {
     await this.props.fetchPost(this.props.match.params.postID);
     await this.props.singlePriceChange(this.props.match.params.postID);
     await this.props.fetchCommentsByPost(this.props.match.params.postID);
-    
+    await this.props.fetchCurrentUser(localStorage.getItem('userID'));
   }
 
   handleChange = (e) => {
@@ -111,11 +115,19 @@ class singlepost extends Component {
 };
 
 function mapStateToProps(state) {
+<<<<<<< HEAD
   console.log('remapping state to props', state);
+=======
+>>>>>>> ed203a195a85068e27a4da4c0e066436df045a42
   return {
     posts: state.posts,
     user: state.auth.user,
+    authenticated: state.auth.authenticated,
   };
 }
 
+<<<<<<< HEAD
 export default connect(mapStateToProps, { fetchPost, singlePriceChange, fetchCommentsByPost, addComment, fetchUser })(singlepost);
+=======
+export default connect(mapStateToProps, { fetchPost, singlePriceChange, fetchCommentsByPost, addComment, fetchCurrentUser })(singlepost);
+>>>>>>> ed203a195a85068e27a4da4c0e066436df045a42

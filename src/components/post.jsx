@@ -29,7 +29,7 @@ export default function Post({ post,  showCommentsHandler, fetchPriceChange }) {
   },[fetchPriceChange]);//equivalent with component did mount
 
   return (
-    console.log(comments),
+    // console.log(comments),
     <div className="feed__post">
       <div className="feed__post__right">
         <Link to={`posts/${post.id}`}  style={{ textDecoration: 'none' }}>

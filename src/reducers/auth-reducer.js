@@ -19,6 +19,8 @@ const AuthReducer = (state = initialState, action) => {
       return { ...state, selectedUser: action.payload };
     case ActionTypes.FETCH_USERS:
       return { ...state, all: action.payload };
+    case ActionTypes.FETCH_CURRENT_USER:
+        return { ...state, authenticated: true, user: action.payload };
     default:
       return state;
   }

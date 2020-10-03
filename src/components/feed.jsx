@@ -8,9 +8,11 @@ class Feed extends Component {
   componentDidMount() {
     this.props.fetchPosts();
   }
+  
   fetchData(){
     
   }
+
   // access posts through this.props.allPosts; display iteratively through .map()
   render() {
     // console.log(this.props.all);
