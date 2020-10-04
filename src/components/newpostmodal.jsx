@@ -9,6 +9,7 @@ import { faLightbulb, faUpload } from '@fortawesome/free-solid-svg-icons'
 const InitialState=0;
 const IdeaFormState=1;
 const FileFormState=2;
+const ArticleFormState=3;
 class NewPostModal extends Component{
     
     constructor(props){
@@ -29,6 +30,12 @@ class NewPostModal extends Component{
     submitFile(files){
         console.log(files);
         //need action to handle this
+        this.closeModal();
+    }
+
+    submitArticle(post){
+        console.log(post);
+        //need action handdle this
         this.closeModal();
     }
 
@@ -61,10 +68,18 @@ class NewPostModal extends Component{
                                     upload a file
                                 </span>
                             </div>
+                            <div className="feed__modal__form__main--ini__article" onClick={(e)=>{this.setState({formState : ArticleFormState});}}>
+                                <span>
+                                <FontAwesomeIcon icon={faUpload} className="fa-7x"/>
+                                    upload an article
+                                </span>
+                            </div>
                         </div>)
                         :((this.state.formState===IdeaFormState)
-                        ?(<InvestmentIdeaForm  submit={this.submit.bind(this)}/>)
-                        :(<FileUpLoadForm submit={this.submitFile.bind(this)} />)
+                            ?(<InvestmentIdeaForm  submit={this.submit.bind(this)}/>)
+                            :((this.state.formState===FileFormState)
+                                ?(<FileUpLoadForm submit={this.submitFile.bind(this)} />)
+                                :(<ArticleForm submit={this.submitArticle.bind(this)}/>))
                         )}  
                     
                     </div>
@@ -101,7 +116,8 @@ const InvestmentIdeaForm = (props)=>{
             insight,
             ticker,
             sell,
-            date:new Date()
+            date:new Date(),
+            type:"idea"
         }
         props.submit(post);
         
@@ -150,7 +166,7 @@ const FileUpLoadForm = (props)=>{
         let element=document.querySelector(".js-file-uploader");
         if (!element) return;
         let files=element.files;
-        props.submit(files);
+        props.submit({files,type:"report"});
     }
     return(
         <div className="feed__modal__form__main">
@@ -160,9 +176,59 @@ const FileUpLoadForm = (props)=>{
     )
 
 }
+
+
+
+const ArticleForm = (props)=>{
+    const [title, setTitle] = useState("");
+    const [bodyContent, setBody]=useState("");
+    
+    const [errorMessages, setErrorMessages]=useState([]);
+    const submitHandler = ()=>{
+        setErrorMessages([]);
+        let ifError=false;
+        if (title==="")
+            {
+                setErrorMessages(prev=>[...prev,"Title cannot be left empty"]);
+                ifError=true;
+            }
+        if (bodyContent==="")
+            {
+                setErrorMessages(prev=>[...prev,"Body field cannot be left empty"]);
+                ifError=true;
+            }
+        
+        if (ifError) return;
+        
+        let post={
+            title,
+            body:bodyContent,
+            type:"article"
+        }
+        props.submit(post);
+    }
+    return(
+        <div className="feed__modal__form__main">
+            <input 
+                value={title}
+                onChange={(e)=>{setTitle(e.target.value)}}
+                className="input--title"
+                type="text" placeholder="Artcile Title"/>
+            <textarea 
+                value={bodyContent}
+                onChange={(e)=>{setBody(e.target.value)}}
+                className="input--body"
+                type="text" placeholder="Article body"/>
+            
+            <button onClick={submitHandler} className="input--submit btn btn-success"> Post </button>
+            {errorMessages.map((errorMessage,idx)=>
+                <p key={idx} className="input--error">{errorMessage}</p>
+            )
+            }
+        </div>
+    )
+}
 const mapStateToProps = (state)=>({
     show:state.posts.newPostModal,
 });
-
-
 export default withRouter(connect(mapStateToProps,{toggleNewPostModal, createPost})(NewPostModal));
