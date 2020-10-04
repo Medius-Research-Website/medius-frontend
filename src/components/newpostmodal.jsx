@@ -6,16 +6,16 @@ import { toggleNewPostModal, createPost } from "../actions";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLightbulb, faUpload } from '@fortawesome/free-solid-svg-icons'
 
-const InitialState=0;
-const IdeaFormState=1;
-const FileFormState=2;
-const ArticleFormState=3;
+const INITIAL_STATE=0;
+const IDEA_FORM_STATE=1;
+const FIRE_FORM_STATE=2;
+const ARTICLE_FORM_STATE=3;
 class NewPostModal extends Component{
     
     constructor(props){
         super(props);
         this.state={
-            formState:InitialState
+            formState:INITIAL_STATE
         }
     }
 
@@ -40,7 +40,7 @@ class NewPostModal extends Component{
     }
 
     closeModal(){
-        this.setState({formState:InitialState})
+        this.setState({formState:INITIAL_STATE})
         this.props.toggleNewPostModal();
     }
 
@@ -54,33 +54,24 @@ class NewPostModal extends Component{
                         <p className="feed__modal__form__title">
                              Something on your mind ?
                         </p>      
-                        {(this.state.formState===InitialState)
+                        {(this.state.formState===INITIAL_STATE)
                         ?(<div className="feed__modal__form__main feed__modal__form__main--ini">
-                            <div className="feed__modal__form__main--ini__idea" onClick={(e)=>{this.setState({formState : IdeaFormState});}}>
-                                
-                                    <FontAwesomeIcon icon={faLightbulb} className="fa-7x icon"/> 
-                                    <span>post an investment idea</span>
-                                
+                            <div className="feed__modal__form__main--ini__idea" onClick={(e)=>{this.setState({formState : IDEA_FORM_STATE});}}>
+                                <FontAwesomeIcon icon={faLightbulb} className="fa-7x icon"/> 
+                                <span>post an investment idea</span>
                             </div>
-                            <div className="feed__modal__form__main--ini__file" onClick={(e)=>{this.setState({formState : FileFormState});}}>
-                                
-
+                            <div className="feed__modal__form__main--ini__file" onClick={(e)=>{this.setState({formState : FIRE_FORM_STATE});}}>
                                 <FontAwesomeIcon icon={faUpload} className="fa-7x icon"/>
-                                <span>
-                                    upload a file
-                                </span>
+                                <span>upload a file</span>
                             </div>
-                            <div className="feed__modal__form__main--ini__article" onClick={(e)=>{this.setState({formState : ArticleFormState});}}>
-                                
-                                    <FontAwesomeIcon icon={faUpload} className="fa-7x icon"/>
-                                
+                            <div className="feed__modal__form__main--ini__article" onClick={(e)=>{this.setState({formState : ARTICLE_FORM_STATE});}}>
+                                <FontAwesomeIcon icon={faUpload} className="fa-7x icon"/>
                                 <span>upload an article</span>
-                                
                             </div>
                         </div>)
-                        :((this.state.formState===IdeaFormState)
+                        :((this.state.formState===IDEA_FORM_STATE)
                             ?(<InvestmentIdeaForm  submit={this.submit.bind(this)}/>)
-                            :((this.state.formState===FileFormState)
+                            :((this.state.formState===FIRE_FORM_STATE)
                                 ?(<FileUpLoadForm submit={this.submitFile.bind(this)} />)
                                 :(<ArticleForm submit={this.submitArticle.bind(this)}/>))
                         )}  
