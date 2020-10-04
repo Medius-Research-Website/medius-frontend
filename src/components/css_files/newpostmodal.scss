@@ -41,25 +41,29 @@
         }
         &__main{
             @include wrapping();
+            height: fit-content;
             &--ini{
+                
                 display: flex;
                 flex-direction: row;
-                height: 300px;
-                div{
+                height: fit-content;
+                &__idea,&__file,&__article{
                     @include wrapping();
                     border:none;
-                    flex-basis: 50%;
+                    flex-basis: 33%;
                     margin:10px;
                     display:flex;
                     padding:auto;
-
+                    flex-direction: column;
                     span{
+                        display: block;
                         margin:auto;
                         display:flex;
                         flex-direction: column;
                         align-items: center;
                         color: rgba(57, 100, 57, 0.979);
                         height: 100%;
+                        
                     }
 
                     svg {

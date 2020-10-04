@@ -57,22 +57,25 @@ class NewPostModal extends Component{
                         {(this.state.formState===InitialState)
                         ?(<div className="feed__modal__form__main feed__modal__form__main--ini">
                             <div className="feed__modal__form__main--ini__idea" onClick={(e)=>{this.setState({formState : IdeaFormState});}}>
-                                <span>
-                                    <FontAwesomeIcon icon={faLightbulb} className="fa-7x"/> 
-                                    post an investment idea
-                                </span>
+                                
+                                    <FontAwesomeIcon icon={faLightbulb} className="fa-7x icon"/> 
+                                    <span>post an investment idea</span>
+                                
                             </div>
                             <div className="feed__modal__form__main--ini__file" onClick={(e)=>{this.setState({formState : FileFormState});}}>
+                                
+
+                                <FontAwesomeIcon icon={faUpload} className="fa-7x icon"/>
                                 <span>
-                                <FontAwesomeIcon icon={faUpload} className="fa-7x"/>
                                     upload a file
                                 </span>
                             </div>
                             <div className="feed__modal__form__main--ini__article" onClick={(e)=>{this.setState({formState : ArticleFormState});}}>
-                                <span>
-                                <FontAwesomeIcon icon={faUpload} className="fa-7x"/>
-                                    upload an article
-                                </span>
+                                
+                                    <FontAwesomeIcon icon={faUpload} className="fa-7x icon"/>
+                                
+                                <span>upload an article</span>
+                                
                             </div>
                         </div>)
                         :((this.state.formState===IdeaFormState)
