@@ -7,6 +7,7 @@ import { fetchPosts,fetchCommentsByPost, fetchPriceChange, likePost } from "../a
 class Feed extends Component {
   componentDidMount() {
     this.props.fetchPosts();
+    // this.props.fetchCurrentUser(localStorage.getItem('userID'));
   }
   
   fetchData(){

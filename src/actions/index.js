@@ -285,7 +285,7 @@ export function singlePriceChange(id) {
 
 export function likePost(id){
   return (dispatch)=>{
-    axios.put(`${ROOT_URL}/user/posts/likes/${id}/`,{ headers: { authorization: localStorage.getItem('token') }})
+    axios.put(`${ROOT_URL}/user/posts/likes/${id}`,{ headers: { authorization: localStorage.getItem('token') }})
       .then(()=>{
         // handle after like or unlike
       })
