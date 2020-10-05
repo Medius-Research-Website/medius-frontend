@@ -295,3 +295,29 @@ export function likePost(id){
       })
   }
 }
+
+export function followUser(myID, theirID){
+  return (dispatch)=>{
+    axios.put(`${ROOT_URL}/user/follow/${myID}/`,theirID, { headers: { authorization: localStorage.getItem('token') }})
+      .then(()=>{
+        // handle hot reload
+      })
+      .catch((error)=>{
+        // handle Errors
+        console.log(error);
+      })
+  }
+}
+
+export function unfollowUser(myID, theirID){
+  return (dispatch)=>{
+    axios.put(`${ROOT_URL}/user/unfollow/${myID}/`,theirID, { headers: { authorization: localStorage.getItem('token') }})
+      .then(()=>{
+        // handle hot reload
+      })
+      .catch((error)=>{
+        // handle Errors
+        console.log(error);
+      })
+  }
+}
