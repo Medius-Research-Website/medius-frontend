@@ -8,14 +8,14 @@ import { Button } from 'react-bootstrap';
 
 class Profile extends Component {
   componentDidMount() {
-    this.props.fetchUser(this.props.match.params.userID);
-    this.props.fetchCurrentUser(localStorage.getItem('userID'));
+    this.props.fetchUser(this.props.match.params.userID);                 // fetching selectedUser
+    this.props.fetchCurrentUser(localStorage.getItem('userID'));          // fetching currentUser
   }
 
 
   // access user through this.props.selectedUser
   // should check if currentUser's username is same as selectedUser's username to determine
-  // if the person is viewing their own page. if it's there page add some kind of edit button
+  // if the person is viewing their own page. if it's their page add some kind of edit button
   // to change their bio
   render() {
     return (
