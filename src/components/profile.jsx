@@ -25,7 +25,7 @@ class Profile extends Component {
 
   // access user through this.props.selectedUser
   // should check if currentUser's username is same as selectedUser's username to determine
-  // if the person is viewing their own page. if it's there page add some kind of edit button
+  // if the person is viewing their own page. if it's their page add some kind of edit button
   // to change their bio
   render() {
     console.log(this.props.selectedUser)
