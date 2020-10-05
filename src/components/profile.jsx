@@ -12,11 +12,12 @@ class Profile extends Component {
     this.props.fetchUser(this.props.match.params.userID);
   }
 
+  // should display a button to follow them if they're not already that calls this
   followUser = () => {
     this.props.followUser(this.props.currentUser.id, this.props.selectedUser.id)
   }
 
-  // not supported in the backend quite yet
+  // if they're already following, should display a button that calls this
   unfollowUser = () => {
     this.props.unfollowUser(this.props.currentUser.id, this.props.selectedUser.id)
   }
