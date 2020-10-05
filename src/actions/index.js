@@ -140,7 +140,7 @@ export function fetchCurrentUser(id) {
 // only can update current user
 export function updateUser(id, fields) {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/user/${id}/`, fields)
+    axios.put(`${ROOT_URL}/user/${id}/`, fields)
       .then((response) => {
         dispatch({ type: ActionTypes.AUTH_USER, payload: response.data });
       })
