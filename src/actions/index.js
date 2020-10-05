@@ -21,7 +21,7 @@ export const ActionTypes = {
   INCOMPLETE_FORM: 'INCOMPLETE_FORM',
   SINGLE_PRICE_CHANGE: 'SINGLE_PRICE_CHANGE',
   ADD_COMMENT: 'ADD_COMMENT',
-  ADD_POST: 'ADD_POST'
+  ADD_POST: 'ADD_POST',
 };
 
 // trigger to deauth if there is error
@@ -281,4 +281,17 @@ export function singlePriceChange(id) {
         console.log(error);
       });
   };
+}
+
+export function likePost(id){
+  return (dispatch)=>{
+    axios.put(`${ROOT_URL}/user/posts/likes/${id}/`,{ headers: { authorization: localStorage.getItem('token') }})
+      .then(()=>{
+        // handle after like or unlike
+      })
+      .catch((error)=>{
+        // handle Errors
+        console.log(error);
+      })
+  }
 }

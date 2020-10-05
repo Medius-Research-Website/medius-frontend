@@ -20,7 +20,16 @@
       font-size: 20px;
       font-weight: bold;
       
+    } @else if ($type==report){
+      font-size: 20px;
+      font-weight: bold;
+    } @else if ($type==article){
+      font-size: 20px;
+      font-weight: bold;
     } @else if ($type==company){
+      font-size: 14px;
+      font-weight: bold;
+    } @else if ($type==topics){
       font-size: 14px;
       font-weight: bold;
     } @else if ($type==title){
@@ -79,6 +88,15 @@
         color:red;
       }
     }
+    .article{
+      @include text(article)
+    }
+    .report{
+      @include text(report)
+    }
+    .topics{
+      @include text(topics)
+    }
   }
 
   &__right{
@@ -87,6 +105,20 @@
       display: flex;
       .interaction-stat{
         flex-basis: 15%;
+        display: flex;
+        flex-direction: column;
+        .line{
+          float:right;
+          *{
+            color:black;
+          
+          }
+        }
+        .liked{
+          *{
+            color:blue!important;
+          }
+        }
       }
       .post-title{
         @include text(title);
