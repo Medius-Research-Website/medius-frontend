@@ -38,7 +38,7 @@ class Signin extends Component {
         email: this.state.email,
         password: this.state.password,
       };
-        this.props.signinUser(user, this.props.history);
+      this.props.signinUser(user, this.props.history);
     }
   }
 

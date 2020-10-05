@@ -12,7 +12,7 @@ import LandingPage from "./pages/landingPage";
 import Community from "./pages/communityPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import singlepost from "./components/singlepost";
-import profile from "./components/profile";
+import Profile from "./components/profile";
 
 const trackingId = "UA-176041306-1"
 ReactGA.initialize(trackingId);
@@ -29,7 +29,7 @@ function App() {
           <Route exact path="/landingpage" component={LandingPage}/>
           <Route exact path="/communitypage" component={Community} />
           <Route exact path="/posts/:postID" component={singlepost} />
-          <Route exact path="/users/:userID" component={profile} />
+          <Route exact path="/users/:userID" component={Profile} />
       </div>
     </Router>
   );

@@ -50,6 +50,7 @@ export function signinUser(user, history) {
           history.push('/landingpage');
         })
         .catch((error) => {
+          console.log(error)
           // console.log("error sign in");
           if(user.email && user.password) {
             dispatch({ type: ActionTypes.INVALID_CREDENTIALS })
