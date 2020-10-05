@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
 import { toggleNewPostModal, createPost } from "../actions";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLightbulb, faUpload } from '@fortawesome/free-solid-svg-icons'
+import { faLightbulb, faUpload, faNewspaper } from '@fortawesome/free-solid-svg-icons'
 
 const INITIAL_STATE=0;
 const IDEA_FORM_STATE=1;
@@ -65,7 +65,7 @@ class NewPostModal extends Component{
                                 <span>upload a file</span>
                             </div>
                             <div className="feed__modal__form__main--ini__article" onClick={(e)=>{this.setState({formState : ARTICLE_FORM_STATE});}}>
-                                <FontAwesomeIcon icon={faUpload} className="fa-7x icon"/>
+                                <FontAwesomeIcon icon={faNewspaper} className="fa-7x icon"/>
                                 <span>upload an article</span>
                             </div>
                         </div>)
