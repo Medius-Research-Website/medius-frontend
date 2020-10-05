@@ -5,9 +5,7 @@ import ReactGA from 'react-ga';
 import Home from "./components/home";
 import history from './history'
 import about from "./components/about";
-import Signup from "./components/signup";
-import Signin from "./components/signin";
-import PrivateRoute from './components/privateroute';
+// import PrivateRoute from './components/privateroute';
 import LandingPage from "./pages/landingPage";
 import Community from "./pages/communityPage";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -24,8 +22,6 @@ function App() {
         {/* <Navbar /> */}
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={about} />
-          <Route exact path="/signup" component={Signup} />
-          <PrivateRoute exact path="/signin" component={Signin} />
           <Route exact path="/landingpage" component={LandingPage}/>
           <Route exact path="/communitypage" component={Community} />
           <Route exact path="/posts/:postID" component={singlepost} />

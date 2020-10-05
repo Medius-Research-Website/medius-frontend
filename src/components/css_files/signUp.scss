@@ -101,3 +101,80 @@ form {
     height: 48px;
     background: linear-gradient(180deg, #5A786F 0%, #8CA88E 100%);
 }
+
+.signUp__modal{
+    &__background{
+        background-color: hsla(0%,0,0,0);
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 0;
+    }
+    &__form{
+        @mixin wrapping{
+            border: 1px solid #292929;
+            border-radius: 20px;
+            padding:25px;
+            background-color: #F2F2F2;
+            box-shadow: inset 0px -1px 1px #929290;
+        }//round-wrapping container
+        z-index: 1;
+        position: absolute;
+        width:600px;
+        
+        top: 50%;
+        left: 30%;
+        transform: translateX(-80%) translateY(-50%);
+        &__close-button{
+            
+            transform: translateX(-50%) translateY(50%);
+            border-radius: 100%;
+            background: rgb(57, 100, 57);
+            border:none;
+            color: white;
+            
+        }
+        &__title{
+            @include wrapping();
+            text-align: center;
+            font-family: "Nexa", sans-serif;
+            font-size: 20px;
+            font-weight: bold;
+            color:black;
+        }
+        &__main{
+            @include wrapping();
+            height: fit-content;
+            display: flex;
+            flex-direction: row; 
+        
+            &__ind,&__org{
+                @include wrapping();
+                border: none;
+                flex-basis: 50%;
+                margin:10px;
+                display:flex;
+                padding:auto;
+                flex-direction: column;
+                align-items: center;
+                span {
+                    display: block;
+                    margin:auto;
+                    display:flex;
+                    flex-direction: column;
+                    align-items: center;
+                    color: rgb(57, 100, 57);
+                    height: 100%;
+                    text-align: center;
+                }
+
+                svg {
+                    height: 50%;
+                    margin: 15%;
+                    color: rgb(57, 100, 57);
+                }
+            }
+            
+        }
+    }
+}
