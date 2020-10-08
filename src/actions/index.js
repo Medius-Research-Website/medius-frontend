@@ -1,7 +1,7 @@
 import axios from 'axios';
 import history from '../history'
-// const ROOT_URL = 'http://localhost:9090/api';
-const ROOT_URL = 'https://medius-api.herokuapp.com/api';
+const ROOT_URL = 'http://localhost:9090/api';
+//const ROOT_URL = 'https://medius-api.herokuapp.com/api';
 
 export const ActionTypes = {
   FETCH_POSTS: 'FETCH_POSTS',
@@ -140,7 +140,8 @@ export function fetchCurrentUser(id) {
 // only can update current user
 export function updateUser(id, fields) {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/user/${id}/`, fields)
+    console.log(fields)
+    axios.put(`${ROOT_URL}/user/${id}/`, fields)
       .then((response) => {
         dispatch({ type: ActionTypes.AUTH_USER, payload: response.data });
       })
@@ -286,9 +287,12 @@ export function singlePriceChange(id) {
 
 export function likePost(id){
   return (dispatch)=>{
+    
+    
     axios.put(`${ROOT_URL}/user/posts/likes/${id}/`,{ headers: { authorization: localStorage.getItem('token') }})
       .then(()=>{
         // handle after like or unlike
+        console.log('I like this!')
       })
       .catch((error)=>{
         // handle Errors
