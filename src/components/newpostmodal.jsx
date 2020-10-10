@@ -168,7 +168,6 @@ const FileUpLoadForm = (props)=>{
             <button onClick={submitHandler} className="input--submit btn btn-success"> Post </button>
         </div>
     )
-
 }
 
 
