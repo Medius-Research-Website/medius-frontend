@@ -232,7 +232,7 @@ export function createPost(post, history) {
   return (dispatch) => {
     axios.put(`${ROOT_URL}/posts`, post, { headers: { authorization: localStorage.getItem('token') } })
       .then((response) => { 
-        // console.log(response);
+        console.log(response);
         dispatch({ type: ActionTypes.ADD_POST, payload: response.data });
       })
       .catch((error) => {
@@ -284,11 +284,14 @@ export function singlePriceChange(id) {
   };
 }
 
-export function likePost(id){
+export function likePost(postID,userId){
+  console.log(postID+ "->" + userId);
   return (dispatch)=>{
-    axios.put(`${ROOT_URL}/user/posts/likes/${id}/`,{ headers: { authorization: localStorage.getItem('token') }})
-      .then(()=>{
+    axios.put(`${ROOT_URL}/user/posts/likes/${userId?userId:"0"}/`,{postID},{ headers: { authorization: localStorage.getItem('token') }})
+      .then((response)=>{
         // handle after like or unlike
+        console.log(response);
+        
       })
       .catch((error)=>{
         // handle Errors

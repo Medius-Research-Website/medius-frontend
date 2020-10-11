@@ -30,6 +30,7 @@ class Feed extends Component {
               likePost={(id)=>{
                 this.props.likePost(id);
               }}
+              userId={this.props.user.id}
               key={post.id}/>
           )})}
         </React.Fragment>
@@ -47,6 +48,7 @@ class Feed extends Component {
 
 const mapStateToProps = (state) => ({
   all: state.posts.all || [],
+  user: state.auth.user
 });
 
 
