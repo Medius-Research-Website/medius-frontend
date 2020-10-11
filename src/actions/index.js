@@ -1,6 +1,6 @@
 import axios from 'axios';
 import history from '../history'
-// const ROOT_URL = 'http://localhost:9090/api';
+//const ROOT_URL = 'http://localhost:9090/api';
 const ROOT_URL = 'https://medius-api.herokuapp.com/api';
 
 export const ActionTypes = {
@@ -284,10 +284,10 @@ export function singlePriceChange(id) {
   };
 }
 
-export function likePost(postID,userId){
-  console.log(postID+ "->" + userId);
+export function likePost(postID, userId){
+  
   return (dispatch)=>{
-    axios.put(`${ROOT_URL}/user/posts/likes/${userId?userId:"0"}/`,{postID},{ headers: { authorization: localStorage.getItem('token') }})
+    axios.put(`${ROOT_URL}/user/posts/likes/${userId}/`,{postID},{ headers: { authorization: localStorage.getItem('token') }})
       .then((response)=>{
         // handle after like or unlike
         console.log(response);

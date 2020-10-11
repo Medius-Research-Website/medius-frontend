@@ -15,6 +15,7 @@ class Feed extends Component {
 
   // access posts through this.props.allPosts; display iteratively through .map()
   render() {
+    console.log(this.props.userId);
     // console.log(this.props.all);
     if (this.props.all.length !== 0) {
       return (
@@ -27,10 +28,10 @@ class Feed extends Component {
               fetchPriceChange={(id)=>{
                 this.props.fetchPriceChange(id);
               }}
-              likePost={(id)=>{
-                this.props.likePost(id);
+              likePost={(postId,userId)=>{
+                this.props.likePost(postId,userId);
               }}
-              userId={this.props.user.id}
+              userId={this.props.userId}
               key={post.id}/>
           )})}
         </React.Fragment>
@@ -48,7 +49,7 @@ class Feed extends Component {
 
 const mapStateToProps = (state) => ({
   all: state.posts.all || [],
-  user: state.auth.user
+  userId: (state.auth.authenticated)?(state.auth.user.id):("0")
 });
 
 

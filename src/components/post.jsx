@@ -7,14 +7,14 @@ import { faThumbsUp, faCommentDots } from '@fortawesome/free-solid-svg-icons'
 
 // this is the small view of a post for the feed page
 export default function Post({ userId, post,  fetchComments, fetchPriceChange, likePost }) {
-  const [showComment,setShowComment]=useState(false); //using hook to manage simple state
+  const [showComment,setShowComment]=useState((userId in post.likes)); //using hook to manage simple state
   const [liked,setLike]=useState(false);//need to handle if the current user liked this post or not
   const comments = useSelector(state=>{
     if (post.id in state.posts.comments)
       return state.posts.comments[post.id];
       else return [];
   });
-
+  
   const onCommentToggle = (e)=>{
     e.stopPropagation();
     setShowComment(prev=>!prev);
@@ -25,7 +25,8 @@ export default function Post({ userId, post,  fetchComments, fetchPriceChange, l
 
   const onLiked = (e)=>{
     setLike(prev=>!prev);
-    likePost(post.id,userId);
+    console.log(userId);
+    likePost(post.id, userId);
   }
 
   return (
