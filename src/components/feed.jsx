@@ -5,8 +5,9 @@ import { withRouter } from "react-router-dom";
 import { fetchPosts,fetchCommentsByPost, fetchPriceChange, likePost, fetchCurrentUser } from "../actions";
 
 class Feed extends Component {
+
   componentDidMount() {
-    console.log(localStorage.getItem('userID'));
+    console.log('component mounting', localStorage.getItem('userID'));
     this.props.fetchPosts();
     this.props.fetchCurrentUser(localStorage.getItem('userID'));
   }
@@ -17,8 +18,6 @@ class Feed extends Component {
 
   // access posts through this.props.allPosts; display iteratively through .map()
   render() {
-    console.log(this.props.userId);
-    // console.log(this.props.all);
     if (this.props.all.length !== 0) {
       return (
         <React.Fragment>
@@ -51,7 +50,7 @@ class Feed extends Component {
 
 const mapStateToProps = (state) => ({
   all: state.posts.all || [],
-  userId: (state.auth.authenticated)?(state.auth.user.id):("0")
+  userId: state.auth.user.id,
 });
 
 
