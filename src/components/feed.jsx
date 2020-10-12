@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import Post from "./post";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { fetchPosts,fetchCommentsByPost, fetchPriceChange, likePost } from "../actions";
+import { fetchPosts,fetchCommentsByPost, fetchPriceChange, likePost, fetchCurrentUser } from "../actions";
 
 class Feed extends Component {
   componentDidMount() {
+    console.log(localStorage.getItem('userID'));
     this.props.fetchPosts();
-    // this.props.fetchCurrentUser(localStorage.getItem('userID'));
+    this.props.fetchCurrentUser(localStorage.getItem('userID'));
   }
   
   fetchData(){
@@ -54,4 +55,4 @@ const mapStateToProps = (state) => ({
 });
 
 
-export default withRouter(connect(mapStateToProps, { fetchPosts, fetchCommentsByPost, fetchPriceChange,likePost } )(Feed));
+export default withRouter(connect(mapStateToProps, { fetchPosts, fetchCommentsByPost, fetchPriceChange,likePost, fetchCurrentUser } )(Feed));
