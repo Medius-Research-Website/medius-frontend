@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NavLink} from "react-router-dom"; //BrowserRouter, Link,
 import { Button } from "react-bootstrap";
-import Signup from './signUp';
+import Signup from './signup';
 import Signin from './signin';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css_files/home.scss";
@@ -23,7 +23,6 @@ class Home extends Component {
     this.setState({
       showSignup: !this.state.showSignup
     });
-    console.log('closed initial modal')
   };
 
   showSigninModal = () => {

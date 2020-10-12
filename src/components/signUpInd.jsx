@@ -77,8 +77,6 @@ class SignUpInd extends Component {
   }
 
   render() {
-    const {show} = this.props;
-    console.log('ind', show)
     if(this.props.userExists && this.props.show){
       return (
         <Modal id="sign-up" show={this.props.show} onHide={this.xOut}>
@@ -111,7 +109,6 @@ class SignUpInd extends Component {
         </Modal>
       );
     } else {
-      console.log('rendering ind');
       return(
         <Modal id="sign-up" show={this.props.show} onHide={this.xOut}>
         <Form noValidate validated={!this.props.userExists && this.state.validated} >
