@@ -1,6 +1,7 @@
 import axios from 'axios';
 import history from '../history'
-const ROOT_URL = 'http://localhost:9090/api';
+//const ROOT_URL = 'http://localhost:9090/api';
+const ROOT_URL = 'https://medius-api.herokuapp.com/api';
 
 export const ActionTypes = {
   FETCH_POSTS: 'FETCH_POSTS',
@@ -231,7 +232,7 @@ export function createPost(post, history) {
   return (dispatch) => {
     axios.put(`${ROOT_URL}/posts`, post, { headers: { authorization: localStorage.getItem('token') } })
       .then((response) => { 
-        // console.log(response);
+        console.log(response);
         dispatch({ type: ActionTypes.ADD_POST, payload: response.data });
       })
       .catch((error) => {
@@ -283,11 +284,40 @@ export function singlePriceChange(id) {
   };
 }
 
-export function likePost(id){
+export function likePost(postID, userId){
+  
   return (dispatch)=>{
-    axios.put(`${ROOT_URL}/user/posts/likes/${id}`,{ headers: { authorization: localStorage.getItem('token') }})
-      .then(()=>{
+    axios.put(`${ROOT_URL}/user/posts/likes/${userId}/`,{postID},{ headers: { authorization: localStorage.getItem('token') }})
+      .then((response)=>{
         // handle after like or unlike
+        console.log(response);
+        
+      })
+      .catch((error)=>{
+        // handle Errors
+        console.log(error);
+      })
+  }
+}
+
+export function followUser(myID, theirID){
+  return (dispatch)=>{
+    axios.put(`${ROOT_URL}/user/follow/${myID}/`,theirID, { headers: { authorization: localStorage.getItem('token') }})
+      .then(()=>{
+        // handle hot reload
+      })
+      .catch((error)=>{
+        // handle Errors
+        console.log(error);
+      })
+  }
+}
+
+export function unfollowUser(myID, theirID){
+  return (dispatch)=>{
+    axios.put(`${ROOT_URL}/user/unfollow/${myID}/`,theirID, { headers: { authorization: localStorage.getItem('token') }})
+      .then(()=>{
+        // handle hot reload
       })
       .catch((error)=>{
         // handle Errors

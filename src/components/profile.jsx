@@ -4,11 +4,22 @@ import { connect } from 'react-redux';
 import { fetchUser } from '../actions';
 import Navbar from "./navbar";
 import { Button } from 'react-bootstrap';
+import {followUser, unfollowUser} from '../actions'
 // import { TransferWithinAStation } from "@material-ui/icons";
 
 class Profile extends Component {
   componentDidMount() {
     this.props.fetchUser(this.props.match.params.userID);
+  }
+
+  // should display a button to follow them if they're not already that calls this
+  followUser = () => {
+    this.props.followUser(this.props.currentUser.id, this.props.selectedUser.id)
+  }
+
+  // if they're already following, should display a button that calls this
+  unfollowUser = () => {
+    this.props.unfollowUser(this.props.currentUser.id, this.props.selectedUser.id)
   }
 
 
@@ -43,4 +54,4 @@ function mapStateToProps(reduxState) {
   };
 }
 
-export default connect(mapStateToProps, { fetchUser })(Profile);
+export default connect(mapStateToProps, { fetchUser, followUser, unfollowUser })(Profile);

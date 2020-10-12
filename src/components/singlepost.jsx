@@ -35,6 +35,7 @@ class singlepost extends Component {
       author: this.props.user.username,
       authorID: this.props.user.id,
     };
+    
     this.props.addComment(fields, this.props.match.params.postID);
     this.setState({ comment: ''});
   }

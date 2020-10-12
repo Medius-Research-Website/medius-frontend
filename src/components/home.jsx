@@ -23,6 +23,7 @@ class Home extends Component {
     this.setState({
       showSignup: !this.state.showSignup
     });
+    console.log('closed initial modal')
   };
 
   showSigninModal = () => {
@@ -33,8 +34,6 @@ class Home extends Component {
   
   
   render() {
-    console.log(this.props);
-
     return (
       // <div class="container full-height-grow">
       <div className="full-height-grow">  
