@@ -50,7 +50,7 @@ class Feed extends Component {
 
 const mapStateToProps = (state) => ({
   all: state.posts.all || [],
-  userId: state.auth.user.id,
+  userId: (state.user.auth.authenticated) ? state.auth.user.id:"0",
 });
 
 
