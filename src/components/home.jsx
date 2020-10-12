@@ -23,7 +23,6 @@ class Home extends Component {
     this.setState({
       showSignup: !this.state.showSignup
     });
-    console.log('closed initial modal')
   };
 
   showSigninModal = () => {

@@ -128,7 +128,6 @@ export function fetchCurrentUser(id) {
   return (dispatch) => {
     axios.get(`${ROOT_URL}/user/${id}/`)
       .then((response) => {
-        console.log(response, 'fetch current user action')
         dispatch({ type: ActionTypes.FETCH_CURRENT_USER, payload: response.data });
       })
       .catch((error) => {
