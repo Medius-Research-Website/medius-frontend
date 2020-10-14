@@ -1,5 +1,5 @@
 import axios from 'axios';
-const ROOT_URL = 'https://medius-api.herokuapp.com/api';
+const ROOT_URL = 'http://localhost:9090/api';
 
 // THIS IS THE ONLY FUNCTION YOU SHOULD CALL - THE OTHER TWO ARE HELPERS
 export function uploadFile(file) {
@@ -22,8 +22,11 @@ function getSignedRequest(file) {
 function uploadFileToS3(signedRequest, file, url) {
     return new Promise((fulfill, reject) => {
       axios.put(signedRequest, file, { headers: { 'Content-Type': file.type } }).then((response) => {
+        console.log(response)
+        console.log(url)
         fulfill(url);
       }).catch((error) => {
+        console.log(error)
         reject(error);
       });
     });

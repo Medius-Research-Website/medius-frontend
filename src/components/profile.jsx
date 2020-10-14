@@ -8,8 +8,11 @@ import {
   fetchPriceChange, 
   fetchCommentsByPost, 
   updateUser} from '../actions';
+import {uploadFile} from '../actions/s3';
+import FileUpload from './FileUpload';
+
 import Navbar from "./navbar";
-import { Button, FormControl, InputGroup } from 'react-bootstrap';
+import { Button, FormControl, InputGroup, Image} from 'react-bootstrap';
 import Post from "./post";
 import {followUser, unfollowUser} from '../actions'
 // import { TransferWithinAStation } from "@material-ui/icons";
@@ -21,6 +24,7 @@ class Profile extends Component {
       name: "",
       picture: "",
       bio: "",
+      file: "",
       editable: false,
     }
     this.onNameChange = this.onNameChange.bind(this)
@@ -53,6 +57,7 @@ class Profile extends Component {
   onPictureChange(event){
     this.setState({picture: event.target.value})
   }
+
   editProfile = () => {
     this.setState({editable: !this.state.editable})
     const firstName = (this.state.name.split(" ")[0] !== "") ? (this.state.name.split(" ")[0]) : (this.props.selectedUser.firstName)
@@ -67,6 +72,15 @@ class Profile extends Component {
     !!this.state.editable && this.props.updateUser(localStorage.getItem('userID'), fields);
     
   }
+
+  handleImageChange = (base64, file) => {
+    console.log(file)
+    uploadFile(file).then(url => {
+      this.setState({picture: url})
+    }).catch(error => {
+      console.log(error)
+    })
+  }
   // access user through this.props.selectedUser
   // should check if currentUser's username is same as selectedUser's username to determine
   // if the person is viewing their own page. if it's there page add some kind of edit button
@@ -79,14 +93,18 @@ class Profile extends Component {
       <div>
         <Navbar />
         <div className="profile-box">
+          <Image src={(this.state.picture === "") ? (this.props.selectedUser.picture) : (this.state.picture) } thumbnail/>
+          {this.state.editable && (
+            <FileUpload accept="image/*" onChange={this.handleImageChange}>
+            </FileUpload>
+          )
+
+          }
           <div>
             {(this.props.selectedUser?.username === this.props.currentUser?.username) ? 
             <Button className="edit-button" onClick={this.editProfile}>Edit</Button> : <></>
             }
-            <p>Timothy Park</p>
-          </div>
-          <div className="occupation">
-            <p>Student at Boston University</p>
+            <Button className="follow-button" >Follow</Button>
           </div>
         </div>
         <div className="user-name">
@@ -162,4 +180,4 @@ function mapStateToProps(reduxState) {
   };
 }
 
-export default connect(mapStateToProps, { fetchUser, fetchCurrentUser, fetchUserPosts, fetchPriceChange, fetchCommentsByPost, updateUser, followUser, unfollowUser })(Profile);
+export default connect(mapStateToProps, { fetchUser, fetchCurrentUser, fetchUserPosts, fetchPriceChange, fetchCommentsByPost, updateUser, followUser, unfollowUser})(Profile);
