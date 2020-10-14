@@ -1,7 +1,7 @@
 import axios from 'axios';
 import history from '../history'
-// const ROOT_URL = 'http://localhost:9090/api';
-const ROOT_URL = 'https://medius-api.herokuapp.com/api';
+const ROOT_URL = 'http://localhost:9090/api';
+// const ROOT_URL = 'https://medius-api.herokuapp.com/api';
 
 export const ActionTypes = {
   FETCH_POSTS: 'FETCH_POSTS',
@@ -67,7 +67,7 @@ export function signinUser(user, history) {
         .then((response) => {
           // console.log("successfully signed up user");
           dispatch({ type: ActionTypes.AUTH_USER, payload: response.data.user });
-          console.log(response.data.user.id)
+          // console.log(response.data.user.id)
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('userID', response.data.user.id);
           history.push('/landingpage');
@@ -127,7 +127,7 @@ export function fetchCurrentUser(id) {
   return (dispatch) => {
     axios.get(`${ROOT_URL}/user/${id}/`)
       .then((response) => {
-        console.log(response, 'fetch current user action')
+        // console.log(response, 'fetch current user action')
         dispatch({ type: ActionTypes.FETCH_CURRENT_USER, payload: response.data });
       })
       .catch((error) => {

@@ -8,7 +8,7 @@ import {
   fetchPriceChange, 
   fetchCommentsByPost, 
   updateUser} from '../actions';
-import {uploadFile} from '../actions/s3';
+import { uploadFile } from '../actions/s3';
 import FileUpload from './FileUpload';
 
 import Navbar from "./navbar";
@@ -86,9 +86,10 @@ class Profile extends Component {
   // if the person is viewing their own page. if it's there page add some kind of edit button
   // to change their bio
   render() {
-    //console.log(this.props.selectedUser)
-    //console.log(this.props.currentUser)
+    // console.log(this.props.selectedUser)
+    // console.log(this.props.currentUser)
     //console.log(this.props.userPosts)
+    if (this.props.selectedUser != null && this.props.currentUser != null) {
     return (
       <div>
         <Navbar />
@@ -101,7 +102,7 @@ class Profile extends Component {
 
           }
           <div>
-            {(this.props.selectedUser?.username === this.props.currentUser?.username) ? 
+            {(this.props.selectedUser.username === this.props.currentUser.username) ? 
             <Button className="edit-button" onClick={this.editProfile}>Edit</Button> : <></>
             }
             <Button className="follow-button" >Follow</Button>
@@ -169,6 +170,11 @@ class Profile extends Component {
         }
       </div>
     );
+      } else {
+        return(
+          <div />
+        )
+      }
   }
 }
 

@@ -16,7 +16,7 @@ class Feed extends Component {
   // access posts through this.props.allPosts; display iteratively through .map()
   render() {
     // console.log(this.props.all);
-    if (this.props.all.length !== 0) {
+    if (false) {
       return (
         <React.Fragment>
           {this.props.all.map((post) => {return( 
