@@ -1,7 +1,7 @@
 import axios from 'axios';
 import history from '../history'
-const ROOT_URL = 'http://localhost:9090/api';
-// const ROOT_URL = 'https://medius-api.herokuapp.com/api';
+// const ROOT_URL = 'http://localhost:9090/api';
+const ROOT_URL = 'https://medius-api.herokuapp.com/api';
 
 export const ActionTypes = {
   FETCH_POSTS: 'FETCH_POSTS',
