@@ -2,6 +2,15 @@ import axios from 'axios';
 const ROOT_URL = 'http://localhost:9090/api';
 // const ROOT_URL = 'https://medius-api.herokuapp.com/api';
 
+// THIS IS THE ONLY FUNCTION YOU SHOULD CALL - THE OTHER TWO ARE HELPERS
+export function uploadFile(file) {
+  // returns a promise so you can handle error and completion in your component
+  return getSignedRequest(file).then((response) => {
+      return uploadFileToS3(response.data.signedRequest, file, response.data.url);
+  });
+}
+
+
 function getSignedRequest(file) {
     const fileName = encodeURIComponent(file.name);
     // hit our own server to get a signed s3 url

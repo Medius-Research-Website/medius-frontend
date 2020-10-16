@@ -22,7 +22,6 @@ class SignUp extends Component{
     }
 
     changeInd = () => {
-        console.log('changing ind')
         this.setState({
             showInd: !this.state.showInd,
         });
@@ -30,7 +29,6 @@ class SignUp extends Component{
     }
     
     changeOrg = () => {
-        console.log('changing org')
         this.setState({
             showOrg: !this.state.showOrg
         });
@@ -39,7 +37,6 @@ class SignUp extends Component{
 
     render(){
       // console.log('signup', this.props)
-      console.log('signup state', this.state)
         if (this.props.showSignup) {
             return(
                 <div className="signUp__modal">
@@ -67,7 +64,6 @@ class SignUp extends Component{
         else if (this.state.showInd)
             return <SignUpInd show={this.state.showInd} stateChange={this.changeInd}/>;
         else if (this.state.showOrg) {
-            console.log('org')
             return <SignUpOrg show={this.state.showOrg} stateChange={this.changeOrg}/>;
         }
         else

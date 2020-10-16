@@ -38,22 +38,15 @@ class singlepost extends Component {
     this.props.addComment(fields, this.props.match.params.postID);
     this.setState({ comment: ''});
   }
-  
-  render() {
-    const { current, singlePriceChange, comments, singleCurrVal } = this.props.posts;
+
+  renderInvestment = () => {
+    const { current, singlePriceChange, singleCurrVal } = this.props.posts;
     const pct = Math.round(singlePriceChange).toFixed(2);
-    let key = this.props.match.params.postID;
 
     return (
-      <div className="bgcolor">
-        <Navbar />
-        <Link to="/landingpage" >
-          <button className="btn btn-primary back-button">
-            <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
-          </Link>
-        <div className="singlepost">
+      <div className="singlepost">
           <div className="header">
-            <h3>{current.insight}</h3>
+            <h3>{current.idea}</h3>
             <div className="ticker-post">{current.ticker}</div>
             <div className="sector">Sector: {current.sector}</div>
             <div className="percent">
@@ -65,9 +58,51 @@ class singlepost extends Component {
             { current.sell ? ( <div className="bubble--sell">Sell</div> ) : ( <div className="bubble--buy">Buy</div> ) }
           </div>
           <div className="description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut urna semper risus vestibulum tristique. Phasellus viverra tortor ligula. Proin condimentum nibh a ligula dapibus ullamcorper vel non ipsum. Vestibulum pretium libero non pulvinar vulputate. Mauris orci diam, lacinia vel rutrum efficitur, blandit nec mi. Proin vitae mi lorem. Donec porta condimentum massa nec tempor. Praesent rutrum lacinia massa, eu efficitur mauris vulputate ut. Fusce lacus metus, suscipit a facilisis quis, ultricies ac leo. Maecenas nibh libero, aliquam id ultricies vel, aliquam non nulla. Donec felis sapien, finibus ac eros in, suscipit dapibus velit. Pellentesque dapibus elit mauris, vel dignissim odio fermentum sit amet. Proin et turpis vitae felis rhoncus malesuada vitae vel nisl. Nulla metus velit, vestibulum in magna eu, faucibus commodo lacus. Sed neque neque, tempor ac aliquam ac, maximus a tortor. Sed sodales auctor massa non ullamcorper.
+            {current.insight}
           </div>
-        </div>
+      </div>
+    )
+  }
+
+  renderArticle = () => {
+    const { current } = this.props.posts;
+    console.log(current)
+
+    return (
+      <div className="singlepost">
+          <div className="header">
+            <h3>{current.idea}</h3>
+          </div>
+          <div className="description">
+            {current.insight}
+          </div>
+      </div>
+
+    )
+  }
+
+  renderUpload = () => {
+    const { current } = this.props.posts;
+
+    return (
+      <div className="singlepost">
+          <div className="header">
+            <h3>{current.idea}</h3>
+          </div>
+          <div className="description">
+            {current.insight}
+          </div>
+            <img src={current.file} alt='pdf file when i get it to render' />
+      </div>
+
+    )
+  }
+
+  renderComments = () => {
+    const { comments } = this.props.posts;
+    let key = this.props.match.params.postID;
+
+    return (
         <div className="comment">
           <div className="addComment">
             <input
@@ -95,8 +130,56 @@ class singlepost extends Component {
             )
           }
         </div>
-      </div>
-    );
+    )
+
+  }
+  
+  render() {
+    const { current } = this.props.posts;
+    // const pct = Math.round(singlePriceChange).toFixed(2);
+    // let key = this.props.match.params.postID;
+
+    if (current.type === "idea") {
+      return (
+        <div className="bgcolor">
+          <Navbar />
+          <Link to="/landingpage" >
+            <button className="btn btn-primary back-button">
+              <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
+            </Link>
+
+          {this.renderInvestment()}
+          {this.renderComments()}
+        </div>
+      );
+    } else if (current.type === "article"){
+        return (
+          <div className="bgcolor">
+            <Navbar />
+            <Link to="/landingpage" >
+              <button className="btn btn-primary back-button">
+                <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
+              </Link>
+
+            {this.renderArticle()}
+            {this.renderComments()}
+          </div>
+        );
+    } else {
+      return (
+        <div className="bgcolor">
+          <Navbar />
+          <Link to="/landingpage" >
+            <button className="btn btn-primary back-button">
+              <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
+            </Link>
+
+          {this.renderUpload()}
+          {this.renderComments()}
+        </div>
+      );
+
+    }
   };
 };
 

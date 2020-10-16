@@ -3,8 +3,9 @@ import './css_files/newpostmodal.scss';
 import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
 import { toggleNewPostModal, createPost } from "../actions";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLightbulb, faUpload, faNewspaper } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLightbulb, faUpload, faNewspaper } from '@fortawesome/free-solid-svg-icons';
+import { uploadFile } from '../actions/s3';
 
 const INITIAL_STATE=0;
 const IDEA_FORM_STATE=1;
@@ -21,21 +22,21 @@ class NewPostModal extends Component{
 
     submit(post){
         //handleSubmission
-        console.log(post);
+        console.log('submitting in modal', post);
         this.props.createPost(post, this.props.history);
         //still have error: Action mus be a plain object ....
         this.closeModal();
     }
 
-    submitFile(files){
-        console.log(files);
-        //need action to handle this
+    submitFile(post){
+        console.log(post);
+        this.props.createPost(post, this.props.history);
         this.closeModal();
     }
 
     submitArticle(post){
         console.log(post);
-        //need action handdle this
+        this.props.createPost(post, this.props.history);
         this.closeModal();
     }
 
@@ -116,6 +117,7 @@ const InvestmentIdeaForm = (props)=>{
         props.submit(post);
         
     }
+
     return(
         <div className="feed__modal__form__main">
             <input 
@@ -156,19 +158,69 @@ const Switch = (props)=>{
     )
 }
 const FileUpLoadForm = (props)=>{
+    const [title, setTitle] = useState("");
+    const [bodyContent, setBody]=useState("");
+    const [errorMessages, setErrorMessages]=useState([]);
+    const [file, setFile]=useState("");
+
     const submitHandler=()=>{
-        let element=document.querySelector(".js-file-uploader");
-        if (!element) return;
-        let files=element.files;
-        props.submit({files,type:"report"});
+
+        setErrorMessages([]);
+        let ifError=false;
+        if (title==="")
+            {
+                setErrorMessages(prev=>[...prev,"Title cannot be left empty"]);
+                ifError=true;
+            }
+        if (bodyContent==="")
+            {
+                setErrorMessages(prev=>[...prev,"Body field cannot be left empty"]);
+                ifError=true;
+            }
+        
+        if (ifError) return;
+        
+        let post={
+            idea: title,
+            insight: bodyContent,
+            file,
+            type:"report"
+        }
+        console.log(post);
+        props.submit(post);
     }
+
+    const handleFileChange = (event) => {
+        console.log(props);
+        const file = event.target.files[0];
+        console.log(file)
+        uploadFile(file).then(url => {
+            setFile(url)
+        }).catch(error => {
+          console.log(error)
+        })
+    }
+
     return(
         <div className="feed__modal__form__main">
-            <input className="js-file-uploader" type="file"/>
+            <input 
+                value={title}
+                onChange={(e)=>{setTitle(e.target.value)}}
+                className="input--title"
+                type="text" placeholder="Artcile Title"/>
+            <textarea 
+                value={bodyContent}
+                onChange={(e)=>{setBody(e.target.value)}}
+                className="input--body"
+                type="text" placeholder="Article body"/>
+            
+            <input type="file" accept="application/pdf" onChange={handleFileChange} /> 
             <button onClick={submitHandler} className="input--submit btn btn-success"> Post </button>
+            {errorMessages.map((errorMessage,idx)=>
+                <p key={idx} className="input--error">{errorMessage}</p>
+            )}
         </div>
     )
-
 }
 
 
