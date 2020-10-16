@@ -46,7 +46,7 @@ class singlepost extends Component {
     return (
       <div className="singlepost">
           <div className="header">
-            <h3>{current.insight}</h3>
+            <h3>{current.idea}</h3>
             <div className="ticker-post">{current.ticker}</div>
             <div className="sector">Sector: {current.sector}</div>
             <div className="percent">
@@ -58,7 +58,7 @@ class singlepost extends Component {
             { current.sell ? ( <div className="bubble--sell">Sell</div> ) : ( <div className="bubble--buy">Buy</div> ) }
           </div>
           <div className="description">
-            {current.idea}
+            {current.insight}
           </div>
       </div>
     )
@@ -71,10 +71,10 @@ class singlepost extends Component {
     return (
       <div className="singlepost">
           <div className="header">
-            <h3>{current.insight}</h3>
+            <h3>{current.idea}</h3>
           </div>
           <div className="description">
-            {current.idea}
+            {current.insight}
           </div>
       </div>
 

@@ -3,8 +3,9 @@ import './css_files/newpostmodal.scss';
 import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
 import { toggleNewPostModal, createPost } from "../actions";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLightbulb, faUpload, faNewspaper } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLightbulb, faUpload, faNewspaper } from '@fortawesome/free-solid-svg-icons';
+import { uploadFile } from '../actions/s3';
 
 const INITIAL_STATE=0;
 const IDEA_FORM_STATE=1;
@@ -156,16 +157,62 @@ const Switch = (props)=>{
     )
 }
 const FileUpLoadForm = (props)=>{
+    const [title, setTitle] = useState("");
+    const [bodyContent, setBody]=useState("");
+    const [errorMessages, setErrorMessages]=useState([]);
+
     const submitHandler=()=>{
         let element=document.querySelector(".js-file-uploader");
+
+        setErrorMessages([]);
+        let ifError=false;
+        if (title==="")
+            {
+                setErrorMessages(prev=>[...prev,"Title cannot be left empty"]);
+                ifError=true;
+            }
+        if (bodyContent==="")
+            {
+                setErrorMessages(prev=>[...prev,"Body field cannot be left empty"]);
+                ifError=true;
+            }
+        
+        if (ifError) return;
         if (!element) return;
-        let files=element.files;
-        props.submit({files,type:"report"});
+        
+        console.log(element);
+        uploadFile(element).then(url => {
+            let post={
+                title,
+                body:bodyContent,
+                file: url,
+                type:"report"
+            }
+            console.log(post);
+            props.submit(post);
+        }).catch(error => {
+            //handle error
+        });
     }
+
     return(
         <div className="feed__modal__form__main">
+            <input 
+                value={title}
+                onChange={(e)=>{setTitle(e.target.value)}}
+                className="input--title"
+                type="text" placeholder="Artcile Title"/>
+            <textarea 
+                value={bodyContent}
+                onChange={(e)=>{setBody(e.target.value)}}
+                className="input--body"
+                type="text" placeholder="Article body"/>
+            
             <input className="js-file-uploader" type="file"/>
             <button onClick={submitHandler} className="input--submit btn btn-success"> Post </button>
+            {errorMessages.map((errorMessage,idx)=>
+                <p key={idx} className="input--error">{errorMessage}</p>
+            )}
         </div>
     )
 }
