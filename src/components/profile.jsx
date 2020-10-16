@@ -41,7 +41,7 @@ class Profile extends Component {
 
   // should display a button to follow them if they're not already that calls this
   followUser = () => {
-    this.props.followUser(this.props.currentUser.id, this.props.selectedUser.username)
+    this.props.followUser(this.props.currentUser.id, this.props.selectedUser.id)
   }
 
   // if they're already following, should display a button that calls this

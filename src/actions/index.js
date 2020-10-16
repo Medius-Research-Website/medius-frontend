@@ -303,7 +303,7 @@ export function likePost(id){
 
 export function followUser(myID, username){
   return () => {
-    axios.put(`${ROOT_URL}/user/follow/${myID}/`, username, { headers: { authorization: localStorage.getItem('token') }})
+    axios.patch(`${ROOT_URL}/user/follow/${myID}/`, username, { headers: { authorization: localStorage.getItem('token') }})
       .then(()=>{
         // handle hot reload
       })
@@ -316,7 +316,7 @@ export function followUser(myID, username){
 
 export function unfollowUser(myID, theirID){
   return (dispatch)=>{
-    axios.put(`${ROOT_URL}/user/unfollow/${myID}/`,theirID, { headers: { authorization: localStorage.getItem('token') }})
+    axios.patch(`${ROOT_URL}/user/unfollow/${myID}/`,theirID, { headers: { authorization: localStorage.getItem('token') }})
       .then(()=>{
         // handle hot reload
       })
