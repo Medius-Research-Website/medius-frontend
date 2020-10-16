@@ -13,10 +13,17 @@
 }
 
 .user-name{
-  margin-top: -200px;
-  margin-left: 550px;
+  margin-top: -215px;
+  margin-left: -30px;
   font-size: 50px;
   width: 300px
+}
+
+.profile-picture{
+  height: 196px;
+  width: 196px;
+  margin-top: -20px;
+  margin-left: -20px;
 }
 
 .bio{
@@ -24,7 +31,8 @@
   background-image: linear-gradient(#5A786F, #8CA88E);
   margin-top: 30px;
   margin-bottom: 15px;
-  margin-left: 0px;
+  margin-left: 550px;
+  color: black;
   margin-right: 7px;
   width: 1000px;
   height: 60px;
@@ -49,10 +57,6 @@
   display: inline-block;
 }
 
-.bio{
-  margin-left: 550px;
-  color: black;
-}
 
 .reports{
   padding: 20px;
@@ -74,7 +78,15 @@
   height: 40px;
   width: 60px;
   margin-left: 135px;
-  margin-top: -35px;
+  margin-top: -200px;
+}
+
+.upload-button{
+  display: block;
+  height: 40px;
+  width: 100px;
+  margin-left: 135px;
+  margin-top: -100px;
 }
 
 .follow-button{
@@ -82,7 +94,7 @@
   height: 40px;
   width: 80px;
   margin-left: 135px;
-  margin-top: 20px;
+  margin-top: -150px;
 }
 .occupation {
   margin-top: 15px;

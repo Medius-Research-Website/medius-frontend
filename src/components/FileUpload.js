@@ -1,6 +1,6 @@
 import React from "react";
 import Files from "react-butterfiles";
-import UploadIcon from "@material-ui/icons/Publish";
+import {Button} from 'react-bootstrap';
 
 const FileUpload = ({ accept, onChange = () => {}, children, ...props }) => {
   const handleImageChange = (files) => {
@@ -24,7 +24,7 @@ const FileUpload = ({ accept, onChange = () => {}, children, ...props }) => {
       onSuccess={handleImageChange}
       onError={(err) => console.log("[ERROR]", err)} // TODO: use snackbar
     >
-      {({ browseFiles }) => <UploadIcon onClick={browseFiles}>{children}</UploadIcon>}
+      {({ browseFiles }) => <Button className="upload-button" onClick={browseFiles}>Upload {children}</Button>}
     </Files>
   );
 };

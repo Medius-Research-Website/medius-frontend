@@ -1,7 +1,7 @@
 import axios from 'axios';
 import history from '../history'
-// const ROOT_URL = 'http://localhost:9090/api';
-const ROOT_URL = 'https://medius-api.herokuapp.com/api';
+const ROOT_URL = 'http://localhost:9090/api';
+//const ROOT_URL = 'https://medius-api.herokuapp.com/api';
 
 export const ActionTypes = {
   FETCH_POSTS: 'FETCH_POSTS',
@@ -301,9 +301,9 @@ export function likePost(id){
   }
 }
 
-export function followUser(myID, theirID){
-  return (dispatch)=>{
-    axios.put(`${ROOT_URL}/user/follow/${myID}/`,theirID, { headers: { authorization: localStorage.getItem('token') }})
+export function followUser(myID, username){
+  return () => {
+    axios.put(`${ROOT_URL}/user/follow/${myID}/`, username, { headers: { authorization: localStorage.getItem('token') }})
       .then(()=>{
         // handle hot reload
       })

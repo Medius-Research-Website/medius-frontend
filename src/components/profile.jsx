@@ -7,14 +7,15 @@ import {
   fetchUserPosts, 
   fetchPriceChange, 
   fetchCommentsByPost, 
-  updateUser} from '../actions';
+  updateUser,
+  followUser, 
+  unfollowUser} from '../actions';
 import { uploadFile } from '../actions/s3';
 import FileUpload from './FileUpload';
-
+import EditableTextarea from './EditableTextarea';
 import Navbar from "./navbar";
 import { Button, FormControl, InputGroup, Image} from 'react-bootstrap';
 import Post from "./post";
-import {followUser, unfollowUser} from '../actions'
 // import { TransferWithinAStation } from "@material-ui/icons";
 
 class Profile extends Component {
@@ -40,7 +41,7 @@ class Profile extends Component {
 
   // should display a button to follow them if they're not already that calls this
   followUser = () => {
-    this.props.followUser(this.props.currentUser.id, this.props.selectedUser.id)
+    this.props.followUser(this.props.currentUser.id, this.props.selectedUser.username)
   }
 
   // if they're already following, should display a button that calls this
@@ -63,9 +64,11 @@ class Profile extends Component {
     const firstName = (this.state.name.split(" ")[0] !== "") ? (this.state.name.split(" ")[0]) : (this.props.selectedUser.firstName)
     const lastName = (this.state.name.split(" ")[1] !== undefined) ? (this.state.name.split(" ")[1]) : (this.props.selectedUser.lastName)
     const bio = (this.state.bio !== "") ? (this.state.bio) : (this.props.selectedUser.bio)
+    const picture = (this.state.picture !== "") ? (this.state.picture) : (this.props.selectedUser.picture)
     const fields = {
       firstName: firstName,
       lastName: lastName,
+      picture: picture,
       bio: bio,
     }    
 
@@ -94,7 +97,7 @@ class Profile extends Component {
       <div>
         <Navbar />
         <div className="profile-box">
-          <Image src={(this.state.picture === "") ? (this.props.selectedUser.picture) : (this.state.picture) } thumbnail/>
+          <Image className="profile-picture" src={(this.state.picture === "") ? (this.props.selectedUser.picture) : (this.state.picture) }/>
           {this.state.editable && (
             <FileUpload accept="image/*" onChange={this.handleImageChange}>
             </FileUpload>
@@ -105,22 +108,12 @@ class Profile extends Component {
             {(this.props.selectedUser.username === this.props.currentUser.username) ? 
             <Button className="edit-button" onClick={this.editProfile}>Edit</Button> : <></>
             }
-            <Button className="follow-button" >Follow</Button>
+            <Button className="follow-button" onClick={this.followUser} >Follow</Button>
           </div>
         </div>
-        <div className="user-name">
-          {(this.state.editable) ? 
-            (
-              <InputGroup >
-              <FormControl placeholder={this.props.selectedUser?.firstName + " " + this.props.selectedUser?.lastName} onChange={this.onNameChange}/>
-              </InputGroup> 
-            ) 
-            : 
-            (
-              ((this.state.name === "") ? (this.props.selectedUser?.firstName + " " + this.props.selectedUser?.lastName) : (this.state.name))
-            )}
-          
-        </div>
+        <EditableTextarea className="user-name" isEditing={this.state.editable} onChange={this.onNameChange}>
+          {(this.state.name === "") ? (this.props.selectedUser?.firstName + " " + this.props.selectedUser?.lastName) : (this.state.name)}
+        </EditableTextarea>
         <div className="user-info">
           2 posts • 0 following • 4952 followers
         </div>
