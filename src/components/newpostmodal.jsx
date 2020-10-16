@@ -22,21 +22,21 @@ class NewPostModal extends Component{
 
     submit(post){
         //handleSubmission
-        console.log(post);
+        console.log('submitting in modal', post);
         this.props.createPost(post, this.props.history);
         //still have error: Action mus be a plain object ....
         this.closeModal();
     }
 
-    submitFile(files){
-        console.log(files);
-        //need action to handle this
+    submitFile(post){
+        console.log(post);
+        this.props.createPost(post, this.props.history);
         this.closeModal();
     }
 
     submitArticle(post){
         console.log(post);
-        //need action handdle this
+        this.props.createPost(post, this.props.history);
         this.closeModal();
     }
 
@@ -117,6 +117,7 @@ const InvestmentIdeaForm = (props)=>{
         props.submit(post);
         
     }
+
     return(
         <div className="feed__modal__form__main">
             <input 
@@ -160,9 +161,9 @@ const FileUpLoadForm = (props)=>{
     const [title, setTitle] = useState("");
     const [bodyContent, setBody]=useState("");
     const [errorMessages, setErrorMessages]=useState([]);
+    const [file, setFile]=useState("");
 
     const submitHandler=()=>{
-        let element=document.querySelector(".js-file-uploader");
 
         setErrorMessages([]);
         let ifError=false;
@@ -178,21 +179,26 @@ const FileUpLoadForm = (props)=>{
             }
         
         if (ifError) return;
-        if (!element) return;
         
-        console.log(element);
-        uploadFile(element).then(url => {
-            let post={
-                title,
-                body:bodyContent,
-                file: url,
-                type:"report"
-            }
-            console.log(post);
-            props.submit(post);
+        let post={
+            idea: title,
+            insight: bodyContent,
+            file,
+            type:"report"
+        }
+        console.log(post);
+        props.submit(post);
+    }
+
+    const handleFileChange = (event) => {
+        console.log(props);
+        const file = event.target.files[0];
+        console.log(file)
+        uploadFile(file).then(url => {
+            setFile(url)
         }).catch(error => {
-            //handle error
-        });
+          console.log(error)
+        })
     }
 
     return(
@@ -208,7 +214,7 @@ const FileUpLoadForm = (props)=>{
                 className="input--body"
                 type="text" placeholder="Article body"/>
             
-            <input className="js-file-uploader" type="file"/>
+            <input type="file" accept="application/pdf" onChange={handleFileChange} /> 
             <button onClick={submitHandler} className="input--submit btn btn-success"> Post </button>
             {errorMessages.map((errorMessage,idx)=>
                 <p key={idx} className="input--error">{errorMessage}</p>

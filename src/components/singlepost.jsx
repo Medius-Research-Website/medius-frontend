@@ -81,6 +81,23 @@ class singlepost extends Component {
     )
   }
 
+  renderUpload = () => {
+    const { current } = this.props.posts;
+
+    return (
+      <div className="singlepost">
+          <div className="header">
+            <h3>{current.idea}</h3>
+          </div>
+          <div className="description">
+            {current.insight}
+          </div>
+            <img src={current.file} alt='pdf file when i get it to render' />
+      </div>
+
+    )
+  }
+
   renderComments = () => {
     const { comments } = this.props.posts;
     let key = this.props.match.params.postID;
@@ -135,7 +152,7 @@ class singlepost extends Component {
           {this.renderComments()}
         </div>
       );
-    } else {
+    } else if (current.type === "article"){
         return (
           <div className="bgcolor">
             <Navbar />
@@ -148,6 +165,20 @@ class singlepost extends Component {
             {this.renderComments()}
           </div>
         );
+    } else {
+      return (
+        <div className="bgcolor">
+          <Navbar />
+          <Link to="/landingpage" >
+            <button className="btn btn-primary back-button">
+              <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
+            </Link>
+
+          {this.renderUpload()}
+          {this.renderComments()}
+        </div>
+      );
+
     }
   };
 };
