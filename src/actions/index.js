@@ -1,11 +1,7 @@
 import axios from 'axios';
 import history from '../history'
 const ROOT_URL = 'http://localhost:9090/api';
-<<<<<<< HEAD
 //const ROOT_URL = 'https://medius-api.herokuapp.com/api';
-=======
-// const ROOT_URL = 'https://medius-api.herokuapp.com/api';
->>>>>>> 520e32679d4039762ef099c50f8bb0dc97fd488b
 
 export const ActionTypes = {
   FETCH_POSTS: 'FETCH_POSTS',
@@ -131,10 +127,7 @@ export function fetchCurrentUser(id) {
   return (dispatch) => {
     axios.get(`${ROOT_URL}/user/${id}/`)
       .then((response) => {
-<<<<<<< HEAD
         // console.log(response, 'fetch current user action')
-=======
->>>>>>> 520e32679d4039762ef099c50f8bb0dc97fd488b
         dispatch({ type: ActionTypes.FETCH_CURRENT_USER, payload: response.data });
       })
       .catch((error) => {
@@ -310,7 +303,7 @@ export function likePost(id){
 
 export function followUser(myID, theirID){
   return (dispatch)=>{
-    axios.put(`${ROOT_URL}/user/follow/${myID}/`,theirID, { headers: { authorization: localStorage.getItem('token') }})
+    axios.patch(`${ROOT_URL}/user/follow/${myID}/`,theirID, { headers: { authorization: localStorage.getItem('token') }})
       .then((response)=>{
         dispatch({ type: ActionTypes.FETCH_USER, payload: response.data });
       })
@@ -323,7 +316,7 @@ export function followUser(myID, theirID){
 
 export function unfollowUser(myID, theirID){
   return (dispatch)=>{
-    axios.put(`${ROOT_URL}/user/unfollow/${myID}/`,theirID, { headers: { authorization: localStorage.getItem('token') }})
+    axios.patch(`${ROOT_URL}/user/unfollow/${myID}/`,theirID, { headers: { authorization: localStorage.getItem('token') }})
       .then((response)=>{
         dispatch({ type: ActionTypes.FETCH_USER, payload: response.data });
       })

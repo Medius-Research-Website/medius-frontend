@@ -41,12 +41,18 @@ class Profile extends Component {
 
   // should display a button to follow them if they're not already that calls this
   followUser = () => {
-    this.props.followUser(this.props.currentUser.id, this.props.selectedUser.id)
+    const fields = {
+      id: this.props.selectedUser.id
+    }
+    this.props.followUser(this.props.currentUser.id, fields)
   }
 
   // if they're already following, should display a button that calls this
   unfollowUser = () => {
-    this.props.unfollowUser(this.props.currentUser.id, this.props.selectedUser.id)
+    const fields = {
+      id: this.props.selectedUser.id
+    }
+    this.props.unfollowUser(this.props.currentUser.id, fields)
   }
 
   onNameChange(event){

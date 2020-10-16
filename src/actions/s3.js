@@ -33,12 +33,3 @@ function uploadFileToS3(signedRequest, file, url) {
       });
     });
 }
-
-// THIS IS THE ONLY FUNCTION YOU SHOULD CALL - THE OTHER TWO ARE HELPERS
-export function uploadFile(file) {
-  // returns a promise so you can handle error and completion in your component
-  return getSignedRequest(file).then((response) => {
-    console.log('uploadfine', response)
-      return uploadFileToS3(response.data.signedRequest, file, response.data.url);
-  });
-}
