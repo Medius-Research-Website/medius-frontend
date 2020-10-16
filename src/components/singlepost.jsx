@@ -46,7 +46,7 @@ class singlepost extends Component {
     return (
       <div className="singlepost">
           <div className="header">
-            <h3>{current.insight}</h3>
+            <h3>{current.idea}</h3>
             <div className="ticker-post">{current.ticker}</div>
             <div className="sector">Sector: {current.sector}</div>
             <div className="percent">
@@ -58,7 +58,7 @@ class singlepost extends Component {
             { current.sell ? ( <div className="bubble--sell">Sell</div> ) : ( <div className="bubble--buy">Buy</div> ) }
           </div>
           <div className="description">
-            {current.idea}
+            {current.insight}
           </div>
       </div>
     )
@@ -71,11 +71,28 @@ class singlepost extends Component {
     return (
       <div className="singlepost">
           <div className="header">
-            <h3>{current.insight}</h3>
+            <h3>{current.idea}</h3>
           </div>
           <div className="description">
-            {current.idea}
+            {current.insight}
           </div>
+      </div>
+
+    )
+  }
+
+  renderUpload = () => {
+    const { current } = this.props.posts;
+
+    return (
+      <div className="singlepost">
+          <div className="header">
+            <h3>{current.idea}</h3>
+          </div>
+          <div className="description">
+            {current.insight}
+          </div>
+            <img src={current.file} alt='pdf file when i get it to render' />
       </div>
 
     )
@@ -135,7 +152,7 @@ class singlepost extends Component {
           {this.renderComments()}
         </div>
       );
-    } else {
+    } else if (current.type === "article"){
         return (
           <div className="bgcolor">
             <Navbar />
@@ -148,6 +165,20 @@ class singlepost extends Component {
             {this.renderComments()}
           </div>
         );
+    } else {
+      return (
+        <div className="bgcolor">
+          <Navbar />
+          <Link to="/landingpage" >
+            <button className="btn btn-primary back-button">
+              <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
+            </Link>
+
+          {this.renderUpload()}
+          {this.renderComments()}
+        </div>
+      );
+
     }
   };
 };

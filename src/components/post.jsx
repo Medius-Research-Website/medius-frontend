@@ -119,7 +119,6 @@ const ArticleBubble = ({post})=>{
   return(
     <React.Fragment>
       <p className="article">Article</p>
-      <p className="topics">Topic(s): ...</p>
     </React.Fragment>
   )
 }
