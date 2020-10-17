@@ -22,20 +22,17 @@ class NewPostModal extends Component{
 
     submit(post){
         //handleSubmission
-        console.log('submitting in modal', post);
         this.props.createPost(post, this.props.history);
         //still have error: Action mus be a plain object ....
         this.closeModal();
     }
 
     submitFile(post){
-        console.log(post);
         this.props.createPost(post, this.props.history);
         this.closeModal();
     }
 
     submitArticle(post){
-        console.log(post);
         this.props.createPost(post, this.props.history);
         this.closeModal();
     }
@@ -112,7 +109,8 @@ const InvestmentIdeaForm = (props)=>{
             ticker,
             sell,
             date:new Date(),
-            type:"idea"
+            type:"idea",
+            author: localStorage.getItem('userID'),
         }
         props.submit(post);
         
@@ -187,7 +185,8 @@ const FileUpLoadForm = (props)=>{
             idea: title,
             insight: bodyContent,
             file: file,
-            type:"report"
+            type:"report",
+            author: localStorage.getItem('userID'),
         }
         props.submit(post);
     }
@@ -249,7 +248,8 @@ const ArticleForm = (props)=>{
         let post={
             title,
             body:bodyContent,
-            type:"article"
+            type:"article",
+            author: localStorage.getItem('userID'),
         }
         props.submit(post);
     }
