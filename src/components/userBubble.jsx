@@ -15,11 +15,9 @@ class userBubble extends Component {
     }
 
     renderBubble = () => {
-        console.log('not invalid')
         const pic = this.props.user.hasOwnProperty('picture') && this.props.user.picture !== '';
         const numFollowers = this.props.user.followers.length;
         const numFollowing = this.props.user.following.length;
-        console.log(pic);
 
         return (
             <div>
@@ -37,7 +35,6 @@ class userBubble extends Component {
 
   // access through this.props.user
   render() {
-      console.log(this.props.user);
     if (this.props.user != null){
         return (
             <div className="userBubble">

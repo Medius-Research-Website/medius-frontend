@@ -22,20 +22,17 @@ class NewPostModal extends Component{
 
     submit(post){
         //handleSubmission
-        console.log('submitting in modal', post);
         this.props.createPost(post, this.props.history);
         //still have error: Action mus be a plain object ....
         this.closeModal();
     }
 
     submitFile(post){
-        console.log(post);
         this.props.createPost(post, this.props.history);
         this.closeModal();
     }
 
     submitArticle(post){
-        console.log(post);
         this.props.createPost(post, this.props.history);
         this.closeModal();
     }
@@ -112,7 +109,8 @@ const InvestmentIdeaForm = (props)=>{
             ticker,
             sell,
             date:new Date(),
-            type:"idea"
+            type:"idea",
+            author: localStorage.getItem('userID'),
         }
         props.submit(post);
         
@@ -150,6 +148,7 @@ const InvestmentIdeaForm = (props)=>{
         </div>
     )
 }
+
 const Switch = (props)=>{
     return (
         <div onClick={props.toggle} className="form__switch">
@@ -157,6 +156,7 @@ const Switch = (props)=>{
         </div>
     )
 }
+
 const FileUpLoadForm = (props)=>{
     const [title, setTitle] = useState("");
     const [bodyContent, setBody]=useState("");
@@ -164,6 +164,7 @@ const FileUpLoadForm = (props)=>{
     const [file, setFile]=useState("");
 
     const submitHandler=()=>{
+        console.log(file);
 
         setErrorMessages([]);
         let ifError=false;
@@ -183,19 +184,17 @@ const FileUpLoadForm = (props)=>{
         let post={
             idea: title,
             insight: bodyContent,
-            file,
-            type:"report"
+            file: file,
+            type:"report",
+            author: localStorage.getItem('userID'),
         }
-        console.log(post);
         props.submit(post);
     }
 
     const handleFileChange = (event) => {
-        console.log(props);
-        const file = event.target.files[0];
-        console.log(file)
-        uploadFile(file).then(url => {
-            setFile(url)
+        const temp = event.target.files[0];
+        uploadFile(temp).then(url => {
+            setFile(url);
         }).catch(error => {
           console.log(error)
         })
@@ -249,7 +248,8 @@ const ArticleForm = (props)=>{
         let post={
             title,
             body:bodyContent,
-            type:"article"
+            type:"article",
+            author: localStorage.getItem('userID'),
         }
         props.submit(post);
     }

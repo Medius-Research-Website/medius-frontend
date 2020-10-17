@@ -168,3 +168,29 @@ a:hover {
     margin-left: 40px;
   }
 }
+
+.react-pdf{
+  position: static !important;
+
+  &__Document {
+    width: 250px;
+    height: 330px;
+  }
+
+  &__Page {
+    position: static !important;
+    height: 100% !important;
+    width: 100% !important;
+    padding-bottom: 40px;
+  
+    &__canvas{
+      height: 100% !important;
+      width: 100% !important;
+      margin-left: 20px;
+      border-style: solid;
+      border-width: 1px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+  }
+}

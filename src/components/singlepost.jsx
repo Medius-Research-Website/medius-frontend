@@ -4,9 +4,12 @@ import { connect } from 'react-redux';
 import { fetchPost, singlePriceChange, fetchCommentsByPost, addComment, fetchCurrentUser } from '../actions';
 import Navbar from "./navbar";
 import UserBubble from '../components/userBubble';
+import { Document, Page, pdfjs } from 'react-pdf';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 // import { ThreeSixtySharp } from '@material-ui/icons';
 
 // this is the full page for a single post
@@ -84,9 +87,11 @@ class singlepost extends Component {
 
   renderUpload = () => {
     const { current } = this.props.posts;
+    console.log(current);
+    console.log('logging file', current.file);
 
     return (
-      <div className="singlepost">
+      <div className="singlepost upload">
           <div className="header">
             <h3>{current.idea}</h3>
           </div>
@@ -94,6 +99,9 @@ class singlepost extends Component {
             {current.insight}
           </div>
             <a href={current.file} target="_blank" rel="noopener noreferrer">
+              <Document file={{ url: current.file }}>
+                  <Page size="A10" pageNumber={1} />
+              </Document>
             </a>
       </div>
 
