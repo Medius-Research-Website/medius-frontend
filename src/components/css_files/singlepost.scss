@@ -30,12 +30,7 @@ body {
   margin: auto;
   margin-top: 7%;
   border-radius: 20px;
-}
-
-.back-button {
-  width: 200px;
-  margin-left: 20vw;
-  margin-top: 1%;
+  margin-left: 25%;
 }
 
 .header {
@@ -81,6 +76,7 @@ body {
   margin-top: 35px;
   margin-bottom: 35px;
   border-radius: 20px;
+  margin-left: 25%;
 
   a {
     color: black;
@@ -141,4 +137,34 @@ body {
 
 .username{
   font-weight: bolder;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.sideBar {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 230px;
+  min-height: 300px;
+  margin: 0px;
+
+  button {
+    width: 200px;
+  }
+
+  #back {
+    margin-top: 250px;
+    width: 200px;
+    margin-left: 40px;
+  }
 }
