@@ -1,7 +1,7 @@
 .userBubble {
     position: fixed;
-    left: 50px;
-    top: 300px;
+    left: 3%;
+    top: 30vh;
     background-color: #F2F2F2;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     display: flex;
@@ -11,6 +11,7 @@
     border-radius: 10px;
     overflow: hidden;
     padding: 20px;
+    width: 20%;
 
     .followers {
         display: flex;

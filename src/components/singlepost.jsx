@@ -92,7 +92,9 @@ class singlepost extends Component {
           <div className="description">
             {current.insight}
           </div>
-            <img src={current.file} alt='pdf file when i get it to render' />
+            <a href={current.file} target="_blank" rel="noopener noreferrer">
+              <img src={current.file} alt='pdf file when i get it to render' />
+            </a>
       </div>
 
     )
