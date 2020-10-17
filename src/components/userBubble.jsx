@@ -16,18 +16,18 @@ class userBubble extends Component {
 
     renderBubble = () => {
         console.log('not invalid')
-        const pic = this.props.user.picture === '';
+        const pic = this.props.user.hasOwnProperty('picture') && this.props.user.picture !== '';
         const numFollowers = this.props.user.followers.length;
         const numFollowing = this.props.user.following.length;
+        console.log(pic);
 
         return (
             <div>
                 <Link to={`/users/${this.props.user.id}`}>
-                    { {pic} ? <img src={this.props.user.picture} alt="profile" /> : <img src={blankProfile} alt="profile" /> }
+                    { pic ? (<img src={this.props.user.picture} alt="profile" /> ) : ( <img src={blankProfile} alt="profile" /> )}
                     <p id="name">{this.props.user.firstName} {this.props.user.lastName}</p>
                     <div className="followers">
-                        <p>{numFollowing} following &#8226;</p>
-                        <p>{numFollowers} followers</p>
+                        <p>{numFollowing} following &#8226; {numFollowers} followers</p>
                     </div>
                 </Link>
             </div>

@@ -3,6 +3,7 @@ import "./css_files/singlepost.scss";
 import { connect } from 'react-redux';
 import { fetchPost, singlePriceChange, fetchCommentsByPost, addComment, fetchCurrentUser } from '../actions';
 import Navbar from "./navbar";
+import UserBubble from '../components/userBubble';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
@@ -93,7 +94,6 @@ class singlepost extends Component {
             {current.insight}
           </div>
             <a href={current.file} target="_blank" rel="noopener noreferrer">
-              <img src={current.file} alt='pdf file when i get it to render' />
             </a>
       </div>
 
@@ -143,12 +143,15 @@ class singlepost extends Component {
 
     if (current.type === "idea") {
       return (
-        <div className="bgcolor">
+        <div className="bgcolor invest">
           <Navbar />
-          <Link to="/landingpage" >
-            <button className="btn btn-primary back-button">
-              <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
-            </Link>
+          <div className="sideBar" >
+            <UserBubble />
+            <Link to="/landingpage" id="back">
+                <button className="btn btn-primary back-button">
+                <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
+              </Link>
+            </div>
 
           {this.renderInvestment()}
           {this.renderComments()}
@@ -158,10 +161,13 @@ class singlepost extends Component {
         return (
           <div className="bgcolor">
             <Navbar />
-            <Link to="/landingpage" >
-              <button className="btn btn-primary back-button">
-                <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
+            <div className="sideBar">
+              <UserBubble />
+              <Link to="/landingpage" id="back">
+                  <button className="btn btn-primary back-button">
+                  <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
               </Link>
+            </div>
 
             {this.renderArticle()}
             {this.renderComments()}
@@ -171,10 +177,13 @@ class singlepost extends Component {
       return (
         <div className="bgcolor">
           <Navbar />
-          <Link to="/landingpage" >
-            <button className="btn btn-primary back-button">
-              <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
+          <div className="sideBar">
+            <UserBubble />
+            <Link to="/landingpage" id="back">
+                <button className="btn btn-primary back-button">
+                <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
             </Link>
+          </div>
 
           {this.renderUpload()}
           {this.renderComments()}
