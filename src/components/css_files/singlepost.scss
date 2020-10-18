@@ -30,12 +30,7 @@ body {
   margin: auto;
   margin-top: 7%;
   border-radius: 20px;
-}
-
-.back-button {
-  width: 200px;
-  margin-left: 20vw;
-  margin-top: 1%;
+  margin-left: 25%;
 }
 
 .header {
@@ -47,6 +42,12 @@ body {
     margin: 1%;
     color: black;
     font-size: 2em;
+  }
+
+  p {
+    font-weight: normal;
+    background-color: white;
+    font-size: 13px;
   }
 }
 
@@ -81,6 +82,7 @@ body {
   margin-top: 35px;
   margin-bottom: 35px;
   border-radius: 20px;
+  margin-left: 25%;
 
   a {
     color: black;
@@ -141,4 +143,70 @@ body {
 
 .username{
   font-weight: bolder;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.sideBar {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 230px;
+  min-height: 300px;
+  margin: 0px;
+
+  button {
+    width: 200px;
+  }
+
+  #back {
+    margin-top: 250px;
+    width: 200px;
+    margin-left: 40px;
+  }
+}
+
+.react-pdf{
+  position: static !important;
+
+  &__Document {
+    width: 250px;
+    height: 330px;
+  }
+
+  &__Page {
+    position: static !important;
+    height: 100% !important;
+    width: 100% !important;
+    padding-bottom: 40px;
+  
+    &__canvas{
+      height: 100% !important;
+      width: 100% !important;
+      margin-left: 20px;
+      border-style: solid;
+      border-width: 1px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+  }
+}
+
+.upload {
+    svg {
+      position: relative;
+      color: #5A786F;
+      margin-left: 258px;
+      top: 14px;
+    }
 }

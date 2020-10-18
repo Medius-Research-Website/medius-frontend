@@ -1,7 +1,7 @@
 import axios from 'axios';
 import history from '../history'
-// const ROOT_URL = 'http://localhost:9090/api';
-const ROOT_URL = 'https://medius-api.herokuapp.com/api';
+const ROOT_URL = 'http://localhost:9090/api';
+// const ROOT_URL = 'https://medius-api.herokuapp.com/api';
 
 export const ActionTypes = {
   FETCH_POSTS: 'FETCH_POSTS',
@@ -46,9 +46,10 @@ export function signinUser(user, history) {
       axios.post(`${ROOT_URL}/signin`, user)
         .then((response) => {
           dispatch({ type: ActionTypes.AUTH_USER, payload: response.data.user });
-          localStorage.setItem('token', response.data.token)
-          localStorage.setItem('userID', response.data.user.id)
-          console.log('action', localStorage.getItem('userID'));
+          console.log(response.data.user);
+          localStorage.setItem('token', response.data.token);
+          localStorage.setItem('userID', response.data.user.id);
+          localStorage.setItem('username', response.data.user.username);
           history.push('/landingpage');
         })
         .catch((error) => {
@@ -71,6 +72,7 @@ export function signinUser(user, history) {
           console.log(response.data.user.id)
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('userID', response.data.user.id);
+          localStorage.setItem('username', response.data.user.username);
           history.push('/landingpage');
         })
         .catch((error) => {
@@ -91,6 +93,7 @@ export function signinUser(user, history) {
     return (dispatch) => {
       localStorage.removeItem('token');
       localStorage.removeItem('userID');
+      localStorage.removeItem('username');
       dispatch({ type: ActionTypes.DEAUTH_USER });
       history.push('/');
     };
@@ -232,7 +235,6 @@ export function createPost(post, history) {
   return (dispatch) => {
     axios.put(`${ROOT_URL}/posts`, post, { headers: { authorization: localStorage.getItem('token') } })
       .then((response) => { 
-        console.log(response);
         dispatch({ type: ActionTypes.ADD_POST, payload: response.data });
       })
       .catch((error) => {
@@ -303,8 +305,8 @@ export function likePost(postID, userId){
 export function followUser(myID, theirID){
   return (dispatch)=>{
     axios.put(`${ROOT_URL}/user/follow/${myID}/`,theirID, { headers: { authorization: localStorage.getItem('token') }})
-      .then(()=>{
-        // handle hot reload
+      .then((response)=>{
+        dispatch({ type: ActionTypes.FETCH_USER, payload: response.data });
       })
       .catch((error)=>{
         // handle Errors
@@ -316,8 +318,8 @@ export function followUser(myID, theirID){
 export function unfollowUser(myID, theirID){
   return (dispatch)=>{
     axios.put(`${ROOT_URL}/user/unfollow/${myID}/`,theirID, { headers: { authorization: localStorage.getItem('token') }})
-      .then(()=>{
-        // handle hot reload
+      .then((response)=>{
+        dispatch({ type: ActionTypes.FETCH_USER, payload: response.data });
       })
       .catch((error)=>{
         // handle Errors

@@ -3,9 +3,13 @@ import "./css_files/singlepost.scss";
 import { connect } from 'react-redux';
 import { fetchPost, singlePriceChange, fetchCommentsByPost, addComment, fetchCurrentUser } from '../actions';
 import Navbar from "./navbar";
+import UserBubble from '../components/userBubble';
+import { Document, Page, pdfjs } from 'react-pdf';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faExternalLinkSquareAlt } from '@fortawesome/free-solid-svg-icons'
+
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 // import { ThreeSixtySharp } from '@material-ui/icons';
 
 // this is the full page for a single post
@@ -47,7 +51,9 @@ class singlepost extends Component {
     return (
       <div className="singlepost">
           <div className="header">
-            <h3>{current.insight}</h3>
+            <h3>{current.idea}</h3>
+            <Link to={`/users/${current.author}`}>@{current.username}</Link>
+            <p>{new Date(current.createdAt).toLocaleDateString()}</p>
             <div className="ticker-post">{current.ticker}</div>
             <div className="sector">Sector: {current.sector}</div>
             <div className="percent">
@@ -59,7 +65,7 @@ class singlepost extends Component {
             { current.sell ? ( <div className="bubble--sell">Sell</div> ) : ( <div className="bubble--buy">Buy</div> ) }
           </div>
           <div className="description">
-            {current.idea}
+            {current.insight}
           </div>
       </div>
     )
@@ -72,11 +78,37 @@ class singlepost extends Component {
     return (
       <div className="singlepost">
           <div className="header">
-            <h3>{current.insight}</h3>
+            <h3>{current.idea}</h3>
+            <Link to={`/users/${current.author}`}>@{current.username}</Link>
+            <p>{new Date(current.createdAt).toLocaleDateString()}</p>
           </div>
           <div className="description">
-            {current.idea}
+            {current.insight}
           </div>
+      </div>
+
+    )
+  }
+
+  renderUpload = () => {
+    const { current } = this.props.posts;
+
+    return (
+      <div className="singlepost upload">
+          <div className="header">
+            <h3>{current.idea}</h3>
+            <Link to={`/users/${current.author}`}>@{current.username}</Link>
+            <p>{new Date(current.createdAt).toLocaleDateString()}</p>
+          </div>
+          <div className="description">
+            {current.insight}
+          </div>
+            <FontAwesomeIcon icon={faExternalLinkSquareAlt} />
+            <a href={current.file} target="_blank" rel="noopener noreferrer">
+              <Document file={{ url: current.file }}>
+                  <Page size="A10" pageNumber={1} />
+              </Document>
+            </a>
       </div>
 
     )
@@ -125,30 +157,53 @@ class singlepost extends Component {
 
     if (current.type === "idea") {
       return (
-        <div className="bgcolor">
+        <div className="bgcolor invest">
           <Navbar />
-          <Link to="/landingpage" >
-            <button className="btn btn-primary back-button">
-              <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
-            </Link>
+          <div className="sideBar" >
+            <UserBubble />
+            <Link to="/landingpage" id="back">
+                <button className="btn btn-primary back-button">
+                <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
+              </Link>
+            </div>
 
           {this.renderInvestment()}
           {this.renderComments()}
         </div>
       );
-    } else {
+    } else if (current.type === "article"){
         return (
           <div className="bgcolor">
             <Navbar />
-            <Link to="/landingpage" >
-              <button className="btn btn-primary back-button">
-                <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
+            <div className="sideBar">
+              <UserBubble />
+              <Link to="/landingpage" id="back">
+                  <button className="btn btn-primary back-button">
+                  <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
               </Link>
+            </div>
 
             {this.renderArticle()}
             {this.renderComments()}
           </div>
         );
+    } else {
+      return (
+        <div className="bgcolor">
+          <Navbar />
+          <div className="sideBar">
+            <UserBubble />
+            <Link to="/landingpage" id="back">
+                <button className="btn btn-primary back-button">
+                <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
+            </Link>
+          </div>
+
+          {this.renderUpload()}
+          {this.renderComments()}
+        </div>
+      );
+
     }
   };
 };
