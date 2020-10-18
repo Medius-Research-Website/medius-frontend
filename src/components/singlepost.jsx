@@ -50,11 +50,10 @@ class singlepost extends Component {
     return (
       <div className="singlepost">
           <div className="header">
-            <h3>{current.idea}</h3>
+            <h3>{current.insight}</h3>
             <Link to={`/users/${current.author}`}>@{current.username}</Link>
             <p>{new Date(current.createdAt).toLocaleDateString()}</p>
             <div className="ticker-post">{current.ticker}</div>
-            <div className="sector">Sector: {current.sector}</div>
             <div className="percent">
               <div className={pct.split('')[0] === '-' ? "negative-percent" : 'positive-percent'} >
                 {!isNaN(pct) ? singleCurrVal + ' (' +pct + ' ' : null}
@@ -64,7 +63,7 @@ class singlepost extends Component {
             { current.sell ? ( <div className="bubble--sell">Sell</div> ) : ( <div className="bubble--buy">Buy</div> ) }
           </div>
           <div className="description">
-            {current.insight}
+            {current.idea}
           </div>
       </div>
     )
@@ -72,17 +71,16 @@ class singlepost extends Component {
 
   renderArticle = () => {
     const { current } = this.props.posts;
-    console.log(current)
 
     return (
       <div className="singlepost">
           <div className="header">
-            <h3>{current.idea}</h3>
+            <h3>{current.insight}</h3>
             <Link to={`/users/${current.author}`}>@{current.username}</Link>
             <p>{new Date(current.createdAt).toLocaleDateString()}</p>
           </div>
           <div className="description">
-            {current.insight}
+            {current.idea}
           </div>
       </div>
 
@@ -95,19 +93,15 @@ class singlepost extends Component {
     return (
       <div className="singlepost upload">
           <div className="header">
-            <h3>{current.idea}</h3>
+            <h3>{current.insight}</h3>
             <Link to={`/users/${current.author}`}>@{current.username}</Link>
             <p>{new Date(current.createdAt).toLocaleDateString()}</p>
           </div>
           <div className="description">
-            {current.insight}
+            {current.idea}
           </div>
             <FontAwesomeIcon icon={faExternalLinkSquareAlt} />
-            <a href={current.file} target="_blank" rel="noopener noreferrer">
-              <Document file={{ url: current.file }}>
-                  <Page size="A10" pageNumber={1} />
-              </Document>
-            </a>
+            <PDFRender file={current.file} />
       </div>
 
     )
@@ -219,3 +213,28 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { fetchPost, singlePriceChange, fetchCommentsByPost, addComment, fetchCurrentUser })(singlepost);
+
+
+
+/* Need to have this so that the PDF doesn't try to rerender everytime
+ * someone wants to write a comment. This way it only re-renders when the filename
+ * gets passed in for the first time. 
+ */
+class PDFRender extends Component{
+  shouldComponentUpdate(nextProps, nextState) { 
+    if (nextProps.file === this.props.file) return false;
+
+    return true;
+  }
+
+  render () {
+    return(
+      <a href={this.props.file} target="_blank" rel="noopener noreferrer">
+      <Document file={{ url: this.props.file }}>
+          <Page size="A10" pageNumber={1} />
+      </Document>
+    </a>
+
+    )
+  }
+}

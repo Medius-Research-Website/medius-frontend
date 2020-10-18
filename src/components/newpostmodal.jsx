@@ -129,7 +129,7 @@ const InvestmentIdeaForm = (props)=>{
                 value={insight}
                 onChange={(e)=>{setInsight(e.target.value)}}
                 className="input--insight"
-                type="text" placeholder="What is your unique insight? (int one sentence)"/>
+                type="text" placeholder="What is your unique insight? (in one sentence)"/>
             <textarea 
                 value={idea}
                 onChange={(e)=>{setIdea(e.target.value)}}
