@@ -35,7 +35,9 @@ body {
 
 .header {
   height: auto;
-  padding: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 15px;
   font-weight: bold;
 
   h3 {
@@ -65,7 +67,10 @@ body {
 }
 
 .description {
-  padding: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .percent {
@@ -217,6 +222,15 @@ a:hover {
       border-width: 1px;
       border-radius: 10px;
       overflow: hidden;
+    }
+
+    &__textContent{
+      width: 250px !important;
+      height: 330px !important;
+      position: static !important;
+      top: 0px !important;
+      left: 0px !important;
+      transform: translate(0, -100%) !important;
     }
   }
 }
