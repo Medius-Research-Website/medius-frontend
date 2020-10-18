@@ -111,7 +111,9 @@ const InvestmentIdeaForm = (props)=>{
             date:new Date(),
             type:"idea",
             author: localStorage.getItem('userID'),
+            username: localStorage.getItem('username'),
         }
+        console.log(post);
         props.submit(post);
         
     }
@@ -187,6 +189,7 @@ const FileUpLoadForm = (props)=>{
             file: file,
             type:"report",
             author: localStorage.getItem('userID'),
+            username: localStorage.getItem('username'),
         }
         props.submit(post);
     }
@@ -250,6 +253,7 @@ const ArticleForm = (props)=>{
             body:bodyContent,
             type:"article",
             author: localStorage.getItem('userID'),
+            username: localStorage.getItem('username'),
         }
         props.submit(post);
     }

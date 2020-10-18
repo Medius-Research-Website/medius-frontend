@@ -7,7 +7,7 @@ import UserBubble from '../components/userBubble';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faExternalLinkSquareAlt } from '@fortawesome/free-solid-svg-icons'
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 // import { ThreeSixtySharp } from '@material-ui/icons';
@@ -51,6 +51,8 @@ class singlepost extends Component {
       <div className="singlepost">
           <div className="header">
             <h3>{current.idea}</h3>
+            <Link to={`/users/${current.author}`}>@{current.username}</Link>
+            <p>{new Date(current.createdAt).toLocaleDateString()}</p>
             <div className="ticker-post">{current.ticker}</div>
             <div className="sector">Sector: {current.sector}</div>
             <div className="percent">
@@ -76,6 +78,8 @@ class singlepost extends Component {
       <div className="singlepost">
           <div className="header">
             <h3>{current.idea}</h3>
+            <Link to={`/users/${current.author}`}>@{current.username}</Link>
+            <p>{new Date(current.createdAt).toLocaleDateString()}</p>
           </div>
           <div className="description">
             {current.insight}
@@ -87,17 +91,18 @@ class singlepost extends Component {
 
   renderUpload = () => {
     const { current } = this.props.posts;
-    console.log(current);
-    console.log('logging file', current.file);
 
     return (
       <div className="singlepost upload">
           <div className="header">
             <h3>{current.idea}</h3>
+            <Link to={`/users/${current.author}`}>@{current.username}</Link>
+            <p>{new Date(current.createdAt).toLocaleDateString()}</p>
           </div>
           <div className="description">
             {current.insight}
           </div>
+            <FontAwesomeIcon icon={faExternalLinkSquareAlt} />
             <a href={current.file} target="_blank" rel="noopener noreferrer">
               <Document file={{ url: current.file }}>
                   <Page size="A10" pageNumber={1} />

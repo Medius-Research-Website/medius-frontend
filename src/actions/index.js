@@ -46,8 +46,10 @@ export function signinUser(user, history) {
       axios.post(`${ROOT_URL}/signin`, user)
         .then((response) => {
           dispatch({ type: ActionTypes.AUTH_USER, payload: response.data.user });
-          localStorage.setItem('token', response.data.token)
-          localStorage.setItem('userID', response.data.user.id)
+          console.log(response.data.user);
+          localStorage.setItem('token', response.data.token);
+          localStorage.setItem('userID', response.data.user.id);
+          localStorage.setItem('username', response.data.user.username);
           history.push('/landingpage');
         })
         .catch((error) => {
@@ -70,6 +72,7 @@ export function signinUser(user, history) {
           console.log(response.data.user.id)
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('userID', response.data.user.id);
+          localStorage.setItem('username', response.data.user.username);
           history.push('/landingpage');
         })
         .catch((error) => {
@@ -90,6 +93,7 @@ export function signinUser(user, history) {
     return (dispatch) => {
       localStorage.removeItem('token');
       localStorage.removeItem('userID');
+      localStorage.removeItem('username');
       dispatch({ type: ActionTypes.DEAUTH_USER });
       history.push('/');
     };
