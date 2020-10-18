@@ -60,7 +60,7 @@ export default function Post({ post,  fetchComments, fetchPriceChange, likePost 
           {showComment
             ?(//showing comments//using placeholder since not handle change author id --> author name yet
               <div>
-            {comments.map((comment)=>
+            {comments.slice(0, 3).map((comment)=>
               <p className="feed__post__right__comment__content" key={comment.id}>
                 <Link to={`/users/${comment.authorID}`} ><span className="feed__post__right__comment__author">{`${comment.author}`}</span> </Link>
                 {`: ${comment.text}`}
