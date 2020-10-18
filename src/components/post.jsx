@@ -47,10 +47,10 @@ export default function Post({ post,  fetchComments, fetchPriceChange, likePost 
           <Link to={`posts/${post.id}`}  style={{ textDecoration: 'none' }}>
             <div className="content">
               <p className="post-title">
-                {post.idea}
+                {post.insight}
               </p>
               <p className="info">
-                {post.insight}
+                {post.idea}
               </p>
             </div>
           </Link>
