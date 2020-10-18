@@ -63,7 +63,9 @@ export default function Post({ post,  fetchComments, fetchPriceChange, likePost 
             {comments.map((comment)=>
               <p className="feed__post__right__comment__content" key={comment.id}>
                 <Link to={`/users/${comment.authorID}`} ><span className="feed__post__right__comment__author">{`${comment.author}`}</span> </Link>
-                {`: ${comment.text}`}</p>
+                {`: ${comment.text}`}
+                <p id="comment-date">{new Date(comment.createdAt).toLocaleDateString()}</p>
+                </p>
               )}
               <p onClick={onCommentToggle} className="comment-toggle">hide comments</p>
             </div>)

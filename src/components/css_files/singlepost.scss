@@ -92,6 +92,25 @@ body {
 
 .comments {
   display: flex;
+  flex-direction: column;
+
+  &__row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  p{
+    font-weight: normal;
+    background-color: #E0E1DD;
+    margin-bottom: 0px;
+    text-align: left;
+  }
+
+  #comment-date{
+    font-size: 10px;
+    margin-bottom: 0px;
+  }
 }
 
 .input {
@@ -110,7 +129,7 @@ body {
   list-style-type: none;
   background-color: #E0E1DD; //change to background light green
   border-radius: 20px;
-  padding: 28px;
+  padding: 20px;
 }
 
 .addButton {

@@ -138,8 +138,11 @@ class singlepost extends Component {
             !comments[key] ? null : comments[key].map( comment => 
               <div className="listOfComments" key={comment.id} style={{marginTop:25}}>
                 <div className="comments">
-                  <Link to={`/users/${comment.authorID}`} ><div className="username">{comment.author}: &nbsp;</div></Link>
-                  <div>{comment.text}</div>
+                  <div className="comments__row">
+                    <Link to={`/users/${comment.authorID}`} ><div className="username">{comment.author}: &nbsp;</div></Link>
+                    <p>{comment.text}</p>
+                  </div>
+                  <p id="comment-date">{new Date(comment.createdAt).toLocaleDateString()}</p>
                 </div>
               </div>
             )
