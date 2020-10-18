@@ -43,6 +43,12 @@ body {
     color: black;
     font-size: 2em;
   }
+
+  p {
+    font-weight: normal;
+    background-color: white;
+    font-size: 13px;
+  }
 }
 
 .ticker-post {
@@ -142,6 +148,7 @@ body {
 a {
   color: black;
   text-decoration: none;
+  font-weight: normal;
 }
 
 a:hover {
@@ -193,4 +200,13 @@ a:hover {
       overflow: hidden;
     }
   }
+}
+
+.upload {
+    svg {
+      position: relative;
+      color: #5A786F;
+      margin-left: 258px;
+      top: 14px;
+    }
 }

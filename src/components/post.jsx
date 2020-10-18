@@ -101,6 +101,8 @@ const IdeaBubble = ({post,fetchPriceChange}) =>{
       <p className="ticker">{post.ticker} </p>
       <p className={`price-change price-change--${(priceChange>0)?"positive":((priceChange<0)?"negative":null)}`}>{priceChange>0?"+":""}{Math.round(priceChange*100)/100}% since post</p>
       { post.sell ? ( <div className="bubble--sell">Sell</div> ) : ( <div className="bubble--buy">Buy</div> ) }
+      <p className="username">@{post.username}</p>
+      <p id="date">{new Date(post.createdAt).toLocaleDateString()}</p>
     </React.Fragment>
   )
 };
@@ -109,6 +111,8 @@ const ReportBubble = ({post})=>{
   return(
     <React.Fragment>
       <p className="report">Report</p>
+      <p className="username">@{post.username}</p>
+      <p id="date">{new Date(post.createdAt).toLocaleDateString()}</p>
       {/*preview file here*/}
     </React.Fragment>
   )
@@ -118,6 +122,8 @@ const ArticleBubble = ({post})=>{
   return(
     <React.Fragment>
       <p className="article">Article</p>
+      <p className="username">@{post.username}</p>
+      <p id="date">{new Date(post.createdAt).toLocaleDateString()}</p>
     </React.Fragment>
   )
 }
