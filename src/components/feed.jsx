@@ -32,7 +32,7 @@ class Feed extends Component {
               likePost={(postId,userId)=>{
                 this.props.likePost(postId,userId);
               }}
-              userId={this.props.userId}
+              userId={this.props.user.id||""}
               key={post.id}/>
           )})}
         </React.Fragment>
@@ -50,7 +50,8 @@ class Feed extends Component {
 
 const mapStateToProps = (state) => ({
   all: state.posts.all || [],
-  userId: (state.user.auth.authenticated) ? state.auth.user.id:"0",
+  user: state.auth.user,
+  authenticated: state.auth.authenticated
 });
 
 

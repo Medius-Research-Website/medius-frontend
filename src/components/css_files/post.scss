@@ -4,7 +4,7 @@
   @mixin wrapping{
     border-radius: 20px;
     padding:25px;
-    background-color: #F2F2F2;
+    background-color: white;
     box-shadow: inset 0px -1px 1px #929290;
   }//round-wrapping container
   @mixin text($type){
@@ -57,7 +57,7 @@
       border-radius: 10px;
       font-size: 14px;
       font-weight: bold;
-      margin-top:20px;
+      margin-top: 2px;
     }//applied for both sell and buy bubble
     & p{
       margin-bottom: 0px;
@@ -152,6 +152,7 @@
       padding: 10px;
       &__content{
         @include text(comment);
+        margin-bottom: 3px;
       }
       &__author{
         @include text(comment);
@@ -168,7 +169,7 @@
   }
 
   .username {
-    background-color: #F2F2F2;
+    background-color: white;
     font-size: 15px;
     font-weight: normal;
     margin-top: 3px;
@@ -176,8 +177,19 @@
 
   #date {
     font-weight: normal;
-    background-color: #F2F2F2;
-    font-size: 13px;
+    background-color: white;
+    font-size: 10px;
+    margin-bottom: 0px;
+    position: relative;
+    top: -3px;
   }
 
+  #comment-date{
+    font-weight: normal;
+    background-color: white;
+    font-size: 10px;
+    margin-bottom: 0px;
+    position: relative;
+    top: -6px;
+  }
 }

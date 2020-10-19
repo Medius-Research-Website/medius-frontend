@@ -35,7 +35,9 @@ body {
 
 .header {
   height: auto;
-  padding: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 15px;
   font-weight: bold;
 
   h3 {
@@ -65,7 +67,10 @@ body {
 }
 
 .description {
-  padding: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .percent {
@@ -92,6 +97,25 @@ body {
 
 .comments {
   display: flex;
+  flex-direction: column;
+
+  &__row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  p{
+    font-weight: normal;
+    background-color: #E0E1DD;
+    margin-bottom: 0px;
+    text-align: left;
+  }
+
+  #comment-date{
+    font-size: 10px;
+    margin-bottom: 0px;
+  }
 }
 
 .input {
@@ -110,7 +134,7 @@ body {
   list-style-type: none;
   background-color: #E0E1DD; //change to background light green
   border-radius: 20px;
-  padding: 28px;
+  padding: 20px;
 }
 
 .addButton {
@@ -170,8 +194,9 @@ a:hover {
   }
 
   #back {
-    margin-top: 250px;
+    margin-top: 200px;
     width: 200px;
+    height: 45px;
     margin-left: 40px;
   }
 }
@@ -198,6 +223,15 @@ a:hover {
       border-width: 1px;
       border-radius: 10px;
       overflow: hidden;
+    }
+
+    &__textContent{
+      width: 250px !important;
+      height: 330px !important;
+      position: static !important;
+      top: 0px !important;
+      left: 0px !important;
+      transform: translate(0, -100%) !important;
     }
   }
 }

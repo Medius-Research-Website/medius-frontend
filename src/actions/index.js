@@ -1,7 +1,7 @@
 import axios from 'axios';
 import history from '../history'
 const ROOT_URL = 'http://localhost:9090/api';
-// const ROOT_URL = 'https://medius-api.herokuapp.com/api';
+//const ROOT_URL = 'https://medius-api.herokuapp.com/api';
 
 export const ActionTypes = {
   FETCH_POSTS: 'FETCH_POSTS',
@@ -73,9 +73,10 @@ export function signinUser(user, history) {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('userID', response.data.user.id);
           localStorage.setItem('username', response.data.user.username);
-          history.push('/landingpage');
+          //history.push('/landingpage');
         })
         .catch((error) => {
+          console.log(error);
           if(error.response.status === 500){
             console.log('error 500, user already exists!', + error)
             dispatch({ type: ActionTypes.EXISTING_USER });
@@ -287,7 +288,6 @@ export function singlePriceChange(id) {
 }
 
 export function likePost(postID, userId){
-  
   return (dispatch)=>{
     axios.put(`${ROOT_URL}/user/posts/likes/${userId}/`,{postID},{ headers: { authorization: localStorage.getItem('token') }})
       .then((response)=>{

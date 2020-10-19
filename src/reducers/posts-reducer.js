@@ -29,11 +29,11 @@ const PostsReducer = (state = initialState, action) => {
       return {...state, newPostModal: !state.newPostModal};
     case ActionTypes.SINGLE_PRICE_CHANGE:
       return {...state, singlePriceChange: action.payload.change, singleCurrVal: action.payload.currVal };
-    case ActionTypes.ADD_COMMENT: // needs it's own reducer to support hot reloading
-      let currComments = state.comments;
-      currComments[action.payload.postID].push(action.payload.newComment);
+    case ActionTypes.ADD_COMMENT: 
+    let currComments = [...state.comments];
+      currComments[action.payload.postID].unshift(action.payload.newComment);
       return { ...state, comments: {...currComments} };
-    case ActionTypes.ADD_POST: // needs it's own reducer to support hot reloading
+    case ActionTypes.ADD_POST: 
       let currPosts = [action.payload.newPost,...state.all];
       return { ...state, all: currPosts };
     case ActionTypes.FETCH_USER_POSTS:
