@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import { signoutUser } from "../actions";
+import { signoutUser, fetchCurrentUser } from "../actions";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import "./css_files/navbar.scss";
@@ -11,8 +11,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 class NavbarInstance extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      loaded: false,
+    }
 
     this.onClickSignOut = this.onClickSignOut.bind(this);
+  }
+
+  async componentDidMount() {
+    await this.props.fetchCurrentUser(localStorage.getItem('userID'));
   }
 
   onClickSignOut() {
@@ -20,7 +27,8 @@ class NavbarInstance extends Component {
   }
 
   render() {
-    if (!this.props.authenticated){
+
+    if (!this.props.authenticated && this.props.user != null){
       return (
         <Navbar default collapseOnSelect>
           <Navbar.Brand>
@@ -51,7 +59,7 @@ class NavbarInstance extends Component {
         </Navbar>
       );
     }
-    else {
+    else if (this.props.user != null){
       return (
         <Navbar default collapseOnSelect>
           <Navbar.Brand>
@@ -71,17 +79,19 @@ class NavbarInstance extends Component {
             </NavLink>
             <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons" to="/communitypage">
               Community
-            </NavLink>
+            </NavLink>*/}
             <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons" to={`/users/${this.props.user.id}`}>
               My Profile
-            </NavLink>*/}
+            </NavLink>
             <div className="btn ml-auto mr-1 navButtons signInBorder" onClick={this.onClickSignOut}>
               Sign Out
             </div>
           </Nav>
         </Navbar>
       );
-    } 
+    } else {
+      return <div></div>
+    }
   }
 }
 
@@ -92,5 +102,5 @@ const mapStateToProps = (state) => (
   }
 );
 
-export default withRouter(connect(mapStateToProps, { signoutUser })(NavbarInstance));
+export default withRouter(connect(mapStateToProps, { signoutUser, fetchCurrentUser })(NavbarInstance));
 

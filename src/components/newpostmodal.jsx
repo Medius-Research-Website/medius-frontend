@@ -3,8 +3,9 @@ import './css_files/newpostmodal.scss';
 import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
 import { toggleNewPostModal, createPost } from "../actions";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLightbulb, faUpload, faNewspaper } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLightbulb, faUpload, faNewspaper } from '@fortawesome/free-solid-svg-icons';
+import { uploadFile } from '../actions/s3';
 
 const INITIAL_STATE=0;
 const IDEA_FORM_STATE=1;
@@ -21,21 +22,18 @@ class NewPostModal extends Component{
 
     submit(post){
         //handleSubmission
-        console.log(post);
         this.props.createPost(post, this.props.history);
         //still have error: Action mus be a plain object ....
         this.closeModal();
     }
 
-    submitFile(files){
-        console.log(files);
-        //need action to handle this
+    submitFile(post){
+        this.props.createPost(post, this.props.history);
         this.closeModal();
     }
 
     submitArticle(post){
-        console.log(post);
-        //need action handdle this
+        this.props.createPost(post, this.props.history);
         this.closeModal();
     }
 
@@ -111,11 +109,15 @@ const InvestmentIdeaForm = (props)=>{
             ticker,
             sell,
             date:new Date(),
-            type:"idea"
+            type:"idea",
+            author: localStorage.getItem('userID'),
+            username: localStorage.getItem('username'),
         }
+        console.log(post);
         props.submit(post);
         
     }
+
     return(
         <div className="feed__modal__form__main">
             <input 
@@ -127,7 +129,7 @@ const InvestmentIdeaForm = (props)=>{
                 value={insight}
                 onChange={(e)=>{setInsight(e.target.value)}}
                 className="input--insight"
-                type="text" placeholder="What is your unique insight? (int one sentence)"/>
+                type="text" placeholder="What is your unique insight? (in one sentence)"/>
             <textarea 
                 value={idea}
                 onChange={(e)=>{setIdea(e.target.value)}}
@@ -148,6 +150,7 @@ const InvestmentIdeaForm = (props)=>{
         </div>
     )
 }
+
 const Switch = (props)=>{
     return (
         <div onClick={props.toggle} className="form__switch">
@@ -155,20 +158,71 @@ const Switch = (props)=>{
         </div>
     )
 }
+
 const FileUpLoadForm = (props)=>{
+    const [title, setTitle] = useState("");
+    const [bodyContent, setBody]=useState("");
+    const [errorMessages, setErrorMessages]=useState([]);
+    const [file, setFile]=useState("");
+
     const submitHandler=()=>{
-        let element=document.querySelector(".js-file-uploader");
-        if (!element) return;
-        let files=element.files;
-        props.submit({files,type:"report"});
+        console.log(file);
+
+        setErrorMessages([]);
+        let ifError=false;
+        if (title==="")
+            {
+                setErrorMessages(prev=>[...prev,"Title cannot be left empty"]);
+                ifError=true;
+            }
+        if (bodyContent==="")
+            {
+                setErrorMessages(prev=>[...prev,"Body field cannot be left empty"]);
+                ifError=true;
+            }
+        
+        if (ifError) return;
+        
+        let post={
+            idea: title,
+            insight: bodyContent,
+            file: file,
+            type:"report",
+            author: localStorage.getItem('userID'),
+            username: localStorage.getItem('username'),
+        }
+        props.submit(post);
     }
+
+    const handleFileChange = (event) => {
+        const temp = event.target.files[0];
+        uploadFile(temp).then(url => {
+            setFile(url);
+        }).catch(error => {
+          console.log(error)
+        })
+    }
+
     return(
         <div className="feed__modal__form__main">
-            <input className="js-file-uploader" type="file"/>
+            <input 
+                value={title}
+                onChange={(e)=>{setTitle(e.target.value)}}
+                className="input--title"
+                type="text" placeholder="Artcile Title"/>
+            <textarea 
+                value={bodyContent}
+                onChange={(e)=>{setBody(e.target.value)}}
+                className="input--body"
+                type="text" placeholder="Article body"/>
+            
+            <input type="file" accept="application/pdf" onChange={handleFileChange} /> 
             <button onClick={submitHandler} className="input--submit btn btn-success"> Post </button>
+            {errorMessages.map((errorMessage,idx)=>
+                <p key={idx} className="input--error">{errorMessage}</p>
+            )}
         </div>
     )
-
 }
 
 
@@ -197,7 +251,9 @@ const ArticleForm = (props)=>{
         let post={
             title,
             body:bodyContent,
-            type:"article"
+            type:"article",
+            author: localStorage.getItem('userID'),
+            username: localStorage.getItem('username'),
         }
         props.submit(post);
     }

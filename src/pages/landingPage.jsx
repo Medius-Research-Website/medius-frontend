@@ -4,6 +4,8 @@ import Navbar from "../components/navbar";
 import "../components/css_files/landingpage.scss";
 import FeedHead from "../components/feedhead";
 import NewPostModal from "../components/newpostmodal";
+import UserBubble from '../components/userBubble';
+
 class LandingPage extends Component {
   state = {};
 
@@ -18,12 +20,11 @@ class LandingPage extends Component {
         <Navbar  />
         <NewPostModal/>
         <div className="landing-page">
-          <div className="profile--bubble"/>
+          <UserBubble />
           <div className="feed">
             <FeedHead/>
             <Feed />
           </div>
-          <div className="trending"/>
         </div>
         
       </React.Fragment>
