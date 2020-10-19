@@ -249,8 +249,8 @@ const ArticleForm = (props)=>{
         if (ifError) return;
         
         let post={
-            title,
-            body:bodyContent,
+            insight: title,
+            idea: bodyContent,
             type:"article",
             author: localStorage.getItem('userID'),
             username: localStorage.getItem('username'),
