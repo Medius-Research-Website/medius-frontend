@@ -1,7 +1,7 @@
 import axios from 'axios';
 import history from '../history'
-const ROOT_URL = 'http://localhost:9090/api';
-//const ROOT_URL = 'https://medius-api.herokuapp.com/api';
+//const ROOT_URL = 'http://localhost:9090/api';
+const ROOT_URL = 'https://medius-api.herokuapp.com/api';
 
 export const ActionTypes = {
   FETCH_POSTS: 'FETCH_POSTS',
@@ -305,7 +305,6 @@ export function followUser(myID, theirID){
   return (dispatch)=>{
     axios.patch(`${ROOT_URL}/user/follow/${myID}/`,theirID, { headers: { authorization: localStorage.getItem('token') }})
       .then((response)=>{
-        dispatch({ type: ActionTypes.FETCH_USER, payload: response.data });
       })
       .catch((error)=>{
         // handle Errors
@@ -318,7 +317,6 @@ export function unfollowUser(myID, theirID){
   return (dispatch)=>{
     axios.patch(`${ROOT_URL}/user/unfollow/${myID}/`,theirID, { headers: { authorization: localStorage.getItem('token') }})
       .then((response)=>{
-        dispatch({ type: ActionTypes.FETCH_USER, payload: response.data });
       })
       .catch((error)=>{
         // handle Errors

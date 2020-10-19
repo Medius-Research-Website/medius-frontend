@@ -14,7 +14,7 @@
 
 .user-name{
   margin-top: -215px;
-  margin-left: -30px;
+  margin-left: 0px;
   font-size: 50px;
   width: 300px
 }
@@ -96,6 +96,15 @@
   margin-left: 135px;
   margin-top: -150px;
 }
+
+.unfollow-button{
+  display: block;
+  height: 40px;
+  width: 100px;
+  margin-left: 135px;
+  margin-top: -150px;
+}
+
 .occupation {
   margin-top: 15px;
 }

@@ -98,6 +98,7 @@ class Profile extends Component {
     // console.log(this.props.selectedUser)
     // console.log(this.props.currentUser)
     //console.log(this.props.userPosts)
+    console.log(this.props.selectedUser)
     if (this.props.selectedUser != null && this.props.currentUser != null) {
     return (
       <div>
@@ -114,7 +115,16 @@ class Profile extends Component {
             {(this.props.selectedUser.username === this.props.currentUser.username) ? 
             <Button className="edit-button" onClick={this.editProfile}>Edit</Button> : <></>
             }
-            <Button className="follow-button" onClick={this.followUser} >Follow</Button>
+            {
+              (this.props.selectedUser.username !== this.props.currentUser.username) ? 
+              ((this.props.selectedUser?.followers.includes(this.props.currentUser?.id)) ?
+               <Button className="unfollow-button" onClick={this.unfollowUser}>Unfollow</Button> 
+               :
+               <Button className="follow-button" onClick={this.followUser}>Follow</Button>
+              ) 
+              :
+              <></>
+            }
           </div>
         </div>
         <EditableTextarea className="user-name" isEditing={this.state.editable} onChange={this.onNameChange}>
