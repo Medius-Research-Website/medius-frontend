@@ -6,15 +6,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp, faCommentDots } from '@fortawesome/free-solid-svg-icons'
 
 // this is the small view of a post for the feed page
-export default function Post({ post,  fetchComments, fetchPriceChange, likePost }) {
+export default function Post({ userId, post,  fetchComments, fetchPriceChange, likePost }) {
   const [showComment,setShowComment]=useState(false); //using hook to manage simple state
-  const [liked,setLike]=useState(false);//need to handle if the current user liked this post or not
+  const [liked,setLike]=useState((post.likes.includes(userId)));//need to handle if the current user liked this post or not
   const comments = useSelector(state=>{
     if (post.id in state.posts.comments)
       return state.posts.comments[post.id];
       else return [];
   });
-
+  
   const onCommentToggle = (e)=>{
     e.stopPropagation();
     setShowComment(prev=>!prev);
@@ -25,7 +25,8 @@ export default function Post({ post,  fetchComments, fetchPriceChange, likePost 
 
   const onLiked = (e)=>{
     setLike(prev=>!prev);
-    likePost(post.id);
+    console.log(userId);
+    likePost(post.id, userId);
   }
 
   return (
@@ -35,7 +36,7 @@ export default function Post({ post,  fetchComments, fetchPriceChange, likePost 
         <div className="feed__post__right__content">
           <div className="interaction-stat">
             <div className={`line ${liked?"liked":null}`}>
-              <span>{((post.likes?.length)?(post.likes.length):0) + (liked?1:0)/*handle undefine*/} 
+              <span>{((post.likes?.length)?(post.likes.length):0) - (post.likes.includes(userId)?1:0) + (liked?1:0)} 
               </span>
               <FontAwesomeIcon onClick={onLiked} icon={faThumbsUp} className="icon"/>
             </div>
@@ -61,11 +62,11 @@ export default function Post({ post,  fetchComments, fetchPriceChange, likePost 
             ?(//showing comments//using placeholder since not handle change author id --> author name yet
               <div>
             {comments.slice(0, 3).map((comment)=>
-              <p className="feed__post__right__comment__content" key={comment.id}>
+              <div className="feed__post__right__comment__content" key={comment.id}>
                 <Link to={`/users/${comment.authorID}`} ><span className="feed__post__right__comment__author">{`${comment.author}`}</span> </Link>
                 {`: ${comment.text}`}
                 <p id="comment-date">{new Date(comment.createdAt).toLocaleDateString()}</p>
-                </p>
+                </div>
               )}
               <p onClick={onCommentToggle} className="comment-toggle">hide comments</p>
             </div>)

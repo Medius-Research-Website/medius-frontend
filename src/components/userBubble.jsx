@@ -16,8 +16,8 @@ class userBubble extends Component {
 
     renderBubble = () => {
         const pic = this.props.user.hasOwnProperty('picture') && this.props.user.picture !== '';
-        const numFollowers = this.props.user.followers.length;
-        const numFollowing = this.props.user.following.length;
+        const numFollowers = this.props.user.followers?.length?this.props.user.followers?.length:0;
+        const numFollowing = this.props.user.following?.length?this.props.user.following?.length:0;
 
         return (
             <div>
