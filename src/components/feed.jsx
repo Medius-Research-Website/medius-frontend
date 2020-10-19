@@ -32,7 +32,7 @@ class Feed extends Component {
               likePost={(postId,userId)=>{
                 this.props.likePost(postId,userId);
               }}
-              userId={this.props.user.id||""}
+              userId={this.props.user?.id?(this.props.user.id):("")}
               key={post.id}/>
           )})}
         </React.Fragment>
