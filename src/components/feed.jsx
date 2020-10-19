@@ -2,11 +2,14 @@ import React, { Component } from "react";
 import Post from "./post";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { fetchPosts,fetchCommentsByPost, fetchPriceChange, likePost } from "../actions";
+import { fetchPosts,fetchCommentsByPost, fetchPriceChange, likePost, fetchCurrentUser } from "../actions";
 
 class Feed extends Component {
+
   componentDidMount() {
+    console.log('component mounting', localStorage.getItem('userID'));
     this.props.fetchPosts();
+    this.props.fetchCurrentUser(localStorage.getItem('userID'));
   }
   
   fetchData(){
@@ -15,8 +18,7 @@ class Feed extends Component {
 
   // access posts through this.props.allPosts; display iteratively through .map()
   render() {
-    // console.log(this.props.all);
-    if (false) {
+    if (this.props.all.length !== 0) {
       return (
         <React.Fragment>
           {this.props.all.map((post) => {return( 
@@ -27,9 +29,10 @@ class Feed extends Component {
               fetchPriceChange={(id)=>{
                 this.props.fetchPriceChange(id);
               }}
-              likePost={(id)=>{
-                this.props.likePost(id);
+              likePost={(postId,userId)=>{
+                this.props.likePost(postId,userId);
               }}
+              userId={this.props.user?.id?(this.props.user.id):("")}
               key={post.id}/>
           )})}
         </React.Fragment>
@@ -47,7 +50,9 @@ class Feed extends Component {
 
 const mapStateToProps = (state) => ({
   all: state.posts.all || [],
+  user: state.auth.user,
+  authenticated: state.auth.authenticated
 });
 
 
-export default withRouter(connect(mapStateToProps, { fetchPosts, fetchCommentsByPost, fetchPriceChange,likePost } )(Feed));
+export default withRouter(connect(mapStateToProps, { fetchPosts, fetchCommentsByPost, fetchPriceChange,likePost, fetchCurrentUser } )(Feed));
