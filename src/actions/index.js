@@ -289,8 +289,6 @@ export function singlePriceChange(id) {
 }
 
 export function likePost(postID, userId){
-  console.log(postID);
-  console.log(userId);
   return (dispatch)=>{
     axios.put(`${ROOT_URL}/user/posts/likes/${userId}/`,{postID},{ headers: { authorization: localStorage.getItem('token') }})
       .then((response)=>{
