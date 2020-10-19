@@ -7,10 +7,6 @@ import { faThumbsUp, faCommentDots } from '@fortawesome/free-solid-svg-icons'
 
 // this is the small view of a post for the feed page
 export default function Post({ userId, post,  fetchComments, fetchPriceChange, likePost }) {
-  console.log(userId);
-  console.log(post);
-  console.log(post.likes);
-  console.log(post.likes.includes(userId));
   const [showComment,setShowComment]=useState([]); //using hook to manage simple state
   const [liked,setLike]=useState((post.likes.includes(userId)));//need to handle if the current user liked this post or not
   const comments = useSelector(state=>{
@@ -40,7 +36,7 @@ export default function Post({ userId, post,  fetchComments, fetchPriceChange, l
         <div className="feed__post__right__content">
           <div className="interaction-stat">
             <div className={`line ${liked?"liked":null}`}>
-              <span>{((post.likes?.length)?(post.likes.length):0) + (liked?1:0)/*handle undefine*/} 
+              <span>{((post.likes?.length)?(post.likes.length):0) - (post.likes.includes(userId)?1:0) + (liked?1:0)} 
               </span>
               <FontAwesomeIcon onClick={onLiked} icon={faThumbsUp} className="icon"/>
             </div>
