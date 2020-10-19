@@ -5,7 +5,9 @@ import { withRouter } from "react-router-dom";
 import { fetchPosts,fetchCommentsByPost, fetchPriceChange, likePost, fetchCurrentUser } from "../actions";
 
 class Feed extends Component {
+
   componentDidMount() {
+    console.log('component mounting', localStorage.getItem('userID'));
     this.props.fetchPosts();
     this.props.fetchCurrentUser(localStorage.getItem('userID'));
   }
