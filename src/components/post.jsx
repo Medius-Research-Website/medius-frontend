@@ -25,7 +25,7 @@ export default function Post({ userId, post,  fetchComments, fetchPriceChange, l
 
   const onLiked = (e)=>{
     setLike(prev=>!prev);
-    console.log(userId);
+    console.log('onLiked', userId);
     likePost(post.id, userId);
   }
 
