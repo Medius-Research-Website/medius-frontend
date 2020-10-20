@@ -3,9 +3,13 @@ import "./css_files/singlepost.scss";
 import { connect } from 'react-redux';
 import { fetchPost, singlePriceChange, fetchCommentsByPost, addComment, fetchCurrentUser } from '../actions';
 import Navbar from "./navbar";
+import UserBubble from '../components/userBubble';
+import { Document, Page, pdfjs } from 'react-pdf';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faExternalLinkSquareAlt } from '@fortawesome/free-solid-svg-icons'
+
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 // import { ThreeSixtySharp } from '@material-ui/icons';
 
 // this is the full page for a single post
@@ -35,6 +39,7 @@ class singlepost extends Component {
       author: this.props.user.username,
       authorID: this.props.user.id,
     };
+    
     this.props.addComment(fields, this.props.match.params.postID);
     this.setState({ comment: ''});
   }
@@ -46,9 +51,10 @@ class singlepost extends Component {
     return (
       <div className="singlepost">
           <div className="header">
-            <h3>{current.idea}</h3>
+            <h3>{current.insight}</h3>
+            <Link to={`/users/${current.author}`}>@{current.username}</Link>
+            <p>{new Date(current.createdAt).toLocaleDateString()}</p>
             <div className="ticker-post">{current.ticker}</div>
-            <div className="sector">Sector: {current.sector}</div>
             <div className="percent">
               <div className={pct.split('')[0] === '-' ? "negative-percent" : 'positive-percent'} >
                 {!isNaN(pct) ? singleCurrVal + ' (' +pct + ' ' : null}
@@ -58,7 +64,7 @@ class singlepost extends Component {
             { current.sell ? ( <div className="bubble--sell">Sell</div> ) : ( <div className="bubble--buy">Buy</div> ) }
           </div>
           <div className="description">
-            {current.insight}
+            {current.idea}
           </div>
       </div>
     )
@@ -66,15 +72,16 @@ class singlepost extends Component {
 
   renderArticle = () => {
     const { current } = this.props.posts;
-    console.log(current)
 
     return (
       <div className="singlepost">
           <div className="header">
-            <h3>{current.idea}</h3>
+            <h3>{current.insight}</h3>
+            <Link to={`/users/${current.author}`}>@{current.username}</Link>
+            <p>{new Date(current.createdAt).toLocaleDateString()}</p>
           </div>
           <div className="description">
-            {current.insight}
+            {current.idea}
           </div>
       </div>
 
@@ -85,14 +92,17 @@ class singlepost extends Component {
     const { current } = this.props.posts;
 
     return (
-      <div className="singlepost">
+      <div className="singlepost upload">
           <div className="header">
-            <h3>{current.idea}</h3>
+            <h3>{current.insight}</h3>
+            <Link to={`/users/${current.author}`}>@{current.username}</Link>
+            <p>{new Date(current.createdAt).toLocaleDateString()}</p>
           </div>
           <div className="description">
-            {current.insight}
+            {current.idea}
           </div>
-            <img src={current.file} alt='pdf file when i get it to render' />
+            <FontAwesomeIcon icon={faExternalLinkSquareAlt} />
+            <PDFRender file={current.file} />
       </div>
 
     )
@@ -123,8 +133,11 @@ class singlepost extends Component {
             !comments[key] ? null : comments[key].map( comment => 
               <div className="listOfComments" key={comment.id} style={{marginTop:25}}>
                 <div className="comments">
-                  <Link to={`/users/${comment.authorID}`} ><div className="username">{comment.author}: &nbsp;</div></Link>
-                  <div>{comment.text}</div>
+                  <div className="comments__row">
+                    <Link to={`/users/${comment.authorID}`} ><div className="username">{comment.author}: &nbsp;</div></Link>
+                    <p>{comment.text}</p>
+                  </div>
+                  <p id="comment-date">{new Date(comment.createdAt).toLocaleDateString()}</p>
                 </div>
               </div>
             )
@@ -141,12 +154,15 @@ class singlepost extends Component {
 
     if (current.type === "idea") {
       return (
-        <div className="bgcolor">
+        <div className="bgcolor invest">
           <Navbar />
-          <Link to="/landingpage" >
-            <button className="btn btn-primary back-button">
-              <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
-            </Link>
+          <div className="sideBar" >
+            <UserBubble />
+            <Link to="/landingpage" id="back">
+                <button className="btn btn-primary back-button">
+                <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
+              </Link>
+            </div>
 
           {this.renderInvestment()}
           {this.renderComments()}
@@ -156,10 +172,13 @@ class singlepost extends Component {
         return (
           <div className="bgcolor">
             <Navbar />
-            <Link to="/landingpage" >
-              <button className="btn btn-primary back-button">
-                <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
+            <div className="sideBar">
+              <UserBubble />
+              <Link to="/landingpage" id="back">
+                  <button className="btn btn-primary back-button">
+                  <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
               </Link>
+            </div>
 
             {this.renderArticle()}
             {this.renderComments()}
@@ -169,10 +188,13 @@ class singlepost extends Component {
       return (
         <div className="bgcolor">
           <Navbar />
-          <Link to="/landingpage" >
-            <button className="btn btn-primary back-button">
-              <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
+          <div className="sideBar">
+            <UserBubble />
+            <Link to="/landingpage" id="back">
+                <button className="btn btn-primary back-button">
+                <FontAwesomeIcon icon={faArrowLeft} /> back to main</button>
             </Link>
+          </div>
 
           {this.renderUpload()}
           {this.renderComments()}
@@ -192,3 +214,28 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { fetchPost, singlePriceChange, fetchCommentsByPost, addComment, fetchCurrentUser })(singlepost);
+
+
+
+/* Need to have this so that the PDF doesn't try to rerender everytime
+ * someone wants to write a comment. This way it only re-renders when the filename
+ * gets passed in for the first time. 
+ */
+class PDFRender extends Component{
+  shouldComponentUpdate(nextProps, nextState) { 
+    if (nextProps.file === this.props.file) return false;
+
+    return true;
+  }
+
+  render () {
+    return(
+      <a href={this.props.file} target="_blank" rel="noopener noreferrer">
+      <Document file={{ url: this.props.file }}>
+          <Page size="A10" pageNumber={1} />
+      </Document>
+    </a>
+
+    )
+  }
+}
