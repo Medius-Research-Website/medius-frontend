@@ -294,7 +294,6 @@ export function likePost(postID, userId){
       .then((response)=>{
         // handle after like or unlike
         console.log(response);
-        
       })
       .catch((error)=>{
         // handle Errors
