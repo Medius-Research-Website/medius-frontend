@@ -117,7 +117,7 @@ class Profile extends Component {
             }
             {
               (this.props.selectedUser.username !== this.props.currentUser.username) ? 
-              ((this.props.selectedUser?.followers.includes(this.props.currentUser?.id)) ?
+              ((this.props.selectedUser?.followers && this.props.selectedUser?.followers.includes(this.props.currentUser?.id)) ?
                <Button className="unfollow-button" onClick={this.unfollowUser}>Unfollow</Button> 
                :
                <Button className="follow-button" onClick={this.followUser}>Follow</Button>
@@ -158,14 +158,16 @@ class Profile extends Component {
             <React.Fragment>
               {this.props.userPosts.map((post) => {return( 
                   <Post post={post} 
-                  //comments={this.props.comments[post.id]||[]} 
-                  //priceChange={this.props.priceChange[post.id]||0}
-                  showCommentsHandler={()=>{//this function is to handle fetching comments to show
-                        this.props.fetchCommentsByPost(post.id);
+                  fetchComments={(id)=>{//this function is to handle fetching comments to show
+                        this.props.fetchCommentsByPost(id);
                     }}
-                  fetchPriceChange={()=>{
-                    this.props.fetchPriceChange(post.id);
+                  fetchPriceChange={(id)=>{
+                    this.props.fetchPriceChange(id);
                   }}
+                  likePost={(postId,userId)=>{
+                    this.props.likePost(postId,userId);
+                  }}
+                  userId={this.props.user?.id?(this.props.user.id):("")}
                   key={post.id}/>
               )})}
             </React.Fragment>
