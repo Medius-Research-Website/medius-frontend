@@ -73,7 +73,7 @@ export function signinUser(user, history) {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('userID', response.data.user.id);
           localStorage.setItem('username', response.data.user.username);
-          //history.push('/landingpage');
+          history.push('/landingpage');
         })
         .catch((error) => {
           console.log(error);
@@ -145,9 +145,9 @@ export function fetchCurrentUser(id) {
 // only can update current user
 export function updateUser(id, fields) {
   return (dispatch) => {
-    console.log(fields)
-    axios.put(`${ROOT_URL}/user/${id}/`, fields)
+    axios.put(`${ROOT_URL}/user/${id}`, fields)
       .then((response) => {
+        console.log('actions', response);
         dispatch({ type: ActionTypes.AUTH_USER, payload: response.data });
       })
       .catch((error) => {
@@ -292,20 +292,11 @@ export function singlePriceChange(id) {
 
 export function likePost(postID, userId){
   return (dispatch)=>{
-<<<<<<< HEAD
-    
-    
-    axios.put(`${ROOT_URL}/user/posts/likes/${id}/`,{ headers: { authorization: localStorage.getItem('token') }})
-      .then(()=>{
-        // handle after like or unlike
-        console.log('I like this!')
-=======
     axios.put(`${ROOT_URL}/user/posts/likes/${userId}/`,{postID},{ headers: { authorization: localStorage.getItem('token') }})
       .then((response)=>{
         // handle after like or unlike
         console.log(response);
         
->>>>>>> 2939d3358289348d2ca83e3f89f3ec18ff0bf44c
       })
       .catch((error)=>{
         // handle Errors

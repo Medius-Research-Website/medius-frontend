@@ -78,6 +78,7 @@ class Profile extends Component {
       bio: bio,
     }    
 
+    console.log(fields);
     !!this.state.editable && this.props.updateUser(localStorage.getItem('userID'), fields);
     
   }
