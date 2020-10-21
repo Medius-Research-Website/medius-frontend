@@ -1,6 +1,6 @@
 import axios from 'axios';
-const ROOT_URL = 'http://localhost:9090/api';
-// const ROOT_URL = 'https://medius-api.herokuapp.com/api';
+// const ROOT_URL = 'http://localhost:9090/api';
+const ROOT_URL = 'https://medius-api.herokuapp.com/api';
 
 // THIS IS THE ONLY FUNCTION YOU SHOULD CALL - THE OTHER TWO ARE HELPERS
 export function uploadFile(file) {
