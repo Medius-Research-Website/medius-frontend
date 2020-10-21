@@ -37,7 +37,7 @@ const PostsReducer = (state = initialState, action) => {
       let currPosts = [action.payload.newPost,...state.all];
       return { ...state, all: currPosts };
     case ActionTypes.FETCH_USER_POSTS:
-      return {...state, all: action.payload }
+      return {...state, all: action.payload.posts }
     default:
       return state;
   }

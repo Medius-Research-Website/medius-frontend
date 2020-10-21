@@ -7,14 +7,10 @@ import { fetchPosts,fetchCommentsByPost, fetchPriceChange, likePost, fetchCurren
 class Feed extends Component {
 
   componentDidMount() {
-    console.log('component mounting', localStorage.getItem('userID'));
     this.props.fetchPosts();
     this.props.fetchCurrentUser(localStorage.getItem('userID'));
   }
-  
-  fetchData(){
-    
-  }
+
 
   // access posts through this.props.allPosts; display iteratively through .map()
   render() {

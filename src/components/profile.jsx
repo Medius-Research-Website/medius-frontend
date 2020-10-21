@@ -197,7 +197,7 @@ function mapStateToProps(reduxState) {
   return {
     selectedUser: reduxState.auth.selectedUser, // this is the person whose profile we're viewing
     currentUser: reduxState.auth.user,  // this is the person who's signed in
-    userPosts: reduxState.posts.all.posts || [],   //can test with fetchPosts in case a user doesn't have any posts    // this is the person who's signed in
+    userPosts: reduxState.posts.all || [],   //can test with fetchPosts in case a user doesn't have any posts    // this is the person who's signed in
   };
 }
 
