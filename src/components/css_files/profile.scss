@@ -58,7 +58,7 @@
   width: 60vw;
 
   &::placeholder{
-    // color: black !important;
+    color: black;
   }
 
   .form-control{
@@ -69,7 +69,7 @@
     min-height: 70px;
   }
 
-  .form-control:after{
+  .form-control::after{
     color: black;
   }
 
@@ -106,7 +106,6 @@
     margin-bottom: 3%;
     margin-top: 1%;
   }
-
 }
 
 
