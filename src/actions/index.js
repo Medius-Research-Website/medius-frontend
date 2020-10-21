@@ -288,8 +288,9 @@ export function singlePriceChange(id) {
   };
 }
 
-export function likePost(postID, userId){
+export function likePost(postID, userId, stateOfLike){
   return (dispatch)=>{
+    if (!stateOfLike){
     axios.put(`${ROOT_URL}/user/posts/likes/${userId}/`,{postID},{ headers: { authorization: localStorage.getItem('token') }})
       .then((response)=>{
         // handle after like or unlike
@@ -299,7 +300,18 @@ export function likePost(postID, userId){
       .catch((error)=>{
         // handle Errors
         console.log(error);
+      });}
+    else
+    axios.put(`${ROOT_URL}/user/posts/unlikes/${userId}/`,{postID},{ headers: { authorization: localStorage.getItem('token') }})
+      .then((response)=>{
+        // handle after like or unlike
+        console.log(response);
+        
       })
+      .catch((error)=>{
+        // handle Errors
+        console.log(error);
+      });}
   }
 }
 
