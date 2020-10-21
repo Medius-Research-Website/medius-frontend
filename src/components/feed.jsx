@@ -29,8 +29,8 @@ class Feed extends Component {
               fetchPriceChange={(id)=>{
                 this.props.fetchPriceChange(id);
               }}
-              likePost={(postId,userId)=>{
-                this.props.likePost(postId,userId);
+              likePost={(postId,userId,stateOfLike)=>{
+                this.props.likePost(postId,userId,stateOfLike);
               }}
               userId={this.props.user?.id?(this.props.user.id):("")}
               key={post.id}/>
