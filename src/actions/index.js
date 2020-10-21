@@ -296,6 +296,7 @@ export function likePost(postID, userId){
       .then((response)=>{
         // handle after like or unlike
         console.log(response);
+        // dispatch({ type: ActionTypes.FETCH_POST, payload: response.data });
       })
       .catch((error)=>{
         // handle Errors
@@ -308,7 +309,6 @@ export function followUser(myID, theirID){
   return (dispatch)=>{
     axios.patch(`${ROOT_URL}/user/follow/${myID}/`,theirID, { headers: { authorization: localStorage.getItem('token') }})
       .then((response)=>{
-        console.log('follow', response);
         dispatch({ type: ActionTypes.FETCH_USER, payload: response.data });
       })
       .catch((error)=>{
@@ -322,7 +322,6 @@ export function unfollowUser(myID, theirID){
   return (dispatch)=>{
     axios.patch(`${ROOT_URL}/user/unfollow/${myID}/`,theirID, { headers: { authorization: localStorage.getItem('token') }})
       .then((response)=>{
-        console.log('unfollow', response);
         dispatch({ type: ActionTypes.FETCH_USER, payload: response.data });
       })
       .catch((error)=>{
