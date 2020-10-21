@@ -51,7 +51,7 @@ class singlepost extends Component {
 
     return (
       <div className="singlepost">
-          <div className="header">
+          <div className="header-sPost">
             <h3>{current.insight}</h3>
             <Link to={`/users/${current.author}`}>@{current.username}</Link>
             <p>{new Date(current.createdAt).toLocaleDateString()}</p>
@@ -76,7 +76,7 @@ class singlepost extends Component {
 
     return (
       <div className="singlepost">
-          <div className="header">
+          <div className="header-sPost">
             <h3>{current.insight}</h3>
             <Link to={`/users/${current.author}`}>@{current.username}</Link>
             <p>{new Date(current.createdAt).toLocaleDateString()}</p>
@@ -94,7 +94,7 @@ class singlepost extends Component {
 
     return (
       <div className="singlepost upload">
-          <div className="header">
+          <div className="header-sPost">
             <h3>{current.insight}</h3>
             <Link to={`/users/${current.author}`}>@{current.username}</Link>
             <p>{new Date(current.createdAt).toLocaleDateString()}</p>
