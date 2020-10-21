@@ -16,6 +16,7 @@ import EditableTextarea from './EditableTextarea';
 import Navbar from "./navbar";
 import { Button, FormControl, InputGroup, Image} from 'react-bootstrap';
 import Post from "./post";
+import blankProfile from './css_files/images/blankPortrait.png';
 // import { TransferWithinAStation } from "@material-ui/icons";
 
 class Profile extends Component {
@@ -94,6 +95,22 @@ class Profile extends Component {
     })
   }
 
+  renderImage = () =>{
+    if (this.state.picture === "" && this.props.selectedUser.hasOwnProperty('picture') && this.props.selectedUser.picture !== null){
+      return (
+        <Image className="profile-picture" src={this.props.selectedUser.picture} />
+      )
+    } else if (this.state.picture !== ""){
+      return (
+        <Image className="profile-picture" src={this.state.picture} />
+      )
+    } else {
+      return (
+        <Image className="profile-picture" src={blankProfile} />
+      )
+    }
+  }
+
   // access user through this.props.selectedUser
   // should check if currentUser's username is same as selectedUser's username to determine
   // if the person is viewing their own page. if it's there page add some kind of edit button
@@ -102,14 +119,14 @@ class Profile extends Component {
     // console.log(this.props.selectedUser)
     // console.log(this.props.currentUser)
     //console.log(this.props.userPosts)
-    console.log('selected', this.props.selectedUser);
+    
     if (this.props.selectedUser != null && this.props.currentUser != null) {
     return (
       <div className="profile-fullPage">
         <Navbar />
           <div className="header">
             <div className="image-box">
-              <Image className="profile-picture" src={(this.state.picture === "") ? (this.props.selectedUser.picture) : (this.state.picture) }/>
+              {this.renderImage()}
               {this.state.editable && (
                 <FileUpload accept="image/*" onChange={this.handleImageChange}>
                 </FileUpload>
@@ -150,11 +167,11 @@ class Profile extends Component {
         <div className="bio-holder">
           {(this.state.editable) ? 
             <InputGroup className="bio">
-              <FormControl placeholder={(this.state.bio === "") ? (this.props.selectedUser?.bio || "Got an investing idea? voice it!" ) : (this.state.bio)} onChange={this.onBioChange}/>
+              <FormControl placeholder={(this.state.bio === "") ? (this.props.selectedUser?.bio || "write a bio!" ) : (this.state.bio)} onChange={this.onBioChange}/>
             </InputGroup> 
             : 
             <InputGroup className="bio">
-              <FormControl placeholder={(this.state.bio === "") ? (this.props.selectedUser?.bio || "Got an investing idea? voice it!") : (this.state.bio)} readOnly/>
+              <FormControl placeholder={(this.state.bio === "") ? (this.props.selectedUser?.bio || "no bio yet...") : (this.state.bio)} readOnly/>
             </InputGroup> 
           }
         </div>
