@@ -148,15 +148,6 @@ class Profile extends Component {
             </InputGroup> 
           }
         </div>
-        <div>
-          {(this.props.selectedUser?.username === this.props.currentUser?.username) ? 
-            <div className="reports">
-              Research Reports
-            </div>
-            : 
-            <></>
-          }
-        </div>
         
         {(this.props.userPosts.length !== 0) ? (
             <React.Fragment>
