@@ -33,11 +33,22 @@ class Profile extends Component {
     this.onBioChange = this.onBioChange.bind(this)
     this.onPictureChange = this.onPictureChange.bind(this)
   }
+
   componentDidMount() {
-    this.props.fetchUser(this.props.match.params.userID)
-    //this.props.fetchPosts() => use this to test the rendering of a user's post history
+    window.scrollTo(0, 0);
+    this.props.fetchUser(this.props.match.params.userID);
     this.props.fetchUserPosts(this.props.match.params.userID);
-    this.props.fetchCurrentUser(localStorage.getItem('userID'))
+    this.props.fetchCurrentUser(localStorage.getItem('userID'));
+  }
+
+  // used when you route from one profile directly to another because
+  // component will update but not re-mount
+  componentDidUpdate(nextProps, nextState) { 
+    if (nextProps.match.params.userID !== this.props.match.params.userID){
+      this.props.fetchUser(this.props.match.params.userID);
+      this.props.fetchUserPosts(this.props.match.params.userID);
+      this.props.fetchCurrentUser(localStorage.getItem('userID'));
+    }
   }
 
   // should display a button to follow them if they're not already that calls this
@@ -116,11 +127,11 @@ class Profile extends Component {
   // if the person is viewing their own page. if it's there page add some kind of edit button
   // to change their bio
   render() {
-    // console.log(this.props.selectedUser)
-    // console.log(this.props.currentUser)
-    //console.log(this.props.userPosts)
+    // console.log('selected', this.props.selectedUser);
+    // console.log('current', this.props.currentUser);
+    // console.log(this.props.userPosts)
     
-    if (this.props.selectedUser != null && this.props.currentUser != null) {
+    if (this.props.selectedUser != null && this.props.currentUser != null && this.props.selectedUser.hasOwnProperty('username') && this.props.currentUser.hasOwnProperty('username')) {
     return (
       <div className="profile-fullPage">
         <Navbar />
