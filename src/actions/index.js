@@ -303,7 +303,7 @@ export function likePost(postID, userId, stateOfLike){
         // handle Errors
         console.log(error);
       });}
-    else
+    else{
     axios.put(`${ROOT_URL}/user/posts/unlikes/${userId}/`,{postID},{ headers: { authorization: localStorage.getItem('token') }})
       .then((response)=>{
         // handle after like or unlike
