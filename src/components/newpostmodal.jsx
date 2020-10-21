@@ -60,7 +60,7 @@ class NewPostModal extends Component{
                             </div>
                             <div className="feed__modal__form__main--ini__file" onClick={(e)=>{this.setState({formState : FIRE_FORM_STATE});}}>
                                 <FontAwesomeIcon icon={faUpload} className="fa-7x icon"/>
-                                <span>upload a file</span>
+                                <span>upload a report</span>
                             </div>
                             <div className="feed__modal__form__main--ini__article" onClick={(e)=>{this.setState({formState : ARTICLE_FORM_STATE});}}>
                                 <FontAwesomeIcon icon={faNewspaper} className="fa-7x icon"/>
