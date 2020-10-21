@@ -22,6 +22,7 @@ class singlepost extends Component {
   }
 
   async componentDidMount() {
+    window.scrollTo(0, 0);
     await this.props.fetchPost(this.props.match.params.postID);
     await this.props.singlePriceChange(this.props.match.params.postID);
     await this.props.fetchCommentsByPost(this.props.match.params.postID);
@@ -57,7 +58,7 @@ class singlepost extends Component {
             <div className="ticker-post">{current.ticker}</div>
             <div className="percent">
               <div className={pct.split('')[0] === '-' ? "negative-percent" : 'positive-percent'} >
-                {!isNaN(pct) ? singleCurrVal + ' (' +pct + ' ' : null}
+                {!isNaN(pct) ? '$' +singleCurrVal + ' (' +pct + '% ' : null}
               </div> 
               {!isNaN(pct) ? <div style={{marginLeft: 6}}>since post)</div> : null}
             </div>
@@ -230,11 +231,13 @@ class PDFRender extends Component{
 
   render () {
     return(
-      <a href={this.props.file} target="_blank" rel="noopener noreferrer">
-      <Document file={{ url: this.props.file }}>
-          <Page size="A10" pageNumber={1} />
-      </Document>
-    </a>
+      <div id="pdf-link">
+        <a href={this.props.file} target="_blank" rel="noopener noreferrer">
+          <Document file={{ url: this.props.file }}>
+              <Page size="A10" pageNumber={1} />
+          </Document>
+        </a>
+      </div>
 
     )
   }

@@ -238,7 +238,6 @@ export function createPost(post, history) {
   return (dispatch) => {
     axios.put(`${ROOT_URL}/posts`, post, { headers: { authorization: localStorage.getItem('token') } })
       .then((response) => { 
-        console.log('creating post', response);
         dispatch({ type: ActionTypes.ADD_POST, payload: response.data });
       })
       .catch((error) => {
@@ -290,9 +289,21 @@ export function singlePriceChange(id) {
   };
 }
 
-export function likePost(postID, userId){
+export function likePost(postID, userId, stateOfLike){
   return (dispatch)=>{
+    if (!stateOfLike){
     axios.put(`${ROOT_URL}/user/posts/likes/${userId}/`,{postID},{ headers: { authorization: localStorage.getItem('token') }})
+      .then((response)=>{
+        // handle after like or unlike
+        console.log(response);
+        // dispatch({ type: ActionTypes.FETCH_POST, payload: response.data });
+      })
+      .catch((error)=>{
+        // handle Errors
+        console.log(error);
+      });}
+    else{
+    axios.put(`${ROOT_URL}/user/posts/unlikes/${userId}/`,{postID},{ headers: { authorization: localStorage.getItem('token') }})
       .then((response)=>{
         // handle after like or unlike
         console.log(response);
@@ -301,7 +312,7 @@ export function likePost(postID, userId){
       .catch((error)=>{
         // handle Errors
         console.log(error);
-      })
+      });}
   }
 }
 
@@ -309,6 +320,7 @@ export function followUser(myID, theirID){
   return (dispatch)=>{
     axios.patch(`${ROOT_URL}/user/follow/${myID}/`,theirID, { headers: { authorization: localStorage.getItem('token') }})
       .then((response)=>{
+        dispatch({ type: ActionTypes.FETCH_USER, payload: response.data });
       })
       .catch((error)=>{
         // handle Errors
@@ -321,6 +333,7 @@ export function unfollowUser(myID, theirID){
   return (dispatch)=>{
     axios.patch(`${ROOT_URL}/user/unfollow/${myID}/`,theirID, { headers: { authorization: localStorage.getItem('token') }})
       .then((response)=>{
+        dispatch({ type: ActionTypes.FETCH_USER, payload: response.data });
       })
       .catch((error)=>{
         // handle Errors

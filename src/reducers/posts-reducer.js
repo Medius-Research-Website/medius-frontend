@@ -30,14 +30,14 @@ const PostsReducer = (state = initialState, action) => {
     case ActionTypes.SINGLE_PRICE_CHANGE:
       return {...state, singlePriceChange: action.payload.change, singleCurrVal: action.payload.currVal };
     case ActionTypes.ADD_COMMENT: 
-    let currComments = [...state.comments];
+    let currComments = state.comments;
       currComments[action.payload.postID].unshift(action.payload.newComment);
       return { ...state, comments: {...currComments} };
     case ActionTypes.ADD_POST: 
       let currPosts = [action.payload.newPost,...state.all];
       return { ...state, all: currPosts };
     case ActionTypes.FETCH_USER_POSTS:
-      return {...state, all: action.payload }
+      return {...state, all: action.payload.posts }
     default:
       return state;
   }

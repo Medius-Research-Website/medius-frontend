@@ -7,14 +7,10 @@ import { fetchPosts,fetchCommentsByPost, fetchPriceChange, likePost, fetchCurren
 class Feed extends Component {
 
   componentDidMount() {
-    console.log('component mounting', localStorage.getItem('userID'));
     this.props.fetchPosts();
     this.props.fetchCurrentUser(localStorage.getItem('userID'));
   }
-  
-  fetchData(){
-    
-  }
+
 
   // access posts through this.props.allPosts; display iteratively through .map()
   render() {
@@ -29,8 +25,8 @@ class Feed extends Component {
               fetchPriceChange={(id)=>{
                 this.props.fetchPriceChange(id);
               }}
-              likePost={(postId,userId)=>{
-                this.props.likePost(postId,userId);
+              likePost={(postId,userId,stateOfLike)=>{
+                this.props.likePost(postId,userId,stateOfLike);
               }}
               userId={this.props.user?.id?(this.props.user.id):("")}
               key={post.id}/>

@@ -58,9 +58,11 @@ class Profile extends Component {
   onNameChange(event){
     this.setState({name: event.target.value})
   }
+
   onBioChange(event){
     this.setState({bio: event.target.value})
   }
+
   onPictureChange(event){
     this.setState({picture: event.target.value})
   }
@@ -78,19 +80,20 @@ class Profile extends Component {
       bio: bio,
     }    
 
-    console.log(fields);
+    // console.log(fields);
     !!this.state.editable && this.props.updateUser(localStorage.getItem('userID'), fields);
     
   }
 
   handleImageChange = (base64, file) => {
-    console.log(file)
+    // console.log(file)
     uploadFile(file).then(url => {
       this.setState({picture: url})
     }).catch(error => {
       console.log(error)
     })
   }
+
   // access user through this.props.selectedUser
   // should check if currentUser's username is same as selectedUser's username to determine
   // if the person is viewing their own page. if it's there page add some kind of edit button
@@ -195,7 +198,7 @@ function mapStateToProps(reduxState) {
   return {
     selectedUser: reduxState.auth.selectedUser, // this is the person whose profile we're viewing
     currentUser: reduxState.auth.user,  // this is the person who's signed in
-    userPosts: reduxState.posts.all.posts || [],   //can test with fetchPosts in case a user doesn't have any posts    // this is the person who's signed in
+    userPosts: reduxState.posts.all || [],   //can test with fetchPosts in case a user doesn't have any posts    // this is the person who's signed in
   };
 }
 
