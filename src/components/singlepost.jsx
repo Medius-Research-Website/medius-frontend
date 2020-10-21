@@ -231,11 +231,13 @@ class PDFRender extends Component{
 
   render () {
     return(
-      <a href={this.props.file} target="_blank" rel="noopener noreferrer">
-      <Document file={{ url: this.props.file }}>
-          <Page size="A10" pageNumber={1} />
-      </Document>
-    </a>
+      <div id="pdf-link">
+        <a href={this.props.file} target="_blank" rel="noopener noreferrer">
+          <Document file={{ url: this.props.file }}>
+              <Page size="A10" pageNumber={1} />
+          </Document>
+        </a>
+      </div>
 
     )
   }
