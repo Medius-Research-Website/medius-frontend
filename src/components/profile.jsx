@@ -104,7 +104,6 @@ class Profile extends Component {
     return (
       <div>
         <Navbar />
-        <div className="profile-box">
           <Image className="profile-picture" src={(this.state.picture === "") ? (this.props.selectedUser.picture) : (this.state.picture) }/>
           {this.state.editable && (
             <FileUpload accept="image/*" onChange={this.handleImageChange}>
@@ -114,7 +113,13 @@ class Profile extends Component {
           }
           <div>
             {(this.props.selectedUser.username === this.props.currentUser.username) ? 
-            <Button className="edit-button" onClick={this.editProfile}>Edit</Button> : <></>
+            <Button className="edit-button" onClick={this.editProfile}>
+              <svg style={{'display': 'block', 'margin-left': '-5px'}}width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+              </svg>
+            </Button> 
+            : 
+            <></>
             }
             {
               (this.props.selectedUser.username !== this.props.currentUser.username) ? 
@@ -127,31 +132,22 @@ class Profile extends Component {
               <></>
             }
           </div>
-        </div>
+        
         <EditableTextarea className="user-name" isEditing={this.state.editable} onChange={this.onNameChange}>
           {(this.state.name === "") ? (this.props.selectedUser?.firstName + " " + this.props.selectedUser?.lastName) : (this.state.name)}
         </EditableTextarea>
         <div className="user-info">
-          2 posts • 0 following • 4952 followers
+          2 posts • {this.props.selectedUser?.following.length} following • {this.props.selectedUser?.followers.length} followers
         </div>
         <div>
           {(this.state.editable) ? 
-            <InputGroup style={{width: "1760px", marginLeft: "-250px"}}>
+            <InputGroup style={{width: "1500px", marginLeft: "-250px"}}>
               <FormControl  className="bio" placeholder={(this.state.bio === "") ? (this.props.selectedUser?.bio || "Got an investing idea? voice it!" ) : (this.state.bio)} onChange={this.onBioChange}/>
             </InputGroup> 
             : 
-            <InputGroup style={{width: "1760px", marginLeft: "-250px"}}>
+            <InputGroup style={{width: "1500px", marginLeft: "-250px"}}>
               <FormControl  className="bio" placeholder={(this.state.bio === "") ? (this.props.selectedUser?.bio || "Got an investing idea? voice it!") : (this.state.bio)} readOnly/>
             </InputGroup> 
-          }
-        </div>
-        <div>
-          {(this.props.selectedUser?.username === this.props.currentUser?.username) ? 
-            <div className="reports">
-              Research Reports
-            </div>
-            : 
-            <></>
           }
         </div>
         
@@ -168,7 +164,7 @@ class Profile extends Component {
                   likePost={(postId,userId)=>{
                     this.props.likePost(postId,userId);
                   }}
-                  userId={this.props.user?.id?(this.props.user.id):("")}
+                  userId={this.props.currentUser?.id?(this.props.currentUser.id):("")}
                   key={post.id}/>
               )})}
             </React.Fragment>

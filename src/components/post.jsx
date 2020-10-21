@@ -45,7 +45,7 @@ export default function Post({ userId, post,  fetchComments, fetchPriceChange, l
               <FontAwesomeIcon onClick={onCommentToggle} icon={faCommentDots} className="icon"/>
             </div>
           </div>
-          <Link to={`posts/${post.id}`}  style={{ textDecoration: 'none' }}>
+          <Link to={`/posts/${post.id}`}  style={{ textDecoration: 'none' }}>
             <div className="content">
               <p className="post-title">
                 {post.insight}
