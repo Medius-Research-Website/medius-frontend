@@ -11,6 +11,7 @@ import Community from "./pages/communityPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import singlepost from "./components/singlepost";
 import profile from "./components/profile";
+import PrivateRoute from "./components/privateroute";
 
 const trackingId = "UA-176041306-1"
 ReactGA.initialize(trackingId);
@@ -21,11 +22,11 @@ function App() {
       <div>
         {/* <Navbar /> */}
           <Route exact path="/" component={Home} />
-          <Route exact path="/about" component={about} />
-          <Route exact path="/landingpage" component={LandingPage}/>
-          <Route exact path="/communitypage" component={Community} />
-          <Route exact path="/posts/:postID" component={singlepost} />
-          <Route exact path="/users/:userID" component={profile} />
+          <PrivateRoute exact path="/about" component={about} />
+          <PrivateRoute exact path="/landingpage" component={LandingPage}/>
+          <PrivateRoute exact path="/communitypage" component={Community} />
+          <PrivateRoute exact path="/posts/:postID" component={singlepost} />
+          <PrivateRoute exact path="/users/:userID" component={profile} />
       </div>
     </Router>
   );
