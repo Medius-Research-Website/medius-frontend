@@ -4,6 +4,14 @@
     /* background-color: #E0E1DD; */
 }
 
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 .App {
   text-align: center;
 }

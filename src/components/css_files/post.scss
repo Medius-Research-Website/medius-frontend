@@ -1,6 +1,7 @@
 .feed__post{
   display:flex;
-  flex-direction: row-reverse;;
+  flex-direction: row-reverse;
+  margin-bottom: 50px;
   @mixin wrapping{
     border-radius: 20px;
     padding:25px;
