@@ -195,7 +195,7 @@ a:hover {
   }
 
   #back {
-    margin-top: 200px;
+    margin-top: 270px;
     width: 200px;
     height: 45px;
     margin-left: 40px;
@@ -262,4 +262,10 @@ a:hover {
         width: 100% !important;
       }
     }
+}
+
+#no-blank {
+  background-color: white;
+  color: red;
+  font-size: 13px;
 }

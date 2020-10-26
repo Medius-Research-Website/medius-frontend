@@ -184,8 +184,8 @@ const FileUpLoadForm = (props)=>{
         if (ifError) return;
         
         let post={
-            idea: title,
-            insight: bodyContent,
+            insight: title,
+            idea: bodyContent,
             file: file,
             type:"report",
             author: localStorage.getItem('userID'),
