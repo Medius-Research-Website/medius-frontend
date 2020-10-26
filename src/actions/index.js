@@ -102,7 +102,7 @@ export function signinUser(user, history) {
 // returns public information for all users (need to narrow this, how do we want to present profiles?)
 export function fetchUsers() {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/user/`)
+    axios.get(`${ROOT_URL}/user/`, { headers: { authorization: localStorage.getItem('token') }})
       .then((response) => {
         dispatch({ type: ActionTypes.FETCH_USERS, payload: response.data });
       })
@@ -116,7 +116,7 @@ export function fetchUsers() {
 // only returns public information for a user
 export function fetchUser(id) {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/user/${id}/`)
+    axios.get(`${ROOT_URL}/user/${id}/`, { headers: { authorization: localStorage.getItem('token') }})
       .then((response) => {
         dispatch({ type: ActionTypes.FETCH_USER, payload: response.data });
       })
@@ -129,7 +129,7 @@ export function fetchUser(id) {
 
 export function fetchCurrentUser(id) {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/user/${id}/`)
+    axios.get(`${ROOT_URL}/user/${id}/`, { headers: { authorization: localStorage.getItem('token') }})
       .then((response) => {
         // console.log(response, 'fetch current user action')
         dispatch({ type: ActionTypes.FETCH_CURRENT_USER, payload: response.data });
@@ -144,7 +144,7 @@ export function fetchCurrentUser(id) {
 // only can update current user
 export function updateUser(id, fields) {
   return (dispatch) => {
-    axios.put(`${ROOT_URL}/user/${id}`, fields)
+    axios.put(`${ROOT_URL}/user/${id}`, fields, { headers: { authorization: localStorage.getItem('token') }})
       .then((response) => {
         console.log('actions', response);
         dispatch({ type: ActionTypes.AUTH_USER, payload: response.data });
@@ -158,7 +158,7 @@ export function updateUser(id, fields) {
 
 export function fetchUserPosts(id) {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/user/posts/${id}`)
+    axios.get(`${ROOT_URL}/user/posts/${id}`, { headers: { authorization: localStorage.getItem('token') }})
     .then((response) => {
       dispatch({ type: ActionTypes.FETCH_USER_POSTS, payload: response.data});
     })
@@ -237,6 +237,7 @@ export function createPost(post, history) {
   return (dispatch) => {
     axios.put(`${ROOT_URL}/posts`, post, { headers: { authorization: localStorage.getItem('token') } })
       .then((response) => { 
+        // console.log(response)
         dispatch({ type: ActionTypes.ADD_POST, payload: response.data });
       })
       .catch((error) => {

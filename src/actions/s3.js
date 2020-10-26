@@ -14,7 +14,6 @@ export function uploadFile(file) {
 function getSignedRequest(file) {
     const fileName = encodeURIComponent(file.name);
     // hit our own server to get a signed s3 url
-    console.log('getSigned', fileName);
     return axios.get(`${ROOT_URL}/sign-s3?file-name=${fileName}&file-type=${file.type}`);
 }
 
@@ -24,8 +23,8 @@ function getSignedRequest(file) {
 function uploadFileToS3(signedRequest, file, url) {
     return new Promise((fulfill, reject) => {
       axios.put(signedRequest, file, { headers: { 'Content-Type': file.type } }).then((response) => {
-        console.log(response)
-        console.log(url)
+        // console.log(response)
+        // console.log(url)
         fulfill(url);
       }).catch((error) => {
         console.log(error)
