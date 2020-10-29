@@ -203,38 +203,68 @@ h2 {
     display: none;
 }
 
+#mobile-btn, #mobile-btn-signIn {
+  display: none !important;
+}
+
+#noShowmobile {
+  display: none !important;
+}
+
 @media only screen and (max-width: 450px) {
     html {
         height: 100vh;
     }
 
     #btn-signin {
-        margin-left: 50%;
-        width: 30vw;
+        display: none;
+    }
+
+    #mobile-btn-signIn {
+      display: block;
+      width: 100px;
+      position: relative;
+      left: -30px;
+      top: -23px;
+
+      button {
+        width: 100%;
+      }
     }
 
  .page1 {
     flex-direction: column;
-     width: 100%;
-     min-height: 110vw;
-     margin: 0;
-     padding: 3%;
+    width: 100%;
+    min-height: 110vw;
+    margin: 0;
+    padding: 3%;
 
-     .monitor {
-         display: none;
-     }
+    .monitor {
+        display: none;
+    }
 
-     .container {
-         padding: 0;
-         margin: 0;
-         font-size: 0.8em;
-         width: 60%;
-     }
+    .container {
+      padding: 0;
+      margin: 0;
+      font-size: 0.8em;
+      width: 60%;
+    }
 
-     button {
-         width: 75%;
-         font-size: 1em;
-     }
+    button {
+      width: 75%;
+      font-size: 1em;
+    }
+
+    a {
+      width: 75vw;
+      font-size: 1em;
+    }
+
+    #btn-primary {
+      display: none;
+    }
+
+
  }
 
  .page2 {
@@ -245,41 +275,41 @@ h2 {
     min-height: 100vw;
 
     p {
-        width: 70%;
+      width: 70%;
     }
 
     #collaborate > p {
-        margin-left: 0px;
+      margin-left: 0px;
     }
 
     img {
-        display: none;
+      display: none;
     }
 
     #bubbles {
-        flex-direction: column;
-        align-items: center;
-        width: 75%;
+      flex-direction: column;
+      align-items: center;
+      width: 75%;
     }
 
     #reliable, #access, #collaborate {
-        align-items: center;
+      align-items: center;
     }
 
     .rcorners2 {
-        width: 100%;
+      width: 100%;
     }
 
     #horiz {
-        flex-direction: column;
+      flex-direction: column;
     }
   }
 
   .footer {
-      flex-direction: column;
-      align-items: center;
-      padding-top: 3%;
-      padding-bottom: 3%;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3%;
+    padding-bottom: 3%;
 
       br {
           height: 0px;

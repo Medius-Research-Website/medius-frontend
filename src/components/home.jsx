@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink} from "react-router-dom"; //BrowserRouter, Link,
+import { NavLink, Link} from "react-router-dom"; //BrowserRouter, Link,
 import { Button } from "react-bootstrap";
 import Signup from './signup';
 import Signin from './signin';
@@ -41,6 +41,9 @@ class Home extends Component {
             <NavLink to=""> medius </NavLink>
           </div>
             <Button type="button" id="btn-signin" onClick={this.showSigninModal}>Sign In</Button>
+            <Link to="/landingpage" id="mobile-btn-signIn">
+              <Button type="button" id="noShowmobile" onClick={this.showSigninModal}>Sign In</Button>
+            </Link>
             <Signin history={this.props.history} showSignin={this.state.showSignin} onClose={this.showSigninModal}/>
         </header>
 
@@ -60,6 +63,11 @@ class Home extends Component {
                 <Button type="button" className="btn-primary" onClick={this.showSignupModal}>
                   Sign up for our Beta launch! 
                 </Button>
+                <Link to="/landingpage" id="mobile-btn">
+                  <Button type="button" className="btn-primary" onClick={this.showSignupModal}>
+                    Sign up for our Beta launch! 
+                  </Button>
+                </Link>
               <Signup history={this.props.history} showSignup={this.state.showSignup} onClose={this.showSignupModal} />
           </div>
         </div>
