@@ -6,7 +6,7 @@ import Signin from './signin';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css_files/home.scss";
 import DesktopImg from './css_files/images/desktop.png';
-import FeedImg from './css_files/images/screen.png';
+import FeedImg from './css_files/images/investment_ideas.png';
 // import "./css_files/signUp.css"
 
 

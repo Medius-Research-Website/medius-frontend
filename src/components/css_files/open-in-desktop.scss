@@ -1,0 +1,23 @@
+.desktop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    p {
+        font-family: "Oxygen", sans-serif;
+        background-color: transparent;
+        text-align: center;
+        margin-top: 5vh;
+        margin-bottom: 0px;
+    }
+
+    p:first-child {
+        font-weight: bold;
+        font-size: 30px;
+    }
+
+    img {
+        width: 80%;
+
+    }
+}

@@ -204,9 +204,17 @@ h2 {
 }
 
 @media only screen and (max-width: 450px) {
+    html {
+        height: 100vh;
+    }
+
+    #btn-signin {
+        margin-left: 50%;
+        width: 30vw;
+    }
 
  .page1 {
-     flex-direction: column;
+    flex-direction: column;
      width: 100%;
      min-height: 110vw;
      margin: 0;
@@ -225,7 +233,7 @@ h2 {
 
      button {
          width: 75%;
-         font-size: 0.5em;
+         font-size: 1em;
      }
  }
 
@@ -238,6 +246,10 @@ h2 {
 
     p {
         width: 70%;
+    }
+
+    #collaborate > p {
+        margin-left: 0px;
     }
 
     img {
