@@ -23,8 +23,18 @@ export const ActionTypes = {
   SINGLE_PRICE_CHANGE: 'SINGLE_PRICE_CHANGE',
   ADD_COMMENT: 'ADD_COMMENT',
   ADD_POST: 'ADD_POST',
+  SET_ERROR: 'SET_ERROR',
+  CLEAR_ERROR: 'CLEAR_ERROR'
 };
 
+const setError = (dispatch, message) => {
+    dispatch({type: ActionTypes.SET_ERROR, payload:message});
+}
+export const clearErrorMessages = ()=>{
+  return (dispatch)=>{
+    dispatch({type: ActionTypes.CLEAR_ERROR});
+  }
+}
 // trigger to deauth if there is error
 export function authError(error) {
   return {
@@ -108,6 +118,7 @@ export function fetchUsers() {
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
+        setError(dispatch,'an error occured when getting users information');
         console.log(error);
       });
   };
@@ -122,6 +133,7 @@ export function fetchUser(id) {
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
+        setError(dispatch,'an error occured when getting the user information');
         console.log(error);
       });
   };
@@ -136,6 +148,7 @@ export function fetchCurrentUser(id) {
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
+        setError(dispatch,"an error occured when getting current user's information");
         console.log(error);
       });
   };
@@ -151,6 +164,7 @@ export function updateUser(id, fields) {
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
+        setError(dispatch,'an error occured when trying to update user information');
         console.log(error);
       });
   };
@@ -163,7 +177,8 @@ export function fetchUserPosts(id) {
       dispatch({ type: ActionTypes.FETCH_USER_POSTS, payload: response.data});
     })
     .catch((error) => {
-      console.log(error)
+      setError(dispatch,'an error occured when getting posts information of this user');
+      console.log(error);
     })
   }
 }
@@ -177,6 +192,7 @@ export function fetchPosts() {
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
+        setError(dispatch,"an error occured when getting posts' information");
         console.log(error);
       });
   };
@@ -190,6 +206,7 @@ export function fetchPost(id) {
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
+        setError(dispatch,"an error occured when getting the post's information");
         console.log(error);
       });
   };
@@ -203,6 +220,7 @@ export function fetchPriceChange(id) {
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
+        setError(dispatch,"an error occured when getting price change of a post");
         console.log(error);
       });
   };
@@ -216,6 +234,7 @@ export function fetchCommentsByPost(postID){
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
+        setError(dispatch,"an error occured when getting posts' comments");
         console.log(error);
       });
   }
@@ -228,6 +247,7 @@ export function addComment(comment, postID) {
       dispatch({ type: ActionTypes.ADD_COMMENT, payload: {...response.data, postID }});
     })
     .catch((error) => {
+      setError(dispatch,"an error occured when commenting");
       console.log(error);
     });
   } 
@@ -242,6 +262,7 @@ export function createPost(post, history) {
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
+        setError(dispatch,"an error occured when making a post");
         console.log(error);
       });
   }
@@ -266,6 +287,7 @@ export function deletePost(id) {
       .then(() => { history.push('/'); })
       .catch((error) => {
         // dispatch an error, in separate error reducer
+        setError(dispatch,"an error occured when trying to delete post");
         console.log(error);
       });
   };
@@ -284,6 +306,7 @@ export function singlePriceChange(id) {
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
+        setError(dispatch,"an error occured when getting price change of a post");
         console.log(error);
       });
   };
@@ -300,6 +323,7 @@ export function likePost(postID, userId, stateOfLike){
       })
       .catch((error)=>{
         // handle Errors
+        setError(dispatch,"an error occured when liking the post");
         console.log(error);
       });}
     else{
@@ -311,6 +335,7 @@ export function likePost(postID, userId, stateOfLike){
       })
       .catch((error)=>{
         // handle Errors
+        setError(dispatch,"an error occured when unliking the post");
         console.log(error);
       });}
   }
@@ -324,6 +349,7 @@ export function followUser(myID, theirID){
       })
       .catch((error)=>{
         // handle Errors
+        setError(dispatch,"an error occured when following the user");
         console.log(error);
       })
   }
@@ -337,6 +363,7 @@ export function unfollowUser(myID, theirID){
       })
       .catch((error)=>{
         // handle Errors
+        setError(dispatch,"an error occured when unfollowing the user");
         console.log(error);
       })
   }
