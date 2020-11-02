@@ -1,12 +1,12 @@
 .error-modal{
     width: 50vw;
-    position: absolute;
+    position: fixed;
     z-index: 2000;
     background-color: white;
     left:25%;
+    top: 10%;
     padding: 20px 20px;
-    border-bottom-left-radius: 1em;
-    border-bottom-right-radius: 1em;
+    border-radius: 1em;
     &--hidden{
         display:none;
     }
