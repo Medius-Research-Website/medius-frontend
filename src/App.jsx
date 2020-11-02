@@ -14,7 +14,7 @@ import profile from "./components/profile";
 import Desktop from "./components/open-in-desktop";
 import PrivateRoute from "./components/privateroute";
 import Media from 'react-media'; 
-
+import ErrorModal from "./components/errorModal";
 const trackingId = "UA-176041306-1"
 ReactGA.initialize(trackingId);
 
@@ -25,6 +25,7 @@ function App() {
             !matches.small ? (
               // if you're on a desktop, has the normal view
               <Router history={history}>
+                <ErrorModal/>
                 <Switch>
                   <Route exact path="/" component={Home} />
                   <PrivateRoute exact path="/about" component={about} />
