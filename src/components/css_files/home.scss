@@ -24,6 +24,10 @@ html {
     text-decoration: none;
 }
 
+.brand-logo-name > a:hover {
+  color: white;
+}
+
 .page1 {
     background-color: #E0E1DD;
     padding: 10%;
@@ -203,7 +207,7 @@ h2 {
     display: none;
 }
 
-#mobile-btn, #mobile-btn-signIn {
+#mobile-signUp, #mobile-btn-signIn {
   display: none !important;
 }
 
@@ -211,7 +215,7 @@ h2 {
   display: none !important;
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 599px) {
     html {
         height: 100vh;
     }
@@ -257,14 +261,13 @@ h2 {
 
     a {
       width: 75vw;
+      height: 50px;
       font-size: 1em;
     }
 
-    #btn-primary {
-      display: none;
+    #mobile-signUp {
+      display: flex !important;
     }
-
-
  }
 
  .page2 {
