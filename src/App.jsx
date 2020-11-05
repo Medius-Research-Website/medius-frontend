@@ -20,7 +20,7 @@ ReactGA.initialize(trackingId);
 
 function App() {
   return (
-    <Media queries={{ small: "(max-width: 500px)" }}>
+    <Media queries={{ small: "(max-width: 599px)" }}>
       {matches =>
             !matches.small ? (
               // if you're on a desktop, has the normal view
@@ -37,6 +37,7 @@ function App() {
               </Router>
             ) : (
               // if you're in mobile, will only load the landing page. otherwise asks you to view in desktop
+              console.log('in mobile'),
               <Router history={history}>
                 <Switch>
                   <Route exact path="/" component={Home} />

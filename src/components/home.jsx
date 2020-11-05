@@ -60,10 +60,10 @@ class Home extends Component {
                 and research from top contributers, all for free.
                 <br />
                 <br />
-                <Button type="button" className="btn-primary" onClick={this.showSignupModal}>
+                <Button type="button" className="btn-primary signUp" onClick={this.showSignupModal}>
                   Sign up for our Beta launch! 
                 </Button>
-                <Link to="/landingpage" id="mobile-btn">
+                <Link to="/landingpage" id="mobile-signUp">
                   <Button type="button" className="btn-primary" onClick={this.showSignupModal}>
                     Sign up for our Beta launch! 
                   </Button>
