@@ -9,6 +9,7 @@
     box-shadow: inset 0px -1px 1px #929290;
   }//round-wrapping container
   @mixin text($type){
+    word-break: break-all;
     background:none;
     color:black;
     font-family: sans-serif;
