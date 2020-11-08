@@ -85,7 +85,8 @@
                     border:none;
                     margin:10px;
                 }
-                &--idea{
+                &--idea, &--body{
+                    overflow-y: scroll;
                     height:200px;
                     text-align: start;
                     background-color:white;
