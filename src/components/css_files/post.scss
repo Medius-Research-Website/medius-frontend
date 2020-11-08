@@ -62,7 +62,6 @@
     }//applied for both sell and buy bubble
     & p{
       margin-bottom: 0px;
-      
     }
     .bubble{
       &--buy{
@@ -101,6 +100,11 @@
   }
 
   &__right{
+    // flex-basis: 74%;
+    width: 75%;
+    display: flex;
+    margin-left: auto;
+    flex-direction: column;
     &__content{
       @include wrapping;  
       display: flex;
@@ -136,6 +140,8 @@
         overflow: hidden;
         margin-left: 7px;
         white-space: pre-line;
+        overflow-wrap: break-word;
+        width: 33vw;
       }
     }
     &__comment{
@@ -163,12 +169,6 @@
       }
 
     }
-    
-    flex-basis: 74%;
-    display: flex;
-    
-    margin-left: auto;
-    flex-direction: column;
   }
 
   .username {
