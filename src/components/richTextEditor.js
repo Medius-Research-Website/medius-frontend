@@ -10,6 +10,7 @@ const RichTextEditor = ({onChange,className})=>{
         let RawContent=convertToRaw(editorState.getCurrentContent());
         onChange(JSON.stringify(RawContent));
     }
+
     const handleKeyCommand = (command, editorState) => {
         const newState = RichUtils.handleKeyCommand(editorState, command);
     
@@ -23,10 +24,16 @@ const RichTextEditor = ({onChange,className})=>{
     const onClickStyleHandle=(style)=>{
         editorOnChangeHandler(RichUtils.toggleInlineStyle(editorState, style));
     }
+    const onClickBlockHandler = (style)=>{
+        editorOnChangeHandler(RichUtils.toggleBlockType(editorState,style));
+    }
     return (<div className={`${className}`}>
         <button onClick={()=>{onClickStyleHandle('BOLD')}}><b>B</b></button>
         <button onClick={()=>{onClickStyleHandle('ITALIC')}}><i>I</i></button>
         <button onClick={()=>{onClickStyleHandle('UNDERLINE')}}><u>U</u></button>
+        <button onClick={()=>{onClickBlockHandler('unordered-list-item')}}>UL</button>
+        <button onClick={()=>{onClickBlockHandler('ordered-list-item')}}>OL</button>
+
         <Editor editorState={editorState} 
             onChange={editorOnChangeHandler} 
             handleKeyCommand={handleKeyCommand}
