@@ -15,7 +15,7 @@ class Opportunities extends Component{
                 <div className="opportunities">
                     <h1>Opportunities</h1>
                     <hr />
-                    <a href="https://www.googleform.com" target="_blank" rel="noopener noreferrer">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSe4j3oTA2z725HxCnf4cNDIDeN4D18QzhvTsc9bkvzWl4UutQ/viewform?usp=sf_link" target="_blank" rel="noopener noreferrer">
                         <Button className="btn-primary">Have opportunities to share? Click here!</Button>
                     </a>
                     <p> airtable integration tbd</p>
