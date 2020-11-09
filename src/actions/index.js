@@ -368,18 +368,3 @@ export function unfollowUser(myID, theirID){
       })
   }
 }
-
-
-export function fetchOpportunities(){
-  return (dispatch)=>{
-    axios.get(`https://api.airtable.com/v0/appDQkgslPxjBj3gJ/Table%201?api_key=key6gaOeurH9KePcW`)
-    .then((response)=>{
-      dispatch({ type: ActionTypes.FETCH_OPPORTUNITIES, payload: response.data });
-    })
-    .catch((error)=>{
-      // handle Errors
-      setError(dispatch,"An error occured when fetching opportunities.");
-      console.log(error);
-    })
-  }
-}
