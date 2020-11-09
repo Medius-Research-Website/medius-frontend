@@ -8,6 +8,7 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faExternalLinkSquareAlt } from '@fortawesome/free-solid-svg-icons'
+import RichTextDisplayer from './richTextDisplayer';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 // import { ThreeSixtySharp } from '@material-ui/icons';
@@ -71,6 +72,9 @@ class singlepost extends Component {
           <div className="description">
             {current.idea}
           </div>
+          <RichTextDisplayer className="description">
+            {current.idea}  
+          </RichTextDisplayer>
       </div>
     )
   }
