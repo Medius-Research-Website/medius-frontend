@@ -15,6 +15,8 @@ import Desktop from "./components/open-in-desktop";
 import PrivateRoute from "./components/privateroute";
 import Media from 'react-media'; 
 import ErrorModal from "./components/errorModal";
+import Competitions from "./components/competitions";
+import Opportunities from "./components/opportunities";
 const trackingId = "UA-176041306-1"
 ReactGA.initialize(trackingId);
 
@@ -33,6 +35,8 @@ function App() {
                   <PrivateRoute exact path="/communitypage" component={Community} />
                   <PrivateRoute exact path="/posts/:postID" component={singlepost} />
                   <PrivateRoute exact path="/users/:userID" component={profile} />
+                  <PrivateRoute exact path="/competitions" component={Competitions} />
+                  <PrivateRoute exact path="/opportunities" component={Opportunities} />
                 </Switch>
               </Router>
             ) : (

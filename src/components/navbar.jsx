@@ -83,6 +83,12 @@ class NavbarInstance extends Component {
             <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons" to={`/users/${this.props.user.id}`}>
               My Profile
             </NavLink>
+            <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons" to="/competitions">
+              Competitions
+            </NavLink>
+            <NavLink activeClassName="selected" className="btn ml-auto mr-1 navButtons" to="/opportunities">
+              Opportunities
+            </NavLink>
             <div className="btn ml-auto mr-1 navButtons signInBorder" onClick={this.onClickSignOut}>
               Sign Out
             </div>

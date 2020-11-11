@@ -28,11 +28,14 @@ const RichTextEditor = ({onChange,className})=>{
         editorOnChangeHandler(RichUtils.toggleBlockType(editorState,style));
     }
     return (<div className={`${className}`}>
-        <button onClick={()=>{onClickStyleHandle('BOLD')}}><b>B</b></button>
-        <button onClick={()=>{onClickStyleHandle('ITALIC')}}><i>I</i></button>
-        <button onClick={()=>{onClickStyleHandle('UNDERLINE')}}><u>U</u></button>
-        <button onClick={()=>{onClickBlockHandler('unordered-list-item')}}>UL</button>
-        <button onClick={()=>{onClickBlockHandler('ordered-list-item')}}>OL</button>
+        <div className="editorButtons">
+            <button onClick={()=>{onClickStyleHandle('BOLD')}}><b>B</b></button>
+            <button onClick={()=>{onClickStyleHandle('ITALIC')}}><i>I</i></button>
+            <button onClick={()=>{onClickStyleHandle('UNDERLINE')}}><u>U</u></button>
+            <button onClick={()=>{onClickBlockHandler('unordered-list-item')}}>UL</button>
+            <button onClick={()=>{onClickBlockHandler('ordered-list-item')}}>OL</button>
+        </div>
+        <hr />
 
         <Editor editorState={editorState} 
             onChange={editorOnChangeHandler} 

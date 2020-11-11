@@ -51,13 +51,12 @@ class Home extends Component {
           <div className="monitor"> <img src={DesktopImg} alt="tv logo" /></div>
           <div className="container"> 
             <h2>
-              A modern
-                <br/>
-                <p>finance community</p>
-                built on collaboration
+              Bringing <span>Wall St.</span>
+              <br />
+              to <span>University Ave.</span>
             </h2>
-                An open forum for sharing high quality investment ideas, stock picks,
-                and research from top contributers, all for free.
+                An open forum for sharing high quality investment ideas, stock picks, 
+                and research from top universities, all for free.
                 <br />
                 <br />
                 <Button type="button" className="btn-primary signUp" onClick={this.showSignupModal}>

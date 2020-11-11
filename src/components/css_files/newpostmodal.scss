@@ -105,6 +105,28 @@
                     color:red;
                     background: none;
                 }
+
+                &--idea, &--body {
+                    .editorButtons {
+                        // background-color: red;
+                        width: 40%;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-evenly;
+
+                        button {
+                            border-width: 0px;
+                            background-color: #ada9a97a;
+                            border-radius: 3px;
+                            min-width: 30px;
+                        }
+                    }
+
+                    hr {
+                        margin-top: 5px;
+                        margin-bottom: 5px;
+                    }
+                }
                 
             }
             .inactive{

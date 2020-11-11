@@ -207,7 +207,7 @@ class Profile extends Component {
           )
         :
           (
-            <div>
+            <div className="noPosts">
               No posts to see yet!
             </div>
           )

@@ -78,7 +78,7 @@ html {
 h2 {
     font-size: 200%;
     font-weight: bold;
-    p {
+    span {
         font-style: normal;
         font-weight: bold;
         font-size: 100%;
@@ -86,6 +86,14 @@ h2 {
         color: #5A786F;
         background: transparent;
         margin-bottom: 0px;
+    }
+
+    span:first-of-type {
+      color: #299B31;
+    }
+
+    span:last-of-type {
+      color: #1B9671;
     }
 }
 
