@@ -50,7 +50,7 @@ export function clear() {
 }
 
 // fetches all relevant information about current user
-export function signinUser(user, history) {
+export function signinUser(user, history, callback?) {
   // console.log('pushing sign in user');
     return (dispatch) => {
       axios.post(`${ROOT_URL}/signin`, user)
@@ -60,14 +60,17 @@ export function signinUser(user, history) {
           localStorage.setItem('userID', response.data.user.id);
           localStorage.setItem('username', response.data.user.username);
           history.push('/landingpage');
+          if (callback) callback();
         })
         .catch((error) => {
           // console.log("error sign in");
+          
           if(user.email && user.password) {
             dispatch({ type: ActionTypes.INVALID_CREDENTIALS })
           } else {
             dispatch({ type: ActionTypes.INCOMPLETE_FORM})
           }
+          if (callback) callback();
         });
     };
   }
