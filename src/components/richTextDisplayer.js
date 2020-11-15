@@ -5,17 +5,17 @@ const RichTextDisplayer = ({value, className, children})=>{
     try{
         
         let content=JSON.parse(children?children:value);
-        console.log(content);
-        console.log(convertFromRaw(content));
+        // console.log(content);
+        // console.log(convertFromRaw(content));
         const editorState=EditorState.createWithContent(convertFromRaw(content));
-        console.log(editorState);
+        // console.log(editorState);
         return (<div className={`${className}`}>
             <Editor editorState={editorState} 
             readOnly={true}
             />
             </div>);    
         }catch(error){
-        console.log("Not in rich text format");
+        // console.log("Not in rich text format");
         return(
             <div className={className}>{value}</div>
         )
