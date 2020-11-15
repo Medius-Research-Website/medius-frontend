@@ -50,7 +50,7 @@ export function clear() {
 }
 
 // fetches all relevant information about current user
-export function signinUser(user, history, callback?) {
+export function signinUser(user, history, callback=NULL) {
   // console.log('pushing sign in user');
     return (dispatch) => {
       axios.post(`${ROOT_URL}/signin`, user)
@@ -75,7 +75,7 @@ export function signinUser(user, history, callback?) {
     };
   }
   
-  export function signupUser(user, history) {
+  export function signupUser(user, history,callback=NULL) {
     return (dispatch) => {
       axios.post(`${ROOT_URL}/signup`, user)
         .then((response) => {
@@ -86,6 +86,7 @@ export function signinUser(user, history, callback?) {
           localStorage.setItem('userID', response.data.user.id);
           localStorage.setItem('username', response.data.user.username);
           history.push('/landingpage');
+          if (callback) callback();
         })
         .catch((error) => {
           console.log(error);
@@ -97,6 +98,7 @@ export function signinUser(user, history, callback?) {
             console.log('error 422, must fill out the form!', + error)
             dispatch({ type: ActionTypes.INCOMPLETE_FORM});
           }
+          if (callback) callback();
         });
     };
   }

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faUsers } from '@fortawesome/free-solid-svg-icons';
+
 import SignUpInd from './signUpInd'
 import SignUpOrg from './signUpOrg'
 import "./css_files/signUp.scss";
