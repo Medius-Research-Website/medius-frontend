@@ -51,10 +51,11 @@ export function clear() {
 
 // fetches all relevant information about current user
 export function signinUser(user, history) {
-  // console.log('pushing sign in user');
+  console.log('pushing sign in user');
     return (dispatch) => {
       axios.post(`${ROOT_URL}/signin`, user)
         .then((response) => {
+          console.log(response);
           dispatch({ type: ActionTypes.AUTH_USER, payload: response.data.user });
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('userID', response.data.user.id);
@@ -73,6 +74,7 @@ export function signinUser(user, history) {
   }
   
   export function signupUser(user, history) {
+    console.log('hist', history)
     return (dispatch) => {
       axios.post(`${ROOT_URL}/signup`, user)
         .then((response) => {
@@ -85,7 +87,7 @@ export function signinUser(user, history) {
           history.push('/landingpage');
         })
         .catch((error) => {
-          console.log(error);
+          // console.log('sign up error', error);
           if(error.response.status === 500){
             console.log('error 500, user already exists!', + error)
             dispatch({ type: ActionTypes.EXISTING_USER });
