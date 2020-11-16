@@ -30,6 +30,7 @@ export const ActionTypes = {
 const setError = (dispatch, message) => {
     dispatch({type: ActionTypes.SET_ERROR, payload:message});
 }
+
 export const clearErrorMessages = ()=>{
   return (dispatch)=>{
     dispatch({type: ActionTypes.CLEAR_ERROR});
@@ -50,7 +51,7 @@ export function clear() {
 }
 
 // fetches all relevant information about current user
-export function signinUser(user, history, callback=NULL) {
+export function signinUser(user, history, callback=null) {
   // console.log('pushing sign in user');
     return (dispatch) => {
       axios.post(`${ROOT_URL}/signin`, user)
@@ -75,7 +76,7 @@ export function signinUser(user, history, callback=NULL) {
     };
   }
   
-  export function signupUser(user, history,callback=NULL) {
+  export function signupUser(user, history, callback=null) {
     return (dispatch) => {
       axios.post(`${ROOT_URL}/signup`, user)
         .then((response) => {
