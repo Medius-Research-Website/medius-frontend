@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { signupUser, clear } from "../actions";
-import { Form, Button, Modal} from "react-bootstrap";
+import { Form, Button, Modal, Spinner} from "react-bootstrap";
 import "./css_files/signUp.scss";
 // import { wait } from "@testing-library/react";
 
@@ -16,6 +16,7 @@ class SignUpInd extends Component {
       lastName: "",
       firstName: "",
       validated: false,
+      loading:false
     };
 
     this.onInputChangeEmail = this.onInputChangeEmail.bind(this);
@@ -53,6 +54,7 @@ class SignUpInd extends Component {
 
 
   onClickSignUp = (event) => {
+    this.setState({loading:true});
     const form = event.currentTarget
     if(form.checkValidity() === false){
       event.preventDefault()
@@ -67,7 +69,9 @@ class SignUpInd extends Component {
         firstName: this.state.firstName,
         type: 'ind',
       };
-      this.props.signupUser(user, this.props.history);
+      this.props.signupUser(user, this.props.history,()=>{
+        this.setState({loading:false});
+      });
     }
   }
 
@@ -102,9 +106,12 @@ class SignUpInd extends Component {
               :
             (this.props.userExists && <Form.Control.Feedback type="invalid"> User already exists. </Form.Control.Feedback>)}
           </Form.Group>
-            <Button id="signUpBtn" variant="primary"  onClick={this.onClickSignUp}>
+            <Button disabled={this.state.loading} id="signUpBtn" variant="primary"  onClick={this.onClickSignUp}>
               Let's go!
             </Button>    
+            <Form.Group>
+              {this.state.loading?<Spinner className="spinner" animation="border" />:null}
+              </Form.Group>
           </Form>
         </Modal>
       );
@@ -133,9 +140,12 @@ class SignUpInd extends Component {
               :
             (this.props.userExists && <Form.Control.Feedback type="invalid"> User already exists. </Form.Control.Feedback>)}
           </Form.Group>
-            <Button id="signUpBtn" variant="primary"  onClick={this.onClickSignUp}>
+            <Button disabled={this.state.loading} id="signUpBtn" variant="primary"  onClick={this.onClickSignUp}>
               Let's go!
-            </Button>    
+            </Button>   
+            <Form.Group>
+              {this.state.loading?<Spinner className="spinner" animation="border" />:null}
+              </Form.Group> 
           </Form>
         </Modal>
       );

@@ -30,6 +30,7 @@ export const ActionTypes = {
 const setError = (dispatch, message) => {
     dispatch({type: ActionTypes.SET_ERROR, payload:message});
 }
+
 export const clearErrorMessages = ()=>{
   return (dispatch)=>{
     dispatch({type: ActionTypes.CLEAR_ERROR});
@@ -50,8 +51,8 @@ export function clear() {
 }
 
 // fetches all relevant information about current user
-export function signinUser(user, history) {
-  console.log('pushing sign in user');
+export function signinUser(user, history, callback=null) {
+  // console.log('pushing sign in user');
     return (dispatch) => {
       axios.post(`${ROOT_URL}/signin`, user)
         .then((response) => {
@@ -61,20 +62,22 @@ export function signinUser(user, history) {
           localStorage.setItem('userID', response.data.user.id);
           localStorage.setItem('username', response.data.user.username);
           history.push('/landingpage');
+          if (callback) callback();
         })
         .catch((error) => {
           // console.log("error sign in");
+          
           if(user.email && user.password) {
             dispatch({ type: ActionTypes.INVALID_CREDENTIALS })
           } else {
             dispatch({ type: ActionTypes.INCOMPLETE_FORM})
           }
+          if (callback) callback();
         });
     };
   }
   
-  export function signupUser(user, history) {
-    console.log('hist', history)
+  export function signupUser(user, history, callback=null) {
     return (dispatch) => {
       axios.post(`${ROOT_URL}/signup`, user)
         .then((response) => {
@@ -85,6 +88,7 @@ export function signinUser(user, history) {
           localStorage.setItem('userID', response.data.user.id);
           localStorage.setItem('username', response.data.user.username);
           history.push('/landingpage');
+          if (callback) callback();
         })
         .catch((error) => {
           // console.log('sign up error', error);
@@ -96,6 +100,7 @@ export function signinUser(user, history) {
             console.log('error 422, must fill out the form!', + error)
             dispatch({ type: ActionTypes.INCOMPLETE_FORM});
           }
+          if (callback) callback();
         });
     };
   }
