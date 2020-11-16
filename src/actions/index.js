@@ -56,6 +56,7 @@ export function signinUser(user, history, callback=null) {
     return (dispatch) => {
       axios.post(`${ROOT_URL}/signin`, user)
         .then((response) => {
+          console.log(response);
           dispatch({ type: ActionTypes.AUTH_USER, payload: response.data.user });
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('userID', response.data.user.id);
@@ -90,7 +91,7 @@ export function signinUser(user, history, callback=null) {
           if (callback) callback();
         })
         .catch((error) => {
-          console.log(error);
+          // console.log('sign up error', error);
           if(error.response.status === 500){
             console.log('error 500, user already exists!', + error)
             dispatch({ type: ActionTypes.EXISTING_USER });

@@ -29,7 +29,7 @@ class SignUpInd extends Component {
   }
 
   componentDidMount (){
-    // console.log('sign up', this.props);
+    // console.log('sign up ind', this.props);
   }
 
   onInputChangeEmail(event) {
