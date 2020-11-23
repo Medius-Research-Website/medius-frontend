@@ -15,8 +15,10 @@
         display: flex;
         flex-direction: column;
         padding: 30px;
-        gap: 50px;
-        flex-basis: 65%;
+        // gap: 50px;
+        // flex-basis: 65%;
+        max-width: 70vw;
         margin-left: 24%;
+        margin-bottom: 25px;
     }
 }

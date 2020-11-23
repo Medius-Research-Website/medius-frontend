@@ -16,6 +16,15 @@
     overflow: hidden;
     padding: 10px;
     max-width: 200px;
+    min-height: 140px;
+
+    .userBubbleInside{
+        min-height: 100px;
+        min-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
     .followers {
         display: flex;
@@ -28,7 +37,7 @@
         margin-left: 10px;
         margin-bottom: 0px;
         font-family: 'Oxygen', sans-serif;
-        font-size: 0.6rem;
+        font-size: 0.8rem;
         line-height: 20px;  
         text-align: center;
     }
@@ -46,6 +55,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        min-height: 100px;
     }
 
     * {
@@ -53,8 +63,8 @@
     }
 
     img {
-        height: 50%;
-        width: 30%;
+        height: auto;
+        width: 50%;
     }
 
 }

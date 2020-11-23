@@ -1,7 +1,7 @@
 import axios from 'axios';
 import history from '../history'
-const ROOT_URL = 'http://localhost:9090/api';
-// const ROOT_URL = 'https://medius-api.herokuapp.com/api';
+// const ROOT_URL = 'http://localhost:9090/api';
+const ROOT_URL = 'https://medius-api.herokuapp.com/api';
 
 export const ActionTypes = {
   FETCH_POSTS: 'FETCH_POSTS',
@@ -23,8 +23,19 @@ export const ActionTypes = {
   SINGLE_PRICE_CHANGE: 'SINGLE_PRICE_CHANGE',
   ADD_COMMENT: 'ADD_COMMENT',
   ADD_POST: 'ADD_POST',
+  SET_ERROR: 'SET_ERROR',
+  CLEAR_ERROR: 'CLEAR_ERROR'
 };
 
+const setError = (dispatch, message) => {
+    dispatch({type: ActionTypes.SET_ERROR, payload:message});
+}
+
+export const clearErrorMessages = ()=>{
+  return (dispatch)=>{
+    dispatch({type: ActionTypes.CLEAR_ERROR});
+  }
+}
 // trigger to deauth if there is error
 export function authError(error) {
   return {
@@ -40,30 +51,33 @@ export function clear() {
 }
 
 // fetches all relevant information about current user
-export function signinUser(user, history) {
+export function signinUser(user, history, callback=null) {
   // console.log('pushing sign in user');
     return (dispatch) => {
       axios.post(`${ROOT_URL}/signin`, user)
         .then((response) => {
+          console.log(response);
           dispatch({ type: ActionTypes.AUTH_USER, payload: response.data.user });
-          console.log(response.data.user);
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('userID', response.data.user.id);
           localStorage.setItem('username', response.data.user.username);
           history.push('/landingpage');
+          if (callback) callback();
         })
         .catch((error) => {
           // console.log("error sign in");
+          
           if(user.email && user.password) {
             dispatch({ type: ActionTypes.INVALID_CREDENTIALS })
           } else {
             dispatch({ type: ActionTypes.INCOMPLETE_FORM})
           }
+          if (callback) callback();
         });
     };
   }
   
-  export function signupUser(user, history) {
+  export function signupUser(user, history, callback=null) {
     return (dispatch) => {
       axios.post(`${ROOT_URL}/signup`, user)
         .then((response) => {
@@ -74,9 +88,10 @@ export function signinUser(user, history) {
           localStorage.setItem('userID', response.data.user.id);
           localStorage.setItem('username', response.data.user.username);
           history.push('/landingpage');
+          if (callback) callback();
         })
         .catch((error) => {
-          console.log(error);
+          // console.log('sign up error', error);
           if(error.response.status === 500){
             console.log('error 500, user already exists!', + error)
             dispatch({ type: ActionTypes.EXISTING_USER });
@@ -85,6 +100,7 @@ export function signinUser(user, history) {
             console.log('error 422, must fill out the form!', + error)
             dispatch({ type: ActionTypes.INCOMPLETE_FORM});
           }
+          if (callback) callback();
         });
     };
   }
@@ -103,12 +119,13 @@ export function signinUser(user, history) {
 // returns public information for all users (need to narrow this, how do we want to present profiles?)
 export function fetchUsers() {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/user/`)
+    axios.get(`${ROOT_URL}/user/`, { headers: { authorization: localStorage.getItem('token') }})
       .then((response) => {
         dispatch({ type: ActionTypes.FETCH_USERS, payload: response.data });
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
+        setError(dispatch,'An error occured when getting users information/');
         console.log(error);
       });
   };
@@ -117,12 +134,13 @@ export function fetchUsers() {
 // only returns public information for a user
 export function fetchUser(id) {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/user/${id}/`)
+    axios.get(`${ROOT_URL}/user/${id}/`, { headers: { authorization: localStorage.getItem('token') }})
       .then((response) => {
         dispatch({ type: ActionTypes.FETCH_USER, payload: response.data });
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
+        setError(dispatch,'An error occured when getting the user information.');
         console.log(error);
       });
   };
@@ -130,13 +148,14 @@ export function fetchUser(id) {
 
 export function fetchCurrentUser(id) {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/user/${id}/`)
+    axios.get(`${ROOT_URL}/user/${id}/`, { headers: { authorization: localStorage.getItem('token') }})
       .then((response) => {
         // console.log(response, 'fetch current user action')
         dispatch({ type: ActionTypes.FETCH_CURRENT_USER, payload: response.data });
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
+        setError(dispatch,"An error occured when getting current user's information.");
         console.log(error);
       });
   };
@@ -145,13 +164,14 @@ export function fetchCurrentUser(id) {
 // only can update current user
 export function updateUser(id, fields) {
   return (dispatch) => {
-    axios.put(`${ROOT_URL}/user/${id}`, fields)
+    axios.put(`${ROOT_URL}/user/${id}`, fields, { headers: { authorization: localStorage.getItem('token') }})
       .then((response) => {
         console.log('actions', response);
         dispatch({ type: ActionTypes.AUTH_USER, payload: response.data });
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
+        setError(dispatch,'An error occured when trying to update user information.');
         console.log(error);
       });
   };
@@ -159,12 +179,13 @@ export function updateUser(id, fields) {
 
 export function fetchUserPosts(id) {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/user/posts/${id}`)
+    axios.get(`${ROOT_URL}/user/posts/${id}`, { headers: { authorization: localStorage.getItem('token') }})
     .then((response) => {
       dispatch({ type: ActionTypes.FETCH_USER_POSTS, payload: response.data});
     })
     .catch((error) => {
-      console.log(error)
+      setError(dispatch,"An error occured when fetching this user's posts.");
+      console.log(error);
     })
   }
 }
@@ -178,6 +199,7 @@ export function fetchPosts() {
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
+        setError(dispatch,"An error occured when getting posts' information.");
         console.log(error);
       });
   };
@@ -191,6 +213,7 @@ export function fetchPost(id) {
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
+        setError(dispatch,"An error occured when getting the post's information.");
         console.log(error);
       });
   };
@@ -204,6 +227,7 @@ export function fetchPriceChange(id) {
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
+        setError(dispatch,"An error occured when getting price change of a post.");
         console.log(error);
       });
   };
@@ -217,6 +241,7 @@ export function fetchCommentsByPost(postID){
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
+        setError(dispatch,"An error occured when getting the post's comments.");
         console.log(error);
       });
   }
@@ -229,6 +254,7 @@ export function addComment(comment, postID) {
       dispatch({ type: ActionTypes.ADD_COMMENT, payload: {...response.data, postID }});
     })
     .catch((error) => {
+      setError(dispatch,"An error occured when adding the comment.");
       console.log(error);
     });
   } 
@@ -238,10 +264,12 @@ export function createPost(post, history) {
   return (dispatch) => {
     axios.put(`${ROOT_URL}/posts`, post, { headers: { authorization: localStorage.getItem('token') } })
       .then((response) => { 
+        // console.log(response)
         dispatch({ type: ActionTypes.ADD_POST, payload: response.data });
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
+        setError(dispatch,"A error occured when creating the post.");
         console.log(error);
       });
   }
@@ -266,6 +294,7 @@ export function deletePost(id) {
       .then(() => { history.push('/'); })
       .catch((error) => {
         // dispatch an error, in separate error reducer
+        setError(dispatch,"An error occured when deleting the post");
         console.log(error);
       });
   };
@@ -284,6 +313,7 @@ export function singlePriceChange(id) {
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
+        setError(dispatch,"An error occured getting price change of a post.");
         console.log(error);
       });
   };
@@ -300,6 +330,7 @@ export function likePost(postID, userId, stateOfLike){
       })
       .catch((error)=>{
         // handle Errors
+        setError(dispatch,"An error occured liking the post.");
         console.log(error);
       });}
     else{
@@ -311,6 +342,7 @@ export function likePost(postID, userId, stateOfLike){
       })
       .catch((error)=>{
         // handle Errors
+        setError(dispatch,"An error occured unliking the post.");
         console.log(error);
       });}
   }
@@ -324,6 +356,7 @@ export function followUser(myID, theirID){
       })
       .catch((error)=>{
         // handle Errors
+        setError(dispatch,"An error occured when following the user.");
         console.log(error);
       })
   }
@@ -337,6 +370,7 @@ export function unfollowUser(myID, theirID){
       })
       .catch((error)=>{
         // handle Errors
+        setError(dispatch,"An error occured when unfollowing the user.");
         console.log(error);
       })
   }

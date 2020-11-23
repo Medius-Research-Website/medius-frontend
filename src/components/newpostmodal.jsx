@@ -6,7 +6,7 @@ import { toggleNewPostModal, createPost } from "../actions";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb, faUpload, faNewspaper } from '@fortawesome/free-solid-svg-icons';
 import { uploadFile } from '../actions/s3';
-
+import RichTextEditor from './richTextEditor';
 const INITIAL_STATE=0;
 const IDEA_FORM_STATE=1;
 const FIRE_FORM_STATE=2;
@@ -130,11 +130,10 @@ const InvestmentIdeaForm = (props)=>{
                 onChange={(e)=>{setInsight(e.target.value)}}
                 className="input--insight"
                 type="text" placeholder="What is your unique insight? (in one sentence)"/>
-            <textarea 
-                value={idea}
-                onChange={(e)=>{setIdea(e.target.value)}}
+            <RichTextEditor
+                onChange={(value)=>{setIdea(value)}}
                 className="input--idea"
-                type="text" placeholder="Investment Idea (5 to 7 sentences)"/>
+            />
             <div className="input--toggle-and-submit">
                 <span className={`${sell?null:"inactive"}`}>Sell</span>
                 <Switch 
@@ -184,8 +183,8 @@ const FileUpLoadForm = (props)=>{
         if (ifError) return;
         
         let post={
-            idea: title,
-            insight: bodyContent,
+            insight: title,
+            idea: bodyContent,
             file: file,
             type:"report",
             author: localStorage.getItem('userID'),
@@ -264,12 +263,10 @@ const ArticleForm = (props)=>{
                 onChange={(e)=>{setTitle(e.target.value)}}
                 className="input--title"
                 type="text" placeholder="Artcile Title"/>
-            <textarea 
-                value={bodyContent}
-                onChange={(e)=>{setBody(e.target.value)}}
+            <RichTextEditor
+                onChange={(value)=>{setBody(value)}}
                 className="input--body"
-                type="text" placeholder="Article body"/>
-            
+            />
             <button onClick={submitHandler} className="input--submit btn btn-success"> Post </button>
             {errorMessages.map((errorMessage,idx)=>
                 <p key={idx} className="input--error">{errorMessage}</p>

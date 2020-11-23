@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faUsers } from '@fortawesome/free-solid-svg-icons';
+
 import SignUpInd from './signUpInd'
 import SignUpOrg from './signUpOrg'
 import "./css_files/signUp.scss";
@@ -62,9 +63,9 @@ class SignUp extends Component{
             )
         }
         else if (this.state.showInd)
-            return <SignUpInd show={this.state.showInd} stateChange={this.changeInd}/>;
+            return <SignUpInd show={this.state.showInd} stateChange={this.changeInd} history={this.props.history} />;
         else if (this.state.showOrg) {
-            return <SignUpOrg show={this.state.showOrg} stateChange={this.changeOrg}/>;
+            return <SignUpOrg show={this.state.showOrg} stateChange={this.changeOrg} history={this.props.history}/>;
         }
         else
             return null

@@ -4,6 +4,7 @@ import "./css_files/post.scss";
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp, faCommentDots } from '@fortawesome/free-solid-svg-icons'
+import RichTextDisplayer from './richTextDisplayer';
 
 // this is the small view of a post for the feed page
 export default function Post({ userId, post,  fetchComments, fetchPriceChange, likePost }) {
@@ -45,14 +46,13 @@ export default function Post({ userId, post,  fetchComments, fetchPriceChange, l
               <FontAwesomeIcon onClick={onCommentToggle} icon={faCommentDots} className="icon"/>
             </div>
           </div>
-          <Link to={`posts/${post.id}`}  style={{ textDecoration: 'none' }}>
+          <Link to={`/posts/${post.id}`}  style={{ textDecoration: 'none' }}>
             <div className="content">
               <p className="post-title">
                 {post.insight}
               </p>
-              <p className="info">
-                {post.idea}
-              </p>
+              <RichTextDisplayer className="info" value={post.idea}/>
+              
             </div>
           </Link>
         </div>

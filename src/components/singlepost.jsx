@@ -8,6 +8,7 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faExternalLinkSquareAlt } from '@fortawesome/free-solid-svg-icons'
+import RichTextDisplayer from './richTextDisplayer';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 // import { ThreeSixtySharp } from '@material-ui/icons';
@@ -17,7 +18,8 @@ class singlepost extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      comment: ''
+      comment: '',
+      err: false,
     }
   }
 
@@ -34,15 +36,18 @@ class singlepost extends Component {
   }
 
   createComment = (comment) => {
-
-    const fields = {
-      text: comment,
-      author: this.props.user.username,
-      authorID: this.props.user.id,
-    };
-    
-    this.props.addComment(fields, this.props.match.params.postID);
-    this.setState({ comment: ''});
+    if (this.state.comment === '') {
+      this.setState({ err: true});
+    } else {
+      const fields = {
+        text: comment,
+        author: this.props.user.username,
+        authorID: this.props.user.id,
+      };
+      
+      this.props.addComment(fields, this.props.match.params.postID);
+      this.setState({ comment: '', err: false});
+    }
   }
 
   renderInvestment = () => {
@@ -51,7 +56,7 @@ class singlepost extends Component {
 
     return (
       <div className="singlepost">
-          <div className="header">
+          <div className="header-sPost">
             <h3>{current.insight}</h3>
             <Link to={`/users/${current.author}`}>@{current.username}</Link>
             <p>{new Date(current.createdAt).toLocaleDateString()}</p>
@@ -64,9 +69,9 @@ class singlepost extends Component {
             </div>
             { current.sell ? ( <div className="bubble--sell">Sell</div> ) : ( <div className="bubble--buy">Buy</div> ) }
           </div>
-          <div className="description">
-            {current.idea}
-          </div>
+          <RichTextDisplayer className="description">
+            {current.idea}  
+          </RichTextDisplayer>
       </div>
     )
   }
@@ -76,14 +81,14 @@ class singlepost extends Component {
 
     return (
       <div className="singlepost">
-          <div className="header">
+          <div className="header-sPost">
             <h3>{current.insight}</h3>
             <Link to={`/users/${current.author}`}>@{current.username}</Link>
             <p>{new Date(current.createdAt).toLocaleDateString()}</p>
           </div>
-          <div className="description">
-            {current.idea}
-          </div>
+          <RichTextDisplayer className="description">
+            {current.idea}  
+          </RichTextDisplayer>
       </div>
 
     )
@@ -94,14 +99,14 @@ class singlepost extends Component {
 
     return (
       <div className="singlepost upload">
-          <div className="header">
+          <div className="header-sPost">
             <h3>{current.insight}</h3>
             <Link to={`/users/${current.author}`}>@{current.username}</Link>
             <p>{new Date(current.createdAt).toLocaleDateString()}</p>
           </div>
-          <div className="description">
-            {current.idea}
-          </div>
+          <RichTextDisplayer className="description">
+            {current.idea}  
+          </RichTextDisplayer>
             <FontAwesomeIcon icon={faExternalLinkSquareAlt} />
             <PDFRender file={current.file} />
       </div>
@@ -123,12 +128,14 @@ class singlepost extends Component {
               onChange={this.handleChange}
               placeholder="Add a comment..."
               style={{padding: 20,borderRadius:20, backgroundColor:'#E0E1DD',border:'none'}}
+              required
             />
             <button 
               style={{backgroundColor:'#5A786F',color:'white',marginLeft:10,borderRadius:20,padding:15}} 
                 onClick={() => this.createComment(this.state.comment)}> {/* this.props.addComment(comment) */}
                   Add
             </button>
+            { this.state.err ? (<p id="no-blank">No blank comments allowed!</p>) : <p></p>}
           </div>
           {
             !comments[key] ? null : comments[key].map( comment => 

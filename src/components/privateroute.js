@@ -10,7 +10,7 @@ const PrivateRoute = ({ component: Child, ...props }) => {
       render={(routeProps) => (props.authenticated ? (
         <Child {...routeProps} />
       ) : (
-        <Redirect to="/signin" />
+        <Redirect to="/" />
       ))}
     />
   );

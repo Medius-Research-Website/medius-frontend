@@ -20,7 +20,7 @@ class userBubble extends Component {
         const numFollowing = this.props.user.following?.length?this.props.user.following?.length:0;
 
         return (
-            <div>
+            <div className='userBubbleInside'>
                 <Link to={`/users/${this.props.user.id}`}>
                     { pic ? (<img src={this.props.user.picture} alt="profile" /> ) : ( <img src={blankProfile} alt="profile" /> )}
                     <p id="name">{this.props.user.firstName} {this.props.user.lastName}</p>

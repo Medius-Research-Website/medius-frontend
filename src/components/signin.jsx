@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { signinUser, clear } from "../actions";
-import { Form, Button , Modal} from "react-bootstrap";
+import { Form, Button , Modal, Spinner} from "react-bootstrap";
 // import { Link } from "react-router-dom";
 import "./css_files/signIn.scss";
 
@@ -13,6 +13,7 @@ class Signin extends Component {
       email: "",
       password: "",
       validated: false,
+      loading:false
     };
     this.onInputChangeEmail = this.onInputChangeEmail.bind(this);
     this.onInputChangePassword = this.onInputChangePassword.bind(this);
@@ -28,6 +29,7 @@ class Signin extends Component {
   }
 
   onClickSignIn = (event) => {
+    this.setState({loading:true});
     const form = event.currentTarget
     if(form.checkValidity() === false){
       event.preventDefault()
@@ -38,7 +40,9 @@ class Signin extends Component {
         email: this.state.email,
         password: this.state.password,
       };
-        this.props.signinUser(user, this.props.history);
+        this.props.signinUser(user, this.props.history,()=>{
+          this.setState({loading:false});
+        });
     }
   }
 
@@ -67,10 +71,14 @@ class Signin extends Component {
               :
             (this.props.invalidCredentials && <Form.Control.Feedback type="invalid"> Email and password don't match. </Form.Control.Feedback>)}
           </Form.Group>
-
-          <Button id="signInBtn" variant="primary" onClick={this.onClickSignIn}>
+          <Form.Group>
+          <Button id="signInBtn" variant="primary" onClick={this.onClickSignIn} disabled={this.state.loading}>
             Lets go!
           </Button>
+          </Form.Group>
+          <Form.Group>
+              {this.state.loading?<Spinner className="spinner" animation="border" />:null}
+              </Form.Group>
         </Form>
       </Modal>
       )
@@ -94,9 +102,12 @@ class Signin extends Component {
               :
               (this.props.invalidCredentials && <Form.Control.Feedback type="invalid"> Email and password don't match. </Form.Control.Feedback>)}
             </Form.Group>
-              <Button id="signInBtn" variant="primary"  onClick={this.onClickSignIn}>
+              <Button id="signInBtn" variant="primary"  onClick={this.onClickSignIn} disabled={this.state.loading}>
                 Submit
               </Button>
+              <Form.Group>
+              {this.state.loading?<Spinner className="spinner" animation="border" />:null}
+              </Form.Group>
           </Form>
         </Modal>
       );

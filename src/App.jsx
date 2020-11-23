@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import ReactGA from 'react-ga';
 import Home from "./components/home";
 import history from './history'
@@ -11,23 +11,45 @@ import Community from "./pages/communityPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import singlepost from "./components/singlepost";
 import profile from "./components/profile";
-
+import Desktop from "./components/open-in-desktop";
+import PrivateRoute from "./components/privateroute";
+import Media from 'react-media'; 
+import ErrorModal from "./components/errorModal";
+import Competitions from "./components/competitions";
+import Opportunities from "./components/opportunities";
 const trackingId = "UA-176041306-1"
 ReactGA.initialize(trackingId);
 
 function App() {
   return (
-    <Router history={history}>
-      <div>
-        {/* <Navbar /> */}
-          <Route exact path="/" component={Home} />
-          <Route exact path="/about" component={about} />
-          <Route exact path="/landingpage" component={LandingPage}/>
-          <Route exact path="/communitypage" component={Community} />
-          <Route exact path="/posts/:postID" component={singlepost} />
-          <Route exact path="/users/:userID" component={profile} />
-      </div>
-    </Router>
+    <Media queries={{ small: "(max-width: 599px)" }}>
+      {matches =>
+            !matches.small ? (
+              // if you're on a desktop, has the normal view
+              <Router history={history}>
+                <ErrorModal/>
+                <Switch>
+                  <Route exact path="/" component={Home} />
+                  <PrivateRoute exact path="/about" component={about} />
+                  <PrivateRoute exact path="/landingpage" component={LandingPage}/>
+                  <PrivateRoute exact path="/communitypage" component={Community} />
+                  <PrivateRoute exact path="/posts/:postID" component={singlepost} />
+                  <PrivateRoute exact path="/users/:userID" component={profile} />
+                  <PrivateRoute exact path="/competitions" component={Competitions} />
+                  <PrivateRoute exact path="/opportunities" component={Opportunities} />
+                </Switch>
+              </Router>
+            ) : (
+              // if you're in mobile, will only load the landing page. otherwise asks you to view in desktop
+              console.log('in mobile'),
+              <Router history={history}>
+                <Switch>
+                  <Route exact path="/" component={Home} />
+                  <Route component={Desktop} />
+                </Switch>
+              </Router>
+            )}
+    </Media>
   );
 }
 

@@ -24,6 +24,10 @@ html {
     text-decoration: none;
 }
 
+.brand-logo-name > a:hover {
+  color: white;
+}
+
 .page1 {
     background-color: #E0E1DD;
     padding: 10%;
@@ -74,7 +78,7 @@ html {
 h2 {
     font-size: 200%;
     font-weight: bold;
-    p {
+    span {
         font-style: normal;
         font-weight: bold;
         font-size: 100%;
@@ -82,6 +86,14 @@ h2 {
         color: #5A786F;
         background: transparent;
         margin-bottom: 0px;
+    }
+
+    span:first-of-type {
+      color: #299B31;
+    }
+
+    span:last-of-type {
+      color: #1B9671;
     }
 }
 
@@ -203,30 +215,67 @@ h2 {
     display: none;
 }
 
-@media only screen and (max-width: 450px) {
+#mobile-signUp, #mobile-btn-signIn {
+  display: none !important;
+}
+
+#noShowmobile {
+  display: none !important;
+}
+
+@media only screen and (max-width: 599px) {
+    html {
+        height: 100vh;
+    }
+
+    #btn-signin {
+        display: none;
+    }
+
+    #mobile-btn-signIn {
+      display: block;
+      width: 100px;
+      position: relative;
+      left: -30px;
+      top: -23px;
+
+      button {
+        width: 100%;
+      }
+    }
 
  .page1 {
-     flex-direction: column;
-     width: 100%;
-     min-height: 110vw;
-     margin: 0;
-     padding: 3%;
+    flex-direction: column;
+    width: 100%;
+    min-height: 110vw;
+    margin: 0;
+    padding: 3%;
 
-     .monitor {
-         display: none;
-     }
+    .monitor {
+        display: none;
+    }
 
-     .container {
-         padding: 0;
-         margin: 0;
-         font-size: 0.8em;
-         width: 60%;
-     }
+    .container {
+      padding: 0;
+      margin: 0;
+      font-size: 0.8em;
+      width: 60%;
+    }
 
-     button {
-         width: 75%;
-         font-size: 0.5em;
-     }
+    button {
+      width: 75%;
+      font-size: 1em;
+    }
+
+    a {
+      width: 75vw;
+      height: 50px;
+      font-size: 1em;
+    }
+
+    #mobile-signUp {
+      display: flex !important;
+    }
  }
 
  .page2 {
@@ -237,37 +286,41 @@ h2 {
     min-height: 100vw;
 
     p {
-        width: 70%;
+      width: 70%;
+    }
+
+    #collaborate > p {
+      margin-left: 0px;
     }
 
     img {
-        display: none;
+      display: none;
     }
 
     #bubbles {
-        flex-direction: column;
-        align-items: center;
-        width: 75%;
+      flex-direction: column;
+      align-items: center;
+      width: 75%;
     }
 
     #reliable, #access, #collaborate {
-        align-items: center;
+      align-items: center;
     }
 
     .rcorners2 {
-        width: 100%;
+      width: 100%;
     }
 
     #horiz {
-        flex-direction: column;
+      flex-direction: column;
     }
   }
 
   .footer {
-      flex-direction: column;
-      align-items: center;
-      padding-top: 3%;
-      padding-bottom: 3%;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3%;
+    padding-bottom: 3%;
 
       br {
           height: 0px;
