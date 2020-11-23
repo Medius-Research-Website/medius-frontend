@@ -69,9 +69,6 @@ class singlepost extends Component {
             </div>
             { current.sell ? ( <div className="bubble--sell">Sell</div> ) : ( <div className="bubble--buy">Buy</div> ) }
           </div>
-          <div className="description">
-            {current.idea}
-          </div>
           <RichTextDisplayer className="description">
             {current.idea}  
           </RichTextDisplayer>
@@ -89,9 +86,9 @@ class singlepost extends Component {
             <Link to={`/users/${current.author}`}>@{current.username}</Link>
             <p>{new Date(current.createdAt).toLocaleDateString()}</p>
           </div>
-          <div className="description">
-            {current.idea}
-          </div>
+          <RichTextDisplayer className="description">
+            {current.idea}  
+          </RichTextDisplayer>
       </div>
 
     )
@@ -107,9 +104,9 @@ class singlepost extends Component {
             <Link to={`/users/${current.author}`}>@{current.username}</Link>
             <p>{new Date(current.createdAt).toLocaleDateString()}</p>
           </div>
-          <div className="description">
-            {current.idea}
-          </div>
+          <RichTextDisplayer className="description">
+            {current.idea}  
+          </RichTextDisplayer>
             <FontAwesomeIcon icon={faExternalLinkSquareAlt} />
             <PDFRender file={current.file} />
       </div>
