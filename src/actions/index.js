@@ -227,7 +227,7 @@ export function fetchPriceChange(id) {
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
-        setError(dispatch,"An error occured when getting price change of a post.");
+        // setError(dispatch,"An error occured when getting price change of a post.");
         console.log(error);
       });
   };
@@ -313,7 +313,7 @@ export function singlePriceChange(id) {
       })
       .catch((error) => {
         // dispatch an error, in separate error reducer
-        setError(dispatch,"An error occured getting price change of a post.");
+        // setError(dispatch,"An error occured getting price change of a post.");
         console.log(error);
       });
   };
